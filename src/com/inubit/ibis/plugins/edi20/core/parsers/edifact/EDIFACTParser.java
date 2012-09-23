@@ -65,19 +65,13 @@ public class EDIFACTParser extends HWEDParser {
 		getEDIFACTRule().closeCurrentRuleToken(token);
 		if (EDIFACTDelimiters.DELIMITER_SEGMENT == token.getDelimiterType()) {
 			// segment finished
-			// if (!isEnveloperRuleInUse()) {
 			fState = SEGMENT_OR_SEGMENTGROUP;
-			// }
 		} else if (EDIFACTDelimiters.DELIMITER_COMPLEXELEMENT == token.getDelimiterType()) {
 			// complex element finished
-			// if (!isEnveloperRuleInUse()) {
 			fState = ELEMENT_OR_COMPLEXELEMENT;
-			// }
 		} else if (EDIFACTDelimiters.DELIMITER_ELEMENT == token.getDelimiterType()) {
 			// element finished
-			// if (!isEnveloperRuleInUse()) {
 			fState = ELEMENT_OR_COMPLEXELEMENT;
-			// }
 		} else {
 			throw new InubitException("Unknown delimiter [" + token.getToken() + "] found!");
 		}

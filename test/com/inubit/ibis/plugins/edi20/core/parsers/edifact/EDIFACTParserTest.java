@@ -50,7 +50,6 @@ public class EDIFACTParserTest {
 			EDIFACTParser parser = new EDIFACTParser(scanner, rule);
 			parser.parse();
 		} catch (InubitException e) {
-			e.printStackTrace();
 			fail("Error while parsing! " + e.getMessage());
 		}
 	}
@@ -64,7 +63,6 @@ public class EDIFACTParserTest {
 			EDIFACTRule rule = new EDIFACTRule(getDocument(ruleFile));
 			EDIFACTParser parser = new EDIFACTParser(scanner, rule);
 			parser.parse();
-
 		} catch (InubitException e) {
 			fail("Error while initializing parser! " + e.getMessage());
 		}
