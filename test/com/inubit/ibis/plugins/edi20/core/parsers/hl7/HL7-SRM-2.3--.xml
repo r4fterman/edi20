@@ -1,0 +1,1641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message xmlns:IBISUtilsHandler="com.inubit.ibis.utils.IBISUtilsHandler" agency="HL7" release="-" version="2.3.1" name="Schedule Request Message" type="SRM" standard="HL7" layout="hwed">
+  <Segment id="MSH" name="Message Header" required="M" loop="1" xmlTag="MessageHeader">
+    <Element id="00001" name="Field Separator" required="M" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="FieldSeparator"/>
+    <Element id="00002" name="Encoding Characters" required="M" loop="1" type="AN" minLength="1" maxLength="4" xmlTag="EncodingCharacters"/>
+    <CompositeElement id="00003" name="Sending Application" required="C" loop="1" type="EI" minLength="1" maxLength="180" xmlTag="SendingApplication">
+      <Element id="EL_01" name="Entity Identifier" required="O" type="AN" xmlTag="EntityIdentifier"/>
+      <Element id="EL_02" name="Namespace ID" required="O" type="AN" xmlTag="NamespaceID"/>
+      <Element id="EL_03" name="Universal ID" required="O" type="AN" xmlTag="UniversalID"/>
+      <Element id="EL_04" name="Universal ID type" required="O" type="AN" xmlTag="UniversalIDType"/>
+    </CompositeElement>
+    <CompositeElement id="00004" name="Sending Facility" required="O" loop="1" type="EI" minLength="1" maxLength="180" xmlTag="SendingFacility">
+      <Element id="EL_01" name="Entity Identifier" required="O" type="AN" xmlTag="EntityIdentifier"/>
+      <Element id="EL_02" name="Namespace ID" required="O" type="AN" xmlTag="NamespaceID"/>
+      <Element id="EL_03" name="Universal ID" required="O" type="AN" xmlTag="UniversalID"/>
+      <Element id="EL_04" name="Universal ID type" required="O" type="AN" xmlTag="UniversalIDType"/>
+    </CompositeElement>
+    <CompositeElement id="00005" name="Receiving Application" required="O" loop="1" type="EI" minLength="1" maxLength="180" xmlTag="ReceivingApplication">
+      <Element id="EL_01" name="Entity Identifier" required="O" type="AN" xmlTag="EntityIdentifier"/>
+      <Element id="EL_02" name="Namespace ID" required="O" type="AN" xmlTag="NamespaceID"/>
+      <Element id="EL_03" name="Universal ID" required="O" type="AN" xmlTag="UniversalID"/>
+      <Element id="EL_04" name="Universal ID type" required="O" type="AN" xmlTag="UniversalIDType"/>
+    </CompositeElement>
+    <CompositeElement id="00006" name="Receiving Facility" required="O" loop="1" type="EI" minLength="1" maxLength="180" xmlTag="ReceivingFacility">
+      <Element id="EL_01" name="Entity Identifier" required="O" type="AN" xmlTag="EntityIdentifier"/>
+      <Element id="EL_02" name="Namespace ID" required="O" type="AN" xmlTag="NamespaceID"/>
+      <Element id="EL_03" name="Universal ID" required="O" type="AN" xmlTag="UniversalID"/>
+      <Element id="EL_04" name="Universal ID type" required="O" type="AN" xmlTag="UniversalIDType"/>
+    </CompositeElement>
+    <CompositeElement id="00007" name="Date/Time Of Message" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="MessageDateTime">
+      <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+      <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+    </CompositeElement>
+    <Element id="00008" name="Security" required="O" loop="1" type="AN" minLength="1" maxLength="40" xmlTag="Security"/>
+    <CompositeElement id="00009" name="Message Type" required="M" loop="1" type="CM" minLength="1" maxLength="7" xmlTag="MessageType">
+      <Element id="CM_01" name="Type" required="O" type="AN" xmlTag="Type"/>
+      <Element id="CM_02" name="Trigger event" required="O" type="AN" xmlTag="TriggerEvent"/>
+    </CompositeElement>
+    <Element id="00010" name="Message Control ID" required="M" loop="1" type="AN" minLength="1" maxLength="20" xmlTag="MessageControlID"/>
+    <CompositeElement id="00011" name="Processing ID" required="M" loop="1" type="PT" minLength="1" maxLength="3" xmlTag="ProcessingID">
+      <Element id="PT_01" name="Processing ID first fied" required="O" type="AN" xmlTag="ProcessingIDField"/>
+      <Element id="PT_02" name="Processing mode" required="O" type="AN" xmlTag="ProcessingMode"/>
+    </CompositeElement>
+    <CompositeElement id="00012" name="Version ID" required="M" loop="1" type="VID" minLength="1" maxLength="60" xmlTag="VersionID">
+      <Element id="VID_01" name="Version ID first fied" required="O" type="AN" xmlTag="VersionIDField"/>
+      <Element id="VID_02" name="Internationalization Code" required="O" type="AN" xmlTag="InternationalizationCode"/>
+      <Element id="VID_03" name="International Version ID" required="O" type="AN" xmlTag="InternationalVersionID"/>
+    </CompositeElement>
+    <Element id="00013" name="Sequence Number" required="O" loop="1" type="N" minLength="1" maxLength="15" xmlTag="SequenceNumber"/>
+    <Element id="00014" name="Continuation Pointer" required="O" loop="1" type="AN" minLength="1" maxLength="180" xmlTag="ContinuationPointer"/>
+    <Element id="00015" name="Accept Acknowledgment Type" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="AcceptAcknowledgmentType"/>
+    <Element id="00016" name="Application Acknowledgment Type" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="ApplicationAcknowledgmentType"/>
+    <Element id="00017" name="Country Code" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="CountryCode"/>
+    <Element id="00692" name="CharacterSet" required="O" loop="3" type="AN" minLength="1" maxLength="10" xmlTag="CharacterSet"/>
+    <CompositeElement id="00693" name="Principal Language Of Message" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="PrincipalLanguageOfMessage">
+      <Element id="CE_01" name="Identifier" required="O" type="AN" xmlTag="Identifier"/>
+      <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+      <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+      <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+      <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+      <Element id="CE_06" name="name alternate of coding system" required="O" type="AN" xmlTag="NameAlternateOfCodingSystem"/>
+    </CompositeElement>
+    <Element id="01317" name="Alternate Character Set Handling Scheme" required="O" loop="1" type="AN" minLength="1" maxLength="20" xmlTag="AlternateCharacterSetHandlingScheme"/>
+  </Segment><Segment id="MSA" name="" xmlTag="MSA" loop="n" required="C"><Element id="F1" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="F1"/><Element id="F2" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="F2"/><Element id="F3" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="F3"/><Element id="F4" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="F4"/><Element id="F5" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="F5"/></Segment>
+  <Segment id="ARQ" name="Appointment request segment" required="M" loop="1" xmlTag="AppointmentRequest">
+    <CompositeElement id="00860" name="Placer Appointment ID" required="M" loop="1" type="EI" minLength="1" maxLength="75" xmlTag="PlacerAppointmentID">
+      <Element id="EL_01" name="Entity Identifier" required="O" type="AN" xmlTag="EntityIdentifier"/>
+      <Element id="EL_02" name="Namespace ID" required="O" type="AN" xmlTag="NamespaceID"/>
+      <Element id="EL_03" name="Universal ID" required="O" type="AN" xmlTag="UniversalID"/>
+      <Element id="EL_04" name="Universal ID type" required="O" type="AN" xmlTag="UniversalIDType"/>
+    </CompositeElement>
+    <CompositeElement id="00861" name="Filler Appointment ID" required="C" loop="1" type="EI" minLength="1" maxLength="75" xmlTag="FillerAppointmentID">
+      <Element id="EL_01" name="Entity Identifier" required="O" type="AN" xmlTag="EntityIdentifier"/>
+      <Element id="EL_02" name="Namespace ID" required="O" type="AN" xmlTag="NamespaceID"/>
+      <Element id="EL_03" name="Universal ID" required="O" type="AN" xmlTag="UniversalID"/>
+      <Element id="EL_04" name="Universal ID type" required="O" type="AN" xmlTag="UniversalIDType"/>
+    </CompositeElement>
+    <Element id="00862" name="Occurrence Number" required="C" loop="1" type="N" minLength="1" maxLength="5" xmlTag="OccurrenceNumber"/>
+    <CompositeElement id="00218" name="Placer Group Number" required="O" loop="1" type="EI" minLength="1" maxLength="22" xmlTag="PlacerGroupNumber">
+      <Element id="EL_01" name="Entity Identifier" required="O" type="AN" xmlTag="EntityIdentifier"/>
+      <Element id="EL_02" name="Namespace ID" required="O" type="AN" xmlTag="NamespaceID"/>
+      <Element id="EL_03" name="Universal ID" required="O" type="AN" xmlTag="UniversalID"/>
+      <Element id="EL_04" name="Universal ID type" required="O" type="AN" xmlTag="UniversalIDType"/>
+    </CompositeElement>
+    <CompositeElement id="00864" name="Schedule ID" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="ScheduleID">
+      <Element id="CE_01" name="Identifier" required="O" type="AN" xmlTag="Identifier"/>
+      <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+      <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+      <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+      <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+      <Element id="CE_06" name="name alternate of coding system" required="O" type="AN" xmlTag="NameAlternateOfCodingSystem"/>
+    </CompositeElement>
+    <CompositeElement id="00865" name="Request Event Reason" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="RequestEventReason">
+      <Element id="CE_01" name="Identifier" required="O" type="AN" xmlTag="Identifier"/>
+      <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+      <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+      <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+      <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+      <Element id="CE_06" name="name alternate of coding system" required="O" type="AN" xmlTag="NameAlternateOfCodingSystem"/>
+    </CompositeElement>
+    <CompositeElement id="00866" name="Appointment Reason" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="AppointmentReason">
+      <Element id="CE_01" name="Identifier" required="O" type="AN" xmlTag="Identifier"/>
+      <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+      <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+      <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+      <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+      <Element id="CE_06" name="name alternate of coding system" required="O" type="AN" xmlTag="NameAlternateOfCodingSystem"/>
+    </CompositeElement>
+    <CompositeElement id="00867" name="Appointment Type" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="AppointmentType">
+      <Element id="CE_01" name="Identifier" required="O" type="AN" xmlTag="Identifier"/>
+      <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+      <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+      <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+      <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+      <Element id="CE_06" name="name alternate of coding system" required="O" type="AN" xmlTag="NameAlternateOfCodingSystem"/>
+    </CompositeElement>
+    <Element id="00868" name="Appointment Duration" required="O" loop="1" type="N" minLength="1" maxLength="20" xmlTag="AppointmentDuration"/>
+    <CompositeElement id="00869" name="Appointment Duration Units" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="AppointmentDurationUnits">
+      <Element id="CE_01" name="Identifier" required="O" type="AN" xmlTag="Identifier"/>
+      <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+      <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+      <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+      <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+      <Element id="CE_06" name="name alternate of coding system" required="O" type="AN" xmlTag="NameAlternateOfCodingSystem"/>
+    </CompositeElement>
+    <CompositeElement id="00870" name="Requested start date/time range" required="O" loop="n" type="DE" minLength="1" maxLength="53" xmlTag="RequestedStartDateTimeRange">
+      <Element id="DR_1" name="range start date/time" required="O" type="TS" xmlTag="StartDataTime">
+        <SubElement id="TS_01" name="Time Stamp" type="AN" xmlTag="TimeStamp"/>
+        <SubElement id="TS_02" name="Degree of precision" type="AN" xmlTag="DegreeOfPrecision"/>
+      </Element>
+      <Element id="DR_2" name="range end date/time" required="O" type="TS" xmlTag="EndDataTime">
+        <SubElement id="TS_01" name="Time Stamp" type="AN" xmlTag="TimeStamp"/>
+        <SubElement id="TS_02" name="Degree of precision" type="AN" xmlTag="DegreeOfPrecision"/>
+      </Element>
+    </CompositeElement>
+    <Element id="00871" name="Priority" required="O" loop="1" type="AN" minLength="1" maxLength="5" xmlTag="Priority"/>
+    <CompositeElement id="00872" name="Repeating interval" required="O" loop="1" type="RE" minLength="1" maxLength="100" xmlTag="RepeatingInterval">
+      <Element id="RI_01" name="Repeat pattern" required="O" type="AN" xmlTag="RepeatPattern"/>
+      <Element id="RI_02" name="explicit time interval" required="O" type="AN" xmlTag="ExplicitTimeInterval"/>
+    </CompositeElement>
+    <Element id="00873" name="Repeating Interval Duration" required="O" loop="1" type="AN" minLength="1" maxLength="5" xmlTag="RepeatingIntervalDuration"/>
+    <CompositeElement id="00874" name="Placer Contact Person" required="M" loop="n" type="XCN" minLength="1" maxLength="48" xmlTag="PlacerContactPerson">
+      <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+      <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+        <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+        <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+      </Element>
+      <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+      <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+      <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+      <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+      <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+      <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+      <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+        <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+        <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+        <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+      </Element>
+      <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+      <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+      <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+      <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+      <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+        <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+        <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+        <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+      </Element>
+      <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+    </CompositeElement>
+    <CompositeElement id="00875" name="Placer Contact Phone Number" required="O" loop="n" type="XTN" minLength="1" maxLength="40" xmlTag="PlacerContactPhoneNumber">
+      <Element id="XTN_01" name="Telephone numer data type" required="O" type="AN" xmlTag="DataType"/>
+      <Element id="XTN_02" name="telecommunication use code" required="O" type="AN" xmlTag="UseCode"/>
+      <Element id="XTN_03" name="telecommunication equipment type" required="O" type="AN" xmlTag="EquipmentType"/>
+      <Element id="XTN_04" name="email address" required="O" type="AN" xmlTag="EmailAddress"/>
+      <Element id="XTN_05" name="country code" required="O" type="N" xmlTag="CountryCode"/>
+      <Element id="XTN_06" name="area/city code" required="O" type="N" xmlTag="AreaCityCode"/>
+      <Element id="XTN_07" name="phone number" required="O" type="N" xmlTag="PhoneNumber"/>
+      <Element id="XTN_08" name="extension" required="O" type="N" xmlTag="Extension"/>
+      <Element id="XTN_09" name="any text" required="O" type="AN" xmlTag="AnyText"/>
+    </CompositeElement>
+    <CompositeElement id="00876" name="Placer contact address" required="O" loop="n" type="XAD" minLength="1" maxLength="106" xmlTag="PlacerContactAddress">
+      <Element id="XAD_01" name="street address" required="O" type="AN" xmlTag="StreetAddress"/>
+      <Element id="XAD_02" name="other designation" required="O" type="AN" xmlTag="OtherDesignation"/>
+      <Element id="XAD_03" name="city" required="O" type="AN" xmlTag="City"/>
+      <Element id="XAD_04" name="state or province" required="O" type="AN" xmlTag="StateOrProvince"/>
+      <Element id="XAD_05" name="zip or postal code" required="O" type="AN" xmlTag="ZipOrPostalCode"/>
+      <Element id="XAD_06" name="country" required="O" type="AN" xmlTag="Country"/>
+      <Element id="XAD_07" name="address type" required="O" type="AN" xmlTag="AddressType"/>
+      <Element id="XAD_08" name="other geographic designation" required="O" type="AN" xmlTag="OtherGeographicDesignation"/>
+      <Element id="XAD_09" name="county/parish code" required="O" type="AN" xmlTag="CountyParishCode"/>
+      <Element id="XAD_10" name="census tract" required="O" type="AN" xmlTag="CensusTract"/>
+      <Element id="XAD_11" name="address representation code" required="O" type="AN" xmlTag="AddressRepresentationCode"/>
+    </CompositeElement>
+    <CompositeElement id="00877" name="Placer Contact Location" required="O" loop="1" type="PL" minLength="1" maxLength="80" xmlTag="PlacerContactLocation">
+      <Element id="PL_01" name="point of care" required="O" type="AN" xmlTag="PointOfCare"/>
+      <Element id="PL_02" name="room" required="O" type="AN" xmlTag="Room"/>
+      <Element id="PL_02" name="bed" required="O" type="AN" xmlTag="Bed"/>
+      <Element id="PL_03" name="facility" required="O" type="HD" xmlTag="Facility">
+        <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+        <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+        <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+      </Element>
+      <Element id="PL_04" name="location status" required="O" type="AN" xmlTag="LocationStatus"/>
+      <Element id="PL_05" name="person location type" required="O" type="AN" xmlTag="PersonLocationType"/>
+      <Element id="PL_06" name="building" required="O" type="AN" xmlTag="Building"/>
+      <Element id="PL_07" name="floor" required="O" type="AN" xmlTag="Floor"/>
+      <Element id="PL_08" name="location description" required="O" type="AN" xmlTag="LocationDescription"/>
+    </CompositeElement>
+    <CompositeElement id="00878" name="Entered By Person" required="M" loop="n" type="XCN" minLength="1" maxLength="48" xmlTag="EnteredByPerson">
+      <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+      <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+        <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+        <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+      </Element>
+      <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+      <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+      <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+      <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+      <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+      <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+      <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+        <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+        <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+        <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+      </Element>
+      <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+      <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+      <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+      <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+      <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+        <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+        <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+        <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+      </Element>
+      <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+    </CompositeElement>
+    <CompositeElement id="00879" name="Entered By Phone Number" required="O" loop="n" type="XTN" minLength="1" maxLength="40" xmlTag="EnteredByPhoneNumber">
+      <Element id="XTN_01" name="Telephone numer data type" required="O" type="AN" xmlTag="DataType"/>
+      <Element id="XTN_02" name="telecommunication use code" required="O" type="AN" xmlTag="UseCode"/>
+      <Element id="XTN_03" name="telecommunication equipment type" required="O" type="AN" xmlTag="EquipmentType"/>
+      <Element id="XTN_04" name="email address" required="O" type="AN" xmlTag="EmailAddress"/>
+      <Element id="XTN_05" name="country code" required="O" type="N" xmlTag="CountryCode"/>
+      <Element id="XTN_06" name="area/city code" required="O" type="N" xmlTag="AreaCityCode"/>
+      <Element id="XTN_07" name="phone number" required="O" type="N" xmlTag="PhoneNumber"/>
+      <Element id="XTN_08" name="extension" required="O" type="N" xmlTag="Extension"/>
+      <Element id="XTN_09" name="any text" required="O" type="AN" xmlTag="AnyText"/>
+    </CompositeElement>
+    <CompositeElement id="00880" name="Entered By Location" required="O" loop="1" type="PL" minLength="1" maxLength="80" xmlTag="EnteredByLocation">
+      <Element id="PL_01" name="point of care" required="O" type="AN" xmlTag="PointOfCare"/>
+      <Element id="PL_02" name="room" required="O" type="AN" xmlTag="Room"/>
+      <Element id="PL_02" name="bed" required="O" type="AN" xmlTag="Bed"/>
+      <Element id="PL_03" name="facility" required="O" type="HD" xmlTag="Facility">
+        <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+        <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+        <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+      </Element>
+      <Element id="PL_04" name="location status" required="O" type="AN" xmlTag="LocationStatus"/>
+      <Element id="PL_05" name="person location type" required="O" type="AN" xmlTag="PersonLocationType"/>
+      <Element id="PL_06" name="building" required="O" type="AN" xmlTag="Building"/>
+      <Element id="PL_07" name="floor" required="O" type="AN" xmlTag="Floor"/>
+      <Element id="PL_08" name="location description" required="O" type="AN" xmlTag="LocationDescription"/>
+    </CompositeElement>
+    <CompositeElement id="00881" name="Parent Placer Appointment ID" required="O" loop="1" type="EI" minLength="1" maxLength="75" xmlTag="ParentPlacerAppointmentID">
+      <Element id="EL_01" name="Entity Identifier" required="O" type="AN" xmlTag="EntityIdentifier"/>
+      <Element id="EL_02" name="Namespace ID" required="O" type="AN" xmlTag="NamespaceID"/>
+      <Element id="EL_03" name="Universal ID" required="O" type="AN" xmlTag="UniversalID"/>
+      <Element id="EL_04" name="Universal ID type" required="O" type="AN" xmlTag="UniversalIDType"/>
+    </CompositeElement>
+    <CompositeElement id="00882" name="Parent Filler Appointment ID" required="O" loop="1" type="EI" minLength="1" maxLength="75" xmlTag="ParentFillerAppointmentID">
+      <Element id="EL_01" name="Entity Identifier" required="O" type="AN" xmlTag="EntityIdentifier"/>
+      <Element id="EL_02" name="Namespace ID" required="O" type="AN" xmlTag="NamespaceID"/>
+      <Element id="EL_03" name="Universal ID" required="O" type="AN" xmlTag="UniversalID"/>
+      <Element id="EL_04" name="Universal ID type" required="O" type="AN" xmlTag="UniversalIDType"/>
+    </CompositeElement>
+  </Segment>
+  <Segment id="APR" name="appointment preferences segment" required="O" loop="1" xmlTag="AppointmentPreferences">
+    <CompositeElement id="00908" name="Time Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="TimeSelectionCriteria">
+      <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+      <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+    </CompositeElement>
+    <CompositeElement id="00909" name="Resource Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="ResourceSelectionCriteria">
+      <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+      <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+    </CompositeElement>
+    <CompositeElement id="00910" name="Location Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="LocationSelectionCriteria">
+      <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+      <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+    </CompositeElement>
+    <Element id="00911" name="Slot Spacing Criteria" required="O" loop="1" type="N" minLength="1" maxLength="5" xmlTag="SlotSpacingCriteria"/>
+    <CompositeElement id="00912" name="Filler Override Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="FillerOverrideCriteria">
+      <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+      <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+    </CompositeElement>
+  </Segment>
+  <Segment id="NTE" name="notes and comments segment" required="O" loop="n" xmlTag="NotesAndComments">
+    <Element id="00096" name="Set ID - NTE" required="O" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+    <Element id="00097" name="Source of Comment" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="SourceOfComment"/>
+    <Element id="00098" name="Comment" required="O" loop="n" type="AN" minLength="1" maxLength="64" xmlTag="Comment"/>
+    <Element id="01318" name="Comment Type" required="O" loop="1" type="AN" minLength="1" maxLength="60" xmlTag="CommentType"/>
+  </Segment><Segment id="EVN" name="" xmlTag="EVN" loop="n" required="C"><Element id="00871" name="Priority" required="C" loop="1" type="AN" minLength="1" maxLength="5" xmlTag="Priority"/></Segment>
+  <SegmentGroup id="SG1" name="Patient Identification group" required="C" loop="n" xmlTag="PatientIdentificationGroup">
+    <Segment id="PID" name="patient identification segment" required="M" loop="1" xmlTag="PatientIdentification">
+      <Element id="00104" name="Set ID - PID" required="O" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+      <CompositeElement id="00105" name="Patient ID" required="O" loop="1" type="CX" minLength="1" maxLength="20" xmlTag="PatientID">
+        <Element id="CX_01" name="ID" required="O" type="AN" xmlTag="ID"/>
+        <Element id="CX_02" name="check digit" required="O" type="AN" xmlTag="CheckDigit"/>
+        <Element id="CX_03" name="code identifying the check digit scheme employed" required="O" type="AN" xmlTag="CodeIdentifying"/>
+        <Element id="CX_04" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="CX_05" name="identifier type code" required="O" type="AN" xmlTag="IdentifierType"/>
+        <Element id="CX_06" name="assigning facility" required="O" type="HD" xmlTag="AssigningFacility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+      </CompositeElement>
+      <CompositeElement id="00106" name="Patient Identifier List" required="M" loop="n" type="CX" minLength="1" maxLength="20" xmlTag="PatientIdentifierList">
+        <Element id="CX_01" name="ID" required="O" type="AN" xmlTag="ID"/>
+        <Element id="CX_02" name="check digit" required="O" type="AN" xmlTag="CheckDigit"/>
+        <Element id="CX_03" name="code identifying the check digit scheme employed" required="O" type="AN" xmlTag="CodeIdentifying"/>
+        <Element id="CX_04" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="CX_05" name="identifier type code" required="O" type="AN" xmlTag="IdentifierType"/>
+        <Element id="CX_06" name="assigning facility" required="O" type="HD" xmlTag="AssigningFacility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+      </CompositeElement>
+      <CompositeElement id="00107" name="Alternate Patient ID - PID" required="O" loop="n" type="CX" minLength="1" maxLength="20" xmlTag="AlternatePatientID">
+        <Element id="CX_01" name="ID" required="O" type="AN" xmlTag="ID"/>
+        <Element id="CX_02" name="check digit" required="O" type="AN" xmlTag="CheckDigit"/>
+        <Element id="CX_03" name="code identifying the check digit scheme employed" required="O" type="AN" xmlTag="CodeIdentifying"/>
+        <Element id="CX_04" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="CX_05" name="identifier type code" required="O" type="AN" xmlTag="IdentifierType"/>
+        <Element id="CX_06" name="assigning facility" required="O" type="HD" xmlTag="AssigningFacility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+      </CompositeElement>
+      <CompositeElement id="00108" name="Patient Name" required="M" loop="n" type="XPN" minLength="1" maxLength="48" xmlTag="PatientName">
+        <Element id="XPN_01" name="family name" required="O" type="XPN_01" xmlTag="FamilyName">
+          <SubElement id="XPN_01_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XPN_01_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XPN_02" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XPN_03" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XPN_04" name="suffix (e.g., JR or III)" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XPN_05" name="prefix (e.g., DR)" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XPN_06" name="degree (e.g., MD)" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XPN_07" name="name type code" required="O" type="AN" xmlTag="NameTypeCode"/>
+        <Element id="XPN_08" name="name representation code" required="O" type="AN" xmlTag="NameRepresentation"/>
+      </CompositeElement>
+      <CompositeElement id="00109" name="Mother?s Maiden Name" required="O" loop="n" type="XPN" minLength="1" maxLength="48" xmlTag="MotherMaidenName">
+        <Element id="XPN_01" name="family name" required="O" type="XPN_01" xmlTag="FamilyName">
+          <SubElement id="XPN_01_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XPN_01_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XPN_02" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XPN_03" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XPN_04" name="suffix (e.g., JR or III)" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XPN_05" name="prefix (e.g., DR)" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XPN_06" name="degree (e.g., MD)" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XPN_07" name="name type code" required="O" type="AN" xmlTag="NameTypeCode"/>
+        <Element id="XPN_08" name="name representation code" required="O" type="AN" xmlTag="NameRepresentation"/>
+      </CompositeElement>
+      <CompositeElement id="00110" name="Date/Time of Birth" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="DateTimeOfBirth">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <Element id="00111" name="Sex" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="Sex"/>
+      <CompositeElement id="00112" name="Patient Alias" required="O" loop="n" type="XPN" minLength="1" maxLength="48" xmlTag="PatientAlias">
+        <Element id="XPN_01" name="family name" required="O" type="XPN_01" xmlTag="FamilyName">
+          <SubElement id="XPN_01_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XPN_01_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XPN_02" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XPN_03" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XPN_04" name="suffix (e.g., JR or III)" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XPN_05" name="prefix (e.g., DR)" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XPN_06" name="degree (e.g., MD)" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XPN_07" name="name type code" required="O" type="AN" xmlTag="NameTypeCode"/>
+        <Element id="XPN_08" name="name representation code" required="O" type="AN" xmlTag="NameRepresentation"/>
+      </CompositeElement>
+      <CompositeElement id="00113" name="Race" required="O" loop="n" type="CE" minLength="1" maxLength="80" xmlTag="Race">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00114" name="Patient address" required="O" loop="n" type="XAD" minLength="1" maxLength="106" xmlTag="PatientAddress">
+        <Element id="XAD_01" name="street address" required="O" type="AN" xmlTag="StreetAddress"/>
+        <Element id="XAD_02" name="other designation" required="O" type="AN" xmlTag="OtherDesignation"/>
+        <Element id="XAD_03" name="city" required="O" type="AN" xmlTag="City"/>
+        <Element id="XAD_04" name="state or province" required="O" type="AN" xmlTag="StateOrProvince"/>
+        <Element id="XAD_05" name="zip or postal code" required="O" type="AN" xmlTag="ZipOrPostalCode"/>
+        <Element id="XAD_06" name="country" required="O" type="AN" xmlTag="Country"/>
+        <Element id="XAD_07" name="address type" required="O" type="AN" xmlTag="AddressType"/>
+        <Element id="XAD_08" name="other geographic designation" required="O" type="AN" xmlTag="OtherGeographicDesignation"/>
+        <Element id="XAD_09" name="county/parish code" required="O" type="AN" xmlTag="CountyParishCode"/>
+        <Element id="XAD_10" name="census tract" required="O" type="AN" xmlTag="CensusTract"/>
+        <Element id="XAD_11" name="address representation code" required="O" type="AN" xmlTag="AddressRepresentationCode"/>
+      </CompositeElement>
+      <Element id="00115" name="County Code" required="O" loop="1" type="AN" minLength="1" maxLength="4" xmlTag="CountyCode"/>
+      <CompositeElement id="00116" name="Phone Number Home" required="O" loop="n" type="XTN" minLength="1" maxLength="40" xmlTag="PhoneNumberHome">
+        <Element id="XTN_01" name="Telephone numer data type" required="O" type="AN" xmlTag="DataType"/>
+        <Element id="XTN_02" name="telecommunication use code" required="O" type="AN" xmlTag="UseCode"/>
+        <Element id="XTN_03" name="telecommunication equipment type" required="O" type="AN" xmlTag="EquipmentType"/>
+        <Element id="XTN_04" name="email address" required="O" type="AN" xmlTag="EmailAddress"/>
+        <Element id="XTN_05" name="country code" required="O" type="N" xmlTag="CountryCode"/>
+        <Element id="XTN_06" name="area/city code" required="O" type="N" xmlTag="AreaCityCode"/>
+        <Element id="XTN_07" name="phone number" required="O" type="N" xmlTag="PhoneNumber"/>
+        <Element id="XTN_08" name="extension" required="O" type="N" xmlTag="Extension"/>
+        <Element id="XTN_09" name="any text" required="O" type="AN" xmlTag="AnyText"/>
+      </CompositeElement>
+      <CompositeElement id="00117" name="Phone Number - Business" required="O" loop="n" type="XTN" minLength="1" maxLength="40" xmlTag="PhoneNumberBusiness">
+        <Element id="XTN_01" name="Telephone numer data type" required="O" type="AN" xmlTag="DataType"/>
+        <Element id="XTN_02" name="telecommunication use code" required="O" type="AN" xmlTag="UseCode"/>
+        <Element id="XTN_03" name="telecommunication equipment type" required="O" type="AN" xmlTag="EquipmentType"/>
+        <Element id="XTN_04" name="email address" required="O" type="AN" xmlTag="EmailAddress"/>
+        <Element id="XTN_05" name="country code" required="O" type="N" xmlTag="CountryCode"/>
+        <Element id="XTN_06" name="area/city code" required="O" type="N" xmlTag="AreaCityCode"/>
+        <Element id="XTN_07" name="phone number" required="O" type="N" xmlTag="PhoneNumber"/>
+        <Element id="XTN_08" name="extension" required="O" type="N" xmlTag="Extension"/>
+        <Element id="XTN_09" name="any text" required="O" type="AN" xmlTag="AnyText"/>
+      </CompositeElement>
+      <CompositeElement id="00118" name="Primary Language" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="PrimaryLanguage">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00119" name="Marital status" required="O" loop="1" type="CE" minLength="1" maxLength="80" xmlTag="MaritalStatus">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00120" name="Religion" required="O" loop="1" type="CE" minLength="1" maxLength="80" xmlTag="Religion">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00121" name="Patient Account Number" required="O" loop="1" type="CX" minLength="1" maxLength="20" xmlTag="PatientAccountNumber">
+        <Element id="CX_01" name="ID" required="O" type="AN" xmlTag="ID"/>
+        <Element id="CX_02" name="check digit" required="O" type="AN" xmlTag="CheckDigit"/>
+        <Element id="CX_03" name="code identifying the check digit scheme employed" required="O" type="AN" xmlTag="CodeIdentifying"/>
+        <Element id="CX_04" name="assigning authority" required="C" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="CX_05" name="identifier type code" required="O" type="AN" xmlTag="IdentifierType"/>
+        <Element id="CX_06" name="assigning facility" required="C" type="HD" xmlTag="AssigningFacility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+      </CompositeElement>
+      <Element id="00122" name="SSN Number - Patient" required="O" loop="1" type="AN" minLength="1" maxLength="16" xmlTag="SSNNumberPatient"/>
+      <CompositeElement id="00123" name="Driver&apos;s License Number - Patient" required="O" loop="1" type="DLN" minLength="1" maxLength="25" xmlTag="DriverLicenseNumber">
+        <Element id="DLN_01" name="license number" required="O" type="AN" xmlTag="LicenseNumber"/>
+        <Element id="DLN_02" name="issuing state, province, country" required="O" type="AN" xmlTag="IssuingData"/>
+        <Element id="DLN_03" name="expiration date" required="O" type="AN" xmlTag="ExpirationDate"/>
+      </CompositeElement>
+      <CompositeElement id="00124" name="Mother&apos;s Identifier" required="O" loop="n" type="CX" minLength="1" maxLength="20" xmlTag="MotherIdentifier">
+        <Element id="CX_01" name="ID" required="O" type="AN" xmlTag="ID"/>
+        <Element id="CX_02" name="check digit" required="O" type="AN" xmlTag="CheckDigit"/>
+        <Element id="CX_03" name="code identifying the check digit scheme employed" required="O" type="AN" xmlTag="CodeIdentifying"/>
+        <Element id="CX_04" name="assigning authority" required="C" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="CX_05" name="identifier type code" required="O" type="AN" xmlTag="IdentifierType"/>
+        <Element id="CX_06" name="assigning facility" required="C" type="HD" xmlTag="AssigningFacility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+      </CompositeElement>
+      <CompositeElement id="00125" name="Ethnic Group" required="O" loop="n" type="CE" minLength="1" maxLength="80" xmlTag="EthnicGroup">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00126" name="Birth Place" required="O" loop="1" type="AN" minLength="1" maxLength="60" xmlTag="BirthPlace"/>
+      <Element id="00127" name="Multiple Birth Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="MultipleBirthIndicator"/>
+      <Element id="00128" name="Birth Order" required="O" loop="1" type="N" minLength="1" maxLength="2" xmlTag="BirthOrder"/>
+      <CompositeElement id="00129" name="Citizenship" required="O" loop="n" type="CE" minLength="1" maxLength="80" xmlTag="Citizenship">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00130" name="Veterans Military Status" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="VeteransMilitaryStatus">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00739" name="Nationality" required="O" loop="1" type="CE" minLength="1" maxLength="80" xmlTag="Nationality">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00740" name="Patient Death Date and Time" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="PatientDeathDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <Element id="00741" name="Patient Death Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="PatientDeathIndicator"/>
+    </Segment><Segment id="NK1" name="" xmlTag="NK1" loop="n" required="C"><Element id="00871" name="Priority" required="C" loop="1" type="AN" minLength="1" maxLength="5" xmlTag="Priority"/></Segment>
+    <Segment id="PV1" name="patient visit segment" required="O" loop="1" xmlTag="PatientVisit">
+      <Element id="00131" name="Set ID - PV1" required="O" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+      <Element id="00132" name="Patient Class" required="M" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="PatientClass"/>
+      <CompositeElement id="00133" name="Assigned Patient Location" required="O" loop="1" type="PL" minLength="1" maxLength="80" xmlTag="AssignedPatientLocation">
+        <Element id="PL_01" name="point of care" required="O" type="AN" xmlTag="PointOfCare"/>
+        <Element id="PL_02" name="room" required="O" type="AN" xmlTag="Room"/>
+        <Element id="PL_02" name="bed" required="O" type="AN" xmlTag="Bed"/>
+        <Element id="PL_03" name="facility" required="O" type="HD" xmlTag="Facility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="PL_04" name="location status" required="O" type="AN" xmlTag="LocationStatus"/>
+        <Element id="PL_05" name="person location type" required="O" type="AN" xmlTag="PersonLocationType"/>
+        <Element id="PL_06" name="building" required="O" type="AN" xmlTag="Building"/>
+        <Element id="PL_07" name="floor" required="O" type="AN" xmlTag="Floor"/>
+        <Element id="PL_08" name="location description" required="O" type="AN" xmlTag="LocationDescription"/>
+      </CompositeElement>
+      <Element id="00134" name="Admission Type" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="AdmissionType"/>
+      <CompositeElement id="00135" name="PreadmitNumber" required="O" loop="1" type="CX" minLength="1" maxLength="20" xmlTag="PreadmitNumber">
+        <Element id="CX_01" name="ID" required="O" type="AN" xmlTag="ID"/>
+        <Element id="CX_02" name="check digit" required="O" type="AN" xmlTag="CheckDigit"/>
+        <Element id="CX_03" name="code identifying the check digit scheme employed" required="O" type="AN" xmlTag="CodeIdentifying"/>
+        <Element id="CX_04" name="assigning authority" required="C" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="CX_05" name="identifier type code" required="O" type="AN" xmlTag="IdentifierType"/>
+        <Element id="CX_06" name="assigning facility" required="C" type="HD" xmlTag="AssigningFacility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+      </CompositeElement>
+      <CompositeElement id="00136" name="Prior Patient Location" required="O" loop="1" type="PL" minLength="1" maxLength="80" xmlTag="PriorPatientLocation">
+        <Element id="PL_01" name="point of care" required="O" type="AN" xmlTag="PointOfCare"/>
+        <Element id="PL_02" name="room" required="O" type="AN" xmlTag="Room"/>
+        <Element id="PL_02" name="bed" required="O" type="AN" xmlTag="Bed"/>
+        <Element id="PL_03" name="facility" required="O" type="HD" xmlTag="Facility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="PL_04" name="location status" required="O" type="AN" xmlTag="LocationStatus"/>
+        <Element id="PL_05" name="person location type" required="O" type="AN" xmlTag="PersonLocationType"/>
+        <Element id="PL_06" name="building" required="O" type="AN" xmlTag="Building"/>
+        <Element id="PL_07" name="floor" required="O" type="AN" xmlTag="Floor"/>
+        <Element id="PL_08" name="location description" required="O" type="AN" xmlTag="LocationDescription"/>
+      </CompositeElement>
+      <CompositeElement id="00137" name="Attending Doctor" required="O" loop="n" type="XCN" minLength="1" maxLength="60" xmlTag="AttendingDoctor">
+        <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+        <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+          <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+        <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+        <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+        <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+        <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+      <CompositeElement id="00138" name="Referring Doctor" required="O" loop="n" type="XCN" minLength="1" maxLength="60" xmlTag="ReferringDoctor">
+        <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+        <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+          <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+        <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+        <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+        <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+        <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+      <CompositeElement id="00139" name="Consulting Doctor" required="O" loop="n" type="XCN" minLength="1" maxLength="60" xmlTag="ConsultingDoctor">
+        <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+        <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+          <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+        <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+        <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+        <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+        <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+      <Element id="00140" name="Hospital Service" required="O" loop="1" type="AN" minLength="1" maxLength="3" xmlTag="HospitalService"/>
+      <CompositeElement id="00141" name="Temporary Location" required="O" loop="1" type="PL" minLength="1" maxLength="80" xmlTag="TemporaryLocation">
+        <Element id="PL_01" name="point of care" required="O" type="AN" xmlTag="PointOfCare"/>
+        <Element id="PL_02" name="room" required="O" type="AN" xmlTag="Room"/>
+        <Element id="PL_02" name="bed" required="O" type="AN" xmlTag="Bed"/>
+        <Element id="PL_03" name="facility" required="O" type="HD" xmlTag="Facility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="PL_04" name="location status" required="O" type="AN" xmlTag="LocationStatus"/>
+        <Element id="PL_05" name="person location type" required="O" type="AN" xmlTag="PersonLocationType"/>
+        <Element id="PL_06" name="building" required="O" type="AN" xmlTag="Building"/>
+        <Element id="PL_07" name="floor" required="O" type="AN" xmlTag="Floor"/>
+        <Element id="PL_08" name="location description" required="O" type="AN" xmlTag="LocationDescription"/>
+      </CompositeElement>
+      <Element id="00142" name="Preadmit Test Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="PreadmitTestIndicator"/>
+      <Element id="00143" name="Re-admission Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="ReadmissionIndicator"/>
+      <Element id="00144" name="Admit Source" required="O" loop="1" type="AN" minLength="1" maxLength="3" xmlTag="AdmitSource"/>
+      <Element id="00145" name="Ambulatory Status" required="O" loop="n" type="AN" minLength="1" maxLength="2" xmlTag="AmbulatoryStatus"/>
+      <Element id="00146" name="VIP Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="VIPIndicator"/>
+      <CompositeElement id="00147" name="Admitting Doctor" required="O" loop="n" type="XCN" minLength="1" maxLength="60" xmlTag="AdmittingDoctor">
+        <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+        <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+          <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+        <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+        <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+        <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+        <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+      <Element id="00148" name="Patient Type" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="PatientType"/>
+      <CompositeElement id="00149" name="Visit Number" required="O" loop="1" type="CX" minLength="1" maxLength="20" xmlTag="VisitNumber">
+        <Element id="CX_01" name="ID" required="O" type="AN" xmlTag="ID"/>
+        <Element id="CX_02" name="check digit" required="O" type="AN" xmlTag="CheckDigit"/>
+        <Element id="CX_03" name="code identifying the check digit scheme employed" required="O" type="AN" xmlTag="CodeIdentifying"/>
+        <Element id="CX_04" name="assigning authority" required="C" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="CX_05" name="identifier type code" required="O" type="AN" xmlTag="IdentifierType"/>
+        <Element id="CX_06" name="assigning facility" required="C" type="HD" xmlTag="AssigningFacility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+      </CompositeElement>
+      <CompositeElement id="00150" name="Financial Class" required="O" loop="n" type="FC" minLength="1" maxLength="50" xmlTag="FinancialClass">
+        <Element id="FC_01" name="financial class" required="O" type="AN" xmlTag="FinancialClass"/>
+        <Element id="FC_02" name="effective date" required="O" type="TS" xmlTag="EffectiveDate">
+          <SubElement id="TS_01" name="Time Stamp" type="AN" xmlTag="TimeStamp"/>
+          <SubElement id="TS_02" name="Degree of precision" type="AN" xmlTag="DegreeOfPrecision"/>
+        </Element>
+      </CompositeElement>
+      <Element id="00151" name="Charge Price Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="ChargePriceIndicator"/>
+      <Element id="00152" name="Courtesy Code" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="CourtesyCode"/>
+      <Element id="00153" name="Credit Rating" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="CreditRating"/>
+      <Element id="00154" name="Contract Code" required="O" loop="n" type="AN" minLength="1" maxLength="2" xmlTag="ContractCode"/>
+      <Element id="00155" name="Contract Effective Date" required="O" loop="n" type="AN" minLength="1" maxLength="8" xmlTag="ContractEffectiveDate"/>
+      <Element id="00156" name="Contract Amount" required="O" loop="n" type="N" minLength="1" maxLength="12" xmlTag="ContractAmount"/>
+      <Element id="00157" name="Contract Period" required="O" loop="n" type="N" minLength="1" maxLength="3" xmlTag="ContractPeriod"/>
+      <Element id="00158" name="Interest Code" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="InterestCode"/>
+      <Element id="00159" name="Transfer to Bad Debt Code" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="TransferToBadDebtCode"/>
+      <Element id="00160" name="Transfer to Bad Debt Date" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="TransferToBadDebtDate"/>
+      <Element id="00161" name="Bad Debt Agency Code" required="O" loop="1" type="AN" minLength="1" maxLength="10" xmlTag="BadDebtAgencyCode"/>
+      <Element id="00162" name="Bad Debt Transfer Amount" required="O" loop="1" type="N" minLength="1" maxLength="12" xmlTag="BadDebtTransferAmount"/>
+      <Element id="00163" name="Bad Debt Recovery Amount" required="O" loop="1" type="N" minLength="1" maxLength="12" xmlTag="BadDebtRecoveryAmount"/>
+      <Element id="00164" name="Delete Account Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="DeleteAccountIndicator"/>
+      <Element id="00165" name="Delete Account Date" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="DeleteAccountDate"/>
+      <Element id="00166" name="Discharge Disposition" required="O" loop="1" type="AN" minLength="1" maxLength="3" xmlTag="DischargeDisposition"/>
+      <CompositeElement id="00167" name="Discharged to Location" required="O" loop="1" type="CM" minLength="1" maxLength="25" xmlTag="DischargedToLocation">
+        <Element id="CM_01" name="Type" required="O" type="AN" xmlTag="Type"/>
+        <Element id="CM_02" name="Trigger event" required="O" type="AN" xmlTag="TriggerEvent"/>
+      </CompositeElement>
+      <CompositeElement id="00168" name="Diet type" required="O" loop="1" type="CE" minLength="1" maxLength="80" xmlTag="DietType">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00169" name="Servicing Facility" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="ServicingFacility"/>
+      <Element id="00170" name="Bed Status" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="BedStatus"/>
+      <Element id="00171" name="Account Status" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="AccountStatus"/>
+      <CompositeElement id="00172" name="Pending Location" required="O" loop="1" type="PL" minLength="1" maxLength="80" xmlTag="PendingLocation">
+        <Element id="PL_01" name="point of care" required="O" type="AN" xmlTag="PointOfCare"/>
+        <Element id="PL_02" name="room" required="O" type="AN" xmlTag="Room"/>
+        <Element id="PL_02" name="bed" required="O" type="AN" xmlTag="Bed"/>
+        <Element id="PL_03" name="facility" required="O" type="HD" xmlTag="Facility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="PL_04" name="location status" required="O" type="AN" xmlTag="LocationStatus"/>
+        <Element id="PL_05" name="person location type" required="O" type="AN" xmlTag="PersonLocationType"/>
+        <Element id="PL_06" name="building" required="O" type="AN" xmlTag="Building"/>
+        <Element id="PL_07" name="floor" required="O" type="AN" xmlTag="Floor"/>
+        <Element id="PL_08" name="location description" required="O" type="AN" xmlTag="LocationDescription"/>
+      </CompositeElement>
+      <CompositeElement id="00173" name="Prior Temporary Location" required="O" loop="1" type="PL" minLength="1" maxLength="80" xmlTag="PriorTemporaryLocation">
+        <Element id="PL_01" name="point of care" required="O" type="AN" xmlTag="PointOfCare"/>
+        <Element id="PL_02" name="room" required="O" type="AN" xmlTag="Room"/>
+        <Element id="PL_02" name="bed" required="O" type="AN" xmlTag="Bed"/>
+        <Element id="PL_03" name="facility" required="O" type="HD" xmlTag="Facility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="PL_04" name="location status" required="O" type="AN" xmlTag="LocationStatus"/>
+        <Element id="PL_05" name="person location type" required="O" type="AN" xmlTag="PersonLocationType"/>
+        <Element id="PL_06" name="building" required="O" type="AN" xmlTag="Building"/>
+        <Element id="PL_07" name="floor" required="O" type="AN" xmlTag="Floor"/>
+        <Element id="PL_08" name="location description" required="O" type="AN" xmlTag="LocationDescription"/>
+      </CompositeElement>
+      <CompositeElement id="00174" name="Admit Date/Time" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="AdmitDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <CompositeElement id="00175" name="Discharge Date/Time" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="DischargeDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <Element id="00176" name="Current Patient Balance" required="O" loop="1" type="N" minLength="1" maxLength="12" xmlTag="CurrentPatientBalance"/>
+      <Element id="00177" name="Total Charges" required="O" loop="1" type="N" minLength="1" maxLength="12" xmlTag="TotalCharges"/>
+      <Element id="00178" name="Total Adjustments" required="O" loop="1" type="N" minLength="1" maxLength="12" xmlTag="TotalAdjustments"/>
+      <Element id="00179" name="Total Payments" required="O" loop="1" type="N" minLength="1" maxLength="12" xmlTag="TotalPayments"/>
+      <CompositeElement id="00180" name="Alternate Visit ID" required="O" loop="1" type="CX" minLength="1" maxLength="20" xmlTag="AlternateVisitID">
+        <Element id="CX_01" name="ID" required="O" type="AN" xmlTag="ID"/>
+        <Element id="CX_02" name="check digit" required="O" type="AN" xmlTag="CheckDigit"/>
+        <Element id="CX_03" name="code identifying the check digit scheme employed" required="O" type="AN" xmlTag="CodeIdentifying"/>
+        <Element id="CX_04" name="assigning authority" required="C" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="CX_05" name="identifier type code" required="O" type="AN" xmlTag="IdentifierType"/>
+        <Element id="CX_06" name="assigning facility" required="C" type="HD" xmlTag="AssigningFacility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+      </CompositeElement>
+      <Element id="01226" name="Visit Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="VisitIndicator"/>
+      <CompositeElement id="01274" name="Other Healthcare Provider" required="O" loop="n" type="XCN" minLength="1" maxLength="60" xmlTag="OtherHealthcareProvider">
+        <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+        <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+          <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+        <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+        <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+        <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+        <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+    </Segment>
+    <Segment id="PV2" name="patient visit - additional information segment" required="O" loop="1" xmlTag="PatientVisitAdditional">
+      <CompositeElement id="00181" name="Prior Pending Location" required="C" loop="1" type="PL" minLength="1" maxLength="80" xmlTag="PriorPendingLocation">
+        <Element id="PL_01" name="point of care" required="O" type="AN" xmlTag="PointOfCare"/>
+        <Element id="PL_02" name="room" required="O" type="AN" xmlTag="Room"/>
+        <Element id="PL_02" name="bed" required="O" type="AN" xmlTag="Bed"/>
+        <Element id="PL_03" name="facility" required="O" type="HD" xmlTag="Facility">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="PL_04" name="location status" required="O" type="AN" xmlTag="LocationStatus"/>
+        <Element id="PL_05" name="person location type" required="O" type="AN" xmlTag="PersonLocationType"/>
+        <Element id="PL_06" name="building" required="O" type="AN" xmlTag="Building"/>
+        <Element id="PL_07" name="floor" required="O" type="AN" xmlTag="Floor"/>
+        <Element id="PL_08" name="location description" required="O" type="AN" xmlTag="LocationDescription"/>
+      </CompositeElement>
+      <CompositeElement id="00182" name="Accommodation Code" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="AccommodationCode">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00183" name="AdmitReason" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="AdmitReason">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00184" name="Transfer Reason" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="TransferReason">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00185" name="Patient Valuables" required="O" loop="n" type="AN" minLength="1" maxLength="25" xmlTag="PatientValuables"/>
+      <Element id="00186" name="Patient Valuables Location" required="O" loop="1" type="AN" minLength="1" maxLength="25" xmlTag="PatientValuablesLocation"/>
+      <Element id="00187" name="Visit User Code" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="VisitUserCode"/>
+      <CompositeElement id="00188" name="Expected Admit Date/Time" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="ExpectedAdmitDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <CompositeElement id="00189" name="Expected Discharge Date/Time" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="ExpectedDischargeAdmitDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <Element id="00711" name="Estimated Length of Inpatient Stay" required="O" loop="1" type="N" minLength="1" maxLength="3" xmlTag="EstimatedLengthOfInpatientStay"/>
+      <Element id="00712" name="Actual Length of Inpatient Stay" required="O" loop="1" type="N" minLength="1" maxLength="3" xmlTag="ActualLengthOfInpatientStay"/>
+      <Element id="00713" name="Visit Description" required="O" loop="1" type="AN" minLength="1" maxLength="50" xmlTag="VisitDescription"/>
+      <CompositeElement id="00714" name="Referral Source Code" required="O" loop="n" type="XCN" minLength="1" maxLength="90" xmlTag="ReferralSourceCode">
+        <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+        <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+          <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+        <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+        <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+        <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+        <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+      <Element id="00715" name="Previous Service Date" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="PreviousServiceDate"/>
+      <Element id="00716" name="Employment Illness Related Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="EmploymentIllnessRelatedIndicator"/>
+      <Element id="00717" name="Purge Status Code" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="PurgeStatusCode"/>
+      <Element id="00718" name="Purge Status Date" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="PurgeStatusDate"/>
+      <Element id="00719" name="Special Program Code" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="SpecialProgramCode"/>
+      <Element id="00720" name="Retention Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="RetentionIndicator"/>
+      <Element id="00721" name="Expected Number of Insurance Plans" required="O" loop="1" type="N" minLength="1" maxLength="1" xmlTag="ExpectedNumberOfInsurancePlans"/>
+      <Element id="00722" name="Visit Publicity Code" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="VisitPublicityCode"/>
+      <Element id="00723" name="Visit Protection Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="VisitProtectionIndicator"/>
+      <CompositeElement id="00724" name="Clinic Organization Name" required="O" loop="n" type="XON" minLength="1" maxLength="90" xmlTag="ClinicOrganizationName">
+        <Element id="XON_01" name="organization name" required="O" type="AN" xmlTag="OrganizationName"/>
+        <Element id="XON_02" name="organization name type code" required="O" type="AN" xmlTag="OrganizationNameType"/>
+        <Element id="XON_03" name="ID number" required="O" type="N" xmlTag="IDNumber"/>
+        <Element id="XON_04" name="check digit" required="O" type="N" xmlTag="CheckDigit"/>
+        <Element id="XON_05" name="code identifying the check digit scheme employed" required="O" type="AN" xmlTag="CheckDigitScheme"/>
+        <Element id="XON_05" name="assigning authority " required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XON_06" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XON_07" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XON_08" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+      <Element id="00725" name="Patient Status Code" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="PatientStatusCode"/>
+      <Element id="00726" name="Visit Priority Code" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="VisitPriorityCode"/>
+      <Element id="00727" name="Previous Treatment Date" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="PreviousTreatmentDate"/>
+      <Element id="00728" name="Expected Discharge Disposition" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="ExpectedDischargeDisposition"/>
+      <Element id="00729" name="Signature on File Date" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="SignatureOnFileDate"/>
+      <Element id="00730" name="FirstSimilarIllnessDate" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="FirstSimilarIllnessDate"/>
+      <CompositeElement id="00731" name="Patient Charge Adjustment Code" required="O" loop="1" type="CE" minLength="1" maxLength="80" xmlTag="PatientChargeAdjustmentCode">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00732" name="Recurring Service Code" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="RecurringServiceCode"/>
+      <Element id="00733" name="Billing Media Code" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="BillingMediaCode"/>
+      <CompositeElement id="00734" name="Expected Surgery Date Time" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="ExpectedSurgeryDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <Element id="00735" name="Military Partnership Code" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="MilitaryPartnershipCode"/>
+      <Element id="00736" name="Military Non-Availability Code" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="MilitaryNonAvailabilityCode"/>
+      <Element id="00737" name="Newborn Baby Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="NewbornBabyIndicator"/>
+      <Element id="00738" name="Baby Detained Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="BabyDetainedIndicator"/>
+    </Segment>
+    <Segment id="OBX" name="observation/result segment" required="C" loop="n" xmlTag="ObservationResult">
+      <Element id="00569" name="Set ID - OBX" required="O" loop="1" type="N" minLength="1" maxLength="10" xmlTag="SetID"/>
+      <Element id="00570" name="Value Type" required="C" loop="1" type="AN" minLength="1" maxLength="3" xmlTag="ValueType"/>
+      <CompositeElement id="00571" name="Observation Identifier" required="M" loop="1" type="CE" minLength="1" maxLength="590" xmlTag="ObservationIdentifier">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00572" name="Observation Sub-ID" required="C" loop="1" type="AN" minLength="1" maxLength="20" xmlTag="ObservationSubID"/>
+      <Element id="00573" name="Observation Value" required="C" loop="n" type="AN" minLength="1" maxLength="65536" xmlTag="ObservationValue"/>
+      <CompositeElement id="00574" name="Units" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="Units">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00575" name="References Range" required="O" loop="1" type="AN" minLength="1" maxLength="60" xmlTag="ReferencesRange"/>
+      <Element id="00576" name="Abnormal Flags" required="O" loop="5" type="AN" minLength="1" maxLength="5" xmlTag="AbnormalFlags"/>
+      <Element id="00577" name="Probability" required="O" loop="1" type="N" minLength="1" maxLength="5" xmlTag="Probability"/>
+      <Element id="00578" name="Nature of Abnormal Test" required="O" loop="n" type="AN" minLength="1" maxLength="2" xmlTag="NatureOfAbnormalTest"/>
+      <Element id="00579" name="Observ Result Status" required="M" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="ObservResultStatus"/>
+      <CompositeElement id="00580" name="Date Last Obs Normal Values" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="DateLastObsNormalValues">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <Element id="00581" name="User Defined Access Checks" required="O" loop="1" type="AN" minLength="1" maxLength="20" xmlTag="ObservResultStatus"/>
+      <CompositeElement id="00582" name="Date/Time of the Observation" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="ObservationDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <CompositeElement id="00583" name="Producer&apos;s ID" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="ProducersID">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00584" name="Responsible Observer" required="O" loop="n" type="XCN" minLength="1" maxLength="80" xmlTag="ResponsibleObserver">
+        <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+        <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+          <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+        <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+        <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+        <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+        <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+      <CompositeElement id="00936" name="Observation Method" required="O" loop="n" type="CE" minLength="1" maxLength="60" xmlTag="ObservationMethod">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+    </Segment>
+    <Segment id="DG1" name="Diagnosis Segment" required="C" loop="n" xmlTag="Diagnosis">
+      <Element id="00375" name="Set ID - DG1" required="M" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+      <Element id="00376" name="Diagnosis Coding Method" required="M" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="DiagnosisCodingMethod"/>
+      <CompositeElement id="00377" name="Diagnosis Code - DG1" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="DiagnosisCode">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00378" name="Diagnosis Description" required="O" loop="1" type="AN" minLength="1" maxLength="40" xmlTag="DiagnosisDescription"/>
+      <CompositeElement id="00379" name="Diagnosis Date/Time" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="DiagnosisDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <Element id="00380" name="Diagnosis Type" required="M" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="DiagnosisType"/>
+      <CompositeElement id="00381" name="Major Diagnostic Category" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="MajorDiagnosticCategory">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00382" name="Diagnostic Related Group" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="DiagnosticRelatedGroup">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00383" name="DRG Approval Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="DRGApprovalIndicator"/>
+      <Element id="00384" name="DRG Grouper Review Code" required="O" loop="1" type="N" minLength="1" maxLength="2" xmlTag="DRGGrouperReviewCode"/>
+      <CompositeElement id="00385" name="Outlier Type" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="OutlierType">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00386" name="Outlier Days" required="O" loop="1" type="N" minLength="1" maxLength="3" xmlTag="OutlierDays"/>
+      <CompositeElement id="00387" name="Outlier Cost" required="O" loop="1" type="CP" minLength="1" maxLength="12" xmlTag="OutlierCost">
+        <Element id="CP_01" name="price" required="O" type="MO" xmlTag="Price">
+          <SubElement id="MO_01" name="quantity" type="N" xmlTag="Quantity"/>
+          <SubElement id="MO_02" name="denomination" type="AN" xmlTag="Denomination"/>
+        </Element>
+        <Element id="CP_02" name="price type" required="O" type="AN" xmlTag="PriceType"/>
+        <Element id="CP_03" name="from value" required="O" type="N" xmlTag="FromValue"/>
+        <Element id="CP_04" name="to value" required="O" type="N" xmlTag="ToValue"/>
+        <Element id="CP_05" name="range units" required="O" type="CE" xmlTag="RangeUnits">
+          <SubElement id="CE_01" name="identifier" type="AN" xmlTag="Identifier"/>
+          <SubElement id="CE_02" name="Text" type="AN" xmlTag="Text"/>
+          <SubElement id="CE_03" name="name of coding system" type="AN" xmlTag="NameOfCodingSystem"/>
+          <SubElement id="CE_04" name="alternate identifier" type="AN" xmlTag="AlternateIdentifier"/>
+          <SubElement id="CE_05" name="alternate text" type="AN" xmlTag="AlternateText"/>
+          <SubElement id="CE_06" name="name of alternate coding system" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </Element>
+        <Element id="CP_06" name="range type" required="O" type="AN" xmlTag="RangeType"/>
+      </CompositeElement>
+      <Element id="00388" name="Grouper Version And Type" required="O" loop="1" type="AN" minLength="1" maxLength="4" xmlTag="GrouperVersionAndType"/>
+      <Element id="00389" name="Diagnosis Priority" required="O" loop="1" type="AN" minLength="1" maxLength="2" xmlTag="DiagnosisPriority"/>
+      <CompositeElement id="00390" name="Diagnosing Clinician" required="O" loop="n" type="XCN" minLength="1" maxLength="80" xmlTag="DiagnosingClinician">
+        <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+        <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+          <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+        <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+        <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+        <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+        <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+      <Element id="00766" name="Diagnosis Classification" required="O" loop="1" type="N" minLength="1" maxLength="3" xmlTag="DiagnosisClassification"/>
+      <Element id="00767" name="Confidential Indicator" required="O" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="ConfidentialIndicator"/>
+      <CompositeElement id="00768" name="Attestation Date/Time" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="AttestationDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+    </Segment>
+  </SegmentGroup>
+  <SegmentGroup id="SG2" name="Resource Group" required="M" loop="n" xmlTag="ResourceGroup">
+    <Segment id="RGS" name="resource group segment" required="M" loop="1" xmlTag="ResourceGroupSegment">
+      <Element id="01203" name="Set ID - RGS" required="O" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+      <Element id="00763" name="Segment Action Code" required="C" loop="1" type="AN" minLength="1" maxLength="3" xmlTag="SegmentActionCode"/>
+      <CompositeElement id="01204" name="Resource Group ID" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="ResourceGroupID">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+    </Segment>
+    <SegmentGroup id="SG3" name="Appointment Information - Service Group" required="O" loop="n" xmlTag="AppointmentInfoServiceGroup">
+      <Segment id="AIS" name="appointment information - service segment" required="M" loop="1" xmlTag="AppointmentInformationService">
+        <Element id="00890" name="Set ID - AIS" required="M" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+        <Element id="00763" name="Segment Action Code" required="C" loop="1" type="AN" minLength="1" maxLength="3" xmlTag="SegmentActionCode"/>
+        <CompositeElement id="00238" name="Universal Service ID" required="M" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="UniversalServiceID">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <CompositeElement id="01202" name="Start Date/Time" required="C" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="StartDateTime">
+          <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+          <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+        </CompositeElement>
+        <Element id="00891" name="Start Date/Time Offset" required="C" loop="1" type="N" minLength="1" maxLength="20" xmlTag="StartDateTimeOffset"/>
+        <CompositeElement id="00892" name="Start Date/Time Offset Units" required="C" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="StartDateTimeOffsetUnits">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <Element id="00893" name="Duration" required="O" loop="1" type="N" minLength="1" maxLength="20" xmlTag="Duration"/>
+        <CompositeElement id="00894" name="Duration Units" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="DurationUnits">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <Element id="00895" name="Allow Substitution Code" required="C" loop="1" type="AN" minLength="1" maxLength="10" xmlTag="AllowSubstitutionCode"/>
+        <CompositeElement id="00889" name="Filler Status Code" required="C" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="FillerStatusCode">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+      </Segment>
+      <Segment id="APR" name="appointment preferences segment" required="O" loop="1" xmlTag="AppointmentPreferences">
+        <CompositeElement id="00908" name="Time Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="TimeSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <CompositeElement id="00909" name="Resource Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="ResourceSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <CompositeElement id="00910" name="Location Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="LocationSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <Element id="00911" name="Slot Spacing Criteria" required="O" loop="1" type="N" minLength="1" maxLength="5" xmlTag="SlotSpacingCriteria"/>
+        <CompositeElement id="00912" name="Filler Override Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="FillerOverrideCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+      </Segment>
+      <Segment id="NTE" name="notes and comments segment" required="O" loop="n" xmlTag="NotesAndComments">
+        <Element id="00096" name="Set ID - NTE" required="O" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+        <Element id="00097" name="Source of Comment" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="SourceOfComment"/>
+        <Element id="00098" name="Comment" required="O" loop="n" type="AN" minLength="1" maxLength="64" xmlTag="Comment"/>
+        <Element id="01318" name="Comment Type" required="O" loop="1" type="AN" minLength="1" maxLength="60" xmlTag="CommentType"/>
+      </Segment>
+    </SegmentGroup>
+    <SegmentGroup id="SG4" name="Appointment Information - General Group" required="O" loop="n" xmlTag="AppointmentInfoGeneralGroup">
+      <Segment id="AIG" name="appointment information - general resource segment" required="M" loop="1" xmlTag="AppointmentInformationGeneral">
+        <Element id="00896" name="Set ID - AIG" required="M" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+        <Element id="00763" name="Segment Action Code" required="C" loop="1" type="AN" minLength="1" maxLength="3" xmlTag="SegmentActionCode"/>
+        <CompositeElement id="00897" name="Resource ID" required="C" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="ResourceID">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <CompositeElement id="00898" name="Resource Type" required="M" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="ResourceType">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <CompositeElement id="00899" name="Resource Group" required="O" loop="n" type="CE" minLength="1" maxLength="200" xmlTag="ResourceGroup">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <Element id="00900" name="Resource Quantity" required="O" loop="1" type="N" minLength="1" maxLength="5" xmlTag="ResourceQuantity"/>
+        <CompositeElement id="00901" name="Resource Quantity Units" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="ResourceQuantityUnits">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <CompositeElement id="01202" name="Start Date/Time" required="C" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="StartDateTime">
+          <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+          <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+        </CompositeElement>
+        <Element id="00891" name="Start Date/Time Offset" required="C" loop="1" type="N" minLength="1" maxLength="20" xmlTag="StartDateTimeOffset"/>
+        <CompositeElement id="00892" name="Start Date/Time Offset Units" required="C" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="StartDateTimeOffsetUnits">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <Element id="00893" name="Duration" required="O" loop="1" type="N" minLength="1" maxLength="20" xmlTag="Duration"/>
+        <CompositeElement id="00894" name="Duration Units" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="DurationUnits">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <Element id="00895" name="Allow Substitution Code" required="C" loop="1" type="AN" minLength="1" maxLength="10" xmlTag="AllowSubstitutionCode"/>
+        <CompositeElement id="00889" name="Filler Status Code" required="C" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="FillerStatusCode">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+      </Segment>
+      <Segment id="APR" name="appointment preferences segment" required="O" loop="1" xmlTag="AppointmentPreferences">
+        <CompositeElement id="00908" name="Time Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="TimeSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <CompositeElement id="00909" name="Resource Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="ResourceSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <CompositeElement id="00910" name="Location Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="LocationSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <Element id="00911" name="Slot Spacing Criteria" required="O" loop="1" type="N" minLength="1" maxLength="5" xmlTag="SlotSpacingCriteria"/>
+        <CompositeElement id="00912" name="Filler Override Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="FillerOverrideCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+      </Segment>
+      <Segment id="NTE" name="notes and comments segment" required="O" loop="n" xmlTag="NotesAndComments">
+        <Element id="00096" name="Set ID - NTE" required="O" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+        <Element id="00097" name="Source of Comment" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="SourceOfComment"/>
+        <Element id="00098" name="Comment" required="O" loop="n" type="AN" minLength="1" maxLength="64" xmlTag="Comment"/>
+        <Element id="01318" name="Comment Type" required="O" loop="1" type="AN" minLength="1" maxLength="60" xmlTag="CommentType"/>
+      </Segment>
+    </SegmentGroup>
+    <SegmentGroup id="SG5" name="Appointment Information - Location Group" required="O" loop="n" xmlTag="AppointmentInfoLocationGroup">
+      <Segment id="AIL" name="appointment information - location resource segment" required="O" loop="1" xmlTag="AppointmentInformationLocation">
+        <Element id="00902" name="Set ID - AIL" required="M" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+        <Element id="00763" name="Segment Action Code" required="C" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="SegmentActionCode"/>
+        <CompositeElement id="00903" name="Location Resource ID" required="C" loop="1" type="PL" minLength="1" maxLength="80" xmlTag="LocationResourceID">
+          <Element id="PL_01" name="point of care" required="O" type="AN" xmlTag="PointOfCare"/>
+          <Element id="PL_02" name="room" required="O" type="AN" xmlTag="Room"/>
+          <Element id="PL_02" name="bed" required="O" type="AN" xmlTag="Bed"/>
+          <Element id="PL_03" name="facility" required="O" type="HD" xmlTag="Facility">
+            <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+            <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+            <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+          </Element>
+          <Element id="PL_04" name="location status" required="O" type="AN" xmlTag="LocationStatus"/>
+          <Element id="PL_05" name="person location type" required="O" type="AN" xmlTag="PersonLocationType"/>
+          <Element id="PL_06" name="building" required="O" type="AN" xmlTag="Building"/>
+          <Element id="PL_07" name="floor" required="O" type="AN" xmlTag="Floor"/>
+          <Element id="PL_08" name="location description" required="O" type="AN" xmlTag="LocationDescription"/>
+        </CompositeElement>
+        <CompositeElement id="00904" name="Location Type-AIL" required="M" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="LocationType">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <CompositeElement id="00905" name="Location Group" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="LocationGroup">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <CompositeElement id="01202" name="Start Date/Time" required="C" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="StartDateTime">
+          <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+          <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+        </CompositeElement>
+        <Element id="00891" name="Start Date/Time Offset" required="C" loop="1" type="N" minLength="1" maxLength="20" xmlTag="StartDateTimeOffset"/>
+        <CompositeElement id="00892" name="Start Date/Time Offset Units" required="C" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="StartDateTimeOffsetUnits">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <Element id="00893" name="Duration" required="O" loop="1" type="N" minLength="1" maxLength="20" xmlTag="Duration"/>
+        <CompositeElement id="00894" name="Duration Units" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="DurationUnits">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <Element id="00895" name="Allow Substitution Code" required="C" loop="1" type="AN" minLength="1" maxLength="10" xmlTag="AllowSubstitutionCode"/>
+        <CompositeElement id="00889" name="Filler Status Code" required="C" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="FillerStatusCode">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+      </Segment>
+      <Segment id="APR" name="appointment preferences segment" required="O" loop="1" xmlTag="AppointmentPreferences">
+        <CompositeElement id="00908" name="Time Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="TimeSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <CompositeElement id="00909" name="Resource Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="ResourceSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <CompositeElement id="00910" name="Location Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="LocationSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <Element id="00911" name="Slot Spacing Criteria" required="O" loop="1" type="N" minLength="1" maxLength="5" xmlTag="SlotSpacingCriteria"/>
+        <CompositeElement id="00912" name="Filler Override Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="FillerOverrideCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+      </Segment>
+      <Segment id="NTE" name="notes and comments segment" required="O" loop="n" xmlTag="NotesAndComments">
+        <Element id="00096" name="Set ID - NTE" required="O" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+        <Element id="00097" name="Source of Comment" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="SourceOfComment"/>
+        <Element id="00098" name="Comment" required="O" loop="n" type="AN" minLength="1" maxLength="64" xmlTag="Comment"/>
+        <Element id="01318" name="Comment Type" required="O" loop="1" type="AN" minLength="1" maxLength="60" xmlTag="CommentType"/>
+      </Segment>
+    </SegmentGroup>
+    <SegmentGroup id="SG6" name="Appointment Information - Personne Group" required="O" loop="n" xmlTag="AppointmentInfoPersonneGroup">
+      <Segment id="AIP" name="appointment information - personnel resource segment" required="O" loop="1" xmlTag="AppointmentInformationPersonnel">
+        <Element id="00906" name="Set ID - AIP" required="M" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+        <Element id="00763" name="Segment Action Code" required="C" loop="1" type="AN" minLength="1" maxLength="3" xmlTag="SegmentActionCode"/>
+        <CompositeElement id="00913" name="Personnel Resource ID" required="C" loop="n" type="XCN" minLength="1" maxLength="80" xmlTag="PersonnelResourceID">
+          <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+          <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+            <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+            <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+          </Element>
+          <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+          <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+          <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+          <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+          <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+          <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+          <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+            <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+            <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+            <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+          </Element>
+          <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+          <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+          <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+          <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+          <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+            <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+            <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+            <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+          </Element>
+          <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+        </CompositeElement>
+        <CompositeElement id="00907" name="Resource Role" required="M" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="ResourceRole">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <CompositeElement id="00899" name="Resource Group" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="ResourceGroup">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <CompositeElement id="01202" name="Start Date/Time" required="C" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="StartDateTime">
+          <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+          <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+        </CompositeElement>
+        <Element id="00891" name="Start Date/Time Offset" required="C" loop="1" type="N" minLength="1" maxLength="20" xmlTag="StartDateTimeOffset"/>
+        <CompositeElement id="00892" name="Start Date/Time Offset Units" required="C" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="StartDateTimeOffsetUnits">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <Element id="00893" name="Duration" required="O" loop="1" type="N" minLength="1" maxLength="20" xmlTag="Duration"/>
+        <CompositeElement id="00894" name="Duration Units" required="O" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="DurationUnits">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+        <Element id="00895" name="Allow Substitution Code" required="C" loop="1" type="AN" minLength="1" maxLength="10" xmlTag="AllowSubstitutionCode"/>
+        <CompositeElement id="00889" name="Filler Status Code" required="C" loop="1" type="CE" minLength="1" maxLength="200" xmlTag="FillerStatusCode">
+          <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+          <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+          <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+          <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+          <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+          <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+        </CompositeElement>
+      </Segment>
+      <Segment id="APR" name="appointment preferences segment" required="O" loop="1" xmlTag="AppointmentPreferences">
+        <CompositeElement id="00908" name="Time Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="TimeSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <CompositeElement id="00909" name="Resource Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="ResourceSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <CompositeElement id="00910" name="Location Selection Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="LocationSelectionCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+        <Element id="00911" name="Slot Spacing Criteria" required="O" loop="1" type="N" minLength="1" maxLength="5" xmlTag="SlotSpacingCriteria"/>
+        <CompositeElement id="00912" name="Filler Override Criteria" required="O" loop="n" type="SCV" minLength="1" maxLength="80" xmlTag="FillerOverrideCriteria">
+          <Element id="SCV_01" name="parameter class" required="O" type="AN" xmlTag="ParameterClass"/>
+          <Element id="SCV_02" name="parameter value" required="O" type="AN" xmlTag="ParameterValue"/>
+        </CompositeElement>
+      </Segment>
+      <Segment id="NTE" name="notes and comments segment" required="O" loop="n" xmlTag="NotesAndComments">
+        <Element id="00096" name="Set ID - NTE" required="O" loop="1" type="N" minLength="1" maxLength="4" xmlTag="SetID"/>
+        <Element id="00097" name="Source of Comment" required="O" loop="1" type="AN" minLength="1" maxLength="8" xmlTag="SourceOfComment"/>
+        <Element id="00098" name="Comment" required="O" loop="n" type="AN" minLength="1" maxLength="64" xmlTag="Comment"/>
+        <Element id="01318" name="Comment Type" required="O" loop="1" type="AN" minLength="1" maxLength="60" xmlTag="CommentType"/>
+      </Segment>
+    </SegmentGroup>
+  </SegmentGroup><Segment id="ORC" name="" xmlTag="ORC" loop="n" required="C"><Element id="00871" name="Priority" required="C" loop="1" type="AN" minLength="1" maxLength="5" xmlTag="Priority"/></Segment><Segment id="OBR" name="" xmlTag="OBR" loop="n" required="C"><Element id="01" name="Occurrence Number" required="C" loop="1" type="AN" minLength="1" maxLength="5" xmlTag="T01"/><Element id="02" name="" required="C" loop="1" type="AN" minLength="1" maxLength="20" xmlTag="T02"/><Element id="03" name="" required="C" loop="1" type="AN" minLength="1" maxLength="20" xmlTag="T03"/><Element id="04" name="" required="C" loop="1" type="AN" minLength="1" maxLength="20" xmlTag="T04"/><Element id="05" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T05"/><Element id="file" name="" required="C" loop="1" type="AN" minLength="1" maxLength="300" xmlTag="file"/><Element id="07" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T07"/><Element id="08" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T08"/><Element id="09" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T09"/><Element id="10" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T10"/><Element id="11" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T11"/><Element id="12" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T12"/><Element id="13" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T13"/><Element id="14" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T14"/><Element id="15" name="" required="C" loop="1" type="AN" minLength="1" maxLength="100" xmlTag="T15"/></Segment><Segment id="OBX" name="observation/result segment" required="C" loop="n" xmlTag="ObservationResult">
+      <Element id="00569" name="Set ID - OBX" required="O" loop="1" type="N" minLength="1" maxLength="10" xmlTag="SetID"/>
+      <Element id="00570" name="Value Type" required="C" loop="1" type="AN" minLength="1" maxLength="3" xmlTag="ValueType"/>
+      <CompositeElement id="00571" name="Observation Identifier" required="M" loop="1" type="CE" minLength="1" maxLength="590" xmlTag="ObservationIdentifier">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00572" name="Observation Sub-ID" required="C" loop="1" type="AN" minLength="1" maxLength="20" xmlTag="ObservationSubID"/>
+      <Element id="00573" name="Observation Value" required="C" loop="n" type="AN" minLength="1" maxLength="65536" xmlTag="ObservationValue"/>
+      <CompositeElement id="00574" name="Units" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="Units">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <Element id="00575" name="References Range" required="O" loop="1" type="AN" minLength="1" maxLength="60" xmlTag="ReferencesRange"/>
+      <Element id="00576" name="Abnormal Flags" required="O" loop="5" type="AN" minLength="1" maxLength="5" xmlTag="AbnormalFlags"/>
+      <Element id="00577" name="Probability" required="O" loop="1" type="N" minLength="1" maxLength="5" xmlTag="Probability"/>
+      <Element id="00578" name="Nature of Abnormal Test" required="O" loop="n" type="AN" minLength="1" maxLength="2" xmlTag="NatureOfAbnormalTest"/>
+      <Element id="00579" name="Observ Result Status" required="M" loop="1" type="AN" minLength="1" maxLength="1" xmlTag="ObservResultStatus"/>
+      <CompositeElement id="00580" name="Date Last Obs Normal Values" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="DateLastObsNormalValues">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <Element id="00581" name="User Defined Access Checks" required="O" loop="1" type="AN" minLength="1" maxLength="20" xmlTag="ObservResultStatus"/>
+      <CompositeElement id="00582" name="Date/Time of the Observation" required="O" loop="1" type="TS" minLength="1" maxLength="26" xmlTag="ObservationDateTime">
+        <Element id="TS_01" name="Time Stamp" required="O" type="AN" xmlTag="TimeStamp"/>
+        <Element id="TS_02" name="Degree of precision" required="O" type="AN" xmlTag="DegreeOfPrecision"/>
+      </CompositeElement>
+      <CompositeElement id="00583" name="Producer&apos;s ID" required="O" loop="1" type="CE" minLength="1" maxLength="60" xmlTag="ProducersID">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+      <CompositeElement id="00584" name="Responsible Observer" required="O" loop="n" type="XCN" minLength="1" maxLength="80" xmlTag="ResponsibleObserver">
+        <Element id="XCN_01" name="ID number" required="O" type="AN" xmlTag="IDNumber"/>
+        <Element id="XCN_02" name="family name" required="O" type="XCN_02" xmlTag="FamilyName">
+          <SubElement id="XCN_02_01" name="Name" type="AN" xmlTag="Name"/>
+          <SubElement id="XCN_02_02" name="last name prefix" type="AN" xmlTag="LastNamePrefix"/>
+        </Element>
+        <Element id="XCN_03" name="given name" required="O" type="AN" xmlTag="GivenName"/>
+        <Element id="XCN_04" name="middle initial or name" required="O" type="AN" xmlTag="MiddleInitialOrName"/>
+        <Element id="XCN_05" name="suffix" required="O" type="AN" xmlTag="Suffix"/>
+        <Element id="XCN_06" name="prefix" required="O" type="AN" xmlTag="Prefix"/>
+        <Element id="XCN_07" name="degree" required="O" type="AN" xmlTag="Degree"/>
+        <Element id="XCN_08" name="source table" required="O" type="AN" xmlTag="SourceTable"/>
+        <Element id="XCN_09" name="assigning authority" required="O" type="HD" xmlTag="AssigningAuthority">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_10" name="name type" required="O" type="AN" xmlTag="NameType"/>
+        <Element id="XCN_11" name="identifier check digit" required="O" type="AN" xmlTag="IdentifierCheckDigit"/>
+        <Element id="XCN_12" name="identifying the check digit scheme employed" required="O" type="AN" xmlTag="DigitSchemeEmployed"/>
+        <Element id="XCN_13" name="identifier type code" required="O" type="AN" xmlTag="IdentifierTypeCode"/>
+        <Element id="XCN_14" name="assigning facility ID" required="O" type="HD" xmlTag="AssigningFacilityID">
+          <SubElement id="HD_01" name="Namespace ID" type="AN" xmlTag="NamespaceID"/>
+          <SubElement id="HD_02" name="Universal ID" type="AN" xmlTag="UniversalID"/>
+          <SubElement id="HD_03" name="Universal ID type" type="AN" xmlTag="UniversalIDType"/>
+        </Element>
+        <Element id="XCN_15" name="name representation code" required="O" type="AN" xmlTag="NameRepresentationCode"/>
+      </CompositeElement>
+      <CompositeElement id="00936" name="Observation Method" required="O" loop="n" type="CE" minLength="1" maxLength="60" xmlTag="ObservationMethod">
+        <Element id="CE_01" name="identifier" required="O" type="AN" xmlTag="Identifier"/>
+        <Element id="CE_02" name="Text" required="O" type="AN" xmlTag="Text"/>
+        <Element id="CE_03" name="name of coding system" required="O" type="AN" xmlTag="NameOfCodingSystem"/>
+        <Element id="CE_04" name="alternate identifier" required="O" type="AN" xmlTag="AlternateIdentifier"/>
+        <Element id="CE_05" name="alternate text" required="O" type="AN" xmlTag="AlternateText"/>
+        <Element id="CE_06" name="name of alternate coding system" required="O" type="AN" xmlTag="NameOfAlternateCodingSystem"/>
+      </CompositeElement>
+    </Segment>
+</Message>

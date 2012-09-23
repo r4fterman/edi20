@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Message agency="VDA" layout="hwfpe" name="Delivery instruction VDA 4905/1" release="-" standard="VDA" type="4905" version="1">
+  
+ <Segment id="511" loop="1" name="Header record delivery instruction" required="M" xmlTag="HeaderRecord">
+    
+  <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType"/>
+    
+  <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber"/>
+    
+  <Element id="03" posStart="6" posEnd="14" name="Customer code" required="M" type="AN" xmlTag="CustomerCode"/>
+    
+  <Element id="04" posStart="15" posEnd="23" name="Supplier code" required="M" type="AN" xmlTag="SupplierCode"/>
+    
+  <Element id="05" posStart="24" posEnd="28" name="Transmission number old" required="M" type="N" xmlTag="TransmissionNumberOld"/>
+    
+  <Element id="06" posStart="29" posEnd="33" name="Transmission number new" required="M" type="N" xmlTag="TransmissionNumberNew"/>
+    
+  <Element id="07" posStart="34" posEnd="39" name="Transmission date" required="M" type="N" xmlTag="TransmissionDate"/>
+    
+  <Element id="08" posStart="40" posEnd="45" name="Starting date cumulative" required="C" type="N" xmlTag="StartingDateCumulative"/>
+    
+  <Element id="09" posStart="46" posEnd="128" name="Blanks" required="M" type="AN" xmlTag="Blanks"/>
+  
+ </Segment>
+  
+ <SegmentGroup id="Article" loop="n" name="Article related data" required="M" xmlTag="Article">
+    
+  <Segment id="512" loop="1" name="Unique data to the article codes" required="M" xmlTag="UniqueDataToArticleCodes">
+      
+   <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType"/>
+      
+   <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber"/>
+      
+   <Element id="03" posStart="6" posEnd="8" name="Customer plant code" required="M" type="AN" xmlTag="CustomerPlantCode"/>
+      
+   <Element id="04" posStart="9" posEnd="17" name="Delivery call-off number new" required="M" type="N" xmlTag="DeliveryCall-offNumberNew"/>
+      
+   <Element id="05" posStart="18" posEnd="23" name="Delivery call-off date new" required="M" type="N" xmlTag="DeliveryCall-offDateNew"/>
+      
+   <Element id="06" posStart="24" posEnd="32" name="Delivery call-off number old" required="M" type="N" xmlTag="DeliveryCall-offNumberOld"/>
+      
+   <Element id="07" posStart="33" posEnd="38" name="Delivery call-off date old" required="M" type="N" xmlTag="DeliveryCall-offDateOld"/>
+      
+   <Element id="08" posStart="39" posEnd="60" name="Article code customer" required="M" type="AN" xmlTag="ArticleCodeCustomer"/>
+      
+   <Element id="09" posStart="61" posEnd="82" name="Article code supplier" required="C" type="AN" xmlTag="ArticleCodeSupplier"/>
+      
+   <Element id="10" posStart="83" posEnd="94" name="Order number" required="C" type="AN" xmlTag="OrderNumber" align="left"/>
+      
+   <Element id="11" posStart="95" posEnd="99" name="Dock / Gate" required="M" type="AN" xmlTag="DockGate"/>
+      
+   <Element id="12" posStart="100" posEnd="103" name="Customer clerk identifier" required="M" type="AN" xmlTag="CustomerClerkIdentifier"/>
+      
+   <Element id="13" posStart="104" posEnd="105" name="Quantity unit of measure" required="M" type="AN" xmlTag="QuantityUnitOfMeasure"/>
+      
+   <Element id="14" posStart="106" posEnd="106" name="Delivery frequancy" required="M" type="AN" xmlTag="DeliveryFrequancy"/>
+      
+   <Element id="15" posStart="107" posEnd="107" name="Manufacturing release" required="C" type="N" xmlTag="ManufacturingRelease"/>
+      
+   <Element id="16" posStart="108" posEnd="108" name="Material release" required="C" type="N" xmlTag="MaterialRelease"/>
+      
+   <Element id="17" posStart="109" posEnd="109" name="Requirement code" required="M" type="AN" xmlTag="RequirementCode"/>
+      
+   <Element id="18" posStart="110" posEnd="116" name="Account key" required="C" type="AN" xmlTag="AccountKey"/>
+      
+   <Element id="19" posStart="117" posEnd="123" name="Stock location" required="C" type="AN" xmlTag="StockLocation"/>
+      
+   <Element id="20" posStart="124" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks"/>
+    
+  </Segment>
+    
+  <Segment id="513" loop="1" name="Reconciliation and call-off dates" required="M" xmlTag="ReconciliationAndCall-offDates">
+      
+   <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType"/>
+      
+   <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber"/>
+      
+   <Element id="03" posStart="6" posEnd="11" name="Date of last recorded receipt" required="M" type="N" xmlTag="DateLastRecordedReceipt"/>
+      
+   <Element id="04" posStart="12" posEnd="19" name="Last recorded Delivery note number" required="M" type="N" xmlTag="LastRecordedDeliveryNoteNumber"/>
+      
+   <Element id="05" posStart="20" posEnd="25" name="Date of last recorded receipt 2" required="M" type="N" xmlTag="DateLastRecordedReceipt2"/>
+      
+   <Element id="06" posStart="26" posEnd="37" name="Quantity last recorded receipt" required="M" type="N" xmlTag="QuantityLastRecordedReceipt"/>
+      
+   <Element id="07" posStart="38" posEnd="47" name="Commulative figure receipt" required="M" type="N" xmlTag="CommulativeFigure"/>
+      
+   <Element id="08" posStart="48" posEnd="53" name="Call-off date 1" required="M" type="N" xmlTag="Call-offDate1"/>
+      
+   <Element id="09" posStart="54" posEnd="62" name="Call-off quantity 1" required="M" type="N" xmlTag="Call-offQuantity1"/>
+      
+   <Element id="10" posStart="63" posEnd="68" name="Call-off date 2" required="C" type="N" xmlTag="Call-offDate2"/>
+      
+   <Element id="11" posStart="69" posEnd="77" name="Call-off quantity 2" required="C" type="N" xmlTag="Call-offQuantity2"/>
+      
+   <Element id="12" posStart="78" posEnd="83" name="Call-off date 3" required="C" type="N" xmlTag="Call-offDate3"/>
+      
+   <Element id="13" posStart="84" posEnd="92" name="Call-off quantity 3" required="C" type="N" xmlTag="Call-offQuantity3"/>
+      
+   <Element id="14" posStart="93" posEnd="98" name="Call-off date 4" required="C" type="N" xmlTag="Call-offDate4"/>
+      
+   <Element id="15" posStart="99" posEnd="107" name="Call-off quantity 4" required="C" type="N" xmlTag="Call-offQuantity4"/>
+      
+   <Element id="16" posStart="108" posEnd="113" name="Call-off date 5" required="C" type="N" xmlTag="Call-offDate5"/>
+      
+   <Element id="17" posStart="114" posEnd="122" name="Call-off quantity 5" required="C" type="N" xmlTag="Call-offQuantity5"/>
+      
+   <Element id="18" posStart="123" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks"/>
+    
+  </Segment>
+    
+  <Segment id="514" loop="n" name="Further call-off dates" required="C" xmlTag="FurtherCall-offDates">
+      
+   <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType"/>
+      
+   <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber"/>
+      
+   <Element id="03" posStart="6" posEnd="11" name="Call-off date 6" required="M" type="N" xmlTag="Call-offDate6"/>
+      
+   <Element id="04" posStart="12" posEnd="20" name="Call-off quantity 6" required="M" type="N" xmlTag="Call-offQuantity6"/>
+      
+   <Element id="05" posStart="21" posEnd="26" name="Call-off date 7" required="C" type="N" xmlTag="Call-offDate7"/>
+      
+   <Element id="06" posStart="27" posEnd="35" name="Call-off quantity 7" required="C" type="N" xmlTag="Call-offQuantity7"/>
+      
+   <Element id="07" posStart="36" posEnd="41" name="Call-off date 8" required="C" type="N" xmlTag="Call-offDate8"/>
+      
+   <Element id="08" posStart="42" posEnd="50" name="Call-off quantity 8" required="C" type="N" xmlTag="Call-offQuantity8"/>
+      
+   <Element id="09" posStart="51" posEnd="56" name="Call-off date 9" required="C" type="N" xmlTag="Call-offDate9"/>
+      
+   <Element id="10" posStart="57" posEnd="65" name="Call-off quantity 9" required="C" type="N" xmlTag="Call-offQuantity9"/>
+      
+   <Element id="11" posStart="66" posEnd="71" name="Call-off date 10" required="C" type="N" xmlTag="Call-offDate10"/>
+      
+   <Element id="12" posStart="72" posEnd="80" name="Call-off quantity 10" required="C" type="N" xmlTag="Call-offQuantity10"/>
+      
+   <Element id="13" posStart="81" posEnd="86" name="Call-off date 11" required="C" type="N" xmlTag="Call-offDate11"/>
+      
+   <Element id="14" posStart="87" posEnd="95" name="Call-off quantity 11" required="C" type="N" xmlTag="Call-offQuantity11"/>
+      
+   <Element id="15" posStart="96" posEnd="101" name="Call-off date 12" required="C" type="N" xmlTag="Call-offDate12"/>
+      
+   <Element id="16" posStart="102" posEnd="110" name="Call-off quantity 12" required="C" type="N" xmlTag="Call-offQuantity12"/>
+      
+   <Element id="17" posStart="111" posEnd="116" name="Call-off date 13" required="C" type="N" xmlTag="Call-offDate13"/>
+      
+   <Element id="18" posStart="117" posEnd="125" name="Call-off quantity 13" required="C" type="N" xmlTag="Call-offQuantity13"/>
+      
+   <Element id="19" posStart="126" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks"/>
+    
+  </Segment>
+    
+  <Segment id="515" loop="1" name="Additional delivery information" required="C" xmlTag="AdditionalDeliveryInformation">
+      
+   <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType"/>
+      
+   <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber"/>
+      
+   <Element id="03" posStart="6" posEnd="11" name="Manufacturing release starting date" required="C" type="N" xmlTag="ManufacturingReleaseStartingDate"/>
+      
+   <Element id="04" posStart="12" posEnd="17" name="Manufacturing release final date" required="C" type="N" xmlTag="ManufacturingReleaseFinalDate"/>
+      
+   <Element id="05" posStart="18" posEnd="27" name="Manufacturing release cumulated requirements" required="C" type="N" xmlTag="ManufacturingReleaseCumulatedRequirements"/>
+      
+   <Element id="06" posStart="28" posEnd="33" name="Material release starting date" required="C" type="N" xmlTag="MaterialReleaseStartingDate"/>
+      
+   <Element id="07" posStart="34" posEnd="39" name="Material release final date" required="C" type="N" xmlTag="MaterialReleaseFinalDate"/>
+      
+   <Element id="08" posStart="40" posEnd="49" name="Material release cumulated requirements" required="C" type="N" xmlTag="MaterialReleaseCumulatedRequirements"/>
+      
+   <Element id="09" posStart="50" posEnd="71" name="Completing article code" required="C" type="AN" xmlTag="CompletingArticleCode"/>
+      
+   <Element id="10" posStart="72" posEnd="80" name="Intermediate supplier" required="C" type="AN" xmlTag="IntermediateSupplier"/>
+      
+   <Element id="11" posStart="81" posEnd="86" name="Final date of the planning horizon" required="C" type="N" xmlTag="FinalDateHorizon"/>
+      
+   <Element id="12" posStart="87" posEnd="100" name="Consumption point" required="C" type="AN" xmlTag="ConsumptionPoint"/>
+      
+   <Element id="13" posStart="101" posEnd="110" name="Cumulative figure achieved at zero position" required="C" type="N" xmlTag="CumulativeFigureAchieved"/>
+      
+   <Element id="14" posStart="111" posEnd="128" name="Blank" required="C" type="AN" xmlTag="Blank"/>
+    
+  </Segment>
+    
+  <Segment id="517" loop="n" name="Packaging data" required="C" xmlTag="PackagingData">
+      
+   <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType"/>
+      
+   <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber"/>
+      
+   <Element id="03" posStart="6" posEnd="27" name="Packaging code customer" required="M" type="AN" xmlTag="PackagingCodeCustomer"/>
+      
+   <Element id="04" posStart="28" posEnd="49" name="Packaging code supplier" required="C" type="AN" xmlTag="PackagingCodeSupplier"/>
+      
+   <Element id="05" posStart="50" posEnd="56" name="Capacity per packaging type" required="M" type="N" xmlTag="CapacityPerPackagingType"/>
+      
+   <Element id="06" posStart="57" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks"/>
+    
+  </Segment>
+    
+  <Segment id="518" loop="n" name="TextData" required="C" xmlTag="TextData">
+      
+   <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType"/>
+      
+   <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber"/>
+      
+   <Element id="03" posStart="6" posEnd="45" name="Delivery instruction text 1" required="M" type="AN" xmlTag="DeliveryInstructionText1"/>
+      
+   <Element id="04" posStart="46" posEnd="85" name="Delivery instruction text 2" required="C" type="AN" xmlTag="DeliveryInstructionText2"/>
+      
+   <Element id="05" posStart="86" posEnd="125" name="Delivery instruction text 3" required="C" type="AN" xmlTag="DeliveryInstructionText3"/>
+      
+   <Element id="06" posStart="126" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks"/>
+    
+  </Segment>
+  
+ </SegmentGroup>
+  
+ <Segment id="519" loop="1" name="trailer record delivery instruction dates" required="M" xmlTag="TrailerRecord">
+    
+  <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType"/>
+    
+  <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber"/>
+    
+  <Element id="03" posStart="6" posEnd="12" name="Counter record type 511" required="M" type="N" xmlTag="CounterRecordType511"/>
+    
+  <Element id="04" posStart="13" posEnd="19" name="Counter record type 512" required="M" type="N" xmlTag="CounterRecordType512"/>
+    
+  <Element id="05" posStart="20" posEnd="26" name="Counter record type 513" required="M" type="N" xmlTag="CounterRecordType513"/>
+    
+  <Element id="06" posStart="27" posEnd="33" name="Counter record type 514" required="M" type="N" xmlTag="CounterRecordType514"/>
+    
+  <Element id="07" posStart="34" posEnd="40" name="Counter record type 517" required="M" type="N" xmlTag="CounterRecordType517"/>
+    
+  <Element id="08" posStart="41" posEnd="47" name="Counter record type 518" required="M" type="N" xmlTag="CounterRecordType518"/>
+    
+  <Element id="09" posStart="48" posEnd="54" name="Counter record type 519" required="M" type="N" xmlTag="CounterRecordType519"/>
+    
+  <Element id="10" posStart="55" posEnd="61" name="Counter record type 515" required="M" type="N" xmlTag="CounterRecordType515"/>
+    
+  <Element id="11" posStart="62" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks"/>
+  
+ </Segment>
+
+</Message>

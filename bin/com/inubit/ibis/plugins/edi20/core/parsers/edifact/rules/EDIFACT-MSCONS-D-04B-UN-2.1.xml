@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Message layout="hwed" agency="UN" standard="EDIFACT" name="Metered services consumption report message" type="MSCONS" version="D" release="04B" assoc_assigned="2.1">
+   <Segment id="UNH" name="Message header" required="M" loop="1" xmlTag="MessageHeader">
+      <Element id="0062" name="Message reference" minLength="1" maxLength="14" type="AN" xmlTag="MessageReference" required="M"/>
+      <CompositeElement id="S009" name="message identifier" xmlTag="MessageIdentifierCE" required="M">
+         <Element id="0065" name="Message" minLength="1" maxLength="6" type="QL" qRef="0065" xmlTag="Message" required="M"/>
+         <Element id="0052" name="Message version" minLength="1" maxLength="3" type="QL" qRef="0052" xmlTag="MessageVersion" required="M"/>
+         <Element id="0054" name="Message release" minLength="1" maxLength="3" type="QL" qRef="0054" xmlTag="MessageRelease" required="M"/>
+         <Element id="0051" name="Controlling agency," minLength="1" maxLength="2" type="QL" qRef="0051" xmlTag="ControllingAgency" required="M"/>
+         <Element id="0057" name="Association assigned" minLength="1" maxLength="6" type="QL" xmlTag="AssociationAssigned" required="M" qRef="0057"/>
+      </CompositeElement>
+      <Element id="0068" name="Common access" minLength="1" maxLength="35" type="AN" xmlTag="CommonAccess" required="C"/>
+      <CompositeElement id="S010" name="status of the transfer" xmlTag="StatusOfTheTransferCE" required="C">
+         <Element id="0070" name="Sequence of" minLength="1" maxLength="2" type="N" xmlTag="SequenceOf" required="C"/>
+         <Element id="0073" name="First and last" minLength="1" maxLength="1" type="QL" qRef="0073" xmlTag="FirstAndLast" required="C"/>
+      </CompositeElement>
+   </Segment>
+   <Segment id="BGM" name="Beginning of message" required="M" loop="1" xmlTag="BeginningOfMessage">
+      <CompositeElement id="C002" name="document/message name" xmlTag="DocumentMessageNameCE" required="M">
+         <Element id="1001" name="Document name code" minLength="1" maxLength="3" type="QL" qRef="1001" xmlTag="DocumentNameCode" required="M"/>
+         <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+         <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+         <Element id="1000" name="Document name" minLength="1" maxLength="35" type="AN" xmlTag="DocumentName" required="C"/>
+      </CompositeElement>
+      <CompositeElement id="C106" name="document/message identification" xmlTag="DocumentMessageIdentificationCE" required="M">
+         <Element id="1004" name="Document identifier" minLength="1" maxLength="35" type="AN" xmlTag="DocumentIdentifier" required="M"/>
+         <Element id="1056" name="Version identifier" minLength="1" maxLength="9" type="AN" xmlTag="VersionIdentifier" required="C"/>
+         <Element id="1060" name="Revision identifier" minLength="1" maxLength="6" type="AN" xmlTag="RevisionIdentifier" required="C"/>
+      </CompositeElement>
+      <Element id="1225" name="Message function code" minLength="1" maxLength="3" type="QL" qRef="1225" xmlTag="MessageFunctionCode" required="M"/>
+      <Element id="4343" name="Response type code" minLength="1" maxLength="3" type="QL" qRef="4343" xmlTag="ResponseTypeCode" required="C"/>
+   </Segment>
+   <Segment id="DTM" name="Date/time/period" required="M" loop="9" xmlTag="DateTimePeriod">
+      <CompositeElement id="C507" name="date/time/period" xmlTag="DateTimePeriodCE" required="M">
+         <Element id="2005" name="Date or time or period function code qualifier" minLength="1" maxLength="3" type="QL" qRef="2005" xmlTag="DateOrTimeOrPeriodFunction" required="M"/>
+         <Element id="2380" name="Date or time or period text" minLength="1" maxLength="35" type="AN" xmlTag="DateOrTimeOrPeriodText" required="M"/>
+         <Element id="2379" name="Date or time or period format code" minLength="1" maxLength="3" type="QL" qRef="2379" xmlTag="DateOrTimeOrPeriodFormat" required="M"/>
+      </CompositeElement>
+   </Segment>
+   <SegmentGroup id="SG1" name="A group of segments for specifying any references and their dates valid for the whole report." required="C" loop="9" xmlTag="SegmentGroup_1">
+      <Segment id="RFF" name="Reference" required="M" loop="1" xmlTag="Reference">
+         <CompositeElement id="C506" name="reference" xmlTag="ReferenceCE" required="M">
+            <Element id="1153" name="Reference code qualifier" minLength="1" maxLength="3" type="QL" qRef="1153" xmlTag="ReferenceCodeQualifier" required="M"/>
+            <Element id="1154" name="Reference identifier" minLength="1" maxLength="70" type="AN" xmlTag="ReferenceIdentifier" required="M"/>
+            <Element id="1156" name="Document line identifier" minLength="1" maxLength="6" type="AN" xmlTag="DocumentLineIdentifier" required="C"/>
+            <Element id="4000" name="Reference version identifier" minLength="1" maxLength="35" type="AN" xmlTag="ReferenceVersionIdentifier" required="C"/>
+            <Element id="1060" name="Revision identifier" minLength="1" maxLength="6" type="AN" xmlTag="RevisionIdentifier" required="C"/>
+         </CompositeElement>
+      </Segment>
+      <Segment id="DTM" name="Date/time/period" required="C" loop="9" xmlTag="DateTimePeriod">
+         <CompositeElement id="C507" name="date/time/period" xmlTag="DateTimePeriodCE" required="M">
+            <Element id="2005" name="Date or time or period function code qualifier" minLength="1" maxLength="3" type="QL" qRef="2005" xmlTag="DateOrTimeOrPeriodFunction" required="M"/>
+            <Element id="2380" name="Date or time or period text" minLength="1" maxLength="35" type="AN" xmlTag="DateOrTimeOrPeriodText" required="M"/>
+            <Element id="2379" name="Date or time or period format code" minLength="1" maxLength="3" type="QL" qRef="2379" xmlTag="DateOrTimeOrPeriodFormat" required="M"/>
+         </CompositeElement>
+      </Segment>
+   </SegmentGroup>
+   <SegmentGroup id="SG2" name="A group of segments identifying the parties involved in the transaction, reference numbers associated with the parties, and any contact points and numbers." required="C" loop="99" xmlTag="SegmentGroup_2">
+      <Segment id="NAD" name="Name and address" required="M" loop="1" xmlTag="NameAndAddress">
+         <Element id="3035" name="Party function code qualifier" minLength="1" maxLength="3" type="QL" qRef="3035" xmlTag="PartyFunctionCodeQualifier" required="M"/>
+         <CompositeElement id="C082" name="party identification details" xmlTag="PartyIdentificationDetailsCE" required="M">
+            <Element id="3039" name="Party identifier" minLength="1" maxLength="35" type="AN" xmlTag="PartyIdentifier" required="M"/>
+            <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+            <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="M"/>
+         </CompositeElement>
+         <CompositeElement id="C058" name="name and address" xmlTag="NameAndAddressCE" required="C">
+            <Element id="3124" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription" required="C"/>
+            <Element id="3124_2" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription_2" required="C"/>
+            <Element id="3124_3" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription_3" required="C"/>
+            <Element id="3124_4" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription_4" required="C"/>
+            <Element id="3124_5" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription_5" required="C"/>
+         </CompositeElement>
+         <CompositeElement id="C080" name="party name" xmlTag="PartyNameCE" required="C">
+            <Element id="3036" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName" required="C"/>
+            <Element id="3036_2" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName_2" required="C"/>
+            <Element id="3036_3" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName_3" required="C"/>
+            <Element id="3036_4" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName_4" required="C"/>
+            <Element id="3036_5" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName_5" required="C"/>
+            <Element id="3045" name="Party name format code" minLength="1" maxLength="3" type="QL" qRef="3045" xmlTag="PartyNameFormatCode" required="C"/>
+         </CompositeElement>
+         <CompositeElement id="C059" name="street" xmlTag="StreetCE" required="C">
+            <Element id="3042" name="Street and number or post office box identifier" minLength="1" maxLength="35" type="AN" xmlTag="StreetAndNumberOrPostOffice" required="C"/>
+            <Element id="3042_2" name="Street and number or post office box identifier" minLength="1" maxLength="35" type="AN" xmlTag="StreetAndNumberOrPostOffice_2" required="C"/>
+            <Element id="3042_3" name="Street and number or post office box identifier" minLength="1" maxLength="35" type="AN" xmlTag="StreetAndNumberOrPostOffice_3" required="C"/>
+            <Element id="3042_4" name="Street and number or post office box identifier" minLength="1" maxLength="35" type="AN" xmlTag="StreetAndNumberOrPostOffice_4" required="C"/>
+         </CompositeElement>
+         <Element id="3164" name="City name" minLength="1" maxLength="35" type="AN" xmlTag="CityName" required="C"/>
+         <CompositeElement id="C819" name="country sub-entity details" xmlTag="CountrySubentityDetailsCE" required="C">
+            <Element id="3229" name="Country sub-entity name code" minLength="1" maxLength="9" type="AN" xmlTag="CountrySubentityNameCode" required="C"/>
+            <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+            <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+            <Element id="3228" name="Country sub-entity name" minLength="1" maxLength="70" type="AN" xmlTag="CountrySubentityName" required="C"/>
+         </CompositeElement>
+         <Element id="3251" name="Postal identification code" minLength="1" maxLength="17" type="AN" xmlTag="PostalIdentificationCode" required="C"/>
+         <Element id="3207" name="Country name code" minLength="1" maxLength="3" type="AN" xmlTag="CountryNameCode" required="C"/>
+      </Segment>
+      <SegmentGroup id="SG4" name="A group of segments identifying the contact person or department for trading party and specifying the communication channel and number." required="C" loop="9" xmlTag="SegmentGroup_4">
+         <Segment id="CTA" name="Contact information" required="M" loop="1" xmlTag="ContactInformation">
+            <Element id="3139" name="Contact function code" minLength="1" maxLength="3" type="QL" qRef="3139" xmlTag="ContactFunctionCode" required="M"/>
+            <CompositeElement id="C056" name="department or employee details" xmlTag="DepartmentOrEmployeeDetailsCE" required="M">
+               <Element id="3413" name="Department or employee name code" minLength="1" maxLength="17" type="AN" xmlTag="DepartmentOrEmployeeNameCode" required="C"/>
+               <Element id="3412" name="Department or employee name" minLength="1" maxLength="35" type="AN" xmlTag="DepartmentOrEmployeeName" required="M"/>
+            </CompositeElement>
+         </Segment>
+         <Segment id="COM" name="Communication contact" required="C" loop="9" xmlTag="CommunicationContact">
+            <CompositeElement id="C076" name="communication contact" xmlTag="CommunicationContactCE" required="M">
+               <Element id="3148" name="Communication address identifier" minLength="1" maxLength="512" type="AN" xmlTag="CommunicationAddressIdentifier" required="M"/>
+               <Element id="3155" name="Communication address code qualifier" minLength="1" maxLength="3" type="QL" qRef="3155" xmlTag="CommunicationAddressCodeQualifier" required="M"/>
+            </CompositeElement>
+         </Segment>
+      </SegmentGroup>
+   </SegmentGroup>
+   <Segment id="UNS" name="Section control" required="M" loop="1" xmlTag="SectionControl">
+      <Element id="0081" name="Section" minLength="1" maxLength="1" type="QL" qRef="0081" xmlTag="Section" required="M"/>
+   </Segment>
+   <SegmentGroup id="SG5" name="A group of segments identifying the delivery party (premise) and the meter for which consumption is being reported." required="M" loop="99999" xmlTag="SegmentGroup_5">
+      <Segment id="NAD" name="Name and address" required="M" loop="1" xmlTag="NameAndAddress">
+         <Element id="3035" name="Party function code qualifier" minLength="1" maxLength="3" type="QL" qRef="3035" xmlTag="PartyFunctionCodeQualifier" required="M"/>
+         <CompositeElement id="C082" name="party identification details" xmlTag="PartyIdentificationDetailsCE" required="C">
+            <Element id="3039" name="Party identifier" minLength="1" maxLength="35" type="AN" xmlTag="PartyIdentifier" required="C"/>
+            <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+            <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+         </CompositeElement>
+         <CompositeElement id="C058" name="name and address" xmlTag="NameAndAddressCE" required="C">
+            <Element id="3124" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription" required="C"/>
+            <Element id="3124_2" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription_2" required="C"/>
+            <Element id="3124_3" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription_3" required="C"/>
+            <Element id="3124_4" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription_4" required="C"/>
+            <Element id="3124_5" name="Name and address description" minLength="1" maxLength="35" type="AN" xmlTag="NameAndAddressDescription_5" required="C"/>
+         </CompositeElement>
+         <CompositeElement id="C080" name="party name" xmlTag="PartyNameCE" required="C">
+            <Element id="3036" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName" required="M"/>
+            <Element id="3036_2" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName_2" required="C"/>
+            <Element id="3036_3" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName_3" required="C"/>
+            <Element id="3036_4" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName_4" required="C"/>
+            <Element id="3036_5" name="Party name" minLength="1" maxLength="35" type="AN" xmlTag="PartyName_5" required="C"/>
+            <Element id="3045" name="Party name format code" minLength="1" maxLength="3" type="QL" qRef="3045" xmlTag="PartyNameFormatCode" required="C"/>
+         </CompositeElement>
+         <CompositeElement id="C059" name="street" xmlTag="StreetCE" required="C">
+            <Element id="3042" name="Street and number or post office box identifier" minLength="1" maxLength="35" type="AN" xmlTag="StreetAndNumberOrPostOffice" required="M"/>
+            <Element id="3042_2" name="Street and number or post office box identifier" minLength="1" maxLength="35" type="AN" xmlTag="StreetAndNumberOrPostOffice_2" required="C"/>
+            <Element id="3042_3" name="Street and number or post office box identifier" minLength="1" maxLength="35" type="AN" xmlTag="StreetAndNumberOrPostOffice_3" required="C"/>
+            <Element id="3042_4" name="Street and number or post office box identifier" minLength="1" maxLength="35" type="AN" xmlTag="StreetAndNumberOrPostOffice_4" required="C"/>
+         </CompositeElement>
+         <Element id="3164" name="City name" minLength="1" maxLength="35" type="AN" xmlTag="CityName" required="C"/>
+         <CompositeElement id="C819" name="country sub-entity details" xmlTag="CountrySubentityDetailsCE" required="C">
+            <Element id="3229" name="Country sub-entity name code" minLength="1" maxLength="9" type="AN" xmlTag="CountrySubentityNameCode" required="C"/>
+            <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+            <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+            <Element id="3228" name="Country sub-entity name" minLength="1" maxLength="70" type="AN" xmlTag="CountrySubentityName" required="C"/>
+         </CompositeElement>
+         <Element id="3251" name="Postal identification code" minLength="1" maxLength="17" type="AN" xmlTag="PostalIdentificationCode" required="C"/>
+         <Element id="3207" name="Country name code" minLength="1" maxLength="3" type="AN" xmlTag="CountryNameCode" required="C"/>
+      </Segment>
+      <SegmentGroup id="SG6" name="A group of segments identifying the meter being reported, the date of the meter read, associated references, the physical characteristics of the meter, and the product or service for which consumption information is reported." required="M" loop="99999" xmlTag="SegmentGroup_6">
+         <Segment id="LOC" name="Place/location identification" required="M" loop="1" xmlTag="PlaceLocationIdentification">
+            <Element id="3227" name="Location function code qualifier" minLength="1" maxLength="3" type="QL" qRef="3227" xmlTag="LocationFunctionCodeQualifier" required="M"/>
+            <CompositeElement id="C517" name="location identification" xmlTag="LocationIdentificationCE" required="M">
+               <Element id="3225" name="Location name code" minLength="1" maxLength="35" type="AN" xmlTag="LocationNameCode" required="M"/>
+               <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+               <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="M"/>
+               <Element id="3224" name="Location name" minLength="1" maxLength="256" type="AN" xmlTag="LocationName" required="C"/>
+            </CompositeElement>
+            <CompositeElement id="C519" name="related location one identification" xmlTag="RelatedLocationOneIdentificationCE" required="C">
+               <Element id="3223" name="First related location name code" minLength="1" maxLength="25" type="AN" xmlTag="FirstRelatedLocationNameCode" required="C"/>
+               <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+               <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+               <Element id="3222" name="First related location name" minLength="1" maxLength="70" type="AN" xmlTag="FirstRelatedLocationName" required="C"/>
+            </CompositeElement>
+            <CompositeElement id="C553" name="related location two identification" xmlTag="RelatedLocationTwoIdentificationCE" required="C">
+               <Element id="3233" name="Second related location name code" minLength="1" maxLength="25" type="AN" xmlTag="SecondRelatedLocationNameCode" required="C"/>
+               <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+               <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+               <Element id="3232" name="Second related location name" minLength="1" maxLength="70" type="AN" xmlTag="SecondRelatedLocationName" required="C"/>
+            </CompositeElement>
+            <Element id="5479" name="Relation code" minLength="1" maxLength="3" type="AN" xmlTag="RelationCode" required="C"/>
+         </Segment>
+         <Segment id="DTM" name="Date/time/period" required="C" loop="9" xmlTag="DateTimePeriod">
+            <CompositeElement id="C507" name="date/time/period" xmlTag="DateTimePeriodCE" required="M">
+               <Element id="2005" name="Date or time or period function code qualifier" minLength="1" maxLength="3" type="QL" qRef="2005" xmlTag="DateOrTimeOrPeriodFunction" required="M"/>
+               <Element id="2380" name="Date or time or period text" minLength="1" maxLength="35" type="AN" xmlTag="DateOrTimeOrPeriodText" required="M"/>
+               <Element id="2379" name="Date or time or period format code" minLength="1" maxLength="3" type="QL" qRef="2379" xmlTag="DateOrTimeOrPeriodFormat" required="M"/>
+            </CompositeElement>
+         </Segment>
+         <SegmentGroup id="SG7" name="A group of segments for specifying any references and associated dates valid for the meter identified in the LOC segment." required="C" loop="99" xmlTag="SegmentGroup_7">
+            <Segment id="RFF" name="Reference" required="M" loop="1" xmlTag="Reference">
+               <CompositeElement id="C506" name="reference" xmlTag="ReferenceCE" required="M">
+                  <Element id="1153" name="Reference code qualifier" minLength="1" maxLength="3" type="QL" qRef="1153" xmlTag="ReferenceCodeQualifier" required="M"/>
+                  <Element id="1154" name="Reference identifier" minLength="1" maxLength="70" type="AN" xmlTag="ReferenceIdentifier" required="M"/>
+                  <Element id="1156" name="Document line identifier" minLength="1" maxLength="6" type="AN" xmlTag="DocumentLineIdentifier" required="C"/>
+                  <Element id="4000" name="Reference version identifier" minLength="1" maxLength="35" type="AN" xmlTag="ReferenceVersionIdentifier" required="C"/>
+                  <Element id="1060" name="Revision identifier" minLength="1" maxLength="6" type="AN" xmlTag="RevisionIdentifier" required="C"/>
+               </CompositeElement>
+            </Segment>
+         </SegmentGroup>
+         <SegmentGroup id="SG8" name="A group of segments used to provide characteristic information and associated dates for the current meter." required="C" loop="99" xmlTag="SegmentGroup_8">
+            <Segment id="CCI" name="Characteristic/class id" required="M" loop="1" xmlTag="CharacteristicClassId">
+               <Element id="7059" name="Class type code" minLength="1" maxLength="3" type="QL" qRef="7059" xmlTag="ClassTypeCode" required="M"/>
+               <CompositeElement id="C502" name="measurement details" xmlTag="MeasurementDetailsCE" required="C">
+                  <Element id="6313" name="Measured attribute code" minLength="1" maxLength="3" type="QL" qRef="6313" xmlTag="MeasuredAttributeCode" required="C"/>
+                  <Element id="6321" name="Measurement significance code" minLength="1" maxLength="3" type="QL" qRef="6321" xmlTag="MeasurementSignificanceCode" required="C"/>
+                  <Element id="6155" name="Non-discrete measurement name code" minLength="1" maxLength="17" type="QL" qRef="6155" xmlTag="NondiscreteMeasurementNameCode" required="C"/>
+                  <Element id="6154" name="Non-discrete measurement name" minLength="1" maxLength="70" type="AN" xmlTag="NondiscreteMeasurementName" required="C"/>
+               </CompositeElement>
+               <CompositeElement id="C240" name="characteristic description" xmlTag="CharacteristicDescriptionCE" required="C">
+                  <Element id="7037" name="Characteristic description code" minLength="1" maxLength="17" type="AN" xmlTag="CharacteristicDescriptionCode" required="M"/>
+                  <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+                  <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+                  <Element id="7036" name="Characteristic description" minLength="1" maxLength="35" type="AN" xmlTag="CharacteristicDescription" required="C"/>
+                  <Element id="7036_2" name="Characteristic description" minLength="1" maxLength="35" type="AN" xmlTag="CharacteristicDescription_2" required="C"/>
+               </CompositeElement>
+               <Element id="4051" name="Characteristic relevance code" minLength="1" maxLength="3" type="QL" qRef="4051" xmlTag="CharacteristicRelevanceCode" required="C"/>
+            </Segment>
+         </SegmentGroup>
+         <SegmentGroup id="SG9" name="A group of segments providing details of the metered products or services, quantities, characteristics, and any associated dates." required="C" loop="99999" xmlTag="SegmentGroup_9">
+            <Segment id="LIN" name="Line item" required="M" loop="1" xmlTag="LineItem">
+               <Element id="1082" name="Line item identifier" minLength="1" maxLength="6" type="AN" xmlTag="LineItemIdentifier" required="M"/>
+               <Element id="1229" name="Action request/notification description code" minLength="1" maxLength="3" type="QL" qRef="1229" xmlTag="ActionRequestNotificationDescriptionCode" required="C"/>
+               <CompositeElement id="C212" name="item number identification" xmlTag="ItemNumberIdentificationCE" required="C">
+                  <Element id="7140" name="Item identifier" minLength="1" maxLength="35" type="AN" xmlTag="ItemIdentifier" required="C"/>
+                  <Element id="7143" name="Item type identification code" minLength="1" maxLength="3" type="QL" qRef="7143" xmlTag="ItemTypeIdentificationCode" required="C"/>
+                  <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+                  <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+               </CompositeElement>
+               <CompositeElement id="C829" name="sub-line information" xmlTag="SublineInformationCE" required="C">
+                  <Element id="5495" name="Sub-line indicator code" minLength="1" maxLength="3" type="QL" qRef="5495" xmlTag="SublineIndicatorCode" required="C"/>
+                  <Element id="1082" name="Line item identifier" minLength="1" maxLength="6" type="AN" xmlTag="LineItemIdentifier" required="C"/>
+               </CompositeElement>
+               <Element id="1222" name="Configuration level number" minLength="1" maxLength="2" type="N" xmlTag="ConfigurationLevelNumber" required="C"/>
+               <Element id="7083" name="Configuration operation code" minLength="1" maxLength="3" type="QL" qRef="7083" xmlTag="ConfigurationOperationCode" required="C"/>
+            </Segment>
+            <Segment id="PIA" name="Additional product id" required="C" loop="9" xmlTag="AdditionalProductId">
+               <Element id="4347" name="Product identifier code qualifier" minLength="1" maxLength="3" type="QL" qRef="4347" xmlTag="ProductIdentifierCodeQualifier" required="M"/>
+               <CompositeElement id="C212" name="item number identification" xmlTag="ItemNumberIdentificationCE" required="M">
+                  <Element id="7140" name="Item identifier" minLength="1" maxLength="35" type="AN" xmlTag="ItemIdentifier" required="M"/>
+                  <Element id="7143" name="Item type identification code" minLength="1" maxLength="3" type="QL" qRef="7143" xmlTag="ItemTypeIdentificationCode" required="M"/>
+                  <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+                  <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+               </CompositeElement>
+            </Segment>
+            <SegmentGroup id="SG10" name="A group of segments providing details of the meter read, consumption, correction quantities, and associated dates." required="M" loop="9999" xmlTag="SegmentGroup_10">
+               <Segment id="QTY" name="Quantity" required="M" loop="1" xmlTag="Quantity">
+                  <CompositeElement id="C186" name="quantity details" xmlTag="QuantityDetailsCE" required="M">
+                     <Element id="6063" name="Quantity type code qualifier" minLength="1" maxLength="3" type="QL" qRef="6063" xmlTag="QuantityTypeCodeQualifier" required="M"/>
+                     <Element id="6060" name="Quantity" minLength="1" maxLength="35" type="AN" xmlTag="Quantity" required="M"/>
+                     <Element id="6411" name="Measurement unit code" minLength="1" maxLength="8" type="QL" xmlTag="MeasurementUnitCode" required="C" qRef="6411"/>
+                  </CompositeElement>
+               </Segment>
+               <Segment id="DTM" name="Date/time/period" required="C" loop="9" xmlTag="DateTimePeriod">
+                  <CompositeElement id="C507" name="date/time/period" xmlTag="DateTimePeriodCE" required="M">
+                     <Element id="2005" name="Date or time or period function code qualifier" minLength="1" maxLength="3" type="QL" qRef="2005" xmlTag="DateOrTimeOrPeriodFunction" required="M"/>
+                     <Element id="2380" name="Date or time or period text" minLength="1" maxLength="35" type="AN" xmlTag="DateOrTimeOrPeriodText" required="M"/>
+                     <Element id="2379" name="Date or time or period format code" minLength="1" maxLength="3" type="QL" qRef="2379" xmlTag="DateOrTimeOrPeriodFormat" required="M"/>
+                  </CompositeElement>
+               </Segment>
+            </SegmentGroup>
+            <SegmentGroup id="SG11" name="A group of segments providing characteristic details, measurements, and dates related to the details for the currently identified line item." required="C" loop="99" xmlTag="SegmentGroup_11">
+               <Segment id="CCI" name="Characteristic/class id" required="M" loop="1" xmlTag="CharacteristicClassId">
+                  <Element id="7059" name="Class type code" minLength="1" maxLength="3" type="QL" qRef="7059" xmlTag="ClassTypeCode" required="M"/>
+                  <CompositeElement id="C502" name="measurement details" xmlTag="MeasurementDetailsCE" required="C">
+                     <Element id="6313" name="Measured attribute code" minLength="1" maxLength="3" type="QL" qRef="6313" xmlTag="MeasuredAttributeCode" required="C"/>
+                     <Element id="6321" name="Measurement significance code" minLength="1" maxLength="3" type="QL" qRef="6321" xmlTag="MeasurementSignificanceCode" required="C"/>
+                     <Element id="6155" name="Non-discrete measurement name code" minLength="1" maxLength="17" type="QL" qRef="6155" xmlTag="NondiscreteMeasurementNameCode" required="C"/>
+                     <Element id="6154" name="Non-discrete measurement name" minLength="1" maxLength="70" type="AN" xmlTag="NondiscreteMeasurementName" required="C"/>
+                  </CompositeElement>
+                  <CompositeElement id="C240" name="characteristic description" xmlTag="CharacteristicDescriptionCE" required="C">
+                     <Element id="7037" name="Characteristic description code" minLength="1" maxLength="17" type="QL" xmlTag="CharacteristicDescriptionCode" required="M" qRef="7037"/>
+                     <Element id="1131" name="Code list identification code" minLength="1" maxLength="17" type="AN" xmlTag="CodeListIdentificationCode" required="C"/>
+                     <Element id="3055" name="Code list responsible agency code" minLength="1" maxLength="3" type="QL" qRef="3055" xmlTag="CodeListResponsibleAgencyCode" required="C"/>
+                     <Element id="7036" name="Characteristic description" minLength="1" maxLength="35" type="AN" xmlTag="CharacteristicDescription" required="C"/>
+                     <Element id="7036_2" name="Characteristic description" minLength="1" maxLength="35" type="AN" xmlTag="CharacteristicDescription_2" required="C"/>
+                  </CompositeElement>
+                  <Element id="4051" name="Characteristic relevance code" minLength="1" maxLength="3" type="QL" qRef="4051" xmlTag="CharacteristicRelevanceCode" required="C"/>
+               </Segment>
+               <Segment id="MEA" name="Measurements" required="C" loop="99" xmlTag="Measurements">
+                  <Element id="6311" name="Measurement purpose code qualifier" minLength="1" maxLength="3" type="QL" qRef="6311" xmlTag="MeasurementPurposeCodeQualifier" required="M"/>
+                  <CompositeElement id="C502" name="measurement details" xmlTag="MeasurementDetailsCE" required="C">
+                     <Element id="6313" name="Measured attribute code" minLength="1" maxLength="3" type="QL" qRef="6313" xmlTag="MeasuredAttributeCode" required="C"/>
+                     <Element id="6321" name="Measurement significance code" minLength="1" maxLength="3" type="QL" qRef="6321" xmlTag="MeasurementSignificanceCode" required="C"/>
+                     <Element id="6155" name="Non-discrete measurement name code" minLength="1" maxLength="17" type="QL" qRef="6155" xmlTag="NondiscreteMeasurementNameCode" required="C"/>
+                     <Element id="6154" name="Non-discrete measurement name" minLength="1" maxLength="70" type="AN" xmlTag="NondiscreteMeasurementName" required="C"/>
+                  </CompositeElement>
+                  <CompositeElement id="C174" name="value/range" xmlTag="ValueRangeCE" required="M">
+                     <Element id="6411" name="Measurement unit code" minLength="1" maxLength="8" type="QL" xmlTag="MeasurementUnitCode" required="M" qRef="6411"/>
+                     <Element id="6314" name="Measure" minLength="1" maxLength="18" type="AN" xmlTag="Measure" required="M"/>
+                     <Element id="6162" name="Range minimum quantity" minLength="1" maxLength="18" type="N" xmlTag="RangeMinimumQuantity" required="C"/>
+                     <Element id="6152" name="Range maximum quantity" minLength="1" maxLength="18" type="N" xmlTag="RangeMaximumQuantity" required="C"/>
+                     <Element id="6432" name="Significant digits quantity" minLength="1" maxLength="2" type="N" xmlTag="SignificantDigitsQuantity" required="C"/>
+                  </CompositeElement>
+                  <Element id="7383" name="Surface or layer code" minLength="1" maxLength="3" type="QL" qRef="7383" xmlTag="SurfaceOrLayerCode" required="C"/>
+               </Segment>
+               <Segment id="DTM" name="Date/time/period" required="C" loop="9" xmlTag="DateTimePeriod">
+                  <CompositeElement id="C507" name="date/time/period" xmlTag="DateTimePeriodCE" required="M">
+                     <Element id="2005" name="Date or time or period function code qualifier" minLength="1" maxLength="3" type="QL" qRef="2005" xmlTag="DateOrTimeOrPeriodFunction" required="M"/>
+                     <Element id="2380" name="Date or time or period text" minLength="1" maxLength="35" type="AN" xmlTag="DateOrTimeOrPeriodText" required="M"/>
+                     <Element id="2379" name="Date or time or period format code" minLength="1" maxLength="3" type="QL" qRef="2379" xmlTag="DateOrTimeOrPeriodFormat" required="M"/>
+                  </CompositeElement>
+               </Segment>
+            </SegmentGroup>
+         </SegmentGroup>
+      </SegmentGroup>
+   </SegmentGroup>
+   <Segment id="UNT" name="Message trailer" required="M" loop="1" xmlTag="MessageTrailer">
+      <Element id="0074" name="Number of segments in a" minLength="1" maxLength="6" type="N" xmlTag="NumberOfSegmentsInA" required="M"/>
+      <Element id="0062" name="Message reference" minLength="1" maxLength="14" type="AN" xmlTag="MessageReference" required="M"/>
+   </Segment>
+   
+</Message>

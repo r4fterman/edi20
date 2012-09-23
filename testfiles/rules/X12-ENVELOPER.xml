@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Enveloper>
+   <Segment id="ISA" name="interchange header" required="C" loop="1" xmlTag="InterchangeHeader">
+      <Element id="101" name="Authorization Information Qualifier" required="M" minLength="2" maxLength="2" type="AN" xmlTag="AuthorizationInformationQualifier"/>
+      <Element id="102" name="Authorization Information" required="C" loop="1" minLength="10" maxLength="10" type="AN" xmlTag="AuthorizationInformation"/>
+      <Element id="103" name="Security Information Qualifier" required="M" loop="1" minLength="2" maxLength="12" type="AN" xmlTag="SecurityInformationQualifier"/>
+      <Element id="104" name="Sequrity Information" required="C" minLength="10" maxLength="10" type="AN" xmlTag="SequrityInformation"/>
+      <Element id="105" name="Interchange ID Qualifier" required="M" minLength="2" maxLength="2" type="AN" xmlTag="InterchangeIDQualifier"/>
+      <Element id="106" name="Interchange Sender ID" required="M" minLength="15" maxLength="15" type="AN" xmlTag="InterchangeSenderID"/>
+      <Element id="105" name="Interchange ID Qualifier" required="M" minLength="2" maxLength="2" type="AN" xmlTag="InterchangeIDQualifier"/>
+      <Element id="107" name="Interchange Receiver ID" required="M" minLength="15" maxLength="15" type="AN" xmlTag="InterchangeReceiverID"/>
+      <Element id="108" name="Interchange Date" required="M" minLength="6" maxLength="6" type="AN" xmlTag="InterchangeDate"/>
+      <Element id="109" name="Interchange Time" required="M" minLength="4" maxLength="4" type="AN" xmlTag="InterchangeTime"/>
+      <Element id="110" name="Interchange Control Standards Identifier" required="M" minLength="1" maxLength="1" type="AN" xmlTag="InterchangeControlStandardsIdentifier"/>
+      <Element id="111" name="Interchange Control Version Number" required="M" minLength="5" maxLength="5" type="AN" xmlTag="InterchangeControlVersionNumber"/>
+      <Element id="112" name="Interchange Control Number" required="M" minLength="3" maxLength="9" type="AN" xmlTag="InterchangeControlNumber"/>
+      <Element id="113" name="Acknowledgment Requested" required="M" minLength="1" maxLength="1" type="AN" xmlTag="AcknowledgmentRequested"/>
+      <Element id="114" name="Test Indicator" required="M" minLength="1" maxLength="1" type="AN" xmlTag="TestIndicator"/>
+      <Element id="115" name="Component Element Separator" required="M" minLength="1" maxLength="1" type="AN" xmlTag="ComponentElementSeparator"/>
+   </Segment>
+   <Segment id="GS" name="Functional Group Header" required="C" loop="1" xmlTag="FunctionalGroupHeader">
+      <Element id="479" name="Functional Identifier Code" required="M" minLength="2" maxLength="2" type="AN" xmlTag="FunctionalIdentifierCode"/>
+      <Element id="142" name="Application Senders Code" required="M" minLength="2" maxLength="12" type="AN" xmlTag="ApplicationSenderCode"/>
+      <Element id="124" name="Application Receivers Code" required="M" minLength="2" maxLength="12" type="AN" xmlTag="ApplicationReceiverCode"/>
+      <Element id="29" name="Data Interchange Date" required="M" minLength="6" maxLength="8" type="AN" xmlTag="DataInterchangeDate"/>
+      <Element id="30" name="Data Interchange Time" required="M" minLength="4" maxLength="4" type="AN" xmlTag="DataInterchangeTime"/>
+      <Element id="28" name="Data Interchange Control Number" required="M" minLength="1" maxLength="9" type="N" xmlTag="DataInterchangeControlNumber"/>
+      <Element id="455" name="Responsible Agency Code" required="M" minLength="1" maxLength="2" type="AN" xmlTag="ResponsibleAgencyCode"/>
+      <Element id="480" name="Version / Release / Industry Identifier Code" required="M" minLength="1" maxLength="12" type="AN" xmlTag="VersionReleaseIndustryIdentifierCode"/>
+   </Segment>
+   <Segment id="GE" name="Functional Group Trailer" required="C" loop="1" xmlTag="FunctionalGroupTrailer">
+      <Element id="97" name="Number of Transaction Sets Included" required="M" minLength="1" maxLength="6" type="N" xmlTag="NumberOfTransactionSetsIncluded"/>
+      <Element id="28" name="Group Control Number" required="M" minLength="1" maxLength="9" type="N" xmlTag="GroupControlNumber"/>
+   </Segment>
+   <Segment id="IEA" name="Interchange Control Trailer" required="C" loop="1" xmlTag="InterchangeTrailer">
+      <Element id="116" name="Number of Included Functional Groups" required="M" minLength="1" maxLength="5" type="N" xmlTag="NumberOfIncludedFunctionalGroups"/>
+      <Element id="112" name="Interchange Control Number" required="M" minLength="9" maxLength="9" type="N" xmlTag="InterchangeControlNumber"/>
+   </Segment>
+</Enveloper>

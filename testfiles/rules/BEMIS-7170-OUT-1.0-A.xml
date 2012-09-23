@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message agency="BAAN Electronic Message Interchange System" name="Trading Orders" release="A" type="7170-OUT" version="1.0" standard="BEMIS" layout="hwed">
+   <Segment id="SA1" loop="1" name="MESSAGE OVERHEAD" required="M" xmlTag="MessageOverhead">
+      <Element id="02" maxLength="14" minLength="1" name="Message reference" required="M" type="AN" xmlTag="MessageReference"/>
+      <Element id="03" maxLength="17" minLength="1" name="Network address customer/supplier" required="M" type="AN" xmlTag="NetworkAddressCustomer"/>
+      <Element id="04" maxLength="17" minLength="1" name="Our identification in the network" required="M" type="AN" xmlTag="OurIdentificationInTheNetwork"/>
+      <Element id="05" maxLength="6" minLength="1" name="Message" required="M" type="AN" xmlTag="Message"/>
+      <Element id="06" maxLength="6" minLength="1" name="Organization" required="M" type="AN" xmlTag="Organization"/>
+      <Element id="07" maxLength="35" minLength="1" name="Order type" required="C" type="AN" xmlTag="OrderType"/>
+      <Element id="08" maxLength="20" minLength="1" name="Transmission reference" required="M" type="AN" xmlTag="TransmissionReference"/>
+      <Element id="09" maxLength="6" minLength="1" name="Transmission date" required="M" type="N" xmlTag="TransmissionDate"/>
+      <Element id="10" maxLength="4" minLength="1" name="Transmission time" required="M" type="N" xmlTag="TransmissionTime"/>
+      <Element id="11" maxLength="20" minLength="1" name="Transmission reference old" required="C" type="AN" xmlTag="TransmissionReferenceOld"/>
+      <Element id="12" maxLength="7" minLength="7" name="Record end sign" required="M" type="AN" xmlTag="RecordEndSign"/>
+   </Segment>
+   <Segment id="SA2" loop="1" name="TRADING ORDER HEADER" required="M" xmlTag="TradingOrderHeader">
+      <Element id="02" maxLength="14" minLength="1" name="Message reference" required="M" type="AN" xmlTag="MessageReference"/>
+      <Element id="03" maxLength="6" minLength="1" name="Supplier code" required="M" type="AN" xmlTag="SupplierCode"/>
+      <Element id="04" maxLength="6" minLength="1" name="Order Number" required="M" type="N" xmlTag="OrderNumber"/>
+      <Element id="05" maxLength="6" minLength="1" name="Contract Number" required="C" type="N" xmlTag="ContractNumber"/>
+      <Element id="06" maxLength="8" minLength="1" name="Order Date" required="C" type="N" xmlTag="OrderDate"/>
+      <Element id="07" maxLength="8" minLength="1" name="Planed Delivery Date" required="C" type="N" xmlTag="PlanedDeliveryDate"/>
+      <Element id="08" maxLength="6" minLength="1" name="Term of Delivery" required="C" type="AN" xmlTag="TermOfDelivery"/>
+      <Element id="09" maxLength="6" minLength="1" name="Term of PaymentTerms" required="C" type="AN" xmlTag="TermOfPaymentTerms"/>
+      <Element id="10" maxLength="6" minLength="1" name="Order Discount" required="C" type="N" xmlTag="OrderDiscount"/>
+      <Element id="11" maxLength="6" minLength="1" name="Currency" required="C" type="AN" xmlTag="Currency"/>
+      <Element id="12" maxLength="13" minLength="1" name="Purchase / Sales Currency Rate" required="C" type="N" xmlTag="PurchaseSalesCurrencyRate"/>
+      <Element id="13" maxLength="6" minLength="1" name="Purchase Rate Factor" required="C" type="N" xmlTag="PurchaseRateFactor"/>
+      <Element id="14" maxLength="6" minLength="1" name="Late Payment Surcharge" required="C" type="N" xmlTag="LatePaymentSurcharge"/>
+      <Element id="15" maxLength="20" minLength="1" name="Forwarding Agent" required="C" type="AN" xmlTag="ForwardingAgent"/>
+      <Element id="16" maxLength="20" minLength="1" name="Reference A" required="C" type="AN" xmlTag="ReferenceA"/>
+      <Element id="17" maxLength="20" minLength="1" name="Reference B" required="C" type="AN" xmlTag="ReferenceB"/>
+      <Element id="18" maxLength="2" minLength="2" name="Qualifier Address Code 1" required="M" type="AN" xmlTag="QualifierAddressCode1"/>
+      <Element id="19" maxLength="2" minLength="2" name="Qualifier Address Code 2" required="M" type="AN" xmlTag="QualifierAddressCode2"/>
+      <Element id="20" maxLength="2" minLength="2" name="Qualifier Address Code 3" required="M" type="AN" xmlTag="QualifierAddressCode3"/>
+      <Element id="21" maxLength="3" minLength="3" name="Qualifier Address Code 4" required="M" type="AN" xmlTag="QualifierAddressCode4"/>
+      <Element id="22" maxLength="20" minLength="1" name="Code for Warehouse" required="C" type="AN" xmlTag="CodeForWarehouse"/>
+      <Element id="23" maxLength="20" minLength="1" name="Suppliers Delivery Point Number Coded" required="C" type="AN" xmlTag="SuppliersDeliveryPointNumberCoded"/>
+      <Element id="24" maxLength="3" minLength="1" name="Price list" required="C" type="AN" xmlTag="PriceList"/>
+      <Element id="25" maxLength="3" minLength="1" name="Region" required="C" type="AN" xmlTag="Region"/>
+      <Element id="26" maxLength="6" minLength="1" name="Line of Business" required="C" type="AN" xmlTag="LineOfBusiness"/>
+      <Element id="27" maxLength="8" minLength="1" name="Planned receipt date" required="C" type="N" xmlTag="PlannedReceiptDate"/>
+      <Element id="28" maxLength="7" minLength="7" name="Data record end sign" required="M" type="AN" xmlTag="DataRecordEndSign"/>
+   </Segment>
+   <Segment id="SA3" loop="1" name="ORDER TEXT - TEXTDATEN" required="C" xmlTag="OrderText">
+      <Element id="02" maxLength="14" minLength="1" name="Message reference" required="M" type="AN" xmlTag="MessageReference"/>
+      <Element id="03" maxLength="6" minLength="1" name="Supplier code" required="M" type="AN" xmlTag="SupplierCode"/>
+      <Element id="04" maxLength="6" minLength="1" name="Order Number" required="M" type="N" xmlTag="OrderNumber"/>
+      <Element id="05" maxLength="70" minLength="1" name="Free text 1" required="C" type="AN" xmlTag="FreeText1"/>
+      <Element id="06" maxLength="70" minLength="1" name="Free text 2" required="C" type="AN" xmlTag="FreeText2"/>
+      <Element id="07" maxLength="70" minLength="1" name="Free text 3" required="C" type="AN" xmlTag="FreeText3"/>
+      <Element id="08" maxLength="70" minLength="1" name="Free text 4" required="C" type="AN" xmlTag="FreeText4"/>
+      <Element id="09" maxLength="70" minLength="1" name="Free text 5" required="C" type="AN" xmlTag="FreeText5"/>
+      <Element id="10" maxLength="7" minLength="7" name="Data record end sign" required="C" type="AN" xmlTag="DataRecordEndSign"/>
+   </Segment>
+   <Segment id="SA4" loop="2" name="Order Delivery and Invoice Addresses" required="C" xmlTag="OrderDeliveryAndInvoiceAddresses">
+      <Element id="02" maxLength="14" minLength="1" name="Message reference" required="M" type="AN" xmlTag="MessageReference"/>
+      <Element id="03" maxLength="6" minLength="1" name="Supplier code" required="M" type="AN" xmlTag="SupplierCode"/>
+      <Element id="04" maxLength="6" minLength="1" name="Order Number" required="M" type="N" xmlTag="OrderNumber"/>
+      <Element id="05" maxLength="1" minLength="1" name="Address Qualifier Delivery Address" required="M" type="AN" xmlTag="AddressQualifierDeliveryAddress"/>
+      <Element id="06" maxLength="6" minLength="1" name="Delivery Address Country" required="C" type="AN" xmlTag="DeliveryAddressCountry"/>
+      <Element id="07" maxLength="35" minLength="1" name="Delivery Address first part of the name" required="C" type="AN" xmlTag="DeliveryAddressFirstPartOfName"/>
+      <Element id="08" maxLength="30" minLength="1" name="Delivery Address second part of the name" required="C" type="AN" xmlTag="DeliveryAddressSecondPartOfName"/>
+      <Element id="09" maxLength="30" minLength="1" name="Delivery Address" required="C" type="AN" xmlTag="DeliveryAddress"/>
+      <Element id="10" maxLength="30" minLength="1" name="Delivery Address 2" required="C" type="AN" xmlTag="DeliveryAddress2"/>
+      <Element id="11" maxLength="30" minLength="1" name="Delivery Address City" required="C" type="AN" xmlTag="DeliveryAddressCity"/>
+      <Element id="12" maxLength="30" minLength="1" name="ILN Code, Delivery Address. further imformation for city e.g. province/country" required="C" type="AN" xmlTag="ILNCodeDeliveryAddress"/>
+      <Element id="13" maxLength="10" minLength="1" name="Delivery Address Zip Code" required="C" type="AN" xmlTag="DeliveryAddressZipCode"/>
+      <Element id="14" maxLength="20" minLength="1" name="Customer&apos;s Tax ID" required="C" type="AN" xmlTag="CustomersTaxID"/>
+      <Element id="15" maxLength="20" minLength="1" name="Customer&apos;s Tax ID of Fiscal Unit" required="C" type="AN" xmlTag="CustomersTaxIDOfFiscalUnit"/>
+      <Element id="16" maxLength="3" minLength="3" name="TAX Code Id Q" required="M" type="AN" xmlTag="TAXCodeIdQ"/>
+      <Element id="17" maxLength="7" minLength="7" name="Data record end sign" required="C" type="AN" xmlTag="DataRecordEndSign"/>
+   </Segment>
+   <SegmentGroup id="Lines" loop="n" name="Invoice Order Lines group" required="C" xmlTag="Group_Lines">
+      <Segment id="SA5" loop="1" name="ORDER LINES" required="M" xmlTag="TradingIvoiceOrderLines">
+         <Element id="02" maxLength="14" minLength="1" name="Message reference" required="M" type="AN" xmlTag="MessageReference"/>
+         <Element id="03" maxLength="6" minLength="1" name="Supplier code" required="M" type="AN" xmlTag="SupplierCode"/>
+         <Element id="04" maxLength="6" minLength="1" name="Order Number" required="M" type="N" xmlTag="OrderNumber"/>
+         <Element id="05" maxLength="5" minLength="1" name="Order Position Number" required="M" type="N" xmlTag="OrderPositionNumber"/>
+         <Element id="06" maxLength="16" minLength="1" name="Buyer&apos;s Item Code or EAN Item Code" required="C" type="AN" xmlTag="BuyersItemCode"/>
+         <Element id="07" maxLength="16" minLength="1" name="Supplier&apos;s Item Code" required="C" type="AN" xmlTag="SuppliersItemCode"/>
+         <Element id="08" maxLength="2" minLength="2" name="Qualifier Item Code" required="M" type="AN" xmlTag="QualifierItemCode"/>
+         <Element id="09" maxLength="30" minLength="1" name="Description of the Item" required="C" type="AN" xmlTag="DescriptionOfTheItem"/>
+         <Element id="10" maxLength="15" minLength="1" name="Item&apos;s price" required="C" type="N" xmlTag="ItemPrice"/>
+         <Element id="11" maxLength="6" minLength="1" name="Purchase Unit" required="C" type="AN" xmlTag="PurchaseUnit"/>
+         <Element id="12" maxLength="15" minLength="1" name="Ordered Quantity" required="C" type="N" xmlTag="OrderedQuantity"/>
+         <Element id="13" maxLength="8" minLength="1" name="Planned Delivery Date" required="C" type="N" xmlTag="PlannedDeliveryDate"/>
+         <Element id="14" maxLength="3" minLength="1" name="Purchase / Sales Price Unit" required="C" type="AN" xmlTag="PurchaseSalesPriceUnit"/>
+         <Element id="15" maxLength="5" minLength="1" name="Tax Code" required="C" type="AN" xmlTag="TaxCode"/>
+         <Element id="16" maxLength="6" minLength="1" name="Country Code linked to the Tax Code" required="C" type="AN" xmlTag="CountryCodeLinkedTaxCode"/>
+         <Element id="17" maxLength="15" minLength="1" name="Length of the Item" required="C" type="N" xmlTag="LengthOfTheItem"/>
+         <Element id="18" maxLength="15" minLength="1" name="Width of the Item" required="C" type="N" xmlTag="WidthOfTheItem"/>
+         <Element id="19" maxLength="15" minLength="1" name="Height or Thickness of the Item" required="C" type="N" xmlTag="HeightOrThicknessOfTheItem"/>
+         <Element id="20" maxLength="15" minLength="1" name="Back Order" required="C" type="N" xmlTag="BackOrder"/>
+         <Element id="21" maxLength="20" minLength="1" name="Discount Code 1" required="C" type="AN" xmlTag="DiscountCode1"/>
+         <Element id="22" maxLength="15" minLength="1" name="Order Line Discount Amount 1" required="C" type="N" xmlTag="OrderLineDiscountAmount1"/>
+         <Element id="23" maxLength="20" minLength="1" name="Discount Code 2" required="C" type="AN" xmlTag="DiscountCode2"/>
+         <Element id="24" maxLength="15" minLength="1" name="Order Line Discount Amount 2" required="C" type="N" xmlTag="OrderLineDiscountAmount2"/>
+         <Element id="25" maxLength="20" minLength="1" name="Discount Code 3" required="C" type="AN" xmlTag="DiscountCode3"/>
+         <Element id="26" maxLength="15" minLength="1" name="Order Line Discount Amount 3" required="C" type="N" xmlTag="OrderLineDiscountAmount3"/>
+         <Element id="27" maxLength="70" minLength="1" name="Order Line Text 1" required="C" type="AN" xmlTag="OrderLineText1"/>
+         <Element id="28" maxLength="70" minLength="1" name="Order Line Text 2" required="C" type="AN" xmlTag="OrderLineText2"/>
+         <Element id="29" maxLength="3" minLength="3" name="Qualifier Tax Code Id" required="M" type="AN" xmlTag="QualifierTaxCodeId"/>
+         <Element id="30" maxLength="8" minLength="1" name="Order Date" required="C" type="N" xmlTag="OrderDate"/>
+         <Element id="31" maxLength="8" minLength="1" name="Planned Receipt Date" required="C" type="N" xmlTag="PlannedReceiptDate"/>
+         <Element id="32" maxLength="3" minLength="1" name="Container" required="C" type="AN" xmlTag="Container"/>
+         <Element id="33" maxLength="6" minLength="1" name="Order Line Discount Percentage 1" required="C" type="N" xmlTag="OrderLineDiscountPercentage1"/>
+         <Element id="34" maxLength="6" minLength="1" name="Order Line Discount Percentage 2" required="C" type="N" xmlTag="OrderLineDiscountPercentage2"/>
+         <Element id="35" maxLength="6" minLength="1" name="Order Line Discount Percentage 3" required="C" type="N" xmlTag="OrderLineDiscountPercentage3"/>
+         <Element id="36" maxLength="7" minLength="7" name="Data record end sign" required="C" type="AN" xmlTag="DataRecordEndSign"/>
+      </Segment>
+      <Segment id="SA6" loop="1" name="Delivery Address per Order Line" required="C" xmlTag="DeliveryAddressPerOrderLine">
+         <Element id="02" maxLength="14" minLength="1" name="Message reference" required="M" type="AN" xmlTag="MessageReference"/>
+         <Element id="03" maxLength="6" minLength="1" name="Supplier code" required="M" type="AN" xmlTag="SupplierCode"/>
+         <Element id="04" maxLength="6" minLength="1" name="Order Number" required="M" type="N" xmlTag="OrderNumber"/>
+         <Element id="05" maxLength="5" minLength="1" name="Order Position Number" required="M" type="N" xmlTag="OrderPositionNumber"/>
+         <Element id="06" maxLength="1" minLength="1" name="Address Qualifier Delivery Address" required="M" type="AN" xmlTag="AddressQualifierDeliveryAddress"/>
+         <Element id="07" maxLength="6" minLength="1" name="Delivery Address Country" required="C" type="AN" xmlTag="DeliveryAddressCountry"/>
+         <Element id="08" maxLength="35" minLength="1" name="Delivery Address first part of the name" required="C" type="AN" xmlTag="DeliveryAddressFirstPartOfTheName"/>
+         <Element id="09" maxLength="30" minLength="1" name="Delivery Address second part of the name" required="C" type="AN" xmlTag="DeliveryAddressSecondPartOfTheName"/>
+         <Element id="10" maxLength="30" minLength="1" name="Delivery Address" required="C" type="AN" xmlTag="DeliveryAddress"/>
+         <Element id="11" maxLength="30" minLength="1" name="Delivery Address 2" required="C" type="AN" xmlTag="DeliveryAddress2"/>
+         <Element id="12" maxLength="30" minLength="1" name="Delivery Address City" required="C" type="AN" xmlTag="DeliveryAddressCity"/>
+         <Element id="13" maxLength="30" minLength="1" name="Delivery Address. further information for city e.g. province/country" required="C" type="AN" xmlTag="DeliveryAddressFurtherInformation"/>
+         <Element id="14" maxLength="10" minLength="1" name="Delivery Address Zip Code" required="C" type="AN" xmlTag="DeliveryAddressZipCode"/>
+         <Element id="15" maxLength="7" minLength="7" name="Data record end sign" required="M" type="AN" xmlTag="DataRecordEndSign"/>
+      </Segment>
+   </SegmentGroup>
+</Message>

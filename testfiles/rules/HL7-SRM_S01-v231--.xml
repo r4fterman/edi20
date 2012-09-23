@@ -1,0 +1,1507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Message standard="HL7" layout="hwed" type="SRM_S01" name="SRM/SRR - Request new appointment booking" version="v231" release="-">
+ <Segment id="MSH" name="Message header segment" loop="1" required="M" xmlTag="MSH">
+  <Element name="Field Separator" id="MSH.1" loop="1" required="M" xmlTag="MSH.1" type="ST"/>
+  <Element name="Encoding Characters" id="MSH.2" loop="1" required="M" xmlTag="MSH.2" type="ST"/>
+  <CompositeElement name="Sending Application" id="MSH.3" loop="1" required="C" xmlTag="MSH.3" type="HD">
+   <Element name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+   <Element name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+   <Element name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Sending Facility" id="MSH.4" loop="1" required="C" xmlTag="MSH.4" type="HD">
+   <Element name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+   <Element name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+   <Element name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Receiving Application" id="MSH.5" loop="1" required="C" xmlTag="MSH.5" type="HD">
+   <Element name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+   <Element name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+   <Element name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Receiving Facility" id="MSH.6" loop="1" required="C" xmlTag="MSH.6" type="HD">
+   <Element name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+   <Element name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+   <Element name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+  </CompositeElement>
+  <Element name="Date/Time Of Message" id="MSH.7" loop="1" required="C" xmlTag="MSH.7" type="TS"/>
+  <Element name="Security" id="MSH.8" loop="1" required="C" xmlTag="MSH.8" type="ST"/>
+  <CompositeElement name="Message Type" id="MSH.9" loop="1" required="M" xmlTag="MSH.9" type="CM_MSG_TYPE">
+   <Element name="message type" id="CM_MSG_TYPE.1" required="C" xmlTag="CM_MSG_TYPE.1" type="ID"/>
+   <Element name="trigger event" id="CM_MSG_TYPE.2" required="C" xmlTag="CM_MSG_TYPE.2" type="ID"/>
+   <Element name="message structure" id="CM_MSG_TYPE.3" required="C" xmlTag="CM_MSG_TYPE.3" type="ID"/>
+  </CompositeElement>
+  <Element name="Message Control ID" id="MSH.10" loop="1" required="M" xmlTag="MSH.10" type="ST"/>
+  <CompositeElement name="Processing ID" id="MSH.11" loop="1" required="M" xmlTag="MSH.11" type="PT">
+   <Element name="processing ID" id="PT.1" required="C" xmlTag="PT.1" type="ID"/>
+   <Element name="processing mode" id="PT.2" required="C" xmlTag="PT.2" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Version ID" id="MSH.12" loop="1" required="M" xmlTag="MSH.12" type="VID">
+   <Element name="version ID" id="VID.1" required="C" xmlTag="VID.1" type="ID"/>
+   <Element name="internationalization code" id="VID.2" required="C" xmlTag="VID.2" type="CE">
+    <SubElement name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <SubElement name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <SubElement name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <SubElement name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <SubElement name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <SubElement name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </Element>
+   <Element name="international version ID" id="VID.3" required="C" xmlTag="VID.3" type="CE">
+    <SubElement name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <SubElement name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <SubElement name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <SubElement name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <SubElement name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <SubElement name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </Element>
+  </CompositeElement>
+  <Element name="Sequence Number" id="MSH.13" loop="1" required="C" xmlTag="MSH.13" type="NM"/>
+  <Element name="Continuation Pointer" id="MSH.14" loop="1" required="C" xmlTag="MSH.14" type="ST"/>
+  <Element name="Accept Acknowledgment Type" id="MSH.15" loop="1" required="C" xmlTag="MSH.15" type="ID"/>
+  <Element name="Application Acknowledgment Type" id="MSH.16" loop="1" required="C" xmlTag="MSH.16" type="ID"/>
+  <Element name="Country Code" id="MSH.17" loop="1" required="C" xmlTag="MSH.17" type="ID"/>
+  <Element name="Character Set" id="MSH.18" loop="n" required="C" xmlTag="MSH.18" type="ID"/>
+  <CompositeElement name="Principal Language Of Message" id="MSH.19" loop="1" required="C" xmlTag="MSH.19" type="CE">
+   <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+   <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+   <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+   <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+   <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+   <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+  </CompositeElement>
+  <Element name="Alternate Character Set Handling Scheme" id="MSH.20" loop="1" required="C" xmlTag="MSH.20" type="ID"/>
+ </Segment>
+ <Segment id="ARQ" name="Appointment request segment" loop="1" required="M" xmlTag="ARQ">
+  <CompositeElement name="Placer Appointment ID" id="ARQ.1" loop="1" required="M" xmlTag="ARQ.1" type="EI">
+   <Element name="entity identifier" id="EI.1" required="C" xmlTag="EI.1" type="ST"/>
+   <Element name="namespace ID" id="EI.2" required="C" xmlTag="EI.2" type="IS"/>
+   <Element name="universal ID" id="EI.3" required="C" xmlTag="EI.3" type="ST"/>
+   <Element name="universal ID type" id="EI.4" required="C" xmlTag="EI.4" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Filler Appointment ID" id="ARQ.2" loop="1" required="C" xmlTag="ARQ.2" type="EI">
+   <Element name="entity identifier" id="EI.1" required="C" xmlTag="EI.1" type="ST"/>
+   <Element name="namespace ID" id="EI.2" required="C" xmlTag="EI.2" type="IS"/>
+   <Element name="universal ID" id="EI.3" required="C" xmlTag="EI.3" type="ST"/>
+   <Element name="universal ID type" id="EI.4" required="C" xmlTag="EI.4" type="ID"/>
+  </CompositeElement>
+  <Element name="Occurrence Number" id="ARQ.3" loop="1" required="C" xmlTag="ARQ.3" type="NM"/>
+  <CompositeElement name="Placer Group Number" id="ARQ.4" loop="1" required="C" xmlTag="ARQ.4" type="EI">
+   <Element name="entity identifier" id="EI.1" required="C" xmlTag="EI.1" type="ST"/>
+   <Element name="namespace ID" id="EI.2" required="C" xmlTag="EI.2" type="IS"/>
+   <Element name="universal ID" id="EI.3" required="C" xmlTag="EI.3" type="ST"/>
+   <Element name="universal ID type" id="EI.4" required="C" xmlTag="EI.4" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Schedule ID" id="ARQ.5" loop="1" required="C" xmlTag="ARQ.5" type="CE">
+   <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+   <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+   <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+   <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+   <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+   <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+  </CompositeElement>
+  <CompositeElement name="Request Event Reason" id="ARQ.6" loop="1" required="C" xmlTag="ARQ.6" type="CE">
+   <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+   <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+   <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+   <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+   <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+   <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+  </CompositeElement>
+  <CompositeElement name="Appointment Reason" id="ARQ.7" loop="1" required="C" xmlTag="ARQ.7" type="CE">
+   <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+   <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+   <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+   <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+   <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+   <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+  </CompositeElement>
+  <CompositeElement name="Appointment Type" id="ARQ.8" loop="1" required="C" xmlTag="ARQ.8" type="CE">
+   <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+   <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+   <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+   <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+   <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+   <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+  </CompositeElement>
+  <Element name="Appointment Duration" id="ARQ.9" loop="1" required="C" xmlTag="ARQ.9" type="NM"/>
+  <CompositeElement name="Appointment Duration Units" id="ARQ.10" loop="1" required="C" xmlTag="ARQ.10" type="CE">
+   <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+   <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+   <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+   <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+   <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+   <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+  </CompositeElement>
+  <CompositeElement name="Requested Start Date/Time Range" id="ARQ.11" loop="n" required="C" xmlTag="ARQ.11" type="DR">
+   <Element name="range start date/time" id="DR.1" required="C" xmlTag="DR.1" type="TS"/>
+   <Element name="range end date/time" id="DR.2" required="C" xmlTag="DR.2" type="TS"/>
+  </CompositeElement>
+  <Element name="Priority-ARQ" id="ARQ.12" loop="1" required="C" xmlTag="ARQ.12" type="ST"/>
+  <CompositeElement name="Repeating Interval" id="ARQ.13" loop="1" required="C" xmlTag="ARQ.13" type="RI">
+   <Element name="repeat pattern" id="RI.1" required="C" xmlTag="RI.1" type="IS"/>
+   <Element name="explicit time interval" id="RI.2" required="C" xmlTag="RI.2" type="ST"/>
+  </CompositeElement>
+  <Element name="Repeating Interval Duration" id="ARQ.14" loop="1" required="C" xmlTag="ARQ.14" type="ST"/>
+  <CompositeElement name="Placer Contact Person" id="ARQ.15" loop="n" required="M" xmlTag="ARQ.15" type="XCN">
+   <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+   <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+   <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+   <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+   <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+   <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+   <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+   <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+   <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+    <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+    <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+    <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+   </Element>
+   <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+   <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+   <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+   <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+   <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+    <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+    <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+    <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+   </Element>
+   <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Placer Contact Phone Number" id="ARQ.16" loop="n" required="C" xmlTag="ARQ.16" type="XTN">
+   <Element name="[(999)] 999-9999 [X99999][C any text]" id="XTN.1" required="C" xmlTag="XTN.1" type="TN"/>
+   <Element name="telecommunication use code" id="XTN.2" required="C" xmlTag="XTN.2" type="ID"/>
+   <Element name="telecommunication equipment type (ID)" id="XTN.3" required="C" xmlTag="XTN.3" type="ID"/>
+   <Element name="Email address" id="XTN.4" required="C" xmlTag="XTN.4" type="ST"/>
+   <Element name="Country Code" id="XTN.5" required="C" xmlTag="XTN.5" type="NM"/>
+   <Element name="Area/city code" id="XTN.6" required="C" xmlTag="XTN.6" type="NM"/>
+   <Element name="Phone number" id="XTN.7" required="C" xmlTag="XTN.7" type="NM"/>
+   <Element name="Extension" id="XTN.8" required="C" xmlTag="XTN.8" type="NM"/>
+   <Element name="any text" id="XTN.9" required="C" xmlTag="XTN.9" type="ST"/>
+  </CompositeElement>
+  <CompositeElement name="Placer Contact Address" id="ARQ.17" loop="n" required="C" xmlTag="ARQ.17" type="XAD">
+   <Element name="street address" id="XAD.1" required="C" xmlTag="XAD.1" type="ST"/>
+   <Element name="other designation" id="XAD.2" required="C" xmlTag="XAD.2" type="ST"/>
+   <Element name="city" id="XAD.3" required="C" xmlTag="XAD.3" type="ST"/>
+   <Element name="state or province" id="XAD.4" required="C" xmlTag="XAD.4" type="ST"/>
+   <Element name="zip or postal code" id="XAD.5" required="C" xmlTag="XAD.5" type="ST"/>
+   <Element name="country" id="XAD.6" required="C" xmlTag="XAD.6" type="ID"/>
+   <Element name="address type" id="XAD.7" required="C" xmlTag="XAD.7" type="ID"/>
+   <Element name="other geographic designation" id="XAD.8" required="C" xmlTag="XAD.8" type="ST"/>
+   <Element name="county/parish code" id="XAD.9" required="C" xmlTag="XAD.9" type="IS"/>
+   <Element name="census tract" id="XAD.10" required="C" xmlTag="XAD.10" type="IS"/>
+   <Element name="address representation code" id="XAD.11" required="C" xmlTag="XAD.11" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Placer Contact Location" id="ARQ.18" loop="1" required="C" xmlTag="ARQ.18" type="PL">
+   <Element name="point of care" id="PL.1" required="C" xmlTag="PL.1" type="IS"/>
+   <Element name="room" id="PL.2" required="C" xmlTag="PL.2" type="IS"/>
+   <Element name="bed" id="PL.3" required="C" xmlTag="PL.3" type="IS"/>
+   <Element name="facility" id="PL.4" required="C" xmlTag="PL.4" type="HD">
+    <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+    <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+    <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+   </Element>
+   <Element name="location status" id="PL.5" required="C" xmlTag="PL.5" type="IS"/>
+   <Element name="person location type" id="PL.6" required="C" xmlTag="PL.6" type="IS"/>
+   <Element name="building" id="PL.7" required="C" xmlTag="PL.7" type="IS"/>
+   <Element name="floor" id="PL.8" required="C" xmlTag="PL.8" type="IS"/>
+   <Element name="Location description" id="PL.9" required="C" xmlTag="PL.9" type="ST"/>
+  </CompositeElement>
+  <CompositeElement name="Entered by Person" id="ARQ.19" loop="n" required="M" xmlTag="ARQ.19" type="XCN">
+   <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+   <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+   <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+   <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+   <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+   <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+   <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+   <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+   <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+    <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+    <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+    <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+   </Element>
+   <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+   <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+   <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+   <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+   <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+    <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+    <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+    <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+   </Element>
+   <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Entered by Phone Number" id="ARQ.20" loop="n" required="C" xmlTag="ARQ.20" type="XTN">
+   <Element name="[(999)] 999-9999 [X99999][C any text]" id="XTN.1" required="C" xmlTag="XTN.1" type="TN"/>
+   <Element name="telecommunication use code" id="XTN.2" required="C" xmlTag="XTN.2" type="ID"/>
+   <Element name="telecommunication equipment type (ID)" id="XTN.3" required="C" xmlTag="XTN.3" type="ID"/>
+   <Element name="Email address" id="XTN.4" required="C" xmlTag="XTN.4" type="ST"/>
+   <Element name="Country Code" id="XTN.5" required="C" xmlTag="XTN.5" type="NM"/>
+   <Element name="Area/city code" id="XTN.6" required="C" xmlTag="XTN.6" type="NM"/>
+   <Element name="Phone number" id="XTN.7" required="C" xmlTag="XTN.7" type="NM"/>
+   <Element name="Extension" id="XTN.8" required="C" xmlTag="XTN.8" type="NM"/>
+   <Element name="any text" id="XTN.9" required="C" xmlTag="XTN.9" type="ST"/>
+  </CompositeElement>
+  <CompositeElement name="Entered by Location" id="ARQ.21" loop="1" required="C" xmlTag="ARQ.21" type="PL">
+   <Element name="point of care" id="PL.1" required="C" xmlTag="PL.1" type="IS"/>
+   <Element name="room" id="PL.2" required="C" xmlTag="PL.2" type="IS"/>
+   <Element name="bed" id="PL.3" required="C" xmlTag="PL.3" type="IS"/>
+   <Element name="facility" id="PL.4" required="C" xmlTag="PL.4" type="HD">
+    <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+    <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+    <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+   </Element>
+   <Element name="location status" id="PL.5" required="C" xmlTag="PL.5" type="IS"/>
+   <Element name="person location type" id="PL.6" required="C" xmlTag="PL.6" type="IS"/>
+   <Element name="building" id="PL.7" required="C" xmlTag="PL.7" type="IS"/>
+   <Element name="floor" id="PL.8" required="C" xmlTag="PL.8" type="IS"/>
+   <Element name="Location description" id="PL.9" required="C" xmlTag="PL.9" type="ST"/>
+  </CompositeElement>
+  <CompositeElement name="Parent Placer Appointment ID" id="ARQ.22" loop="1" required="C" xmlTag="ARQ.22" type="EI">
+   <Element name="entity identifier" id="EI.1" required="C" xmlTag="EI.1" type="ST"/>
+   <Element name="namespace ID" id="EI.2" required="C" xmlTag="EI.2" type="IS"/>
+   <Element name="universal ID" id="EI.3" required="C" xmlTag="EI.3" type="ST"/>
+   <Element name="universal ID type" id="EI.4" required="C" xmlTag="EI.4" type="ID"/>
+  </CompositeElement>
+  <CompositeElement name="Parent Filler Appointment ID" id="ARQ.23" loop="1" required="C" xmlTag="ARQ.23" type="EI">
+   <Element name="entity identifier" id="EI.1" required="C" xmlTag="EI.1" type="ST"/>
+   <Element name="namespace ID" id="EI.2" required="C" xmlTag="EI.2" type="IS"/>
+   <Element name="universal ID" id="EI.3" required="C" xmlTag="EI.3" type="ST"/>
+   <Element name="universal ID type" id="EI.4" required="C" xmlTag="EI.4" type="ID"/>
+  </CompositeElement>
+ </Segment>
+ <Segment id="APR" name="Appointment preferences segment" loop="1" required="C" xmlTag="APR">
+  <CompositeElement name="Time Selection Criteria" id="APR.1" loop="n" required="C" xmlTag="APR.1" type="SCV">
+   <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+   <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+  </CompositeElement>
+  <CompositeElement name="Resource Selection Criteria" id="APR.2" loop="n" required="C" xmlTag="APR.2" type="SCV">
+   <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+   <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+  </CompositeElement>
+  <CompositeElement name="Location Selection Criteria" id="APR.3" loop="n" required="C" xmlTag="APR.3" type="SCV">
+   <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+   <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+  </CompositeElement>
+  <Element name="Slot Spacing Criteria" id="APR.4" loop="1" required="C" xmlTag="APR.4" type="NM"/>
+  <CompositeElement name="Filler Override Criteria" id="APR.5" loop="n" required="C" xmlTag="APR.5" type="SCV">
+   <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+   <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+  </CompositeElement>
+ </Segment>
+ <Segment id="NTE" name="Notes and comments segment" loop="n" required="C" xmlTag="NTE">
+  <Element name="Set ID - NTE" id="NTE.1" loop="1" required="C" xmlTag="NTE.1" type="SI"/>
+  <Element name="Source of Comment" id="NTE.2" loop="1" required="C" xmlTag="NTE.2" type="ID"/>
+  <Element name="Comment" id="NTE.3" loop="n" required="C" xmlTag="NTE.3" type="FT"/>
+  <CompositeElement name="Comment Type" id="NTE.4" loop="1" required="C" xmlTag="NTE.4" type="CE">
+   <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+   <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+   <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+   <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+   <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+   <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+  </CompositeElement>
+ </Segment>
+ <SegmentGroup id="SRM_S01.GROUP.5" name="" loop="n" required="C" xmlTag="SRM_S01.GROUP.5">
+  <Segment id="PID" name="Patient identification segment" loop="1" required="M" xmlTag="PID">
+   <Element name="Set ID - PID" id="PID.1" loop="1" required="C" xmlTag="PID.1" type="SI"/>
+   <CompositeElement name="Patient ID" id="PID.2" loop="1" required="C" xmlTag="PID.2" type="CX">
+    <Element name="ID" id="CX.1" required="C" xmlTag="CX.1" type="ST"/>
+    <Element name="check digit" id="CX.2" required="C" xmlTag="CX.2" type="NM"/>
+    <Element name="code identifying the check digit scheme employed" id="CX.3" required="C" xmlTag="CX.3" type="ID"/>
+    <Element name="assigning authority" id="CX.4" required="C" xmlTag="CX.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="identifier type code" id="CX.5" required="C" xmlTag="CX.5" type="IS"/>
+    <Element name="assigning facility" id="CX.6" required="C" xmlTag="CX.6" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+   </CompositeElement>
+   <CompositeElement name="Patient Identifier List" id="PID.3" loop="n" required="M" xmlTag="PID.3" type="CX">
+    <Element name="ID" id="CX.1" required="C" xmlTag="CX.1" type="ST"/>
+    <Element name="check digit" id="CX.2" required="C" xmlTag="CX.2" type="NM"/>
+    <Element name="code identifying the check digit scheme employed" id="CX.3" required="C" xmlTag="CX.3" type="ID"/>
+    <Element name="assigning authority" id="CX.4" required="C" xmlTag="CX.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="identifier type code" id="CX.5" required="C" xmlTag="CX.5" type="IS"/>
+    <Element name="assigning facility" id="CX.6" required="C" xmlTag="CX.6" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+   </CompositeElement>
+   <CompositeElement name="Alternate Patient ID - PID" id="PID.4" loop="n" required="C" xmlTag="PID.4" type="CX">
+    <Element name="ID" id="CX.1" required="C" xmlTag="CX.1" type="ST"/>
+    <Element name="check digit" id="CX.2" required="C" xmlTag="CX.2" type="NM"/>
+    <Element name="code identifying the check digit scheme employed" id="CX.3" required="C" xmlTag="CX.3" type="ID"/>
+    <Element name="assigning authority" id="CX.4" required="C" xmlTag="CX.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="identifier type code" id="CX.5" required="C" xmlTag="CX.5" type="IS"/>
+    <Element name="assigning facility" id="CX.6" required="C" xmlTag="CX.6" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+   </CompositeElement>
+   <CompositeElement name="Patient Name" id="PID.5" loop="n" required="M" xmlTag="PID.5" type="XPN">
+    <Element name="family+last name" id="XPN.1" required="C" xmlTag="XPN.1" type="CM"/>
+    <Element name="given name" id="XPN.2" required="C" xmlTag="XPN.2" type="ST"/>
+    <Element name="middle initial or name" id="XPN.3" required="C" xmlTag="XPN.3" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XPN.4" required="C" xmlTag="XPN.4" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XPN.5" required="C" xmlTag="XPN.5" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XPN.6" required="C" xmlTag="XPN.6" type="IS"/>
+    <Element name="name type code" id="XPN.7" required="C" xmlTag="XPN.7" type="ID"/>
+    <Element name="Name Representation code" id="XPN.8" required="C" xmlTag="XPN.8" type="ID"/>
+   </CompositeElement>
+   <CompositeElement name="Mothers Maiden Name" id="PID.6" loop="n" required="C" xmlTag="PID.6" type="XPN">
+    <Element name="family+last name" id="XPN.1" required="C" xmlTag="XPN.1" type="CM"/>
+    <Element name="given name" id="XPN.2" required="C" xmlTag="XPN.2" type="ST"/>
+    <Element name="middle initial or name" id="XPN.3" required="C" xmlTag="XPN.3" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XPN.4" required="C" xmlTag="XPN.4" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XPN.5" required="C" xmlTag="XPN.5" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XPN.6" required="C" xmlTag="XPN.6" type="IS"/>
+    <Element name="name type code" id="XPN.7" required="C" xmlTag="XPN.7" type="ID"/>
+    <Element name="Name Representation code" id="XPN.8" required="C" xmlTag="XPN.8" type="ID"/>
+   </CompositeElement>
+   <Element name="Date/Time Of Birth" id="PID.7" loop="1" required="C" xmlTag="PID.7" type="TS"/>
+   <Element name="Sex" id="PID.8" loop="1" required="C" xmlTag="PID.8" type="IS"/>
+   <CompositeElement name="Patient Alias" id="PID.9" loop="n" required="C" xmlTag="PID.9" type="XPN">
+    <Element name="family+last name" id="XPN.1" required="C" xmlTag="XPN.1" type="CM"/>
+    <Element name="given name" id="XPN.2" required="C" xmlTag="XPN.2" type="ST"/>
+    <Element name="middle initial or name" id="XPN.3" required="C" xmlTag="XPN.3" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XPN.4" required="C" xmlTag="XPN.4" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XPN.5" required="C" xmlTag="XPN.5" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XPN.6" required="C" xmlTag="XPN.6" type="IS"/>
+    <Element name="name type code" id="XPN.7" required="C" xmlTag="XPN.7" type="ID"/>
+    <Element name="Name Representation code" id="XPN.8" required="C" xmlTag="XPN.8" type="ID"/>
+   </CompositeElement>
+   <CompositeElement name="Race" id="PID.10" loop="n" required="C" xmlTag="PID.10" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Patient Address" id="PID.11" loop="n" required="C" xmlTag="PID.11" type="XAD">
+    <Element name="street address" id="XAD.1" required="C" xmlTag="XAD.1" type="ST"/>
+    <Element name="other designation" id="XAD.2" required="C" xmlTag="XAD.2" type="ST"/>
+    <Element name="city" id="XAD.3" required="C" xmlTag="XAD.3" type="ST"/>
+    <Element name="state or province" id="XAD.4" required="C" xmlTag="XAD.4" type="ST"/>
+    <Element name="zip or postal code" id="XAD.5" required="C" xmlTag="XAD.5" type="ST"/>
+    <Element name="country" id="XAD.6" required="C" xmlTag="XAD.6" type="ID"/>
+    <Element name="address type" id="XAD.7" required="C" xmlTag="XAD.7" type="ID"/>
+    <Element name="other geographic designation" id="XAD.8" required="C" xmlTag="XAD.8" type="ST"/>
+    <Element name="county/parish code" id="XAD.9" required="C" xmlTag="XAD.9" type="IS"/>
+    <Element name="census tract" id="XAD.10" required="C" xmlTag="XAD.10" type="IS"/>
+    <Element name="address representation code" id="XAD.11" required="C" xmlTag="XAD.11" type="ID"/>
+   </CompositeElement>
+   <Element name="County Code" id="PID.12" loop="1" required="C" xmlTag="PID.12" type="IS"/>
+   <CompositeElement name="Phone Number - Home" id="PID.13" loop="n" required="C" xmlTag="PID.13" type="XTN">
+    <Element name="[(999)] 999-9999 [X99999][C any text]" id="XTN.1" required="C" xmlTag="XTN.1" type="TN"/>
+    <Element name="telecommunication use code" id="XTN.2" required="C" xmlTag="XTN.2" type="ID"/>
+    <Element name="telecommunication equipment type (ID)" id="XTN.3" required="C" xmlTag="XTN.3" type="ID"/>
+    <Element name="Email address" id="XTN.4" required="C" xmlTag="XTN.4" type="ST"/>
+    <Element name="Country Code" id="XTN.5" required="C" xmlTag="XTN.5" type="NM"/>
+    <Element name="Area/city code" id="XTN.6" required="C" xmlTag="XTN.6" type="NM"/>
+    <Element name="Phone number" id="XTN.7" required="C" xmlTag="XTN.7" type="NM"/>
+    <Element name="Extension" id="XTN.8" required="C" xmlTag="XTN.8" type="NM"/>
+    <Element name="any text" id="XTN.9" required="C" xmlTag="XTN.9" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Phone Number - Business" id="PID.14" loop="n" required="C" xmlTag="PID.14" type="XTN">
+    <Element name="[(999)] 999-9999 [X99999][C any text]" id="XTN.1" required="C" xmlTag="XTN.1" type="TN"/>
+    <Element name="telecommunication use code" id="XTN.2" required="C" xmlTag="XTN.2" type="ID"/>
+    <Element name="telecommunication equipment type (ID)" id="XTN.3" required="C" xmlTag="XTN.3" type="ID"/>
+    <Element name="Email address" id="XTN.4" required="C" xmlTag="XTN.4" type="ST"/>
+    <Element name="Country Code" id="XTN.5" required="C" xmlTag="XTN.5" type="NM"/>
+    <Element name="Area/city code" id="XTN.6" required="C" xmlTag="XTN.6" type="NM"/>
+    <Element name="Phone number" id="XTN.7" required="C" xmlTag="XTN.7" type="NM"/>
+    <Element name="Extension" id="XTN.8" required="C" xmlTag="XTN.8" type="NM"/>
+    <Element name="any text" id="XTN.9" required="C" xmlTag="XTN.9" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Primary Language" id="PID.15" loop="1" required="C" xmlTag="PID.15" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Marital Status" id="PID.16" loop="1" required="C" xmlTag="PID.16" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Religion" id="PID.17" loop="1" required="C" xmlTag="PID.17" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Patient Account Number" id="PID.18" loop="1" required="C" xmlTag="PID.18" type="CX">
+    <Element name="ID" id="CX.1" required="C" xmlTag="CX.1" type="ST"/>
+    <Element name="check digit" id="CX.2" required="C" xmlTag="CX.2" type="NM"/>
+    <Element name="code identifying the check digit scheme employed" id="CX.3" required="C" xmlTag="CX.3" type="ID"/>
+    <Element name="assigning authority" id="CX.4" required="C" xmlTag="CX.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="identifier type code" id="CX.5" required="C" xmlTag="CX.5" type="IS"/>
+    <Element name="assigning facility" id="CX.6" required="C" xmlTag="CX.6" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+   </CompositeElement>
+   <Element name="SSN Number - Patient" id="PID.19" loop="1" required="C" xmlTag="PID.19" type="ST"/>
+   <CompositeElement name="Driver&apos;s License Number - Patient" id="PID.20" loop="1" required="C" xmlTag="PID.20" type="DLN">
+    <Element name="Driver´s License Number" id="DLN.1" required="C" xmlTag="DLN.1" type="ST"/>
+    <Element name="Issuing State, province, country" id="DLN.2" required="C" xmlTag="DLN.2" type="IS"/>
+    <Element name="expiration date" id="DLN.3" required="C" xmlTag="DLN.3" type="DT"/>
+   </CompositeElement>
+   <CompositeElement name="Mother&apos;s Identifier" id="PID.21" loop="n" required="C" xmlTag="PID.21" type="CX">
+    <Element name="ID" id="CX.1" required="C" xmlTag="CX.1" type="ST"/>
+    <Element name="check digit" id="CX.2" required="C" xmlTag="CX.2" type="NM"/>
+    <Element name="code identifying the check digit scheme employed" id="CX.3" required="C" xmlTag="CX.3" type="ID"/>
+    <Element name="assigning authority" id="CX.4" required="C" xmlTag="CX.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="identifier type code" id="CX.5" required="C" xmlTag="CX.5" type="IS"/>
+    <Element name="assigning facility" id="CX.6" required="C" xmlTag="CX.6" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+   </CompositeElement>
+   <CompositeElement name="Ethnic Group" id="PID.22" loop="n" required="C" xmlTag="PID.22" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="Birth Place" id="PID.23" loop="1" required="C" xmlTag="PID.23" type="ST"/>
+   <Element name="Multiple Birth Indicator" id="PID.24" loop="1" required="C" xmlTag="PID.24" type="ID"/>
+   <Element name="Birth Order" id="PID.25" loop="1" required="C" xmlTag="PID.25" type="NM"/>
+   <CompositeElement name="Citizenship" id="PID.26" loop="n" required="C" xmlTag="PID.26" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Veterans Military Status" id="PID.27" loop="1" required="C" xmlTag="PID.27" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Nationality" id="PID.28" loop="1" required="C" xmlTag="PID.28" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="Patient Death Date and Time" id="PID.29" loop="1" required="C" xmlTag="PID.29" type="TS"/>
+   <Element name="Patient Death Indicator" id="PID.30" loop="1" required="C" xmlTag="PID.30" type="ID"/>
+  </Segment>
+  <Segment id="PV1" name="Patient visit segment" loop="1" required="C" xmlTag="PV1">
+   <Element name="Set ID - PV1" id="PV1.1" loop="1" required="C" xmlTag="PV1.1" type="SI"/>
+   <Element name="Patient Class" id="PV1.2" loop="1" required="M" xmlTag="PV1.2" type="IS"/>
+   <CompositeElement name="Assigned Patient Location" id="PV1.3" loop="1" required="C" xmlTag="PV1.3" type="PL">
+    <Element name="point of care" id="PL.1" required="C" xmlTag="PL.1" type="IS"/>
+    <Element name="room" id="PL.2" required="C" xmlTag="PL.2" type="IS"/>
+    <Element name="bed" id="PL.3" required="C" xmlTag="PL.3" type="IS"/>
+    <Element name="facility" id="PL.4" required="C" xmlTag="PL.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="location status" id="PL.5" required="C" xmlTag="PL.5" type="IS"/>
+    <Element name="person location type" id="PL.6" required="C" xmlTag="PL.6" type="IS"/>
+    <Element name="building" id="PL.7" required="C" xmlTag="PL.7" type="IS"/>
+    <Element name="floor" id="PL.8" required="C" xmlTag="PL.8" type="IS"/>
+    <Element name="Location description" id="PL.9" required="C" xmlTag="PL.9" type="ST"/>
+   </CompositeElement>
+   <Element name="Admission Type" id="PV1.4" loop="1" required="C" xmlTag="PV1.4" type="IS"/>
+   <CompositeElement name="Preadmit Number" id="PV1.5" loop="1" required="C" xmlTag="PV1.5" type="CX">
+    <Element name="ID" id="CX.1" required="C" xmlTag="CX.1" type="ST"/>
+    <Element name="check digit" id="CX.2" required="C" xmlTag="CX.2" type="NM"/>
+    <Element name="code identifying the check digit scheme employed" id="CX.3" required="C" xmlTag="CX.3" type="ID"/>
+    <Element name="assigning authority" id="CX.4" required="C" xmlTag="CX.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="identifier type code" id="CX.5" required="C" xmlTag="CX.5" type="IS"/>
+    <Element name="assigning facility" id="CX.6" required="C" xmlTag="CX.6" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+   </CompositeElement>
+   <CompositeElement name="Prior Patient Location" id="PV1.6" loop="1" required="C" xmlTag="PV1.6" type="PL">
+    <Element name="point of care" id="PL.1" required="C" xmlTag="PL.1" type="IS"/>
+    <Element name="room" id="PL.2" required="C" xmlTag="PL.2" type="IS"/>
+    <Element name="bed" id="PL.3" required="C" xmlTag="PL.3" type="IS"/>
+    <Element name="facility" id="PL.4" required="C" xmlTag="PL.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="location status" id="PL.5" required="C" xmlTag="PL.5" type="IS"/>
+    <Element name="person location type" id="PL.6" required="C" xmlTag="PL.6" type="IS"/>
+    <Element name="building" id="PL.7" required="C" xmlTag="PL.7" type="IS"/>
+    <Element name="floor" id="PL.8" required="C" xmlTag="PL.8" type="IS"/>
+    <Element name="Location description" id="PL.9" required="C" xmlTag="PL.9" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Attending Doctor" id="PV1.7" loop="n" required="C" xmlTag="PV1.7" type="XCN">
+    <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+    <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+    <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+    <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+    <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+    <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+    <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+    <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+    <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+    <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+   </CompositeElement>
+   <CompositeElement name="Referring Doctor" id="PV1.8" loop="n" required="C" xmlTag="PV1.8" type="XCN">
+    <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+    <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+    <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+    <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+    <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+    <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+    <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+    <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+    <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+    <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+   </CompositeElement>
+   <CompositeElement name="Consulting Doctor" id="PV1.9" loop="n" required="C" xmlTag="PV1.9" type="XCN">
+    <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+    <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+    <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+    <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+    <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+    <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+    <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+    <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+    <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+    <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+   </CompositeElement>
+   <Element name="Hospital Service" id="PV1.10" loop="1" required="C" xmlTag="PV1.10" type="IS"/>
+   <CompositeElement name="Temporary Location" id="PV1.11" loop="1" required="C" xmlTag="PV1.11" type="PL">
+    <Element name="point of care" id="PL.1" required="C" xmlTag="PL.1" type="IS"/>
+    <Element name="room" id="PL.2" required="C" xmlTag="PL.2" type="IS"/>
+    <Element name="bed" id="PL.3" required="C" xmlTag="PL.3" type="IS"/>
+    <Element name="facility" id="PL.4" required="C" xmlTag="PL.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="location status" id="PL.5" required="C" xmlTag="PL.5" type="IS"/>
+    <Element name="person location type" id="PL.6" required="C" xmlTag="PL.6" type="IS"/>
+    <Element name="building" id="PL.7" required="C" xmlTag="PL.7" type="IS"/>
+    <Element name="floor" id="PL.8" required="C" xmlTag="PL.8" type="IS"/>
+    <Element name="Location description" id="PL.9" required="C" xmlTag="PL.9" type="ST"/>
+   </CompositeElement>
+   <Element name="Preadmit Test Indicator" id="PV1.12" loop="1" required="C" xmlTag="PV1.12" type="IS"/>
+   <Element name="Re-admission Indicator" id="PV1.13" loop="1" required="C" xmlTag="PV1.13" type="IS"/>
+   <Element name="Admit Source" id="PV1.14" loop="1" required="C" xmlTag="PV1.14" type="IS"/>
+   <Element name="Ambulatory Status" id="PV1.15" loop="n" required="C" xmlTag="PV1.15" type="IS"/>
+   <Element name="VIP Indicator" id="PV1.16" loop="1" required="C" xmlTag="PV1.16" type="IS"/>
+   <CompositeElement name="Admitting Doctor" id="PV1.17" loop="n" required="C" xmlTag="PV1.17" type="XCN">
+    <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+    <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+    <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+    <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+    <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+    <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+    <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+    <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+    <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+    <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+   </CompositeElement>
+   <Element name="Patient Type" id="PV1.18" loop="1" required="C" xmlTag="PV1.18" type="IS"/>
+   <CompositeElement name="Visit Number" id="PV1.19" loop="1" required="C" xmlTag="PV1.19" type="CX">
+    <Element name="ID" id="CX.1" required="C" xmlTag="CX.1" type="ST"/>
+    <Element name="check digit" id="CX.2" required="C" xmlTag="CX.2" type="NM"/>
+    <Element name="code identifying the check digit scheme employed" id="CX.3" required="C" xmlTag="CX.3" type="ID"/>
+    <Element name="assigning authority" id="CX.4" required="C" xmlTag="CX.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="identifier type code" id="CX.5" required="C" xmlTag="CX.5" type="IS"/>
+    <Element name="assigning facility" id="CX.6" required="C" xmlTag="CX.6" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+   </CompositeElement>
+   <CompositeElement name="Financial Class" id="PV1.20" loop="n" required="C" xmlTag="PV1.20" type="FC">
+    <Element name="Financial Class" id="FC.1" required="C" xmlTag="FC.1" type="IS"/>
+    <Element name="Effective Date" id="FC.2" required="C" xmlTag="FC.2" type="TS"/>
+   </CompositeElement>
+   <Element name="Charge Price Indicator" id="PV1.21" loop="1" required="C" xmlTag="PV1.21" type="IS"/>
+   <Element name="Courtesy Code" id="PV1.22" loop="1" required="C" xmlTag="PV1.22" type="IS"/>
+   <Element name="Credit Rating" id="PV1.23" loop="1" required="C" xmlTag="PV1.23" type="IS"/>
+   <Element name="Contract Code" id="PV1.24" loop="n" required="C" xmlTag="PV1.24" type="IS"/>
+   <Element name="Contract Effective Date" id="PV1.25" loop="n" required="C" xmlTag="PV1.25" type="DT"/>
+   <Element name="Contract Amount" id="PV1.26" loop="n" required="C" xmlTag="PV1.26" type="NM"/>
+   <Element name="Contract Period" id="PV1.27" loop="n" required="C" xmlTag="PV1.27" type="NM"/>
+   <Element name="Interest Code" id="PV1.28" loop="1" required="C" xmlTag="PV1.28" type="IS"/>
+   <Element name="Transfer to Bad Debt Code" id="PV1.29" loop="1" required="C" xmlTag="PV1.29" type="IS"/>
+   <Element name="Transfer to Bad Debt Date" id="PV1.30" loop="1" required="C" xmlTag="PV1.30" type="DT"/>
+   <Element name="Bad Debt Agency Code" id="PV1.31" loop="1" required="C" xmlTag="PV1.31" type="IS"/>
+   <Element name="Bad Debt Transfer Amount" id="PV1.32" loop="1" required="C" xmlTag="PV1.32" type="NM"/>
+   <Element name="Bad Debt Recovery Amount" id="PV1.33" loop="1" required="C" xmlTag="PV1.33" type="NM"/>
+   <Element name="Delete Account Indicator" id="PV1.34" loop="1" required="C" xmlTag="PV1.34" type="IS"/>
+   <Element name="Delete Account Date" id="PV1.35" loop="1" required="C" xmlTag="PV1.35" type="DT"/>
+   <Element name="Discharge Disposition" id="PV1.36" loop="1" required="C" xmlTag="PV1.36" type="IS"/>
+   <Element name="Discharged to Location" id="PV1.37" loop="1" required="C" xmlTag="PV1.37" type="CM"/>
+   <CompositeElement name="Diet Type" id="PV1.38" loop="1" required="C" xmlTag="PV1.38" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="Servicing Facility" id="PV1.39" loop="1" required="C" xmlTag="PV1.39" type="IS"/>
+   <Element name="Bed Status" id="PV1.40" loop="1" required="C" xmlTag="PV1.40" type="IS"/>
+   <Element name="Account Status" id="PV1.41" loop="1" required="C" xmlTag="PV1.41" type="IS"/>
+   <CompositeElement name="Pending Location" id="PV1.42" loop="1" required="C" xmlTag="PV1.42" type="PL">
+    <Element name="point of care" id="PL.1" required="C" xmlTag="PL.1" type="IS"/>
+    <Element name="room" id="PL.2" required="C" xmlTag="PL.2" type="IS"/>
+    <Element name="bed" id="PL.3" required="C" xmlTag="PL.3" type="IS"/>
+    <Element name="facility" id="PL.4" required="C" xmlTag="PL.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="location status" id="PL.5" required="C" xmlTag="PL.5" type="IS"/>
+    <Element name="person location type" id="PL.6" required="C" xmlTag="PL.6" type="IS"/>
+    <Element name="building" id="PL.7" required="C" xmlTag="PL.7" type="IS"/>
+    <Element name="floor" id="PL.8" required="C" xmlTag="PL.8" type="IS"/>
+    <Element name="Location description" id="PL.9" required="C" xmlTag="PL.9" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Prior Temporary Location" id="PV1.43" loop="1" required="C" xmlTag="PV1.43" type="PL">
+    <Element name="point of care" id="PL.1" required="C" xmlTag="PL.1" type="IS"/>
+    <Element name="room" id="PL.2" required="C" xmlTag="PL.2" type="IS"/>
+    <Element name="bed" id="PL.3" required="C" xmlTag="PL.3" type="IS"/>
+    <Element name="facility" id="PL.4" required="C" xmlTag="PL.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="location status" id="PL.5" required="C" xmlTag="PL.5" type="IS"/>
+    <Element name="person location type" id="PL.6" required="C" xmlTag="PL.6" type="IS"/>
+    <Element name="building" id="PL.7" required="C" xmlTag="PL.7" type="IS"/>
+    <Element name="floor" id="PL.8" required="C" xmlTag="PL.8" type="IS"/>
+    <Element name="Location description" id="PL.9" required="C" xmlTag="PL.9" type="ST"/>
+   </CompositeElement>
+   <Element name="Admit Date/Time" id="PV1.44" loop="1" required="C" xmlTag="PV1.44" type="TS"/>
+   <Element name="Discharge Date/Time" id="PV1.45" loop="1" required="C" xmlTag="PV1.45" type="TS"/>
+   <Element name="Current Patient Balance" id="PV1.46" loop="1" required="C" xmlTag="PV1.46" type="NM"/>
+   <Element name="Total Charges" id="PV1.47" loop="1" required="C" xmlTag="PV1.47" type="NM"/>
+   <Element name="Total Adjustments" id="PV1.48" loop="1" required="C" xmlTag="PV1.48" type="NM"/>
+   <Element name="Total Payments" id="PV1.49" loop="1" required="C" xmlTag="PV1.49" type="NM"/>
+   <CompositeElement name="Alternate Visit ID" id="PV1.50" loop="1" required="C" xmlTag="PV1.50" type="CX">
+    <Element name="ID" id="CX.1" required="C" xmlTag="CX.1" type="ST"/>
+    <Element name="check digit" id="CX.2" required="C" xmlTag="CX.2" type="NM"/>
+    <Element name="code identifying the check digit scheme employed" id="CX.3" required="C" xmlTag="CX.3" type="ID"/>
+    <Element name="assigning authority" id="CX.4" required="C" xmlTag="CX.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="identifier type code" id="CX.5" required="C" xmlTag="CX.5" type="IS"/>
+    <Element name="assigning facility" id="CX.6" required="C" xmlTag="CX.6" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+   </CompositeElement>
+   <Element name="Visit Indicator" id="PV1.51" loop="1" required="C" xmlTag="PV1.51" type="IS"/>
+   <CompositeElement name="Other Healthcare Provider" id="PV1.52" loop="n" required="C" xmlTag="PV1.52" type="XCN">
+    <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+    <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+    <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+    <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+    <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+    <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+    <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+    <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+    <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+    <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+   </CompositeElement>
+  </Segment>
+  <Segment id="PV2" name="Patient visit - additional information segment" loop="1" required="C" xmlTag="PV2">
+   <CompositeElement name="Prior Pending Location" id="PV2.1" loop="1" required="C" xmlTag="PV2.1" type="PL">
+    <Element name="point of care" id="PL.1" required="C" xmlTag="PL.1" type="IS"/>
+    <Element name="room" id="PL.2" required="C" xmlTag="PL.2" type="IS"/>
+    <Element name="bed" id="PL.3" required="C" xmlTag="PL.3" type="IS"/>
+    <Element name="facility" id="PL.4" required="C" xmlTag="PL.4" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="location status" id="PL.5" required="C" xmlTag="PL.5" type="IS"/>
+    <Element name="person location type" id="PL.6" required="C" xmlTag="PL.6" type="IS"/>
+    <Element name="building" id="PL.7" required="C" xmlTag="PL.7" type="IS"/>
+    <Element name="floor" id="PL.8" required="C" xmlTag="PL.8" type="IS"/>
+    <Element name="Location description" id="PL.9" required="C" xmlTag="PL.9" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Accommodation Code" id="PV2.2" loop="1" required="C" xmlTag="PV2.2" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Admit Reason" id="PV2.3" loop="1" required="C" xmlTag="PV2.3" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Transfer Reason" id="PV2.4" loop="1" required="C" xmlTag="PV2.4" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="Patient Valuables" id="PV2.5" loop="n" required="C" xmlTag="PV2.5" type="ST"/>
+   <Element name="Patient Valuables Location" id="PV2.6" loop="1" required="C" xmlTag="PV2.6" type="ST"/>
+   <Element name="Visit User Code" id="PV2.7" loop="1" required="C" xmlTag="PV2.7" type="IS"/>
+   <Element name="Expected Admit Date/Time" id="PV2.8" loop="1" required="C" xmlTag="PV2.8" type="TS"/>
+   <Element name="Expected Discharge Date/Time" id="PV2.9" loop="1" required="C" xmlTag="PV2.9" type="TS"/>
+   <Element name="Estimated Length of Inpatient Stay" id="PV2.10" loop="1" required="C" xmlTag="PV2.10" type="NM"/>
+   <Element name="Actual Length of Inpatient Stay" id="PV2.11" loop="1" required="C" xmlTag="PV2.11" type="NM"/>
+   <Element name="Visit Description" id="PV2.12" loop="1" required="C" xmlTag="PV2.12" type="ST"/>
+   <CompositeElement name="Referral Source Code" id="PV2.13" loop="n" required="C" xmlTag="PV2.13" type="XCN">
+    <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+    <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+    <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+    <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+    <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+    <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+    <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+    <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+    <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+    <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+   </CompositeElement>
+   <Element name="Previous Service Date" id="PV2.14" loop="1" required="C" xmlTag="PV2.14" type="DT"/>
+   <Element name="Employment Illness Related Indicator" id="PV2.15" loop="1" required="C" xmlTag="PV2.15" type="ID"/>
+   <Element name="Purge Status Code" id="PV2.16" loop="1" required="C" xmlTag="PV2.16" type="IS"/>
+   <Element name="Purge Status Date" id="PV2.17" loop="1" required="C" xmlTag="PV2.17" type="DT"/>
+   <Element name="Special Program Code" id="PV2.18" loop="1" required="C" xmlTag="PV2.18" type="IS"/>
+   <Element name="Retention Indicator" id="PV2.19" loop="1" required="C" xmlTag="PV2.19" type="ID"/>
+   <Element name="Expected Number of Insurance Plans" id="PV2.20" loop="1" required="C" xmlTag="PV2.20" type="NM"/>
+   <Element name="Visit Publicity Code" id="PV2.21" loop="1" required="C" xmlTag="PV2.21" type="IS"/>
+   <Element name="Visit Protection Indicator" id="PV2.22" loop="1" required="C" xmlTag="PV2.22" type="ID"/>
+   <CompositeElement name="Clinic Organization Name" id="PV2.23" loop="n" required="C" xmlTag="PV2.23" type="XON">
+    <Element name="organization name" id="XON.1" required="C" xmlTag="XON.1" type="ST"/>
+    <Element name="organization name type code" id="XON.2" required="C" xmlTag="XON.2" type="IS"/>
+    <Element name="ID number (NM)" id="XON.3" required="C" xmlTag="XON.3" type="NM"/>
+    <Element name="check digit" id="XON.4" required="C" xmlTag="XON.4" type="NM"/>
+    <Element name="code identifying the check digit scheme employed" id="XON.5" required="C" xmlTag="XON.5" type="ID"/>
+    <Element name="assigning authority" id="XON.6" required="C" xmlTag="XON.6" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="identifier type code" id="XON.7" required="C" xmlTag="XON.7" type="IS"/>
+    <Element name="assigning facility ID" id="XON.8" required="C" xmlTag="XON.8" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="Name Representation code" id="XON.9" required="C" xmlTag="XON.9" type="ID"/>
+   </CompositeElement>
+   <Element name="Patient Status Code" id="PV2.24" loop="1" required="C" xmlTag="PV2.24" type="IS"/>
+   <Element name="Visit Priority Code" id="PV2.25" loop="1" required="C" xmlTag="PV2.25" type="IS"/>
+   <Element name="Previous Treatment Date" id="PV2.26" loop="1" required="C" xmlTag="PV2.26" type="DT"/>
+   <Element name="Expected Discharge Disposition" id="PV2.27" loop="1" required="C" xmlTag="PV2.27" type="IS"/>
+   <Element name="Signature on File Date" id="PV2.28" loop="1" required="C" xmlTag="PV2.28" type="DT"/>
+   <Element name="First Similar Illness Date" id="PV2.29" loop="1" required="C" xmlTag="PV2.29" type="DT"/>
+   <CompositeElement name="Patient Charge Adjustment Code" id="PV2.30" loop="1" required="C" xmlTag="PV2.30" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="Recurring Service Code" id="PV2.31" loop="1" required="C" xmlTag="PV2.31" type="IS"/>
+   <Element name="Billing Media Code" id="PV2.32" loop="1" required="C" xmlTag="PV2.32" type="ID"/>
+   <Element name="Expected Surgery Date &amp; Time" id="PV2.33" loop="1" required="C" xmlTag="PV2.33" type="TS"/>
+   <Element name="Military Partnership Code" id="PV2.34" loop="1" required="C" xmlTag="PV2.34" type="ID"/>
+   <Element name="Military Non-Availability Code" id="PV2.35" loop="1" required="C" xmlTag="PV2.35" type="ID"/>
+   <Element name="Newborn Baby Indicator" id="PV2.36" loop="1" required="C" xmlTag="PV2.36" type="ID"/>
+   <Element name="Baby Detained Indicator" id="PV2.37" loop="1" required="C" xmlTag="PV2.37" type="ID"/>
+  </Segment>
+  <Segment id="OBX" name="Observation/result segment" loop="n" required="C" xmlTag="OBX">
+   <Element name="Set ID - OBX" id="OBX.1" loop="1" required="C" xmlTag="OBX.1" type="SI"/>
+   <Element name="Value Type" id="OBX.2" loop="1" required="M" xmlTag="OBX.2" type="ID"/>
+   <CompositeElement name="Observation Identifier" id="OBX.3" loop="1" required="M" xmlTag="OBX.3" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="Observation Sub-ID" id="OBX.4" loop="1" required="M" xmlTag="OBX.4" type="ST"/>
+   <Element name="Observation Value" id="OBX.5" loop="n" required="C" xmlTag="OBX.5" type="WILDCARD"/>
+   <CompositeElement name="Units" id="OBX.6" loop="1" required="C" xmlTag="OBX.6" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="References Range" id="OBX.7" loop="1" required="C" xmlTag="OBX.7" type="ST"/>
+   <Element name="Abnormal Flags" id="OBX.8" loop="n" required="C" xmlTag="OBX.8" type="ID"/>
+   <Element name="Probability" id="OBX.9" loop="n" required="C" xmlTag="OBX.9" type="NM"/>
+   <Element name="Nature of Abnormal Test" id="OBX.10" loop="1" required="C" xmlTag="OBX.10" type="ID"/>
+   <Element name="Observation Result Status" id="OBX.11" loop="1" required="M" xmlTag="OBX.11" type="ID"/>
+   <Element name="Date Last Obs Normal Values" id="OBX.12" loop="1" required="C" xmlTag="OBX.12" type="TS"/>
+   <Element name="User Defined Access Checks" id="OBX.13" loop="1" required="C" xmlTag="OBX.13" type="ST"/>
+   <Element name="Date/Time of the Observation" id="OBX.14" loop="1" required="C" xmlTag="OBX.14" type="TS"/>
+   <CompositeElement name="Producer&apos;s ID" id="OBX.15" loop="1" required="C" xmlTag="OBX.15" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Responsible Observer" id="OBX.16" loop="n" required="C" xmlTag="OBX.16" type="XCN">
+    <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+    <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+    <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+    <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+    <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+    <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+    <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+    <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+    <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+    <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+   </CompositeElement>
+   <CompositeElement name="Observation Method" id="OBX.17" loop="n" required="C" xmlTag="OBX.17" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+  </Segment>
+  <Segment id="DG1" name="Diagnosis segment" loop="n" required="C" xmlTag="DG1">
+   <Element name="Set ID - DG1" id="DG1.1" loop="1" required="M" xmlTag="DG1.1" type="SI"/>
+   <Element name="Diagnosis Coding Method" id="DG1.2" loop="1" required="M" xmlTag="DG1.2" type="ID"/>
+   <CompositeElement name="Diagnosis Code - DG1" id="DG1.3" loop="1" required="C" xmlTag="DG1.3" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="Diagnosis Description" id="DG1.4" loop="1" required="C" xmlTag="DG1.4" type="ST"/>
+   <Element name="Diagnosis Date/Time" id="DG1.5" loop="1" required="C" xmlTag="DG1.5" type="TS"/>
+   <Element name="Diagnosis Type" id="DG1.6" loop="1" required="M" xmlTag="DG1.6" type="IS"/>
+   <CompositeElement name="Major Diagnostic Category" id="DG1.7" loop="1" required="C" xmlTag="DG1.7" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <CompositeElement name="Diagnostic Related Group" id="DG1.8" loop="1" required="C" xmlTag="DG1.8" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="DRG Approval Indicator" id="DG1.9" loop="1" required="C" xmlTag="DG1.9" type="ID"/>
+   <Element name="DRG Grouper Review Code" id="DG1.10" loop="1" required="C" xmlTag="DG1.10" type="IS"/>
+   <CompositeElement name="Outlier Type" id="DG1.11" loop="1" required="C" xmlTag="DG1.11" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+   <Element name="Outlier Days" id="DG1.12" loop="1" required="C" xmlTag="DG1.12" type="NM"/>
+   <CompositeElement name="Outlier Cost" id="DG1.13" loop="1" required="C" xmlTag="DG1.13" type="CP">
+    <Element name="price" id="CP.1" required="C" xmlTag="CP.1" type="MO">
+     <SubElement name="quantity" id="MO.1" required="C" xmlTag="MO.1" type="NM"/>
+     <SubElement name="denomination" id="MO.2" required="C" xmlTag="MO.2" type="ID"/>
+    </Element>
+    <Element name="price type" id="CP.2" required="C" xmlTag="CP.2" type="ID"/>
+    <Element name="from value" id="CP.3" required="C" xmlTag="CP.3" type="NM"/>
+    <Element name="to value" id="CP.4" required="C" xmlTag="CP.4" type="NM"/>
+    <Element name="range units" id="CP.5" required="C" xmlTag="CP.5" type="CE">
+     <SubElement name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <SubElement name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <SubElement name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <SubElement name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <SubElement name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <SubElement name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </Element>
+    <Element name="range type" id="CP.6" required="C" xmlTag="CP.6" type="ID"/>
+   </CompositeElement>
+   <Element name="Grouper Version And Type" id="DG1.14" loop="1" required="C" xmlTag="DG1.14" type="ST"/>
+   <Element name="Diagnosis Priority" id="DG1.15" loop="1" required="C" xmlTag="DG1.15" type="ID"/>
+   <CompositeElement name="Diagnosing Clinician" id="DG1.16" loop="n" required="C" xmlTag="DG1.16" type="XCN">
+    <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+    <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+    <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+    <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+    <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+    <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+    <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+    <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+    <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+    <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+    <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+    <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+    <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+     <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+     <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+     <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+    </Element>
+    <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+   </CompositeElement>
+   <Element name="Diagnosis Classification" id="DG1.17" loop="1" required="C" xmlTag="DG1.17" type="IS"/>
+   <Element name="Confidential Indicator" id="DG1.18" loop="1" required="C" xmlTag="DG1.18" type="ID"/>
+   <Element name="Attestation Date/Time" id="DG1.19" loop="1" required="C" xmlTag="DG1.19" type="TS"/>
+  </Segment>
+ </SegmentGroup>
+ <SegmentGroup id="SRM_S01.GROUP.6" name="" loop="n" required="M" xmlTag="SRM_S01.GROUP.6">
+  <Segment id="RGS" name="Resource group segment" loop="1" required="M" xmlTag="RGS">
+   <Element name="Set ID - RGS" id="RGS.1" loop="1" required="M" xmlTag="RGS.1" type="SI"/>
+   <Element name="Segment Action Code" id="RGS.2" loop="1" required="C" xmlTag="RGS.2" type="ID"/>
+   <CompositeElement name="Resource Group ID" id="RGS.3" loop="1" required="C" xmlTag="RGS.3" type="CE">
+    <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+    <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+    <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+    <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+    <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+    <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+   </CompositeElement>
+  </Segment>
+  <SegmentGroup id="SRM_S01.GROUP.4" name="" loop="n" required="C" xmlTag="SRM_S01.GROUP.4">
+   <Segment id="AIS" name="Appointment information - service segment" loop="1" required="M" xmlTag="AIS">
+    <Element name="Set ID - AIS" id="AIS.1" loop="1" required="M" xmlTag="AIS.1" type="SI"/>
+    <Element name="Segment Action Code" id="AIS.2" loop="1" required="C" xmlTag="AIS.2" type="ID"/>
+    <CompositeElement name="Universal Service ID" id="AIS.3" loop="1" required="M" xmlTag="AIS.3" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Start Date/Time" id="AIS.4" loop="1" required="C" xmlTag="AIS.4" type="TS"/>
+    <Element name="Start Date/Time Offset" id="AIS.5" loop="1" required="C" xmlTag="AIS.5" type="NM"/>
+    <CompositeElement name="Start Date/Time Offset Units" id="AIS.6" loop="1" required="C" xmlTag="AIS.6" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Duration" id="AIS.7" loop="1" required="C" xmlTag="AIS.7" type="NM"/>
+    <CompositeElement name="Duration Units" id="AIS.8" loop="1" required="C" xmlTag="AIS.8" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Allow Substitution Code" id="AIS.9" loop="1" required="C" xmlTag="AIS.9" type="IS"/>
+    <CompositeElement name="Filler Status Code" id="AIS.10" loop="1" required="C" xmlTag="AIS.10" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+   </Segment>
+   <Segment id="APR" name="Appointment preferences segment" loop="1" required="C" xmlTag="APR">
+    <CompositeElement name="Time Selection Criteria" id="APR.1" loop="n" required="C" xmlTag="APR.1" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <CompositeElement name="Resource Selection Criteria" id="APR.2" loop="n" required="C" xmlTag="APR.2" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <CompositeElement name="Location Selection Criteria" id="APR.3" loop="n" required="C" xmlTag="APR.3" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <Element name="Slot Spacing Criteria" id="APR.4" loop="1" required="C" xmlTag="APR.4" type="NM"/>
+    <CompositeElement name="Filler Override Criteria" id="APR.5" loop="n" required="C" xmlTag="APR.5" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+   </Segment>
+   <Segment id="NTE" name="Notes and comments segment" loop="n" required="C" xmlTag="NTE">
+    <Element name="Set ID - NTE" id="NTE.1" loop="1" required="C" xmlTag="NTE.1" type="SI"/>
+    <Element name="Source of Comment" id="NTE.2" loop="1" required="C" xmlTag="NTE.2" type="ID"/>
+    <Element name="Comment" id="NTE.3" loop="n" required="C" xmlTag="NTE.3" type="FT"/>
+    <CompositeElement name="Comment Type" id="NTE.4" loop="1" required="C" xmlTag="NTE.4" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+   </Segment>
+  </SegmentGroup>
+  <SegmentGroup id="SRM_S01.GROUP.1" name="" loop="n" required="C" xmlTag="SRM_S01.GROUP.1">
+   <Segment id="AIG" name="Appointment information - general resource segment" loop="1" required="M" xmlTag="AIG">
+    <Element name="Set ID - AIG" id="AIG.1" loop="1" required="M" xmlTag="AIG.1" type="SI"/>
+    <Element name="Segment Action Code" id="AIG.2" loop="1" required="C" xmlTag="AIG.2" type="ID"/>
+    <CompositeElement name="Resource ID" id="AIG.3" loop="1" required="C" xmlTag="AIG.3" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <CompositeElement name="Resource Type" id="AIG.4" loop="1" required="M" xmlTag="AIG.4" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <CompositeElement name="Resource Group" id="AIG.5" loop="n" required="C" xmlTag="AIG.5" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Resource Quantity" id="AIG.6" loop="1" required="C" xmlTag="AIG.6" type="NM"/>
+    <CompositeElement name="Resource Quantity Units" id="AIG.7" loop="1" required="C" xmlTag="AIG.7" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Start Date/Time" id="AIG.8" loop="1" required="C" xmlTag="AIG.8" type="TS"/>
+    <Element name="Start Date/Time Offset" id="AIG.9" loop="1" required="C" xmlTag="AIG.9" type="NM"/>
+    <CompositeElement name="Start Date/Time Offset Units" id="AIG.10" loop="1" required="C" xmlTag="AIG.10" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Duration" id="AIG.11" loop="1" required="C" xmlTag="AIG.11" type="NM"/>
+    <CompositeElement name="Duration Units" id="AIG.12" loop="1" required="C" xmlTag="AIG.12" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Allow Substitution Code" id="AIG.13" loop="1" required="C" xmlTag="AIG.13" type="IS"/>
+    <CompositeElement name="Filler Status Code" id="AIG.14" loop="1" required="C" xmlTag="AIG.14" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+   </Segment>
+   <Segment id="APR" name="Appointment preferences segment" loop="1" required="C" xmlTag="APR">
+    <CompositeElement name="Time Selection Criteria" id="APR.1" loop="n" required="C" xmlTag="APR.1" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <CompositeElement name="Resource Selection Criteria" id="APR.2" loop="n" required="C" xmlTag="APR.2" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <CompositeElement name="Location Selection Criteria" id="APR.3" loop="n" required="C" xmlTag="APR.3" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <Element name="Slot Spacing Criteria" id="APR.4" loop="1" required="C" xmlTag="APR.4" type="NM"/>
+    <CompositeElement name="Filler Override Criteria" id="APR.5" loop="n" required="C" xmlTag="APR.5" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+   </Segment>
+   <Segment id="NTE" name="Notes and comments segment" loop="n" required="C" xmlTag="NTE">
+    <Element name="Set ID - NTE" id="NTE.1" loop="1" required="C" xmlTag="NTE.1" type="SI"/>
+    <Element name="Source of Comment" id="NTE.2" loop="1" required="C" xmlTag="NTE.2" type="ID"/>
+    <Element name="Comment" id="NTE.3" loop="n" required="C" xmlTag="NTE.3" type="FT"/>
+    <CompositeElement name="Comment Type" id="NTE.4" loop="1" required="C" xmlTag="NTE.4" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+   </Segment>
+  </SegmentGroup>
+  <SegmentGroup id="SRM_S01.GROUP.2" name="" loop="n" required="C" xmlTag="SRM_S01.GROUP.2">
+   <Segment id="AIL" name="Appointment information - location resource segment" loop="1" required="M" xmlTag="AIL">
+    <Element name="Set ID - AIL" id="AIL.1" loop="1" required="M" xmlTag="AIL.1" type="SI"/>
+    <Element name="Segment Action Code" id="AIL.2" loop="1" required="C" xmlTag="AIL.2" type="ID"/>
+    <CompositeElement name="Location Resource ID" id="AIL.3" loop="1" required="C" xmlTag="AIL.3" type="PL">
+     <Element name="point of care" id="PL.1" required="C" xmlTag="PL.1" type="IS"/>
+     <Element name="room" id="PL.2" required="C" xmlTag="PL.2" type="IS"/>
+     <Element name="bed" id="PL.3" required="C" xmlTag="PL.3" type="IS"/>
+     <Element name="facility" id="PL.4" required="C" xmlTag="PL.4" type="HD">
+      <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+      <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+      <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+     </Element>
+     <Element name="location status" id="PL.5" required="C" xmlTag="PL.5" type="IS"/>
+     <Element name="person location type" id="PL.6" required="C" xmlTag="PL.6" type="IS"/>
+     <Element name="building" id="PL.7" required="C" xmlTag="PL.7" type="IS"/>
+     <Element name="floor" id="PL.8" required="C" xmlTag="PL.8" type="IS"/>
+     <Element name="Location description" id="PL.9" required="C" xmlTag="PL.9" type="ST"/>
+    </CompositeElement>
+    <CompositeElement name="Location Type-AIL" id="AIL.4" loop="1" required="M" xmlTag="AIL.4" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <CompositeElement name="Location Group" id="AIL.5" loop="1" required="C" xmlTag="AIL.5" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Start Date/Time" id="AIL.6" loop="1" required="C" xmlTag="AIL.6" type="TS"/>
+    <Element name="Start Date/Time Offset" id="AIL.7" loop="1" required="C" xmlTag="AIL.7" type="NM"/>
+    <CompositeElement name="Start Date/Time Offset Units" id="AIL.8" loop="1" required="C" xmlTag="AIL.8" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Duration" id="AIL.9" loop="1" required="C" xmlTag="AIL.9" type="NM"/>
+    <CompositeElement name="Duration Units" id="AIL.10" loop="1" required="C" xmlTag="AIL.10" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Allow Substitution Code" id="AIL.11" loop="1" required="C" xmlTag="AIL.11" type="IS"/>
+    <CompositeElement name="Filler Status Code" id="AIL.12" loop="1" required="C" xmlTag="AIL.12" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+   </Segment>
+   <Segment id="APR" name="Appointment preferences segment" loop="1" required="C" xmlTag="APR">
+    <CompositeElement name="Time Selection Criteria" id="APR.1" loop="n" required="C" xmlTag="APR.1" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <CompositeElement name="Resource Selection Criteria" id="APR.2" loop="n" required="C" xmlTag="APR.2" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <CompositeElement name="Location Selection Criteria" id="APR.3" loop="n" required="C" xmlTag="APR.3" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <Element name="Slot Spacing Criteria" id="APR.4" loop="1" required="C" xmlTag="APR.4" type="NM"/>
+    <CompositeElement name="Filler Override Criteria" id="APR.5" loop="n" required="C" xmlTag="APR.5" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+   </Segment>
+   <Segment id="NTE" name="Notes and comments segment" loop="n" required="C" xmlTag="NTE">
+    <Element name="Set ID - NTE" id="NTE.1" loop="1" required="C" xmlTag="NTE.1" type="SI"/>
+    <Element name="Source of Comment" id="NTE.2" loop="1" required="C" xmlTag="NTE.2" type="ID"/>
+    <Element name="Comment" id="NTE.3" loop="n" required="C" xmlTag="NTE.3" type="FT"/>
+    <CompositeElement name="Comment Type" id="NTE.4" loop="1" required="C" xmlTag="NTE.4" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+   </Segment>
+  </SegmentGroup>
+  <SegmentGroup id="SRM_S01.GROUP.3" name="" loop="n" required="C" xmlTag="SRM_S01.GROUP.3">
+   <Segment id="AIP" name="Appointment information - personnel resource segment" loop="1" required="M" xmlTag="AIP">
+    <Element name="Set ID - AIP" id="AIP.1" loop="1" required="M" xmlTag="AIP.1" type="SI"/>
+    <Element name="Segment Action Code" id="AIP.2" loop="1" required="C" xmlTag="AIP.2" type="ID"/>
+    <CompositeElement name="Personnel Resource ID" id="AIP.3" loop="n" required="C" xmlTag="AIP.3" type="XCN">
+     <Element name="ID number (ST)" id="XCN.1" required="C" xmlTag="XCN.1" type="ST"/>
+     <Element name="family+last name" id="XCN.2" required="C" xmlTag="XCN.2" type="CM"/>
+     <Element name="given name" id="XCN.3" required="C" xmlTag="XCN.3" type="ST"/>
+     <Element name="middle initial or name" id="XCN.4" required="C" xmlTag="XCN.4" type="ST"/>
+     <Element name="suffix (e.g., JR or III)" id="XCN.5" required="C" xmlTag="XCN.5" type="ST"/>
+     <Element name="prefix (e.g., DR)" id="XCN.6" required="C" xmlTag="XCN.6" type="ST"/>
+     <Element name="degree (e.g., MD)" id="XCN.7" required="C" xmlTag="XCN.7" type="IS"/>
+     <Element name="source table" id="XCN.8" required="C" xmlTag="XCN.8" type="IS"/>
+     <Element name="assigning authority" id="XCN.9" required="C" xmlTag="XCN.9" type="HD">
+      <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+      <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+      <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+     </Element>
+     <Element name="name type code" id="XCN.10" required="C" xmlTag="XCN.10" type="ID"/>
+     <Element name="identifier check digit" id="XCN.11" required="C" xmlTag="XCN.11" type="ST"/>
+     <Element name="code identifying the check digit scheme employed" id="XCN.12" required="C" xmlTag="XCN.12" type="ID"/>
+     <Element name="identifier type code" id="XCN.13" required="C" xmlTag="XCN.13" type="IS"/>
+     <Element name="assigning facility" id="XCN.14" required="C" xmlTag="XCN.14" type="HD">
+      <SubElement name="namespace ID" id="HD.1" required="C" xmlTag="HD.1" type="IS"/>
+      <SubElement name="universal ID" id="HD.2" required="C" xmlTag="HD.2" type="ST"/>
+      <SubElement name="universal ID type" id="HD.3" required="C" xmlTag="HD.3" type="ID"/>
+     </Element>
+     <Element name="Name Representation code" id="XCN.15" required="C" xmlTag="XCN.15" type="ID"/>
+    </CompositeElement>
+    <CompositeElement name="Resource Role" id="AIP.4" loop="1" required="M" xmlTag="AIP.4" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <CompositeElement name="Resource Group" id="AIP.5" loop="1" required="C" xmlTag="AIP.5" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Start Date/Time" id="AIP.6" loop="1" required="C" xmlTag="AIP.6" type="TS"/>
+    <Element name="Start Date/Time Offset" id="AIP.7" loop="1" required="C" xmlTag="AIP.7" type="NM"/>
+    <CompositeElement name="Start Date/Time Offset Units" id="AIP.8" loop="1" required="C" xmlTag="AIP.8" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Duration" id="AIP.9" loop="1" required="C" xmlTag="AIP.9" type="NM"/>
+    <CompositeElement name="Duration Units" id="AIP.10" loop="1" required="C" xmlTag="AIP.10" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+    <Element name="Allow Substitution Code" id="AIP.11" loop="1" required="C" xmlTag="AIP.11" type="IS"/>
+    <CompositeElement name="Filler Status Code" id="AIP.12" loop="1" required="C" xmlTag="AIP.12" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+   </Segment>
+   <Segment id="APR" name="Appointment preferences segment" loop="1" required="C" xmlTag="APR">
+    <CompositeElement name="Time Selection Criteria" id="APR.1" loop="n" required="C" xmlTag="APR.1" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <CompositeElement name="Resource Selection Criteria" id="APR.2" loop="n" required="C" xmlTag="APR.2" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <CompositeElement name="Location Selection Criteria" id="APR.3" loop="n" required="C" xmlTag="APR.3" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+    <Element name="Slot Spacing Criteria" id="APR.4" loop="1" required="C" xmlTag="APR.4" type="NM"/>
+    <CompositeElement name="Filler Override Criteria" id="APR.5" loop="n" required="C" xmlTag="APR.5" type="SCV">
+     <Element name="parameter class" id="SCV.1" required="C" xmlTag="SCV.1" type="IS"/>
+     <Element name="parameter value" id="SCV.2" required="C" xmlTag="SCV.2" type="IS"/>
+    </CompositeElement>
+   </Segment>
+   <Segment id="NTE" name="Notes and comments segment" loop="n" required="C" xmlTag="NTE">
+    <Element name="Set ID - NTE" id="NTE.1" loop="1" required="C" xmlTag="NTE.1" type="SI"/>
+    <Element name="Source of Comment" id="NTE.2" loop="1" required="C" xmlTag="NTE.2" type="ID"/>
+    <Element name="Comment" id="NTE.3" loop="n" required="C" xmlTag="NTE.3" type="FT"/>
+    <CompositeElement name="Comment Type" id="NTE.4" loop="1" required="C" xmlTag="NTE.4" type="CE">
+     <Element name="identifier" id="CE.1" required="C" xmlTag="CE.1" type="ST"/>
+     <Element name="text" id="CE.2" required="C" xmlTag="CE.2" type="ST"/>
+     <Element name="name of coding system" id="CE.3" required="C" xmlTag="CE.3" type="ST"/>
+     <Element name="alternate identifier" id="CE.4" required="C" xmlTag="CE.4" type="ST"/>
+     <Element name="alternate text" id="CE.5" required="C" xmlTag="CE.5" type="ST"/>
+     <Element name="name of alternate coding system" id="CE.6" required="C" xmlTag="CE.6" type="ST"/>
+    </CompositeElement>
+   </Segment>
+  </SegmentGroup>
+ </SegmentGroup>
+</Message>

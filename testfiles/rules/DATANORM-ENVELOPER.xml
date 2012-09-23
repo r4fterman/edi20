@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Enveloper>
+   <Segment id="V" name="" xmlTag="InterchangeHeader" loop="1" required="C">
+      <Element id="01" name="" xmlTag="SatzartV" required="M" type="AN" posStart="1" posEnd="1" align="left"/>
+      <Element id="02" name="" xmlTag="Frei" required="C" type="AN" posStart="2" posEnd="2" align="left"/>
+      <Element id="03" name="Preisliste gueltig ab TTMMJJ" xmlTag="Date" required="C" type="N" posStart="3" posEnd="8" align="left"/>
+      <Element id="04" name="" xmlTag="InfoText1" required="C" type="AN" posStart="9" posEnd="48" align="left"/>
+      <Element id="05" name="" xmlTag="InfoText2" required="C" type="AN" posStart="49" posEnd="88" align="left"/>
+      <Element id="06" name="" xmlTag="InfoText3" required="C" type="AN" posStart="89" posEnd="123" align="left"/>
+      <Element id="07" name="" xmlTag="Version" required="C" type="AN" posStart="124" posEnd="125" align="left"/>
+      <Element id="08" name="" xmlTag="Waehrungskennzeichen" required="C" type="AN" posStart="126" posEnd="128" align="left"/>
+   </Segment>
+</Enveloper>
