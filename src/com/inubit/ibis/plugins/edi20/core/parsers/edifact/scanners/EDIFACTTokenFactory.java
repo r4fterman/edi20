@@ -12,6 +12,21 @@ public final class EDIFACTTokenFactory {
 
     private static EDIFACTTokenFactory fFactoryInstance;
 
+    /**
+     * @param edifactDelimiters
+     *            EDIFACT delimiters
+     * @return initialized factory instance
+     */
+    public static EDIFACTTokenFactory getInstance(final EDIFACTDelimiters edifactDelimiters) {
+        if (edifactDelimiters == null) {
+            throw new IllegalArgumentException("EDIFACT delimiters are not set!");
+        }
+        if (fFactoryInstance == null) {
+            fFactoryInstance = new EDIFACTTokenFactory(edifactDelimiters);
+        }
+        return fFactoryInstance;
+    }
+
     private EDIFACTDelimiters fDelimiter;
 
     private EDIFACTTokenFactory(final EDIFACTDelimiters delimiter) {
@@ -20,8 +35,10 @@ public final class EDIFACTTokenFactory {
 
     /**
      * @param tokenString
+     *            token string
      * @param tokenPosition
-     * @return
+     *            token position in document
+     * @return token instance initialized with the given information or an {@link UnknownDelimiterToken} if the given #tokenString is unknown
      */
     public IToken getToken(final String tokenString, final int tokenPosition) {
         if (StringUtils.isNotSet(tokenString)) {
@@ -37,16 +54,6 @@ public final class EDIFACTTokenFactory {
         default:
             return new UnknownDelimiterToken(tokenString, tokenPosition);
         }
-    }
-
-    public static EDIFACTTokenFactory getInstance(final EDIFACTDelimiters edifactDelimiter) {
-        if (edifactDelimiter == null) {
-            throw new IllegalArgumentException("EDIFACT delimiters are not set!");
-        }
-        if (fFactoryInstance == null) {
-            fFactoryInstance = new EDIFACTTokenFactory(edifactDelimiter);
-        }
-        return fFactoryInstance;
     }
 
 }

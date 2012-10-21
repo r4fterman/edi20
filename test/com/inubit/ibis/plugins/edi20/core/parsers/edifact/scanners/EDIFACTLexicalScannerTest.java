@@ -69,21 +69,37 @@ public class EDIFACTLexicalScannerTest {
 		EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuffer(ediStr), new EDIFACTDelimiters());
 		assertTrue(scanner.hasMoreTokens());
 		assertEquals("UNB", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("+", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("UNOB", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals(":", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("3", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("+", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("RUDOLF0", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("+", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("ELIX000", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("+", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("011015", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals(":", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("1628", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("+", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("1", scanner.nextToken().getToken());
+        assertTrue(scanner.hasMoreTokens());
 		assertEquals("'", scanner.nextToken().getToken());
+        assertFalse(scanner.hasMoreTokens());
 	}
 
 	@Test

@@ -14,7 +14,7 @@ import com.inubit.ibis.plugins.edi20.core.parsers.edifact.rules.EDIFACTEnveloper
 import com.inubit.ibis.plugins.edi20.core.parsers.edifact.rules.EDIFACTRuleTest;
 import com.inubit.ibis.plugins.edi20.core.parsers.edifact.scanners.EDIFACTLexicalScannerTest;
 import com.inubit.ibis.plugins.edi20.core.parsers.hl7.HL7RuleTest;
-import com.inubit.ibis.plugins.edi20.core.parsers.vda.VDARuleTest;
+import com.inubit.ibis.plugins.edi20.core.parsers.vda.rules.VDARuleTest;
 import com.inubit.ibis.plugins.edi20.core.parsers.x12.X12RuleTest;
 
 @RunWith(value = Suite.class)

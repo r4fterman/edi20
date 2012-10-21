@@ -50,6 +50,7 @@ public class EDIFACTParserTest {
 			EDIFACTParser parser = new EDIFACTParser(scanner, rule);
 			parser.parse();
 		} catch (InubitException e) {
+		    e.printStackTrace();
 			fail("Error while parsing! " + e.getMessage());
 		}
 	}

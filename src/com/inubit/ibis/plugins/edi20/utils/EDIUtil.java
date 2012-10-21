@@ -88,4 +88,8 @@ public final class EDIUtil {
 		}
 		return false;
 	}
+
+    public static boolean isVDA(final StringBuffer fTextInputDocument) {
+        return false;
+    }
 }
