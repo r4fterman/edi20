@@ -3,7 +3,7 @@ package com.inubit.ibis.plugins.edi20.core.parsers.edifact.scanners;
 import com.inubit.ibis.plugins.edi20.commons.scanners.IToken;
 import com.inubit.ibis.plugins.edi20.commons.scanners.UnknownDelimiterToken;
 import com.inubit.ibis.plugins.edi20.core.parsers.edifact.delimiters.EDIFACTDelimiters;
-import com.inubit.ibis.utils.StringUtils;
+import com.inubit.ibis.utils.StringUtil;
 
 /**
  * @author r4fter
@@ -41,7 +41,7 @@ public final class EDIFACTTokenFactory {
      * @return token instance initialized with the given information or an {@link UnknownDelimiterToken} if the given #tokenString is unknown
      */
     public IToken getToken(final String tokenString, final int tokenPosition) {
-        if (StringUtils.isNotSet(tokenString)) {
+        if (StringUtil.isNotSet(tokenString)) {
             throw new IllegalArgumentException("Token not set!");
         }
         switch (fDelimiter.getDelimiterIdentifier(tokenString)) {

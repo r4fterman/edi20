@@ -7,7 +7,7 @@ import com.inubit.ibis.plugins.edi20.commons.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.commons.rules.tokens.EDIRuleTokenFactory;
 import com.inubit.ibis.plugins.edi20.commons.rules.tokens.IRuleToken;
 import com.inubit.ibis.utils.InubitException;
-import com.inubit.ibis.utils.StringUtils;
+import com.inubit.ibis.utils.StringUtil;
 
 /**
  * Class handles EDI rule.
@@ -59,7 +59,7 @@ public abstract class AbstractEDIRule {
 	private boolean isSetRootElement(final Element rootElement) {
 		if (rootElement != null) {
 			String name = rootElement.getName();
-			if (StringUtils.isSet(name)) {
+			if (StringUtil.isSet(name)) {
 				return name.equals(getRootElementName());
 			}
 		}

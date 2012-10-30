@@ -4,7 +4,7 @@ import org.dom4j.Document;
 
 import com.inubit.ibis.plugins.edi20.commons.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.InubitException;
-import com.inubit.ibis.utils.StringUtils;
+import com.inubit.ibis.utils.StringUtil;
 
 /**
  * Generic parser reads input document and detects whether to parse document
@@ -33,7 +33,7 @@ public class GenericParser {
 	 * @throws InubitException
 	 */
 	public GenericParser(final String inputText) throws InubitException {
-		if (StringUtils.isNotSet(inputText)) {
+		if (StringUtil.isNotSet(inputText)) {
 			throw new InubitException("Input text not set correctly!");
 		}
 		fGenericParser = GenericParserFactory.getInstance(inputText);

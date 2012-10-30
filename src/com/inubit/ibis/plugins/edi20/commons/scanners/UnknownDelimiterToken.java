@@ -5,7 +5,7 @@ import com.inubit.ibis.plugins.edi20.commons.delimiters.IDelimiters;
 /**
  * @author r4fter
  */
-public class UnknownDelimiterToken extends Token {
+public class UnknownDelimiterToken extends EDIDocumentToken {
 
     /**
      * @param tokenString

@@ -8,12 +8,12 @@ import java.util.regex.Pattern;
  * @author r4fter
  * 
  */
-public final class StringUtils {
+public final class StringUtil {
 
 	/**
 	 * Private constructor.
 	 */
-	private StringUtils() {
+	private StringUtil() {
 		// do nothing
 	}
 

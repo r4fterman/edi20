@@ -1,7 +1,7 @@
 package com.inubit.ibis.plugins.edi20.core.parsers.vda.delimiters;
 
 import com.inubit.ibis.plugins.edi20.commons.delimiters.IDelimiters;
-import com.inubit.ibis.utils.StringUtils;
+import com.inubit.ibis.utils.StringUtil;
 
 /**
  * Class contains all VDA delimiters.
@@ -39,7 +39,7 @@ public class VDADelimiters implements IDelimiters {
 
     @Override
     public boolean containsDelimiter(final String delimiter) {
-        if (StringUtils.isSet(delimiter)) {
+        if (StringUtil.isSet(delimiter)) {
             if (isSegmentDelimiter(delimiter)) {
                 return true;
             }
@@ -53,7 +53,7 @@ public class VDADelimiters implements IDelimiters {
 
     @Override
     public int getDelimiterIdentifier(final String delimiter) {
-        if (StringUtils.isSet(delimiter)) {
+        if (StringUtil.isSet(delimiter)) {
             if (isSegmentDelimiter(delimiter)) {
                 return DELIMITER_SEGMENT;
             }

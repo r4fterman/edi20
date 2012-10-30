@@ -5,7 +5,7 @@ import com.inubit.ibis.plugins.edi20.commons.delimiters.IDelimiters;
 /**
  * @author r4fter
  */
-public class Token implements IToken {
+public class EDIDocumentToken implements IToken {
 
     private String fToken;
     private int fPosition;
@@ -17,7 +17,7 @@ public class Token implements IToken {
      * @param position
      *            position in document
      */
-    public Token(final String tokenString, final int position) {
+    public EDIDocumentToken(final String tokenString, final int position) {
         fToken = tokenString;
         fPosition = position;
     }
@@ -30,7 +30,7 @@ public class Token implements IToken {
      * @param delimiterIdentifier
      *            delimiter identifier
      */
-    public Token(final String tokenString, final int position, final int delimiterIdentifier) {
+    public EDIDocumentToken(final String tokenString, final int position, final int delimiterIdentifier) {
         fToken = tokenString;
         fPosition = position;
         fDelimiterType = delimiterIdentifier;

@@ -2,9 +2,8 @@ package com.inubit.ibis.plugins.edi20.core.parsers.vda.scanners;
 
 import com.inubit.ibis.plugins.edi20.commons.scanners.IToken;
 import com.inubit.ibis.plugins.edi20.commons.scanners.UnknownDelimiterToken;
-import com.inubit.ibis.plugins.edi20.core.parsers.edifact.scanners.ElementDelimiterToken;
 import com.inubit.ibis.plugins.edi20.core.parsers.vda.delimiters.VDADelimiters;
-import com.inubit.ibis.utils.StringUtils;
+import com.inubit.ibis.utils.StringUtil;
 
 /**
  * @author r4fter
@@ -44,12 +43,12 @@ public final class VDATokenFactory {
      * @return token instance initialized with the given information or an {@link UnknownDelimiterToken} if the given #tokenString is unknown
      */
     public IToken getToken(final String tokenString, final int tokenPosition) {
-        if (StringUtils.isNotSet(tokenString)) {
+        if (StringUtil.isNotSet(tokenString)) {
             throw new IllegalArgumentException("Token not set!");
         }
         switch (fDelimiters.getDelimiterIdentifier(tokenString)) {
         case VDADelimiters.DELIMITER_SEGMENT:
-            return new ElementDelimiterToken(tokenString, tokenPosition);
+            return new VDASegmentDelimiterToken(tokenString, tokenPosition);
         default:
             return new UnknownDelimiterToken(tokenString, tokenPosition);
         }

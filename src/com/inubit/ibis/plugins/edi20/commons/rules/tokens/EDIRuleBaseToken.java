@@ -6,7 +6,7 @@ import java.util.Vector;
 
 import org.dom4j.Element;
 
-import com.inubit.ibis.utils.StringUtils;
+import com.inubit.ibis.utils.StringUtil;
 
 /**
  * @author r4fter
@@ -230,8 +230,8 @@ public class EDIRuleBaseToken implements IRuleToken {
 		} else if (!fRuleElement.equals(other.fRuleElement)) {
 			return false;
 		}
-		if (StringUtils.isSet(getID())) {
-			if (StringUtils.isNotSet(other.getID())) {
+		if (StringUtil.isSet(getID())) {
+			if (StringUtil.isNotSet(other.getID())) {
 				return false;
 			}
 		} else if (!getID().equals(other.getID())) {

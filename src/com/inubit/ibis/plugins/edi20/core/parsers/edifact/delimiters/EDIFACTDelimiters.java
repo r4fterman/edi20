@@ -4,7 +4,7 @@
 package com.inubit.ibis.plugins.edi20.core.parsers.edifact.delimiters;
 
 import com.inubit.ibis.plugins.edi20.commons.delimiters.IDelimiters;
-import com.inubit.ibis.utils.StringUtils;
+import com.inubit.ibis.utils.StringUtil;
 
 /**
  * @author r4fter
@@ -36,7 +36,7 @@ public class EDIFACTDelimiters implements IDelimiters {
 	 * @param beginOfDocument
 	 */
 	public EDIFACTDelimiters(final String beginOfDocument) {
-		if (StringUtils.isNotSet(beginOfDocument)) {
+		if (StringUtil.isNotSet(beginOfDocument)) {
 			return;
 		}
 		// UNA:+.? '
@@ -63,7 +63,7 @@ public class EDIFACTDelimiters implements IDelimiters {
 
 	@Override
 	public boolean containsDelimiter(final String delimiter) {
-		if (StringUtils.isNotSet(delimiter)) {
+		if (StringUtil.isNotSet(delimiter)) {
 			return false;
 		}
 		if (isComplexElementDelimiter(delimiter)) {

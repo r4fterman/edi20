@@ -12,7 +12,7 @@ import com.inubit.ibis.plugins.edi20.core.parsers.edifact.rules.EDIFACTRule;
 import com.inubit.ibis.plugins.edi20.core.parsers.edifact.scanners.EDIFACTLexicalScanner;
 import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
 import com.inubit.ibis.utils.InubitException;
-import com.inubit.ibis.utils.StringUtils;
+import com.inubit.ibis.utils.StringUtil;
 import com.inubit.ibis.utils.XmlFileFilter;
 import com.inubit.ibis.utils.XmlUtils;
 
@@ -118,7 +118,7 @@ public final class EDIRuleFactory {
 
 	private void appendNextTokenToBuilder(EDIFACTLexicalScanner scanner, StringBuilder builder, boolean mandatory) throws InubitException {
 		IToken messageTypeToken = scanner.nextToken();
-		if (StringUtils.isSet(messageTypeToken.getToken())) {
+		if (StringUtil.isSet(messageTypeToken.getToken())) {
 			builder.append(messageTypeToken.getToken());
 			builder.append(DELIMITER_RULE_FILE_PART);
 		} else {
@@ -137,7 +137,7 @@ public final class EDIRuleFactory {
 	}
 
 	private AbstractEDIRule getRule(final boolean detectStandardRuleFileName) throws InubitException {
-		if (StringUtils.isNotSet(fTextInputDocument)) {
+		if (StringUtil.isNotSet(fTextInputDocument)) {
 			throw new InubitException("Unable to auto detect rule file an empty input document!");
 		}
 		if (EDIUtil.isEDIFACT(fTextInputDocument)) {
