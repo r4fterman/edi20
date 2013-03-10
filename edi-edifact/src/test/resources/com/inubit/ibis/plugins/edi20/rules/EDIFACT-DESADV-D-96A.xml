@@ -1,0 +1,1926 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Message agency="UN" layout="hwed" name="Despatch Advice Message" release="96A" standard="EDIFACT" type="DESADV"
+         version="D">
+    <Segment id="UNH" loop="1" name="Message Header" required="M" xmlTag="MessageHeader">
+        <Element id="0062" maxLength="14" minLength="1" name="Message reference number" required="M" type="AN"
+                 xmlTag="MessageReferenceNumber"/>
+        <CompositeElement id="S009" name="Message Identifier" required="M" xmlTag="MessageIdentifierCE">
+            <Element id="0065" maxLength="6" minLength="1" name="Message type identifier" required="M" type="AN"
+                     xmlTag="MessageTypeIdentifier"/>
+            <Element id="0052" maxLength="3" minLength="1" name="Message type version number" required="M" type="AN"
+                     xmlTag="MessageTypeVersionNumber"/>
+            <Element id="0054" maxLength="3" minLength="1" name="Message type release number" required="M" type="AN"
+                     xmlTag="MessageTypeReleaseNumber"/>
+            <Element id="0051" maxLength="2" minLength="1" name="Controlling agency" required="M" type="AN"
+                     xmlTag="ControllingAgency"/>
+            <Element id="0057" maxLength="6" minLength="1" name="Association assigned code" required="C" type="AN"
+                     xmlTag="AssociationAssignedCode"/>
+        </CompositeElement>
+        <Element id="0068" maxLength="35" minLength="1" name="Common access reference" required="C" type="AN"
+                 xmlTag="CommonAccessReference"/>
+        <CompositeElement id="S010" name="Status of the Transfer" required="C" xmlTag="StatusOfTheTransferCE">
+            <Element id="0070" maxLength="2" minLength="1" name="Sequence message transfer number" required="M" type="N"
+                     xmlTag="SequenceMessageTransferNumber"/>
+            <Element id="0073" maxLength="1" minLength="1" name="First/last sequence message transfer indication"
+                     required="C" type="AN" xmlTag="FirstLastSequenceMessageTransferIndication"/>
+        </CompositeElement>
+    </Segment>
+    <Segment id="BGM" loop="1" name="Beginning of Message" required="M" xmlTag="BeginningOfMessage">
+        <CompositeElement id="C002" name="Document/Message Name" required="C" xmlTag="DocumentMessageNameCE">
+            <Element id="1001" maxLength="3" minLength="1" name="Document/message name, coded" required="C" type="AN"
+                     xmlTag="DocumentMessageName"/>
+            <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                     xmlTag="CodeListQualifier"/>
+            <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                     type="AN" xmlTag="CodeListResponsibleAgency"/>
+            <Element id="1000" maxLength="35" minLength="1" name="Document/message name" required="C" type="AN"
+                     xmlTag="DocumentMessageName"/>
+        </CompositeElement>
+        <Element id="1004" maxLength="35" minLength="1" name="Document/message number" required="C" type="AN"
+                 xmlTag="DocumentMessageNumber"/>
+        <Element id="1225" maxLength="3" minLength="1" name="Message function, coded" required="C" type="AN"
+                 xmlTag="MessageFunction"/>
+        <Element id="4343" maxLength="3" minLength="1" name="Response type, coded" required="C" type="AN"
+                 xmlTag="ResponseType"/>
+    </Segment>
+    <Segment id="DTM" loop="10" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+        <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+            <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M" type="AN"
+                     xmlTag="DateTimePeriodQualifier"/>
+            <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                     xmlTag="DateTimePeriod"/>
+            <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier" required="C"
+                     type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+        </CompositeElement>
+    </Segment>
+    <Segment id="ALI" loop="5" name="Additional Information" required="C" xmlTag="AdditionalInformation">
+        <Element id="3239" maxLength="3" minLength="1" name="Country of origin, coded" required="C" type="AN"
+                 xmlTag="CountryOfOrigin"/>
+        <Element id="9213" maxLength="3" minLength="1" name="Type of duty regime, coded" required="C" type="AN"
+                 xmlTag="TypeOfDutyRegime"/>
+        <Element id="4183" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                 xmlTag="SpecialConditions"/>
+        <Element id="4183_2" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                 xmlTag="SpecialConditions_2"/>
+        <Element id="4183_3" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                 xmlTag="SpecialConditions_3"/>
+        <Element id="4183_4" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                 xmlTag="SpecialConditions_4"/>
+        <Element id="4183_5" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                 xmlTag="SpecialConditions_5"/>
+    </Segment>
+    <Segment id="MEA" loop="5" name="Measurements" required="C" xmlTag="Measure ments">
+        <Element id="6311" maxLength="3" minLength="1" name="Measurement application qualifier" required="M" type="AN"
+                 xmlTag="MeasurementApplicationQualifier"/>
+        <CompositeElement id="C502" name="Measurement Details" required="C" xmlTag="MeasurementDetailsCE">
+            <Element id="6313" maxLength="3" minLength="1" name="Measurement dimension, coded" required="C" type="AN"
+                     xmlTag="MeasurementDimension"/>
+            <Element id="6321" maxLength="3" minLength="1" name="Measurement significance, coded" required="C" type="AN"
+                     xmlTag="MeasurementSignificance"/>
+            <Element id="6155" maxLength="3" minLength="1" name="Measurement attribute, coded" required="C" type="AN"
+                     xmlTag="MeasurementAttribute"/>
+            <Element id="6154" maxLength="70" minLength="1" name="Measurement attribute" required="C" type="AN"
+                     xmlTag="MeasurementAttribute"/>
+        </CompositeElement>
+        <CompositeElement id="C174" name="Value/Range" required="C" xmlTag="ValueRangeCE">
+            <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="M" type="AN"
+                     xmlTag="MeasureUnitQualifier"/>
+            <Element id="6314" maxLength="18" minLength="1" name="Measurement value" required="C" type="N"
+                     xmlTag="MeasurementValue"/>
+            <Element id="6162" maxLength="18" minLength="1" name="Range minimum" required="C" type="N"
+                     xmlTag="RangeMinimum"/>
+            <Element id="6152" maxLength="18" minLength="1" name="Range maximum" required="C" type="N"
+                     xmlTag="RangeMaximum"/>
+            <Element id="6432" maxLength="2" minLength="1" name="Significant digits" required="C" type="N"
+                     xmlTag="SignificantDigits"/>
+        </CompositeElement>
+        <Element id="7383" maxLength="3" minLength="1" name="Surface/layer indicator, coded" required="C" type="AN"
+                 xmlTag="SurfaceLayerIndicator"/>
+    </Segment>
+    <Segment id="MOA" loop="5" name="Monetary Amount" required="C" xmlTag="MonetaryAmount">
+        <CompositeElement id="C516" name="Monetary Amount" required="M" xmlTag="MonetaryAmountCE">
+            <Element id="5025" maxLength="3" minLength="1" name="Monetary amount type qualifier" required="M" type="AN"
+                     xmlTag="MonetaryAmountTypeQualifier"/>
+            <Element id="5004" maxLength="18" minLength="1" name="Monetary amount" required="C" type="N"
+                     xmlTag="MonetaryAmount"/>
+            <Element id="6345" maxLength="3" minLength="1" name="Currency, coded" required="C" type="AN"
+                     xmlTag="Currency"/>
+            <Element id="6343" maxLength="3" minLength="1" name="Currency qualifier" required="C" type="AN"
+                     xmlTag="CurrencyQualifier"/>
+            <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN" xmlTag="Status"/>
+        </CompositeElement>
+    </Segment>
+    <SegmentGroup id="Group_1" loop="10"
+                  name="A group of segments giving references where necessary, their dates relating to the whole message, e.g.  contract number."
+                  required="C" xmlTag="SegmentGroup_1">
+        <Segment id="RFF" loop="1" name="Reference" required="M" xmlTag="Reference">
+            <CompositeElement id="C506" name="Reference" required="M" xmlTag="ReferenceCE">
+                <Element id="1153" maxLength="3" minLength="1" name="Reference qualifier" required="M" type="AN"
+                         xmlTag="ReferenceQualifier"/>
+                <Element id="1154" maxLength="35" minLength="1" name="Reference number" required="C" type="AN"
+                         xmlTag="ReferenceNumber"/>
+                <Element id="1156" maxLength="6" minLength="1" name="Line number" required="C" type="AN"
+                         xmlTag="LineNumber"/>
+                <Element id="4000" maxLength="35" minLength="1" name="Reference version number" required="C" type="AN"
+                         xmlTag="ReferenceVersionNumber"/>
+            </CompositeElement>
+        </Segment>
+        <Segment id="DTM" loop="1" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+            <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+                <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M" type="AN"
+                         xmlTag="DateTimePeriodQualifier"/>
+                <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                         xmlTag="DateTimePeriod"/>
+                <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier" required="C"
+                         type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+            </CompositeElement>
+        </Segment>
+    </SegmentGroup>
+    <SegmentGroup id="Group_2" loop="10"
+                  name="A group of segments identifying names, addresses, locations, and required supporting documents relevant to the whole Despatch Advice."
+                  required="C" xmlTag="SegmentGroup_2">
+        <Segment id="NAD" loop="1" name="Name and Address" required="M" xmlTag="NameAndAddress">
+            <Element id="3035" maxLength="3" minLength="1" name="Party qualifier" required="M" type="AN"
+                     xmlTag="PartyQualifier"/>
+            <CompositeElement id="C082" name="Party Identification Details" required="C"
+                              xmlTag="PartyIdentificationDetailsCE">
+                <Element id="3039" maxLength="35" minLength="1" name="Party id. identification" required="M" type="AN"
+                         xmlTag="PartyIdIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+            </CompositeElement>
+            <CompositeElement id="C058" name="Name and Address" required="C" xmlTag="NameAndAddressCE">
+                <Element id="3124" maxLength="35" minLength="1" name="Name and address line" required="M" type="AN"
+                         xmlTag="NameAndAddressLine"/>
+                <Element id="3124_2" maxLength="35" minLength="1" name="Name and address line" required="C" type="AN"
+                         xmlTag="NameAndAddressLine_2"/>
+                <Element id="3124_3" maxLength="35" minLength="1" name="Name and address line" required="C" type="AN"
+                         xmlTag="NameAndAddressLine_3"/>
+                <Element id="3124_4" maxLength="35" minLength="1" name="Name and address line" required="C" type="AN"
+                         xmlTag="NameAndAddressLine_4"/>
+                <Element id="3124_5" maxLength="35" minLength="1" name="Name and address line" required="C" type="AN"
+                         xmlTag="NameAndAddressLine_5"/>
+            </CompositeElement>
+            <CompositeElement id="C080" name="Party Name" required="C" xmlTag="PartyNameCE">
+                <Element id="3036" maxLength="35" minLength="1" name="Party name" required="M" type="AN"
+                         xmlTag="PartyName"/>
+                <Element id="3036_2" maxLength="35" minLength="1" name="Party name" required="C" type="AN"
+                         xmlTag="PartyName_2"/>
+                <Element id="3036_3" maxLength="35" minLength="1" name="Party name" required="C" type="AN"
+                         xmlTag="PartyName_3"/>
+                <Element id="3036_4" maxLength="35" minLength="1" name="Party name" required="C" type="AN"
+                         xmlTag="PartyName_4"/>
+                <Element id="3036_5" maxLength="35" minLength="1" name="Party name" required="C" type="AN"
+                         xmlTag="PartyName_5"/>
+                <Element id="3045" maxLength="3" minLength="1" name="Party name format, coded" required="C" type="AN"
+                         xmlTag="PartyNameFormat"/>
+            </CompositeElement>
+            <CompositeElement id="C059" name="Street" required="C" xmlTag="StreetCE">
+                <Element id="3042" maxLength="35" minLength="1" name="Street and number/p.o. box" required="M" type="AN"
+                         xmlTag="StreetAndNumberPOBox"/>
+                <Element id="3042_2" maxLength="35" minLength="1" name="Street and number/p.o. box" required="C"
+                         type="AN" xmlTag="StreetAndNumberPOBox_2"/>
+                <Element id="3042_3" maxLength="35" minLength="1" name="Street and number/p.o. box" required="C"
+                         type="AN" xmlTag="StreetAndNumberPOBox_3"/>
+                <Element id="3042_4" maxLength="35" minLength="1" name="Street and number/p.o. box" required="C"
+                         type="AN" xmlTag="StreetAndNumberPOBox_4"/>
+            </CompositeElement>
+            <Element id="3164" maxLength="35" minLength="1" name="City name" required="C" type="AN" xmlTag="CityName"/>
+            <Element id="3229" maxLength="9" minLength="1" name="Country sub-entity identification" required="C"
+                     type="AN" xmlTag="CountrySubEntityIdentification"/>
+            <Element id="3251" maxLength="9" minLength="1" name="Postcode identification" required="C" type="AN"
+                     xmlTag="PostcodeIdentification"/>
+            <Element id="3207" maxLength="3" minLength="1" name="Country, coded" required="C" type="AN"
+                     xmlTag="Country"/>
+        </Segment>
+        <Segment id="LOC" loop="10" name="Place/Location Identification" required="C"
+                 xmlTag="PlaceLocationIdentification">
+            <Element id="3227" maxLength="3" minLength="1" name="Place/location qualifier" required="M" type="AN"
+                     xmlTag="PlaceLocationQualifier"/>
+            <CompositeElement id="C517" name="Location Identification" required="C" xmlTag="LocationIdentificationCE">
+                <Element id="3225" maxLength="25" minLength="1" name="Place/location identification" required="C"
+                         type="AN" xmlTag="PlaceLocationIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="3224" maxLength="70" minLength="1" name="Place/location" required="C" type="AN"
+                         xmlTag="PlaceLocation"/>
+            </CompositeElement>
+            <CompositeElement id="C519" name="Related Location One Identification" required="C"
+                              xmlTag="RelatedLocationOneIdentificationCE">
+                <Element id="3223" maxLength="25" minLength="1" name="Related place/location one identification"
+                         required="C" type="AN" xmlTag="RelatedPlaceLocationOneIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="3222" maxLength="70" minLength="1" name="Related place/location one" required="C" type="AN"
+                         xmlTag="RelatedPlaceLocationOne"/>
+            </CompositeElement>
+            <CompositeElement id="C553" name="Related Location Two Identification" required="C"
+                              xmlTag="RelatedLocationTwoIdentificationCE">
+                <Element id="3233" maxLength="25" minLength="1" name="Related place/location two identification"
+                         required="C" type="AN" xmlTag="RelatedPlaceLocationTwoIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="3232" maxLength="70" minLength="1" name="Related place/location two" required="C" type="AN"
+                         xmlTag="RelatedPlaceLocationTwo"/>
+            </CompositeElement>
+            <Element id="5479" maxLength="3" minLength="1" name="Relation, coded" required="C" type="AN"
+                     xmlTag="Relation"/>
+        </Segment>
+        <SegmentGroup id="Group_3" loop="10"
+                      name="A group of segments giving references relevant only to the specified party rather than the whole message."
+                      required="C" xmlTag="SegmentGroup_3">
+            <Segment id="RFF" loop="1" name="Reference" required="M" xmlTag="Reference">
+                <CompositeElement id="C506" name="Reference" required="M" xmlTag="ReferenceCE">
+                    <Element id="1153" maxLength="3" minLength="1" name="Reference qualifier" required="M" type="AN"
+                             xmlTag="ReferenceQualifier"/>
+                    <Element id="1154" maxLength="35" minLength="1" name="Reference number" required="C" type="AN"
+                             xmlTag="ReferenceNumber"/>
+                    <Element id="1156" maxLength="6" minLength="1" name="Line number" required="C" type="AN"
+                             xmlTag="LineNumber"/>
+                    <Element id="4000" maxLength="35" minLength="1" name="Reference version number" required="C"
+                             type="AN" xmlTag="ReferenceVersionNumber"/>
+                </CompositeElement>
+            </Segment>
+            <Segment id="DTM" loop="1" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+                <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+                    <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M"
+                             type="AN" xmlTag="DateTimePeriodQualifier"/>
+                    <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                             xmlTag="DateTimePeriod"/>
+                    <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier" required="C"
+                             type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+                </CompositeElement>
+            </Segment>
+        </SegmentGroup>
+        <SegmentGroup id="Group_4" loop="10"
+                      name="A group of segments to identify the people, functions, departments and appropriate numbers to whom communication should be directed."
+                      required="C" xmlTag="SegmentGroup_4">
+            <Segment id="CTA" loop="1" name="Contact Information" required="M" xmlTag="ContactInformation">
+                <Element id="3139" maxLength="3" minLength="1" name="Contact function, coded" required="C" type="AN"
+                         xmlTag="ContactFunction"/>
+                <CompositeElement id="C056" name="Department or Employee Details" required="C"
+                                  xmlTag="DepartmentOrEmployeeDetailsCE">
+                    <Element id="3413" maxLength="17" minLength="1" name="Department or employee identification"
+                             required="C" type="AN" xmlTag="DepartmentOrEmployeeIdentification"/>
+                    <Element id="3412" maxLength="35" minLength="1" name="Department or employee" required="C" type="AN"
+                             xmlTag="DepartmentOrEmployee"/>
+                </CompositeElement>
+            </Segment>
+            <Segment id="COM" loop="5" name="Communication Contact" required="C" xmlTag="CommunicationContact">
+                <CompositeElement id="C076" name="Communication Contact" required="M" xmlTag="CommunicationContactCE">
+                    <Element id="3148" maxLength="512" minLength="1" name="Communication number" required="M" type="AN"
+                             xmlTag="CommunicationNumber"/>
+                    <Element id="3155" maxLength="3" minLength="1" name="Communication channel qualifier" required="M"
+                             type="AN" xmlTag="CommunicationChannelQualifier"/>
+                </CompositeElement>
+            </Segment>
+        </SegmentGroup>
+    </SegmentGroup>
+    <SegmentGroup id="Group_5" loop="10" name="A group of segments indicating terms of delivery." required="C"
+                  xmlTag="SegmentGroup_5">
+        <Segment id="TOD" loop="1" name="Terms of Delivery or Transport" required="M"
+                 xmlTag="TermsOfDeliveryOrTransport">
+            <Element id="4055" maxLength="3" minLength="1" name="Terms of delivery or transport function, coded"
+                     required="C" type="AN" xmlTag="TermsOfDeliveryOrTransportFunction"/>
+            <Element id="4215" maxLength="3" minLength="1" name="Transport charges method of payment, coded"
+                     required="C" type="AN" xmlTag="TransportChargesMethodOfPayment"/>
+            <CompositeElement id="C100" name="Terms of Delivery or Transport" required="C"
+                              xmlTag="TermsOfDeliveryOrTransportCE">
+                <Element id="4053" maxLength="3" minLength="1" name="Terms of delivery or transport, coded" required="C"
+                         type="AN" xmlTag="TermsOfDeliveryOrTransport"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="4052" maxLength="70" minLength="1" name="Terms of delivery or transport" required="C"
+                         type="AN" xmlTag="TermsOfDeliveryOrTransport"/>
+                <Element id="4052_2" maxLength="70" minLength="1" name="Terms of delivery or transport" required="C"
+                         type="AN" xmlTag="TermsOfDeliveryOrTransport_2"/>
+            </CompositeElement>
+        </Segment>
+        <Segment id="LOC" loop="5" name="Place/Location Identification" required="C"
+                 xmlTag="PlaceLocationIdentification">
+            <Element id="3227" maxLength="3" minLength="1" name="Place/location qualifier" required="M" type="AN"
+                     xmlTag="PlaceLocationQualifier"/>
+            <CompositeElement id="C517" name="Location Identification" required="C" xmlTag="LocationIdentificationCE">
+                <Element id="3225" maxLength="25" minLength="1" name="Place/location identification" required="C"
+                         type="AN" xmlTag="PlaceLocationIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="3224" maxLength="70" minLength="1" name="Place/location" required="C" type="AN"
+                         xmlTag="PlaceLocation"/>
+            </CompositeElement>
+            <CompositeElement id="C519" name="Related Location One Identification" required="C"
+                              xmlTag="RelatedLocationOneIdentificationCE">
+                <Element id="3223" maxLength="25" minLength="1" name="Related place/location one identification"
+                         required="C" type="AN" xmlTag="RelatedPlaceLocationOneIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="3222" maxLength="70" minLength="1" name="Related place/location one" required="C" type="AN"
+                         xmlTag="RelatedPlaceLocationOne"/>
+            </CompositeElement>
+            <CompositeElement id="C553" name="Related Location Two Identification" required="C"
+                              xmlTag="RelatedLocationTwoIdentificationCE">
+                <Element id="3233" maxLength="25" minLength="1" name="Related place/location two identification"
+                         required="C" type="AN" xmlTag="RelatedPlaceLocationTwoIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="3232" maxLength="70" minLength="1" name="Related place/location two" required="C" type="AN"
+                         xmlTag="RelatedPlaceLocationTwo"/>
+            </CompositeElement>
+            <Element id="5479" maxLength="3" minLength="1" name="Relation, coded" required="C" type="AN"
+                     xmlTag="Relation"/>
+        </Segment>
+        <Segment id="FTX" loop="5" name="Free Text" required="C" xmlTag="FreeText">
+            <Element id="4451" maxLength="3" minLength="1" name="Text subject qualifier" required="M" type="AN"
+                     xmlTag="TextSubjectQualifier"/>
+            <Element id="4453" maxLength="3" minLength="1" name="Text function, coded" required="C" type="AN"
+                     xmlTag="TextFunction"/>
+            <CompositeElement id="C107" name="Text Reference" required="C" xmlTag="TextReferenceCE">
+                <Element id="4441" maxLength="3" minLength="1" name="Free text, coded" required="M" type="AN"
+                         xmlTag="FreeText"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+            </CompositeElement>
+            <CompositeElement id="C108" name="Text Literal" required="C" xmlTag="TextLiteralCE">
+                <Element id="4440" maxLength="70" minLength="1" name="Free text" required="M" type="AN"
+                         xmlTag="FreeText"/>
+                <Element id="4440_2" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                         xmlTag="FreeText_2"/>
+                <Element id="4440_3" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                         xmlTag="FreeText_3"/>
+                <Element id="4440_4" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                         xmlTag="FreeText_4"/>
+                <Element id="4440_5" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                         xmlTag="FreeText_5"/>
+            </CompositeElement>
+            <Element id="3453" maxLength="3" minLength="1" name="Language, coded" required="C" type="AN"
+                     xmlTag="Language"/>
+        </Segment>
+    </SegmentGroup>
+    <SegmentGroup id="Group_6" loop="10"
+                  name="A group of segments specifying details of the mode and means of transport and date/time of departure and destination relevant to the whole despatch advice."
+                  required="C" xmlTag="SegmentGroup_6">
+        <Segment id="TDT" loop="1" name="Details of Transport" required="M" xmlTag="DetailsOfTransport">
+            <Element id="8051" maxLength="3" minLength="1" name="Transport stage qualifier" required="M" type="AN"
+                     xmlTag="TransportStageQualifier"/>
+            <Element id="8028" maxLength="17" minLength="1" name="Conveyance reference number" required="C" type="AN"
+                     xmlTag="ConveyanceReferenceNumber"/>
+            <CompositeElement id="C220" name="Mode of Transport" required="C" xmlTag="ModeOfTransportCE">
+                <Element id="8067" maxLength="3" minLength="1" name="Mode of transport, coded" required="C" type="AN"
+                         xmlTag="ModeOfTransport"/>
+                <Element id="8066" maxLength="17" minLength="1" name="Mode of transport" required="C" type="AN"
+                         xmlTag="ModeOfTransport"/>
+            </CompositeElement>
+            <CompositeElement id="C228" name="Transport Means" required="C" xmlTag="TransportMeansCE">
+                <Element id="8179" maxLength="8" minLength="1" name="Type of means of transport identification"
+                         required="C" type="AN" xmlTag="TypeOfMeansOfTransportIdentification"/>
+                <Element id="8178" maxLength="17" minLength="1" name="Type of means of transport" required="C" type="AN"
+                         xmlTag="TypeOfMeansOfTransport"/>
+            </CompositeElement>
+            <CompositeElement id="C040" name="Carrier" required="C" xmlTag="CarrierCE">
+                <Element id="3127" maxLength="17" minLength="1" name="Carrier identification" required="C" type="AN"
+                         xmlTag="CarrierIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="3128" maxLength="35" minLength="1" name="Carrier name" required="C" type="AN"
+                         xmlTag="CarrierName"/>
+            </CompositeElement>
+            <Element id="8101" maxLength="3" minLength="1" name="Transit direction, coded" required="C" type="AN"
+                     xmlTag="TransitDirection"/>
+            <CompositeElement id="C401" name="Excess Transportation Information" required="C"
+                              xmlTag="ExcessTransportationInformationCE">
+                <Element id="8457" maxLength="3" minLength="1" name="Excess transportation reason, coded" required="M"
+                         type="AN" xmlTag="ExcessTransportationReason"/>
+                <Element id="8459" maxLength="3" minLength="1" name="Excess transportation responsibility, coded"
+                         required="M" type="AN" xmlTag="ExcessTransportationResponsibility"/>
+                <Element id="7130" maxLength="17" minLength="1" name="Customer authorization number" required="C"
+                         type="AN" xmlTag="CustomerAuthorizationNumber"/>
+            </CompositeElement>
+            <CompositeElement id="C222" name="Transport Identification" required="C" xmlTag="TransportIdentificationCE">
+                <Element id="8213" maxLength="9" minLength="1" name="Id. of means of transport identification"
+                         required="C" type="AN" xmlTag="IdOfMeansOfTransportIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="8212" maxLength="35" minLength="1" name="Id. of the means of transport" required="C"
+                         type="AN" xmlTag="IdOfTheMeansOfTransport"/>
+                <Element id="8453" maxLength="3" minLength="1" name="Nationality of means of transport, coded"
+                         required="C" type="AN" xmlTag="NationalityOfMeansOfTransport"/>
+            </CompositeElement>
+            <Element id="8281" maxLength="3" minLength="1" name="Transport ownership, coded" required="C" type="AN"
+                     xmlTag="TransportOwnership"/>
+        </Segment>
+        <Segment id="PCD" loop="6" name="Percentage Details" required="C" xmlTag="PercentageDetails">
+            <CompositeElement id="C501" name="Percentage Details" required="M" xmlTag="PercentageDetailsCE">
+                <Element id="5245" maxLength="3" minLength="1" name="Percentage qualifier" required="M" type="AN"
+                         xmlTag="PercentageQualifier"/>
+                <Element id="5482" maxLength="10" minLength="1" name="Percentage" required="C" type="N"
+                         xmlTag="Percentage"/>
+                <Element id="5249" maxLength="3" minLength="1" name="Percentage basis, coded" required="C" type="AN"
+                         xmlTag="PercentageBasis"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+            </CompositeElement>
+        </Segment>
+        <SegmentGroup id="Group_7" loop="10"
+                      name="A group of segments giving the location and date/time information relative to the transportation."
+                      required="C" xmlTag="SegmentGroup_7">
+            <Segment id="LOC" loop="1" name="Place/Location Identification" required="M"
+                     xmlTag="PlaceLocationIdentification">
+                <Element id="3227" maxLength="3" minLength="1" name="Place/location qualifier" required="M" type="AN"
+                         xmlTag="PlaceLocationQualifier"/>
+                <CompositeElement id="C517" name="Location Identification" required="C"
+                                  xmlTag="LocationIdentificationCE">
+                    <Element id="3225" maxLength="25" minLength="1" name="Place/location identification" required="C"
+                             type="AN" xmlTag="PlaceLocationIdentification"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    <Element id="3224" maxLength="70" minLength="1" name="Place/location" required="C" type="AN"
+                             xmlTag="PlaceLocation"/>
+                </CompositeElement>
+                <CompositeElement id="C519" name="Related Location One Identification" required="C"
+                                  xmlTag="RelatedLocationOneIdentificationCE">
+                    <Element id="3223" maxLength="25" minLength="1" name="Related place/location one identification"
+                             required="C" type="AN" xmlTag="RelatedPlaceLocationOneIdentification"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    <Element id="3222" maxLength="70" minLength="1" name="Related place/location one" required="C"
+                             type="AN" xmlTag="RelatedPlaceLocationOne"/>
+                </CompositeElement>
+                <CompositeElement id="C553" name="Related Location Two Identification" required="C"
+                                  xmlTag="RelatedLocationTwoIdentificationCE">
+                    <Element id="3233" maxLength="25" minLength="1" name="Related place/location two identification"
+                             required="C" type="AN" xmlTag="RelatedPlaceLocationTwoIdentification"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    <Element id="3232" maxLength="70" minLength="1" name="Related place/location two" required="C"
+                             type="AN" xmlTag="RelatedPlaceLocationTwo"/>
+                </CompositeElement>
+                <Element id="5479" maxLength="3" minLength="1" name="Relation, coded" required="C" type="AN"
+                         xmlTag="Relation"/>
+            </Segment>
+            <Segment id="DTM" loop="10" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+                <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+                    <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M"
+                             type="AN" xmlTag="DateTimePeriodQualifier"/>
+                    <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                             xmlTag="DateTimePeriod"/>
+                    <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier" required="C"
+                             type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+                </CompositeElement>
+            </Segment>
+        </SegmentGroup>
+    </SegmentGroup>
+    <SegmentGroup id="Group_8" loop="10"
+                  name="A group of segments providing information relative to the equipment used for the transportation of goods relevant to the whole despatch advice."
+                  required="C" xmlTag="SegmentGroup_8">
+        <Segment id="EQD" loop="1" name="Equipment Details" required="M" xmlTag="EquipmentDetails">
+            <Element id="8053" maxLength="3" minLength="1" name="Equipment qualifier" required="M" type="AN"
+                     xmlTag="EquipmentQualifier"/>
+            <CompositeElement id="C237" name="Equipment Identification" required="C" xmlTag="EquipmentIdentificationCE">
+                <Element id="8260" maxLength="17" minLength="1" name="Equipment identification number" required="C"
+                         type="AN" xmlTag="EquipmentIdentificationNumber"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="3207" maxLength="3" minLength="1" name="Country, coded" required="C" type="AN"
+                         xmlTag="Country"/>
+            </CompositeElement>
+            <CompositeElement id="C224" name="Equipment Size and Type" required="C" xmlTag="EquipmentSizeAndTypeCE">
+                <Element id="8155" maxLength="10" minLength="1" name="Equipment size and type identification"
+                         required="C" type="AN" xmlTag="EquipmentSizeAndTypeIdentification"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="8154" maxLength="35" minLength="1" name="Equipment size and type" required="C" type="AN"
+                         xmlTag="EquipmentSizeAndType"/>
+            </CompositeElement>
+            <Element id="8077" maxLength="3" minLength="1" name="Equipment supplier, coded" required="C" type="AN"
+                     xmlTag="EquipmentSupplier"/>
+            <Element id="8249" maxLength="3" minLength="1" name="Equipment status, coded" required="C" type="AN"
+                     xmlTag="EquipmentStatus"/>
+            <Element id="8169" maxLength="3" minLength="1" name="Full/empty indicator, coded" required="C" type="AN"
+                     xmlTag="FullEmptyIndicator"/>
+        </Segment>
+        <Segment id="MEA" loop="5" name="Measurements" required="C" xmlTag="Measurements">
+            <Element id="6311" maxLength="3" minLength="1" name="Measurement application qualifier" required="M"
+                     type="AN" xmlTag="MeasurementApplicationQualifier"/>
+            <CompositeElement id="C502" name="Measurement Details" required="C" xmlTag="MeasurementDetailsCE">
+                <Element id="6313" maxLength="3" minLength="1" name="Measurement dimension, coded" required="C"
+                         type="AN" xmlTag="MeasurementDimension"/>
+                <Element id="6321" maxLength="3" minLength="1" name="Measurement significance, coded" required="C"
+                         type="AN" xmlTag="MeasurementSignificance"/>
+                <Element id="6155" maxLength="3" minLength="1" name="Measurement attribute, coded" required="C"
+                         type="AN" xmlTag="MeasurementAttribute"/>
+                <Element id="6154" maxLength="70" minLength="1" name="Measurement attribute" required="C" type="AN"
+                         xmlTag="MeasurementAttribute"/>
+            </CompositeElement>
+            <CompositeElement id="C174" name="Value/Range" required="C" xmlTag="ValueRangeCE">
+                <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="M" type="AN"
+                         xmlTag="MeasureUnitQualifier"/>
+                <Element id="6314" maxLength="18" minLength="1" name="Measurement value" required="C" type="N"
+                         xmlTag="MeasurementValue"/>
+                <Element id="6162" maxLength="18" minLength="1" name="Range minimum" required="C" type="N"
+                         xmlTag="RangeMinimum"/>
+                <Element id="6152" maxLength="18" minLength="1" name="Range maximum" required="C" type="N"
+                         xmlTag="RangeMaximum"/>
+                <Element id="6432" maxLength="2" minLength="1" name="Significant digits" required="C" type="N"
+                         xmlTag="SignificantDigits"/>
+            </CompositeElement>
+            <Element id="7383" maxLength="3" minLength="1" name="Surface/layer indicator, coded" required="C" type="AN"
+                     xmlTag="SurfaceLayerIndicator"/>
+        </Segment>
+        <Segment id="SEL" loop="25" name="Seal Number" required="C" xmlTag="SealNumber">
+            <Element id="9308" maxLength="10" minLength="1" name="Seal number" required="M" type="AN"
+                     xmlTag="SealNumber"/>
+            <CompositeElement id="C215" name="Seal Issuer" required="C" xmlTag="SealIssuerCE">
+                <Element id="9303" maxLength="3" minLength="1" name="Sealing party, coded" required="C" type="AN"
+                         xmlTag="SealingParty"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="9302" maxLength="35" minLength="1" name="Sealing party" required="C" type="AN"
+                         xmlTag="SealingParty"/>
+            </CompositeElement>
+            <Element id="4517" maxLength="3" minLength="1" name="Seal condition, coded" required="C" type="AN"
+                     xmlTag="SealCondition"/>
+        </Segment>
+        <Segment id="EQA" loop="5" name="Attached Equipment" required="C" xmlTag="AttachedEquipment">
+            <Element id="8053" maxLength="3" minLength="1" name="Equipment qualifier" required="M" type="AN"
+                     xmlTag="EquipmentQualifier"/>
+            <CompositeElement id="C237" name="Equipment Identification" required="C" xmlTag="EquipmentIdentificationCE">
+                <Element id="8260" maxLength="17" minLength="1" name="Equipment identification number" required="C"
+                         type="AN" xmlTag="EquipmentIdentificationNumber"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+                <Element id="3207" maxLength="3" minLength="1" name="Country, coded" required="C" type="AN"
+                         xmlTag="Country"/>
+            </CompositeElement>
+        </Segment>
+        <SegmentGroup id="Group_9" loop="10"
+                      name="A group of segments providing information on hazardous goods and their handling."
+                      required="C" xmlTag="SegmentGroup_9">
+            <Segment id="HAN" loop="1" name="Handling Instructions" required="M" xmlTag="HandlingInstructions">
+                <CompositeElement id="C524" name="Handling Instructions" required="C" xmlTag="HandlingInstructionsCE">
+                    <Element id="4079" maxLength="3" minLength="1" name="Handling instructions, coded" required="C"
+                             type="AN" xmlTag="HandlingInstructions"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    <Element id="4078" maxLength="70" minLength="1" name="Handling instructions" required="C" type="AN"
+                             xmlTag="HandlingInstructions"/>
+                </CompositeElement>
+                <CompositeElement id="C218" name="Hazardous Material" required="C" xmlTag="HazardousMaterialCE">
+                    <Element id="7419" maxLength="4" minLength="1" name="Hazardous material class code, identification"
+                             required="C" type="AN" xmlTag="HazardousMaterialClassCode"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                </CompositeElement>
+            </Segment>
+            <Segment id="FTX" loop="10" name="Free Text" required="C" xmlTag="FreeText">
+                <Element id="4451" maxLength="3" minLength="1" name="Text subject qualifier" required="M" type="AN"
+                         xmlTag="TextSubjectQualifier"/>
+                <Element id="4453" maxLength="3" minLength="1" name="Text function, coded" required="C" type="AN"
+                         xmlTag="TextFunction"/>
+                <CompositeElement id="C107" name="Text Reference" required="C" xmlTag="TextReferenceCE">
+                    <Element id="4441" maxLength="3" minLength="1" name="Free text, coded" required="M" type="AN"
+                             xmlTag="FreeText"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                </CompositeElement>
+                <CompositeElement id="C108" name="Text Literal" required="C" xmlTag="TextLiteralCE">
+                    <Element id="4440" maxLength="70" minLength="1" name="Free text" required="M" type="AN"
+                             xmlTag="FreeText"/>
+                    <Element id="4440_2" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                             xmlTag="FreeText_2"/>
+                    <Element id="4440_3" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                             xmlTag="FreeText_3"/>
+                    <Element id="4440_4" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                             xmlTag="FreeText_4"/>
+                    <Element id="4440_5" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                             xmlTag="FreeText_5"/>
+                </CompositeElement>
+                <Element id="3453" maxLength="3" minLength="1" name="Language, coded" required="C" type="AN"
+                         xmlTag="Language"/>
+            </Segment>
+        </SegmentGroup>
+    </SegmentGroup>
+    <SegmentGroup id="Group_10" loop="9999"
+                  name="A group of segments providing details of all package levels and of the individual despatched items contained in the consignment.  This segment group provides the capability to give the hierarchical packing relationships.  The group defines a logical top-down order structure.  The lowest level package information of the hierarchy is followed by the detail product information."
+                  required="C" xmlTag="SegmentGroup_10">
+        <Segment id="CPS" loop="1" name="Consignment Packing Sequence" required="M" xmlTag="ConsignmentPackingSequence">
+            <Element id="7164" maxLength="12" minLength="1" name="Hierarchical id. number" required="M" type="AN"
+                     xmlTag="HierarchicalIdNumber"/>
+            <Element id="7166" maxLength="12" minLength="1" name="Hierarchical parent id." required="C" type="AN"
+                     xmlTag="HierarchicalParentId"/>
+            <Element id="7075" maxLength="3" minLength="1" name="Packaging level, coded" required="C" type="AN"
+                     xmlTag="PackagingLevel"/>
+        </Segment>
+        <Segment id="FTX" loop="5" name="Free Text" required="C" xmlTag="FreeText">
+            <Element id="4451" maxLength="3" minLength="1" name="Text subject qualifier" required="M" type="AN"
+                     xmlTag="TextSubjectQualifier"/>
+            <Element id="4453" maxLength="3" minLength="1" name="Text function, coded" required="C" type="AN"
+                     xmlTag="TextFunction"/>
+            <CompositeElement id="C107" name="Text Reference" required="C" xmlTag="TextReferenceCE">
+                <Element id="4441" maxLength="3" minLength="1" name="Free text, coded" required="M" type="AN"
+                         xmlTag="FreeText"/>
+                <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                         xmlTag="CodeListQualifier"/>
+                <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded" required="C"
+                         type="AN" xmlTag="CodeListResponsibleAgency"/>
+            </CompositeElement>
+            <CompositeElement id="C108" name="Text Literal" required="C" xmlTag="TextLiteralCE">
+                <Element id="4440" maxLength="70" minLength="1" name="Free text" required="M" type="AN"
+                         xmlTag="FreeText"/>
+                <Element id="4440_2" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                         xmlTag="FreeText_2"/>
+                <Element id="4440_3" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                         xmlTag="FreeText_3"/>
+                <Element id="4440_4" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                         xmlTag="FreeText_4"/>
+                <Element id="4440_5" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                         xmlTag="FreeText_5"/>
+            </CompositeElement>
+            <Element id="3453" maxLength="3" minLength="1" name="Language, coded" required="C" type="AN"
+                     xmlTag="Language"/>
+        </Segment>
+        <SegmentGroup id="Group_11" loop="9999"
+                      name="A group of segments identifying packaging, physical dimensions, marks and numbers, quantities, date and time information, handling information and information about packing at this level."
+                      required="C" xmlTag="SegmentGroup_11">
+            <Segment id="PAC" loop="1" name="Package" required="M" xmlTag="Package">
+                <Element id="7224" maxLength="8" minLength="1" name="Number of packages" required="C" type="N"
+                         xmlTag="NumberOfPackages"/>
+                <CompositeElement id="C531" name="Packaging Details" required="C" xmlTag="PackagingDetailsCE">
+                    <Element id="7075" maxLength="3" minLength="1" name="Packaging level, coded" required="C" type="AN"
+                             xmlTag="PackagingLevel"/>
+                    <Element id="7233" maxLength="3" minLength="1" name="Packaging related information, coded"
+                             required="C" type="AN" xmlTag="PackagingRelatedInformation"/>
+                    <Element id="7073" maxLength="3" minLength="1" name="Packaging terms and conditions, coded"
+                             required="C" type="AN" xmlTag="PackagingTermsAndConditions"/>
+                </CompositeElement>
+                <CompositeElement id="C202" name="Package Type" required="C" xmlTag="PackageTypeCE">
+                    <Element id="7065" maxLength="17" minLength="1" name="Type of packages identification" required="C"
+                             type="AN" xmlTag="TypeOfPackagesIdentification"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    <Element id="7064" maxLength="35" minLength="1" name="Type of packages" required="C" type="AN"
+                             xmlTag="TypeOfPackages"/>
+                </CompositeElement>
+                <CompositeElement id="C402" name="Package Type Identification" required="C"
+                                  xmlTag="PackageTypeIdentificationCE">
+                    <Element id="7077" maxLength="3" minLength="1" name="Item description type, coded" required="M"
+                             type="AN" xmlTag="ItemDescriptionType"/>
+                    <Element id="7064" maxLength="35" minLength="1" name="Type of packages" required="M" type="AN"
+                             xmlTag="TypeOfPackages"/>
+                    <Element id="7143" maxLength="3" minLength="1" name="Item number type, coded" required="C" type="AN"
+                             xmlTag="ItemNumberType"/>
+                    <Element id="7064_2" maxLength="35" minLength="1" name="Type of packages" required="C" type="AN"
+                             xmlTag="TypeOfPackages_2"/>
+                    <Element id="7143_2" maxLength="3" minLength="1" name="Item number type, coded" required="C"
+                             type="AN" xmlTag="ItemNumberType_2"/>
+                </CompositeElement>
+                <CompositeElement id="C532" name="Returnable Package Details" required="C"
+                                  xmlTag="ReturnablePackageDetailsCE">
+                    <Element id="8395" maxLength="3" minLength="1"
+                             name="Returnable package freight payment responsibility, coded" required="C" type="AN"
+                             xmlTag="ReturnablePackageFreightPaymentResponsibility"/>
+                    <Element id="8393" maxLength="3" minLength="1" name="Returnable package load contents, coded"
+                             required="C" type="AN" xmlTag="ReturnablePackageLoadContents"/>
+                </CompositeElement>
+            </Segment>
+            <Segment id="MEA" loop="10" name="Measurements" required="C" xmlTag="Measurements">
+                <Element id="6311" maxLength="3" minLength="1" name="Measurement application qualifier" required="M"
+                         type="AN" xmlTag="MeasurementApplicationQualifier"/>
+                <CompositeElement id="C502" name="Measurement Details" required="C" xmlTag="MeasurementDetailsCE">
+                    <Element id="6313" maxLength="3" minLength="1" name="Measurement dimension, coded" required="C"
+                             type="AN" xmlTag="MeasurementDimension"/>
+                    <Element id="6321" maxLength="3" minLength="1" name="Measurement significance, coded" required="C"
+                             type="AN" xmlTag="MeasurementSignificance"/>
+                    <Element id="6155" maxLength="3" minLength="1" name="Measurement attribute, coded" required="C"
+                             type="AN" xmlTag="MeasurementAttribute"/>
+                    <Element id="6154" maxLength="70" minLength="1" name="Measurement attribute" required="C" type="AN"
+                             xmlTag="MeasurementAttribute"/>
+                </CompositeElement>
+                <CompositeElement id="C174" name="Value/Range" required="C" xmlTag="ValueRangeCE">
+                    <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="M" type="AN"
+                             xmlTag="MeasureUnitQualifier"/>
+                    <Element id="6314" maxLength="18" minLength="1" name="Measurement value" required="C" type="N"
+                             xmlTag="MeasurementValue"/>
+                    <Element id="6162" maxLength="18" minLength="1" name="Range minimum" required="C" type="N"
+                             xmlTag="RangeMinimum"/>
+                    <Element id="6152" maxLength="18" minLength="1" name="Range maximum" required="C" type="N"
+                             xmlTag="RangeMaximum"/>
+                    <Element id="6432" maxLength="2" minLength="1" name="Significant digits" required="C" type="N"
+                             xmlTag="SignificantDigits"/>
+                </CompositeElement>
+                <Element id="7383" maxLength="3" minLength="1" name="Surface/layer indicator, coded" required="C"
+                         type="AN" xmlTag="SurfaceLayerIndicator"/>
+            </Segment>
+            <Segment id="QTY" loop="10" name="Quantity" required="C" xmlTag="Quantity">
+                <CompositeElement id="C186" name="Quantity Details" required="M" xmlTag="QuantityDetailsCE">
+                    <Element id="6063" maxLength="3" minLength="1" name="Quantity qualifier" required="M" type="AN"
+                             xmlTag="QuantityQualifier"/>
+                    <Element id="6060" maxLength="15" minLength="1" name="Quantity" required="M" type="N"
+                             xmlTag="Quantity"/>
+                    <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="C" type="AN"
+                             xmlTag="MeasureUnitQualifier"/>
+                </CompositeElement>
+            </Segment>
+            <SegmentGroup id="Group_12" loop="10"
+                          name="A group of segments providing information on hazardous goods and handling." required="C"
+                          xmlTag="SegmentGroup_12">
+                <Segment id="HAN" loop="1" name="Handling Instructions" required="M" xmlTag="HandlingInstructions">
+                    <CompositeElement id="C524" name="Handling Instructions" required="C"
+                                      xmlTag="HandlingInstructionsCE">
+                        <Element id="4079" maxLength="3" minLength="1" name="Handling instructions, coded" required="C"
+                                 type="AN" xmlTag="HandlingInstructions"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                        <Element id="4078" maxLength="70" minLength="1" name="Handling instructions" required="C"
+                                 type="AN" xmlTag="HandlingInstructions"/>
+                    </CompositeElement>
+                    <CompositeElement id="C218" name="Hazardous Material" required="C" xmlTag="HazardousMaterialCE">
+                        <Element id="7419" maxLength="4" minLength="1"
+                                 name="Hazardous material class code, identification" required="C" type="AN"
+                                 xmlTag="HazardousMaterialClassCode"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="FTX" loop="10" name="Free Text" required="C" xmlTag="FreeText">
+                    <Element id="4451" maxLength="3" minLength="1" name="Text subject qualifier" required="M" type="AN"
+                             xmlTag="TextSubjectQualifier"/>
+                    <Element id="4453" maxLength="3" minLength="1" name="Text function, coded" required="C" type="AN"
+                             xmlTag="TextFunction"/>
+                    <CompositeElement id="C107" name="Text Reference" required="C" xmlTag="TextReferenceCE">
+                        <Element id="4441" maxLength="3" minLength="1" name="Free text, coded" required="M" type="AN"
+                                 xmlTag="FreeText"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    </CompositeElement>
+                    <CompositeElement id="C108" name="Text Literal" required="C" xmlTag="TextLiteralCE">
+                        <Element id="4440" maxLength="70" minLength="1" name="Free text" required="M" type="AN"
+                                 xmlTag="FreeText"/>
+                        <Element id="4440_2" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                 xmlTag="FreeText_2"/>
+                        <Element id="4440_3" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                 xmlTag="FreeText_3"/>
+                        <Element id="4440_4" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                 xmlTag="FreeText_4"/>
+                        <Element id="4440_5" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                 xmlTag="FreeText_5"/>
+                    </CompositeElement>
+                    <Element id="3453" maxLength="3" minLength="1" name="Language, coded" required="C" type="AN"
+                             xmlTag="Language"/>
+                </Segment>
+            </SegmentGroup>
+            <SegmentGroup id="Group_13" loop="1000"
+                          name="A group of segments specifying markings, labels, and packing numbers." required="C"
+                          xmlTag="SegmentGroup_13">
+                <Segment id="PCI" loop="1" name="Package Identification" required="M" xmlTag="PackageIdentification">
+                    <Element id="4233" maxLength="3" minLength="1" name="Marking instructions, coded" required="C"
+                             type="AN" xmlTag="MarkingInstructions"/>
+                    <CompositeElement id="C210" name="Marks &amp; Labels" required="C" xmlTag="MarksLabelsCE">
+                        <Element id="7102" maxLength="35" minLength="1" name="Shipping marks" required="M" type="AN"
+                                 xmlTag="ShippingMarks"/>
+                        <Element id="7102_2" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_2"/>
+                        <Element id="7102_3" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_3"/>
+                        <Element id="7102_4" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_4"/>
+                        <Element id="7102_5" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_5"/>
+                        <Element id="7102_6" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_6"/>
+                        <Element id="7102_7" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_7"/>
+                        <Element id="7102_8" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_8"/>
+                        <Element id="7102_9" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_9"/>
+                        <Element id="7102_10" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_10"/>
+                    </CompositeElement>
+                    <Element id="8275" maxLength="3" minLength="1" name="Container/package status, coded" required="C"
+                             type="AN" xmlTag="ContainerPackageStatus"/>
+                    <CompositeElement id="C827" name="Type of Marking" required="C" xmlTag="TypeOfMarkingCE">
+                        <Element id="7511" maxLength="3" minLength="1" name="Type of marking, coded" required="M"
+                                 type="AN" xmlTag="TypeOfMarking"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="RFF" loop="1" name="Reference" required="C" xmlTag="Reference">
+                    <CompositeElement id="C506" name="Reference" required="M" xmlTag="ReferenceCE">
+                        <Element id="1153" maxLength="3" minLength="1" name="Reference qualifier" required="M" type="AN"
+                                 xmlTag="ReferenceQualifier"/>
+                        <Element id="1154" maxLength="35" minLength="1" name="Reference number" required="C" type="AN"
+                                 xmlTag="ReferenceNumber"/>
+                        <Element id="1156" maxLength="6" minLength="1" name="Line number" required="C" type="AN"
+                                 xmlTag="LineNumber"/>
+                        <Element id="4000" maxLength="35" minLength="1" name="Reference version number" required="C"
+                                 type="AN" xmlTag="ReferenceVersionNumber"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="DTM" loop="5" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+                    <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+                        <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M"
+                                 type="AN" xmlTag="DateTimePeriodQualifier"/>
+                        <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                                 xmlTag="DateTimePeriod"/>
+                        <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier"
+                                 required="C" type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="GIR" loop="99" name="Related Identification Numbers" required="C"
+                         xmlTag="RelatedIdentificationNumbers">
+                    <Element id="7297" maxLength="3" minLength="1" name="Set identification qualifier" required="M"
+                             type="AN" xmlTag="SetIdentificationQualifier"/>
+                    <CompositeElement id="C206" name="Identification Number" required="M"
+                                      xmlTag="IdentificationNumberCE">
+                        <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                                 xmlTag="IdentityNumber"/>
+                        <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                                 type="AN" xmlTag="IdentityNumberQualifier"/>
+                        <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                                 xmlTag="Status"/>
+                    </CompositeElement>
+                    <CompositeElement id="C206_2" name="Identification Number" required="C"
+                                      xmlTag="IdentificationNumberCE_2">
+                        <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                                 xmlTag="IdentityNumber"/>
+                        <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                                 type="AN" xmlTag="IdentityNumberQualifier"/>
+                        <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                                 xmlTag="Status"/>
+                    </CompositeElement>
+                    <CompositeElement id="C206_3" name="Identification Number" required="C"
+                                      xmlTag="IdentificationNumberCE_3">
+                        <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                                 xmlTag="IdentityNumber"/>
+                        <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                                 type="AN" xmlTag="IdentityNumberQualifier"/>
+                        <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                                 xmlTag="Status"/>
+                    </CompositeElement>
+                    <CompositeElement id="C206_4" name="Identification Number" required="C"
+                                      xmlTag="IdentificationNumberCE_4">
+                        <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                                 xmlTag="IdentityNumber"/>
+                        <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                                 type="AN" xmlTag="IdentityNumberQualifier"/>
+                        <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                                 xmlTag="Status"/>
+                    </CompositeElement>
+                    <CompositeElement id="C206_5" name="Identification Number" required="C"
+                                      xmlTag="IdentificationNumberCE_5">
+                        <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                                 xmlTag="IdentityNumber"/>
+                        <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                                 type="AN" xmlTag="IdentityNumberQualifier"/>
+                        <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                                 xmlTag="Status"/>
+                    </CompositeElement>
+                </Segment>
+                <SegmentGroup id="Group_14" loop="99"
+                              name="A group of segments giving package identification numbers and, where relevant, delivery limitation information."
+                              required="C" xmlTag="SegmentGroup_14">
+                    <Segment id="GIN" loop="1" name="Goods Identity Number" required="M" xmlTag="GoodsIdentityNumber">
+                        <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="M"
+                                 type="AN" xmlTag="IdentityNumberQualifier"/>
+                        <CompositeElement id="C208" name="Identity Number Range" required="M"
+                                          xmlTag="IdentityNumberRangeCE">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_2" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_2">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_3" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_3">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_4" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_4">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_5" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_5">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                    </Segment>
+                    <Segment id="DLM" loop="10" name="Delivery Limitations" required="C" xmlTag="DeliveryLimitations">
+                        <Element id="4455" maxLength="3" minLength="1" name="Back order, coded" required="C" type="AN"
+                                 xmlTag="BackOrder"/>
+                        <CompositeElement id="C522" name="Instruction" required="C" xmlTag="InstructionCE">
+                            <Element id="4403" maxLength="3" minLength="1" name="Instruction qualifier" required="M"
+                                     type="AN" xmlTag="InstructionQualifier"/>
+                            <Element id="4401" maxLength="3" minLength="1" name="Instruction, coded" required="C"
+                                     type="AN" xmlTag="Instruction"/>
+                            <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C"
+                                     type="AN" xmlTag="CodeListQualifier"/>
+                            <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                     required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                            <Element id="4400" maxLength="35" minLength="1" name="Instruction" required="C" type="AN"
+                                     xmlTag="Instruction"/>
+                        </CompositeElement>
+                        <CompositeElement id="C214" name="Special Services Identification" required="C"
+                                          xmlTag="SpecialServicesIdentificationCE">
+                            <Element id="7161" maxLength="3" minLength="1" name="Special services, coded" required="C"
+                                     type="AN" xmlTag="SpecialServices"/>
+                            <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C"
+                                     type="AN" xmlTag="CodeListQualifier"/>
+                            <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                     required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                            <Element id="7160" maxLength="35" minLength="1" name="Special service" required="C"
+                                     type="AN" xmlTag="SpecialService"/>
+                            <Element id="7160_2" maxLength="35" minLength="1" name="Special service" required="C"
+                                     type="AN" xmlTag="SpecialService_2"/>
+                        </CompositeElement>
+                        <Element id="4457" maxLength="3" minLength="1" name="Product/service substitution, coded"
+                                 required="C" type="AN" xmlTag="ProductServiceSubstitution"/>
+                    </Segment>
+                </SegmentGroup>
+            </SegmentGroup>
+        </SegmentGroup>
+        <SegmentGroup id="Group_15" loop="9999"
+                      name="A group of segments providing details of the individual despatched items." required="C"
+                      xmlTag="SegmentGroup_15">
+            <Segment id="LIN" loop="1" name="Line Item" required="M" xmlTag="LineItem">
+                <Element id="1082" maxLength="6" minLength="1" name="Line item number" required="C" type="N"
+                         xmlTag="LineItemNumber"/>
+                <Element id="1229" maxLength="3" minLength="1" name="Action request/notification, coded" required="C"
+                         type="AN" xmlTag="ActionRequestNotification"/>
+                <CompositeElement id="C212" name="Item Number Identification" required="C"
+                                  xmlTag="ItemNumberIdentificationCE">
+                    <Element id="7140" maxLength="35" minLength="1" name="Item number" required="C" type="AN"
+                             xmlTag="ItemNumber"/>
+                    <Element id="7143" maxLength="3" minLength="1" name="Item number type, coded" required="C" type="AN"
+                             xmlTag="ItemNumberType"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                </CompositeElement>
+                <CompositeElement id="C829" name="Sub-line Information" required="C" xmlTag="SubLineInformationCE">
+                    <Element id="5495" maxLength="3" minLength="1" name="Sub-line indicator, coded" required="C"
+                             type="AN" xmlTag="SubLineIndicator"/>
+                    <Element id="1082" maxLength="6" minLength="1" name="Line item number" required="C" type="N"
+                             xmlTag="LineItemNumber"/>
+                </CompositeElement>
+                <Element id="1222" maxLength="2" minLength="1" name="Configuration level" required="C" type="N"
+                         xmlTag="ConfigurationLevel"/>
+                <Element id="7083" maxLength="3" minLength="1" name="Configuration, coded" required="C" type="AN"
+                         xmlTag="Configuration"/>
+            </Segment>
+            <Segment id="PIA" loop="10" name="Additional Product Id" required="C" xmlTag="AdditionalProductId">
+                <Element id="4347" maxLength="3" minLength="1" name="Product id. function qualifier" required="M"
+                         type="AN" xmlTag="ProductIdFunctionQualifier"/>
+                <CompositeElement id="C212" name="Item Number Identification" required="M"
+                                  xmlTag="ItemNumberIdentificationCE">
+                    <Element id="7140" maxLength="35" minLength="1" name="Item number" required="C" type="AN"
+                             xmlTag="ItemNumber"/>
+                    <Element id="7143" maxLength="3" minLength="1" name="Item number type, coded" required="C" type="AN"
+                             xmlTag="ItemNumberType"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                </CompositeElement>
+                <CompositeElement id="C212_2" name="Item Number Identification" required="C"
+                                  xmlTag="ItemNumberIdentificationCE_2">
+                    <Element id="7140" maxLength="35" minLength="1" name="Item number" required="C" type="AN"
+                             xmlTag="ItemNumber"/>
+                    <Element id="7143" maxLength="3" minLength="1" name="Item number type, coded" required="C" type="AN"
+                             xmlTag="ItemNumberType"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                </CompositeElement>
+                <CompositeElement id="C212_3" name="Item Number Identification" required="C"
+                                  xmlTag="ItemNumberIdentificationCE_3">
+                    <Element id="7140" maxLength="35" minLength="1" name="Item number" required="C" type="AN"
+                             xmlTag="ItemNumber"/>
+                    <Element id="7143" maxLength="3" minLength="1" name="Item number type, coded" required="C" type="AN"
+                             xmlTag="ItemNumberType"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                </CompositeElement>
+                <CompositeElement id="C212_4" name="Item Number Identification" required="C"
+                                  xmlTag="ItemNumberIdentificationCE_4">
+                    <Element id="7140" maxLength="35" minLength="1" name="Item number" required="C" type="AN"
+                             xmlTag="ItemNumber"/>
+                    <Element id="7143" maxLength="3" minLength="1" name="Item number type, coded" required="C" type="AN"
+                             xmlTag="ItemNumberType"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                </CompositeElement>
+                <CompositeElement id="C212_5" name="Item Number Identification" required="C"
+                                  xmlTag="ItemNumberIdentificationCE_5">
+                    <Element id="7140" maxLength="35" minLength="1" name="Item number" required="C" type="AN"
+                             xmlTag="ItemNumber"/>
+                    <Element id="7143" maxLength="3" minLength="1" name="Item number type, coded" required="C" type="AN"
+                             xmlTag="ItemNumberType"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                </CompositeElement>
+            </Segment>
+            <Segment id="IMD" loop="25" name="Item Description" required="C" xmlTag="ItemDescription">
+                <Element id="7077" maxLength="3" minLength="1" name="Item description type, coded" required="C"
+                         type="AN" xmlTag="ItemDescriptionType"/>
+                <Element id="7081" maxLength="3" minLength="1" name="Item characteristic, coded" required="C" type="AN"
+                         xmlTag="ItemCharacteristic"/>
+                <CompositeElement id="C273" name="Item Description" required="C" xmlTag="ItemDescriptionCE">
+                    <Element id="7009" maxLength="17" minLength="1" name="Item description identification" required="C"
+                             type="AN" xmlTag="ItemDescriptionIdentification"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    <Element id="7008" maxLength="35" minLength="1" name="Item description" required="C" type="AN"
+                             xmlTag="ItemDescription"/>
+                    <Element id="7008_2" maxLength="35" minLength="1" name="Item description" required="C" type="AN"
+                             xmlTag="ItemDescription_2"/>
+                    <Element id="3453" maxLength="3" minLength="1" name="Language, coded" required="C" type="AN"
+                             xmlTag="Language"/>
+                </CompositeElement>
+                <Element id="7383" maxLength="3" minLength="1" name="Surface/layer indicator, coded" required="C"
+                         type="AN" xmlTag="SurfaceLayerIndicator"/>
+            </Segment>
+            <Segment id="MEA" loop="10" name="Measurements" required="C" xmlTag="Measurements">
+                <Element id="6311" maxLength="3" minLength="1" name="Measurement application qualifier" required="M"
+                         type="AN" xmlTag="MeasurementApplicationQualifier"/>
+                <CompositeElement id="C502" name="Measurement Details" required="C" xmlTag="MeasurementDetailsCE">
+                    <Element id="6313" maxLength="3" minLength="1" name="Measurement dimension, coded" required="C"
+                             type="AN" xmlTag="MeasurementDimension"/>
+                    <Element id="6321" maxLength="3" minLength="1" name="Measurement significance, coded" required="C"
+                             type="AN" xmlTag="MeasurementSignificance"/>
+                    <Element id="6155" maxLength="3" minLength="1" name="Measurement attribute, coded" required="C"
+                             type="AN" xmlTag="MeasurementAttribute"/>
+                    <Element id="6154" maxLength="70" minLength="1" name="Measurement attribute" required="C" type="AN"
+                             xmlTag="MeasurementAttribute"/>
+                </CompositeElement>
+                <CompositeElement id="C174" name="Value/Range" required="C" xmlTag="ValueRangeCE">
+                    <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="M" type="AN"
+                             xmlTag="MeasureUnitQualifier"/>
+                    <Element id="6314" maxLength="18" minLength="1" name="Measurement value" required="C" type="N"
+                             xmlTag="MeasurementValue"/>
+                    <Element id="6162" maxLength="18" minLength="1" name="Range minimum" required="C" type="N"
+                             xmlTag="RangeMinimum"/>
+                    <Element id="6152" maxLength="18" minLength="1" name="Range maximum" required="C" type="N"
+                             xmlTag="RangeMaximum"/>
+                    <Element id="6432" maxLength="2" minLength="1" name="Significant digits" required="C" type="N"
+                             xmlTag="SignificantDigits"/>
+                </CompositeElement>
+                <Element id="7383" maxLength="3" minLength="1" name="Surface/layer indicator, coded" required="C"
+                         type="AN" xmlTag="SurfaceLayerIndicator"/>
+            </Segment>
+            <Segment id="QTY" loop="10" name="Quantity" required="C" xmlTag="Quantity">
+                <CompositeElement id="C186" name="Quantity Details" required="M" xmlTag="QuantityDetailsCE">
+                    <Element id="6063" maxLength="3" minLength="1" name="Quantity qualifier" required="M" type="AN"
+                             xmlTag="QuantityQualifier"/>
+                    <Element id="6060" maxLength="15" minLength="1" name="Quantity" required="M" type="N"
+                             xmlTag="Quantity"/>
+                    <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="C" type="AN"
+                             xmlTag="MeasureUnitQualifier"/>
+                </CompositeElement>
+            </Segment>
+            <Segment id="ALI" loop="10" name="Additional Information" required="C" xmlTag="AdditionalInformation">
+                <Element id="3239" maxLength="3" minLength="1" name="Country of origin, coded" required="C" type="AN"
+                         xmlTag="CountryOfOrigin"/>
+                <Element id="9213" maxLength="3" minLength="1" name="Type of duty regime, coded" required="C" type="AN"
+                         xmlTag="TypeOfDutyRegime"/>
+                <Element id="4183" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                         xmlTag="SpecialConditions"/>
+                <Element id="4183_2" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                         xmlTag="SpecialConditions_2"/>
+                <Element id="4183_3" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                         xmlTag="SpecialConditions_3"/>
+                <Element id="4183_4" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                         xmlTag="SpecialConditions_4"/>
+                <Element id="4183_5" maxLength="3" minLength="1" name="Special conditions, coded" required="C" type="AN"
+                         xmlTag="SpecialConditions_5"/>
+            </Segment>
+            <Segment id="GIN" loop="100" name="Goods Identity Number" required="C" xmlTag="GoodsIdentityNumber">
+                <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="M" type="AN"
+                         xmlTag="IdentityNumberQualifier"/>
+                <CompositeElement id="C208" name="Identity Number Range" required="M" xmlTag="IdentityNumberRangeCE">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C" type="AN"
+                             xmlTag="IdentityNumber_2"/>
+                </CompositeElement>
+                <CompositeElement id="C208_2" name="Identity Number Range" required="C"
+                                  xmlTag="IdentityNumberRangeCE_2">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C" type="AN"
+                             xmlTag="IdentityNumber_2"/>
+                </CompositeElement>
+                <CompositeElement id="C208_3" name="Identity Number Range" required="C"
+                                  xmlTag="IdentityNumberRangeCE_3">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C" type="AN"
+                             xmlTag="IdentityNumber_2"/>
+                </CompositeElement>
+                <CompositeElement id="C208_4" name="Identity Number Range" required="C"
+                                  xmlTag="IdentityNumberRangeCE_4">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C" type="AN"
+                             xmlTag="IdentityNumber_2"/>
+                </CompositeElement>
+                <CompositeElement id="C208_5" name="Identity Number Range" required="C"
+                                  xmlTag="IdentityNumberRangeCE_5">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C" type="AN"
+                             xmlTag="IdentityNumber_2"/>
+                </CompositeElement>
+            </Segment>
+            <Segment id="GIR" loop="100" name="Related Identification Numbers" required="C"
+                     xmlTag="RelatedIdentificationNumbers">
+                <Element id="7297" maxLength="3" minLength="1" name="Set identification qualifier" required="M"
+                         type="AN" xmlTag="SetIdentificationQualifier"/>
+                <CompositeElement id="C206" name="Identification Number" required="M" xmlTag="IdentificationNumberCE">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                             type="AN" xmlTag="IdentityNumberQualifier"/>
+                    <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                             xmlTag="Status"/>
+                </CompositeElement>
+                <CompositeElement id="C206_2" name="Identification Number" required="C"
+                                  xmlTag="IdentificationNumberCE_2">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                             type="AN" xmlTag="IdentityNumberQualifier"/>
+                    <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                             xmlTag="Status"/>
+                </CompositeElement>
+                <CompositeElement id="C206_3" name="Identification Number" required="C"
+                                  xmlTag="IdentificationNumberCE_3">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                             type="AN" xmlTag="IdentityNumberQualifier"/>
+                    <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                             xmlTag="Status"/>
+                </CompositeElement>
+                <CompositeElement id="C206_4" name="Identification Number" required="C"
+                                  xmlTag="IdentificationNumberCE_4">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                             type="AN" xmlTag="IdentityNumberQualifier"/>
+                    <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                             xmlTag="Status"/>
+                </CompositeElement>
+                <CompositeElement id="C206_5" name="Identification Number" required="C"
+                                  xmlTag="IdentificationNumberCE_5">
+                    <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M" type="AN"
+                             xmlTag="IdentityNumber"/>
+                    <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="C"
+                             type="AN" xmlTag="IdentityNumberQualifier"/>
+                    <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                             xmlTag="Status"/>
+                </CompositeElement>
+            </Segment>
+            <Segment id="DLM" loop="100" name="Delivery Limitations" required="C" xmlTag="DeliveryLimitations">
+                <Element id="4455" maxLength="3" minLength="1" name="Back order, coded" required="C" type="AN"
+                         xmlTag="BackOrder"/>
+                <CompositeElement id="C522" name="Instruction" required="C" xmlTag="InstructionCE">
+                    <Element id="4403" maxLength="3" minLength="1" name="Instruction qualifier" required="M" type="AN"
+                             xmlTag="InstructionQualifier"/>
+                    <Element id="4401" maxLength="3" minLength="1" name="Instruction, coded" required="C" type="AN"
+                             xmlTag="Instruction"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    <Element id="4400" maxLength="35" minLength="1" name="Instruction" required="C" type="AN"
+                             xmlTag="Instruction"/>
+                </CompositeElement>
+                <CompositeElement id="C214" name="Special Services Identification" required="C"
+                                  xmlTag="SpecialServicesIdentificationCE">
+                    <Element id="7161" maxLength="3" minLength="1" name="Special services, coded" required="C" type="AN"
+                             xmlTag="SpecialServices"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    <Element id="7160" maxLength="35" minLength="1" name="Special service" required="C" type="AN"
+                             xmlTag="SpecialService"/>
+                    <Element id="7160_2" maxLength="35" minLength="1" name="Special service" required="C" type="AN"
+                             xmlTag="SpecialService_2"/>
+                </CompositeElement>
+                <Element id="4457" maxLength="3" minLength="1" name="Product/service substitution, coded" required="C"
+                         type="AN" xmlTag="ProductServiceSubstitution"/>
+            </Segment>
+            <Segment id="DTM" loop="5" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+                <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+                    <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M"
+                             type="AN" xmlTag="DateTimePeriodQualifier"/>
+                    <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                             xmlTag="DateTimePeriod"/>
+                    <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier" required="C"
+                             type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+                </CompositeElement>
+            </Segment>
+            <Segment id="FTX" loop="5" name="Free Text" required="C" xmlTag="FreeText">
+                <Element id="4451" maxLength="3" minLength="1" name="Text subject qualifier" required="M" type="AN"
+                         xmlTag="TextSubjectQualifier"/>
+                <Element id="4453" maxLength="3" minLength="1" name="Text function, coded" required="C" type="AN"
+                         xmlTag="TextFunction"/>
+                <CompositeElement id="C107" name="Text Reference" required="C" xmlTag="TextReferenceCE">
+                    <Element id="4441" maxLength="3" minLength="1" name="Free text, coded" required="M" type="AN"
+                             xmlTag="FreeText"/>
+                    <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                             xmlTag="CodeListQualifier"/>
+                    <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                             required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                </CompositeElement>
+                <CompositeElement id="C108" name="Text Literal" required="C" xmlTag="TextLiteralCE">
+                    <Element id="4440" maxLength="70" minLength="1" name="Free text" required="M" type="AN"
+                             xmlTag="FreeText"/>
+                    <Element id="4440_2" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                             xmlTag="FreeText_2"/>
+                    <Element id="4440_3" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                             xmlTag="FreeText_3"/>
+                    <Element id="4440_4" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                             xmlTag="FreeText_4"/>
+                    <Element id="4440_5" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                             xmlTag="FreeText_5"/>
+                </CompositeElement>
+                <Element id="3453" maxLength="3" minLength="1" name="Language, coded" required="C" type="AN"
+                         xmlTag="Language"/>
+            </Segment>
+            <Segment id="MOA" loop="5" name="Monetary Amount" required="C" xmlTag="MonetaryAmount">
+                <CompositeElement id="C516" name="Monetary Amount" required="M" xmlTag="MonetaryAmountCE">
+                    <Element id="5025" maxLength="3" minLength="1" name="Monetary amount type qualifier" required="M"
+                             type="AN" xmlTag="MonetaryAmountTypeQualifier"/>
+                    <Element id="5004" maxLength="18" minLength="1" name="Monetary amount" required="C" type="N"
+                             xmlTag="MonetaryAmount"/>
+                    <Element id="6345" maxLength="3" minLength="1" name="Currency, coded" required="C" type="AN"
+                             xmlTag="Currency"/>
+                    <Element id="6343" maxLength="3" minLength="1" name="Currency qualifier" required="C" type="AN"
+                             xmlTag="CurrencyQualifier"/>
+                    <Element id="4405" maxLength="3" minLength="1" name="Status, coded" required="C" type="AN"
+                             xmlTag="Status"/>
+                </CompositeElement>
+            </Segment>
+            <SegmentGroup id="Group_16" loop="10" name="A group of segments to give reference numbers and dates."
+                          required="C" xmlTag="SegmentGroup_16">
+                <Segment id="RFF" loop="1" name="Reference" required="M" xmlTag="Reference">
+                    <CompositeElement id="C506" name="Reference" required="M" xmlTag="ReferenceCE">
+                        <Element id="1153" maxLength="3" minLength="1" name="Reference qualifier" required="M" type="AN"
+                                 xmlTag="ReferenceQualifier"/>
+                        <Element id="1154" maxLength="35" minLength="1" name="Reference number" required="C" type="AN"
+                                 xmlTag="ReferenceNumber"/>
+                        <Element id="1156" maxLength="6" minLength="1" name="Line number" required="C" type="AN"
+                                 xmlTag="LineNumber"/>
+                        <Element id="4000" maxLength="35" minLength="1" name="Reference version number" required="C"
+                                 type="AN" xmlTag="ReferenceVersionNumber"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="DTM" loop="1" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+                    <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+                        <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M"
+                                 type="AN" xmlTag="DateTimePeriodQualifier"/>
+                        <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                                 xmlTag="DateTimePeriod"/>
+                        <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier"
+                                 required="C" type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+                    </CompositeElement>
+                </Segment>
+            </SegmentGroup>
+            <SegmentGroup id="Group_17" loop="10" name="A group of segments giving information about dangerous goods."
+                          required="C" xmlTag="SegmentGroup_17">
+                <Segment id="DGS" loop="1" name="Dangerous Goods" required="M" xmlTag="DangerousGoods">
+                    <Element id="8273" maxLength="3" minLength="1" name="Dangerous goods regulations, coded"
+                             required="C" type="AN" xmlTag="DangerousGoodsRegulations"/>
+                    <CompositeElement id="C205" name="Hazard Code" required="C" xmlTag="HazardCodeCE">
+                        <Element id="8351" maxLength="7" minLength="1" name="Hazard code identification" required="M"
+                                 type="AN" xmlTag="HazardCodeIdentification"/>
+                        <Element id="8078" maxLength="7" minLength="1" name="Hazard substance/item/page number"
+                                 required="C" type="AN" xmlTag="HazardSubstanceItemPageNumber"/>
+                        <Element id="8092" maxLength="10" minLength="1" name="Hazard code version number" required="C"
+                                 type="AN" xmlTag="HazardCodeVersionNumber"/>
+                    </CompositeElement>
+                    <CompositeElement id="C234" name="Undg Information" required="C" xmlTag="UndgInformationCE">
+                        <Element id="7124" maxLength="4" minLength="4" name="UNDG number" required="C" type="N"
+                                 xmlTag="UNDGNumber"/>
+                        <Element id="7088" maxLength="8" minLength="1" name="Dangerous goods flashpoint" required="C"
+                                 type="AN" xmlTag="DangerousGoodsFlashpoint"/>
+                    </CompositeElement>
+                    <CompositeElement id="C223" name="Dangerous Goods Shipment Flashpoint" required="C"
+                                      xmlTag="DangerousGoodsShipmentFlashpointCE">
+                        <Element id="7106" maxLength="3" minLength="3" name="Shipment flashpoint" required="C" type="N"
+                                 xmlTag="ShipmentFlashpoint"/>
+                        <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="C"
+                                 type="AN" xmlTag="MeasureUnitQualifier"/>
+                    </CompositeElement>
+                    <Element id="8339" maxLength="3" minLength="1" name="Packing group, coded" required="C" type="AN"
+                             xmlTag="PackingGroup"/>
+                    <Element id="8364" maxLength="6" minLength="1" name="EMS number" required="C" type="AN"
+                             xmlTag="EMSNumber"/>
+                    <Element id="8410" maxLength="4" minLength="1" name="MFAG" required="C" type="AN" xmlTag="MFAG"/>
+                    <Element id="8126" maxLength="10" minLength="1" name="Trem card number" required="C" type="AN"
+                             xmlTag="TremCardNumber"/>
+                    <CompositeElement id="C235" name="Hazard Identification" required="C"
+                                      xmlTag="HazardIdentificationCE">
+                        <Element id="8158" maxLength="4" minLength="1" name="Hazard identification number, upper part"
+                                 required="C" type="AN" xmlTag="HazardIdentificationNumber"/>
+                        <Element id="8186" maxLength="4" minLength="4"
+                                 name="Substance identification number, lower part" required="C" type="AN"
+                                 xmlTag="SubstanceIdentificationNumber"/>
+                    </CompositeElement>
+                    <CompositeElement id="C236" name="Dangerous Goods Label" required="C"
+                                      xmlTag="DangerousGoodsLabelCE">
+                        <Element id="8246" maxLength="4" minLength="1" name="Dangerous goods label marking" required="C"
+                                 type="AN" xmlTag="DangerousGoodsLabelMarking"/>
+                        <Element id="8246_2" maxLength="4" minLength="1" name="Dangerous goods label marking"
+                                 required="C" type="AN" xmlTag="DangerousGoodsLabelMarking_2"/>
+                        <Element id="8246_3" maxLength="4" minLength="1" name="Dangerous goods label marking"
+                                 required="C" type="AN" xmlTag="DangerousGoodsLabelMarking_3"/>
+                    </CompositeElement>
+                    <Element id="8255" maxLength="3" minLength="1" name="Packing instruction, coded" required="C"
+                             type="AN" xmlTag="PackingInstruction"/>
+                    <Element id="8325" maxLength="3" minLength="1" name="Category of means of transport, coded"
+                             required="C" type="AN" xmlTag="CategoryOfMeansOfTransport"/>
+                    <Element id="8211" maxLength="3" minLength="1" name="Permission for transport, coded" required="C"
+                             type="AN" xmlTag="PermissionForTransport"/>
+                </Segment>
+                <Segment id="QTY" loop="1" name="Quantity" required="C" xmlTag="Quantity">
+                    <CompositeElement id="C186" name="Quantity Details" required="M" xmlTag="QuantityDetailsCE">
+                        <Element id="6063" maxLength="3" minLength="1" name="Quantity qualifier" required="M" type="AN"
+                                 xmlTag="QuantityQualifier"/>
+                        <Element id="6060" maxLength="15" minLength="1" name="Quantity" required="M" type="N"
+                                 xmlTag="Quantity"/>
+                        <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="C"
+                                 type="AN" xmlTag="MeasureUnitQualifier"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="FTX" loop="5" name="Free Text" required="C" xmlTag="FreeText">
+                    <Element id="4451" maxLength="3" minLength="1" name="Text subject qualifier" required="M" type="AN"
+                             xmlTag="TextSubjectQualifier"/>
+                    <Element id="4453" maxLength="3" minLength="1" name="Text function, coded" required="C" type="AN"
+                             xmlTag="TextFunction"/>
+                    <CompositeElement id="C107" name="Text Reference" required="C" xmlTag="TextReferenceCE">
+                        <Element id="4441" maxLength="3" minLength="1" name="Free text, coded" required="M" type="AN"
+                                 xmlTag="FreeText"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    </CompositeElement>
+                    <CompositeElement id="C108" name="Text Literal" required="C" xmlTag="TextLiteralCE">
+                        <Element id="4440" maxLength="70" minLength="1" name="Free text" required="M" type="AN"
+                                 xmlTag="FreeText"/>
+                        <Element id="4440_2" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                 xmlTag="FreeText_2"/>
+                        <Element id="4440_3" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                 xmlTag="FreeText_3"/>
+                        <Element id="4440_4" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                 xmlTag="FreeText_4"/>
+                        <Element id="4440_5" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                 xmlTag="FreeText_5"/>
+                    </CompositeElement>
+                    <Element id="3453" maxLength="3" minLength="1" name="Language, coded" required="C" type="AN"
+                             xmlTag="Language"/>
+                </Segment>
+            </SegmentGroup>
+            <SegmentGroup id="Group_18" loop="100"
+                          name="A group of segments giving location information and where relevant, additional addresses, date and time, and quantities."
+                          required="C" xmlTag="SegmentGroup_18">
+                <Segment id="LOC" loop="1" name="Place/Location Identification" required="M"
+                         xmlTag="PlaceLocationIdentification">
+                    <Element id="3227" maxLength="3" minLength="1" name="Place/location qualifier" required="M"
+                             type="AN" xmlTag="PlaceLocationQualifier"/>
+                    <CompositeElement id="C517" name="Location Identification" required="C"
+                                      xmlTag="LocationIdentificationCE">
+                        <Element id="3225" maxLength="25" minLength="1" name="Place/location identification"
+                                 required="C" type="AN" xmlTag="PlaceLocationIdentification"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                        <Element id="3224" maxLength="70" minLength="1" name="Place/location" required="C" type="AN"
+                                 xmlTag="PlaceLocation"/>
+                    </CompositeElement>
+                    <CompositeElement id="C519" name="Related Location One Identification" required="C"
+                                      xmlTag="RelatedLocationOneIdentificationCE">
+                        <Element id="3223" maxLength="25" minLength="1" name="Related place/location one identification"
+                                 required="C" type="AN" xmlTag="RelatedPlaceLocationOneIdentification"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                        <Element id="3222" maxLength="70" minLength="1" name="Related place/location one" required="C"
+                                 type="AN" xmlTag="RelatedPlaceLocationOne"/>
+                    </CompositeElement>
+                    <CompositeElement id="C553" name="Related Location Two Identification" required="C"
+                                      xmlTag="RelatedLocationTwoIdentificationCE">
+                        <Element id="3233" maxLength="25" minLength="1" name="Related place/location two identification"
+                                 required="C" type="AN" xmlTag="RelatedPlaceLocationTwoIdentification"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                        <Element id="3232" maxLength="70" minLength="1" name="Related place/location two" required="C"
+                                 type="AN" xmlTag="RelatedPlaceLocationTwo"/>
+                    </CompositeElement>
+                    <Element id="5479" maxLength="3" minLength="1" name="Relation, coded" required="C" type="AN"
+                             xmlTag="Relation"/>
+                </Segment>
+                <Segment id="NAD" loop="1" name="Name and Address" required="C" xmlTag="NameAndAddress">
+                    <Element id="3035" maxLength="3" minLength="1" name="Party qualifier" required="M" type="AN"
+                             xmlTag="PartyQualifier"/>
+                    <CompositeElement id="C082" name="Party Identification Details" required="C"
+                                      xmlTag="PartyIdentificationDetailsCE">
+                        <Element id="3039" maxLength="35" minLength="1" name="Party id. identification" required="M"
+                                 type="AN" xmlTag="PartyIdIdentification"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    </CompositeElement>
+                    <CompositeElement id="C058" name="Name and Address" required="C" xmlTag="NameAndAddressCE">
+                        <Element id="3124" maxLength="35" minLength="1" name="Name and address line" required="M"
+                                 type="AN" xmlTag="NameAndAddressLine"/>
+                        <Element id="3124_2" maxLength="35" minLength="1" name="Name and address line" required="C"
+                                 type="AN" xmlTag="NameAndAddressLine_2"/>
+                        <Element id="3124_3" maxLength="35" minLength="1" name="Name and address line" required="C"
+                                 type="AN" xmlTag="NameAndAddressLine_3"/>
+                        <Element id="3124_4" maxLength="35" minLength="1" name="Name and address line" required="C"
+                                 type="AN" xmlTag="NameAndAddressLine_4"/>
+                        <Element id="3124_5" maxLength="35" minLength="1" name="Name and address line" required="C"
+                                 type="AN" xmlTag="NameAndAddressLine_5"/>
+                    </CompositeElement>
+                    <CompositeElement id="C080" name="Party Name" required="C" xmlTag="PartyNameCE">
+                        <Element id="3036" maxLength="35" minLength="1" name="Party name" required="M" type="AN"
+                                 xmlTag="PartyName"/>
+                        <Element id="3036_2" maxLength="35" minLength="1" name="Party name" required="C" type="AN"
+                                 xmlTag="PartyName_2"/>
+                        <Element id="3036_3" maxLength="35" minLength="1" name="Party name" required="C" type="AN"
+                                 xmlTag="PartyName_3"/>
+                        <Element id="3036_4" maxLength="35" minLength="1" name="Party name" required="C" type="AN"
+                                 xmlTag="PartyName_4"/>
+                        <Element id="3036_5" maxLength="35" minLength="1" name="Party name" required="C" type="AN"
+                                 xmlTag="PartyName_5"/>
+                        <Element id="3045" maxLength="3" minLength="1" name="Party name format, coded" required="C"
+                                 type="AN" xmlTag="PartyNameFormat"/>
+                    </CompositeElement>
+                    <CompositeElement id="C059" name="Street" required="C" xmlTag="StreetCE">
+                        <Element id="3042" maxLength="35" minLength="1" name="Street and number/p.o. box" required="M"
+                                 type="AN" xmlTag="StreetAndNumberPOBox"/>
+                        <Element id="3042_2" maxLength="35" minLength="1" name="Street and number/p.o. box" required="C"
+                                 type="AN" xmlTag="StreetAndNumberPOBox_2"/>
+                        <Element id="3042_3" maxLength="35" minLength="1" name="Street and number/p.o. box" required="C"
+                                 type="AN" xmlTag="StreetAndNumberPOBox_3"/>
+                        <Element id="3042_4" maxLength="35" minLength="1" name="Street and number/p.o. box" required="C"
+                                 type="AN" xmlTag="StreetAndNumberPOBox_4"/>
+                    </CompositeElement>
+                    <Element id="3164" maxLength="35" minLength="1" name="City name" required="C" type="AN"
+                             xmlTag="CityName"/>
+                    <Element id="3229" maxLength="9" minLength="1" name="Country sub-entity identification" required="C"
+                             type="AN" xmlTag="CountrySubEntityIdentification"/>
+                    <Element id="3251" maxLength="9" minLength="1" name="Postcode identification" required="C" type="AN"
+                             xmlTag="PostcodeIdentification"/>
+                    <Element id="3207" maxLength="3" minLength="1" name="Country, coded" required="C" type="AN"
+                             xmlTag="Country"/>
+                </Segment>
+                <Segment id="DTM" loop="1" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+                    <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+                        <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M"
+                                 type="AN" xmlTag="DateTimePeriodQualifier"/>
+                        <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                                 xmlTag="DateTimePeriod"/>
+                        <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier"
+                                 required="C" type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="QTY" loop="10" name="Quantity" required="C" xmlTag="Quantity">
+                    <CompositeElement id="C186" name="Quantity Details" required="M" xmlTag="QuantityDetailsCE">
+                        <Element id="6063" maxLength="3" minLength="1" name="Quantity qualifier" required="M" type="AN"
+                                 xmlTag="QuantityQualifier"/>
+                        <Element id="6060" maxLength="15" minLength="1" name="Quantity" required="M" type="N"
+                                 xmlTag="Quantity"/>
+                        <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="C"
+                                 type="AN" xmlTag="MeasureUnitQualifier"/>
+                    </CompositeElement>
+                </Segment>
+            </SegmentGroup>
+            <SegmentGroup id="Group_19" loop="1000"
+                          name="A group of segments indicating the split placement of packages or unpacked goods into equipment."
+                          required="C" xmlTag="SegmentGroup_19">
+                <Segment id="SGP" loop="1" name="Split Goods Placement" required="M" xmlTag="SplitGoodsPlacement">
+                    <CompositeElement id="C237" name="Equipment Identification" required="M"
+                                      xmlTag="EquipmentIdentificationCE">
+                        <Element id="8260" maxLength="17" minLength="1" name="Equipment identification number"
+                                 required="C" type="AN" xmlTag="EquipmentIdentificationNumber"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                        <Element id="3207" maxLength="3" minLength="1" name="Country, coded" required="C" type="AN"
+                                 xmlTag="Country"/>
+                    </CompositeElement>
+                    <Element id="7224" maxLength="8" minLength="1" name="Number of packages" required="C" type="N"
+                             xmlTag="NumberOfPackages"/>
+                </Segment>
+                <Segment id="QTY" loop="10" name="Quantity" required="C" xmlTag="Quantity">
+                    <CompositeElement id="C186" name="Quantity Details" required="M" xmlTag="QuantityDetailsCE">
+                        <Element id="6063" maxLength="3" minLength="1" name="Quantity qualifier" required="M" type="AN"
+                                 xmlTag="QuantityQualifier"/>
+                        <Element id="6060" maxLength="15" minLength="1" name="Quantity" required="M" type="N"
+                                 xmlTag="Quantity"/>
+                        <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="C"
+                                 type="AN" xmlTag="MeasureUnitQualifier"/>
+                    </CompositeElement>
+                </Segment>
+            </SegmentGroup>
+            <SegmentGroup id="Group_20" loop="9999"
+                          name="A group of segments identifying one specific package or a number of packages, their marks and numbers, measurements, quantities, date and time information and handling instructions."
+                          required="C" xmlTag="SegmentGroup_20">
+                <Segment id="PCI" loop="1" name="Package Identification" required="M" xmlTag="PackageIdentification">
+                    <Element id="4233" maxLength="3" minLength="1" name="Marking instructions, coded" required="C"
+                             type="AN" xmlTag="MarkingInstructions"/>
+                    <CompositeElement id="C210" name="Marks &amp; Labels" required="C" xmlTag="MarksLabelsCE">
+                        <Element id="7102" maxLength="35" minLength="1" name="Shipping marks" required="M" type="AN"
+                                 xmlTag="ShippingMarks"/>
+                        <Element id="7102_2" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_2"/>
+                        <Element id="7102_3" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_3"/>
+                        <Element id="7102_4" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_4"/>
+                        <Element id="7102_5" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_5"/>
+                        <Element id="7102_6" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_6"/>
+                        <Element id="7102_7" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_7"/>
+                        <Element id="7102_8" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_8"/>
+                        <Element id="7102_9" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_9"/>
+                        <Element id="7102_10" maxLength="35" minLength="1" name="Shipping marks" required="C" type="AN"
+                                 xmlTag="ShippingMarks_10"/>
+                    </CompositeElement>
+                    <Element id="8275" maxLength="3" minLength="1" name="Container/package status, coded" required="C"
+                             type="AN" xmlTag="ContainerPackageStatus"/>
+                    <CompositeElement id="C827" name="Type of Marking" required="C" xmlTag="TypeOfMarkingCE">
+                        <Element id="7511" maxLength="3" minLength="1" name="Type of marking, coded" required="M"
+                                 type="AN" xmlTag="TypeOfMarking"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="DTM" loop="5" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+                    <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+                        <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M"
+                                 type="AN" xmlTag="DateTimePeriodQualifier"/>
+                        <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                                 xmlTag="DateTimePeriod"/>
+                        <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier"
+                                 required="C" type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="MEA" loop="10" name="Measurements" required="C" xmlTag="Measurements">
+                    <Element id="6311" maxLength="3" minLength="1" name="Measurement application qualifier" required="M"
+                             type="AN" xmlTag="MeasurementApplicationQualifier"/>
+                    <CompositeElement id="C502" name="Measurement Details" required="C" xmlTag="MeasurementDetailsCE">
+                        <Element id="6313" maxLength="3" minLength="1" name="Measurement dimension, coded" required="C"
+                                 type="AN" xmlTag="MeasurementDimension"/>
+                        <Element id="6321" maxLength="3" minLength="1" name="Measurement significance, coded"
+                                 required="C" type="AN" xmlTag="MeasurementSignificance"/>
+                        <Element id="6155" maxLength="3" minLength="1" name="Measurement attribute, coded" required="C"
+                                 type="AN" xmlTag="MeasurementAttribute"/>
+                        <Element id="6154" maxLength="70" minLength="1" name="Measurement attribute" required="C"
+                                 type="AN" xmlTag="MeasurementAttribute"/>
+                    </CompositeElement>
+                    <CompositeElement id="C174" name="Value/Range" required="C" xmlTag="ValueRangeCE">
+                        <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="M"
+                                 type="AN" xmlTag="MeasureUnitQualifier"/>
+                        <Element id="6314" maxLength="18" minLength="1" name="Measurement value" required="C" type="N"
+                                 xmlTag="MeasurementValue"/>
+                        <Element id="6162" maxLength="18" minLength="1" name="Range minimum" required="C" type="N"
+                                 xmlTag="RangeMinimum"/>
+                        <Element id="6152" maxLength="18" minLength="1" name="Range maximum" required="C" type="N"
+                                 xmlTag="RangeMaximum"/>
+                        <Element id="6432" maxLength="2" minLength="1" name="Significant digits" required="C" type="N"
+                                 xmlTag="SignificantDigits"/>
+                    </CompositeElement>
+                    <Element id="7383" maxLength="3" minLength="1" name="Surface/layer indicator, coded" required="C"
+                             type="AN" xmlTag="SurfaceLayerIndicator"/>
+                </Segment>
+                <Segment id="QTY" loop="1" name="Quantity" required="C" xmlTag="Quantity">
+                    <CompositeElement id="C186" name="Quantity Details" required="M" xmlTag="QuantityDetailsCE">
+                        <Element id="6063" maxLength="3" minLength="1" name="Quantity qualifier" required="M" type="AN"
+                                 xmlTag="QuantityQualifier"/>
+                        <Element id="6060" maxLength="15" minLength="1" name="Quantity" required="M" type="N"
+                                 xmlTag="Quantity"/>
+                        <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="C"
+                                 type="AN" xmlTag="MeasureUnitQualifier"/>
+                    </CompositeElement>
+                </Segment>
+                <SegmentGroup id="Group_21" loop="10"
+                              name="A group of segments giving package identification numbers and, where relevant, delivery limitation information."
+                              required="C" xmlTag="SegmentGroup_21">
+                    <Segment id="GIN" loop="1" name="Goods Identity Number" required="M" xmlTag="GoodsIdentityNumber">
+                        <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="M"
+                                 type="AN" xmlTag="IdentityNumberQualifier"/>
+                        <CompositeElement id="C208" name="Identity Number Range" required="M"
+                                          xmlTag="IdentityNumberRangeCE">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_2" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_2">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_3" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_3">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_4" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_4">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_5" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_5">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                    </Segment>
+                    <Segment id="DLM" loop="100" name="Delivery Limitations" required="C" xmlTag="DeliveryLimitations">
+                        <Element id="4455" maxLength="3" minLength="1" name="Back order, coded" required="C" type="AN"
+                                 xmlTag="BackOrder"/>
+                        <CompositeElement id="C522" name="Instruction" required="C" xmlTag="InstructionCE">
+                            <Element id="4403" maxLength="3" minLength="1" name="Instruction qualifier" required="M"
+                                     type="AN" xmlTag="InstructionQualifier"/>
+                            <Element id="4401" maxLength="3" minLength="1" name="Instruction, coded" required="C"
+                                     type="AN" xmlTag="Instruction"/>
+                            <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C"
+                                     type="AN" xmlTag="CodeListQualifier"/>
+                            <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                     required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                            <Element id="4400" maxLength="35" minLength="1" name="Instruction" required="C" type="AN"
+                                     xmlTag="Instruction"/>
+                        </CompositeElement>
+                        <CompositeElement id="C214" name="Special Services Identification" required="C"
+                                          xmlTag="SpecialServicesIdentificationCE">
+                            <Element id="7161" maxLength="3" minLength="1" name="Special services, coded" required="C"
+                                     type="AN" xmlTag="SpecialServices"/>
+                            <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C"
+                                     type="AN" xmlTag="CodeListQualifier"/>
+                            <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                     required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                            <Element id="7160" maxLength="35" minLength="1" name="Special service" required="C"
+                                     type="AN" xmlTag="SpecialService"/>
+                            <Element id="7160_2" maxLength="35" minLength="1" name="Special service" required="C"
+                                     type="AN" xmlTag="SpecialService_2"/>
+                        </CompositeElement>
+                        <Element id="4457" maxLength="3" minLength="1" name="Product/service substitution, coded"
+                                 required="C" type="AN" xmlTag="ProductServiceSubstitution"/>
+                    </Segment>
+                </SegmentGroup>
+                <SegmentGroup id="Group_22" loop="10"
+                              name="A group of segment providing information on hazardous materials and handling."
+                              required="C" xmlTag="SegmentGroup_22">
+                    <Segment id="HAN" loop="1" name="Handling Instructions" required="M" xmlTag="HandlingInstructions">
+                        <CompositeElement id="C524" name="Handling Instructions" required="C"
+                                          xmlTag="HandlingInstructionsCE">
+                            <Element id="4079" maxLength="3" minLength="1" name="Handling instructions, coded"
+                                     required="C" type="AN" xmlTag="HandlingInstructions"/>
+                            <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C"
+                                     type="AN" xmlTag="CodeListQualifier"/>
+                            <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                     required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                            <Element id="4078" maxLength="70" minLength="1" name="Handling instructions" required="C"
+                                     type="AN" xmlTag="HandlingInstructions"/>
+                        </CompositeElement>
+                        <CompositeElement id="C218" name="Hazardous Material" required="C" xmlTag="HazardousMaterialCE">
+                            <Element id="7419" maxLength="4" minLength="1"
+                                     name="Hazardous material class code, identification" required="C" type="AN"
+                                     xmlTag="HazardousMaterialClassCode"/>
+                            <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C"
+                                     type="AN" xmlTag="CodeListQualifier"/>
+                            <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                     required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                        </CompositeElement>
+                    </Segment>
+                    <Segment id="FTX" loop="5" name="Free Text" required="C" xmlTag="FreeText">
+                        <Element id="4451" maxLength="3" minLength="1" name="Text subject qualifier" required="M"
+                                 type="AN" xmlTag="TextSubjectQualifier"/>
+                        <Element id="4453" maxLength="3" minLength="1" name="Text function, coded" required="C"
+                                 type="AN" xmlTag="TextFunction"/>
+                        <CompositeElement id="C107" name="Text Reference" required="C" xmlTag="TextReferenceCE">
+                            <Element id="4441" maxLength="3" minLength="1" name="Free text, coded" required="M"
+                                     type="AN" xmlTag="FreeText"/>
+                            <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C"
+                                     type="AN" xmlTag="CodeListQualifier"/>
+                            <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                     required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                        </CompositeElement>
+                        <CompositeElement id="C108" name="Text Literal" required="C" xmlTag="TextLiteralCE">
+                            <Element id="4440" maxLength="70" minLength="1" name="Free text" required="M" type="AN"
+                                     xmlTag="FreeText"/>
+                            <Element id="4440_2" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                     xmlTag="FreeText_2"/>
+                            <Element id="4440_3" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                     xmlTag="FreeText_3"/>
+                            <Element id="4440_4" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                     xmlTag="FreeText_4"/>
+                            <Element id="4440_5" maxLength="70" minLength="1" name="Free text" required="C" type="AN"
+                                     xmlTag="FreeText_5"/>
+                        </CompositeElement>
+                        <Element id="3453" maxLength="3" minLength="1" name="Language, coded" required="C" type="AN"
+                                 xmlTag="Language"/>
+                    </Segment>
+                    <Segment id="GIN" loop="1000" name="Goods Identity Number" required="C"
+                             xmlTag="GoodsIdentityNumber">
+                        <Element id="7405" maxLength="3" minLength="1" name="Identity number qualifier" required="M"
+                                 type="AN" xmlTag="IdentityNumberQualifier"/>
+                        <CompositeElement id="C208" name="Identity Number Range" required="M"
+                                          xmlTag="IdentityNumberRangeCE">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_2" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_2">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_3" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_3">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_4" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_4">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                        <CompositeElement id="C208_5" name="Identity Number Range" required="C"
+                                          xmlTag="IdentityNumberRangeCE_5">
+                            <Element id="7402" maxLength="35" minLength="1" name="Identity number" required="M"
+                                     type="AN" xmlTag="IdentityNumber"/>
+                            <Element id="7402_2" maxLength="35" minLength="1" name="Identity number" required="C"
+                                     type="AN" xmlTag="IdentityNumber_2"/>
+                        </CompositeElement>
+                    </Segment>
+                </SegmentGroup>
+            </SegmentGroup>
+            <SegmentGroup id="Group_23" loop="10"
+                          name="A group of segments identifying quantity variances, the reason for the variance, and, when relevant, date and time information."
+                          required="C" xmlTag="SegmentGroup_23">
+                <Segment id="QVR" loop="1" name="Quantity Variances" required="M" xmlTag="QuantityVariances">
+                    <CompositeElement id="C279" name="Quantity Difference Information" required="C"
+                                      xmlTag="QuantityDifferenceInformationCE">
+                        <Element id="6064" maxLength="15" minLength="1" name="Quantity difference" required="M" type="N"
+                                 xmlTag="QuantityDifference"/>
+                        <Element id="6063" maxLength="3" minLength="1" name="Quantity qualifier" required="C" type="AN"
+                                 xmlTag="QuantityQualifier"/>
+                    </CompositeElement>
+                    <Element id="4221" maxLength="3" minLength="1" name="Discrepancy, coded" required="C" type="AN"
+                             xmlTag="Discrepancy"/>
+                    <CompositeElement id="C960" name="Reason for Change" required="C" xmlTag="ReasonForChangeCE">
+                        <Element id="4295" maxLength="3" minLength="1" name="Change reason, coded" required="C"
+                                 type="AN" xmlTag="ChangeReason"/>
+                        <Element id="1131" maxLength="3" minLength="1" name="Code list qualifier" required="C" type="AN"
+                                 xmlTag="CodeListQualifier"/>
+                        <Element id="3055" maxLength="3" minLength="1" name="Code list responsible agency, coded"
+                                 required="C" type="AN" xmlTag="CodeListResponsibleAgency"/>
+                        <Element id="4294" maxLength="35" minLength="1" name="Change reason" required="C" type="AN"
+                                 xmlTag="ChangeReason"/>
+                    </CompositeElement>
+                </Segment>
+                <Segment id="DTM" loop="5" name="Date/Time/Period" required="C" xmlTag="DateTimePeriod">
+                    <CompositeElement id="C507" name="Date/Time/Period" required="M" xmlTag="DateTimePeriodCE">
+                        <Element id="2005" maxLength="3" minLength="1" name="Date/time/period qualifier" required="M"
+                                 type="AN" xmlTag="DateTimePeriodQualifier"/>
+                        <Element id="2380" maxLength="35" minLength="1" name="Date/time/period" required="C" type="AN"
+                                 xmlTag="DateTimePeriod"/>
+                        <Element id="2379" maxLength="3" minLength="1" name="Date/time/period format qualifier"
+                                 required="C" type="AN" xmlTag="DateTimePeriodFormatQualifier"/>
+                    </CompositeElement>
+                </Segment>
+            </SegmentGroup>
+        </SegmentGroup>
+    </SegmentGroup>
+    <Segment id="CNT" loop="5" name="Control Total" required="C" xmlTag="ControlTotal">
+        <CompositeElement id="C270" name="Control" required="M" xmlTag="ControlCE">
+            <Element id="6069" maxLength="3" minLength="1" name="Control qualifier" required="M" type="AN"
+                     xmlTag="ControlQualifier"/>
+            <Element id="6066" maxLength="18" minLength="1" name="Control value" required="M" type="N"
+                     xmlTag="ControlValue"/>
+            <Element id="6411" maxLength="3" minLength="1" name="Measure unit qualifier" required="C" type="AN"
+                     xmlTag="MeasureUnitQualifier"/>
+        </CompositeElement>
+    </Segment>
+    <Segment id="UNT" loop="1" name="Message Trailer" required="M" xmlTag="MessageTrailer">
+        <Element id="0074" maxLength="6" minLength="1" name="Number of segments in a message" required="M" type="N"
+                 xmlTag="NumberOfSegmentsInAMessage"/>
+        <Element id="0062" maxLength="14" minLength="1" name="Message reference number" required="M" type="AN"
+                 xmlTag="MessageReferenceNumber"/>
+    </Segment>
+</Message>
