@@ -1,0 +1,1252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message agency="X" layout="hwed" name="Price/Sales Catalog"
+         release="030" standard="X12" type="832" version="03">
+    <Segment id="ST" loop="1" name="Transaction Set Header"
+             required="M" xmlTag="TransactionSetHeader">
+        <Element id="143" maxLength="3" minLength="3"
+                 name="Transaction Set Identifier Code" required="M" type="AN"
+                 xmlTag="TransactionSetIdentifierCode"/>
+        <Element id="329" maxLength="9" minLength="4"
+                 name="Transaction Set Control Number" required="M" type="AN"
+                 xmlTag="TransactionSetControlNumber"/>
+    </Segment>
+    <Segment id="BCT" loop="1"
+             name="Beginning Segment for Price/Sales Catalog" required="M"
+             xmlTag="BeginningSegmentForPriceSalesCatalog">
+        <Element id="683" maxLength="2" minLength="2"
+                 name="Catalog Purpose Code" required="M" type="AN" xmlTag="CatalogPurposeCode"/>
+        <Element id="684" maxLength="15" minLength="1" name="Catalog Number"
+                 required="C" type="AN" xmlTag="CatalogNumber"/>
+        <Element id="685" maxLength="15" minLength="1"
+                 name="Catalog Version Number" required="C" type="AN"
+                 xmlTag="CatalogVersionNumber"/>
+        <Element id="686" maxLength="6" minLength="1"
+                 name="Catalog Revision Number" required="C" type="AN"
+                 xmlTag="CatalogRevisionNumber"/>
+        <Element id="355" maxLength="2" minLength="2"
+                 name="Unit or Basis for Measurement Code" required="C" type="AN"
+                 xmlTag="UnitOrBasisForMeasurementCode"/>
+        <Element id="684_2" maxLength="15" minLength="1" name="Catalog Number"
+                 required="C" type="AN" xmlTag="CatalogNumber_2"/>
+        <Element id="685_2" maxLength="15" minLength="1"
+                 name="Catalog Version Number" required="C" type="AN"
+                 xmlTag="CatalogVersionNumber_2"/>
+        <Element id="686_2" maxLength="6" minLength="1"
+                 name="Catalog Revision Number" required="C" type="AN"
+                 xmlTag="CatalogRevisionNumber_2"/>
+        <Element id="352" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description"/>
+        <Element id="353" maxLength="2" minLength="2"
+                 name="Transaction Set Purpose Code" required="C" type="AN"
+                 xmlTag="TransactionSetPurposeCode"/>
+    </Segment>
+    <Segment id="NTE" loop="100" name="Note/Special Instruction"
+             required="C" xmlTag="NoteSpecialInstruction">
+        <Element id="363" maxLength="3" minLength="3"
+                 name="Note Reference Code" required="C" type="AN" xmlTag="NoteReferenceCode"/>
+        <Element id="3_2" maxLength="60" minLength="1" name="Free Form Message"
+                 required="M" type="AN" xmlTag="FreeFormMessage_2"/>
+    </Segment>
+    <Segment id="CTP" loop="100" name="Pricing Information"
+             required="C" xmlTag="PricingInformation">
+        <Element id="687" maxLength="2" minLength="2"
+                 name="Class of Trade Code" required="C" type="AN" xmlTag="ClassOfTradeCode"/>
+        <Element id="236" maxLength="3" minLength="3"
+                 name="Price Identifier Code" required="C" type="AN" xmlTag="PriceIdentifierCode"/>
+        <Element id="212" maxLength="14" minLength="1" name="Unit Price"
+                 required="C" type="AN" xmlTag="UnitPrice"/>
+        <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                 required="C" type="AN" xmlTag="Quantity"/>
+        <Element id="355" maxLength="2" minLength="2"
+                 name="Unit or Basis for Measurement Code" required="C" type="AN"
+                 xmlTag="UnitOrBasisForMeasurementCode"/>
+        <Element id="648" maxLength="3" minLength="3"
+                 name="Price Multiplier Qualifier" required="C" type="AN"
+                 xmlTag="PriceMultiplierQualifier"/>
+        <Element id="649" maxLength="10" minLength="1" name="Multiplier"
+                 required="C" type="AN" xmlTag="Multiplier"/>
+        <Element id="782" maxLength="15" minLength="1" name="Monetary Amount"
+                 required="C" type="AN" xmlTag="MonetaryAmount"/>
+    </Segment>
+    <Segment id="REF" loop="12" name="Reference Numbers" required="C"
+             xmlTag="ReferenceNumbers">
+        <Element id="128" maxLength="2" minLength="2"
+                 name="Reference Number Qualifier" required="M" type="AN"
+                 xmlTag="ReferenceNumberQualifier"/>
+        <Element id="127" maxLength="30" minLength="1" name="Reference Number"
+                 required="C" type="AN" xmlTag="ReferenceNumber"/>
+        <Element id="352" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description"/>
+    </Segment>
+    <Segment id="PER" loop="3" name="Administrative Communications Contact"
+             required="C" xmlTag="AdministrativeCommunicationsContact">
+        <Element id="366" maxLength="2" minLength="2"
+                 name="Contact Function Code" required="M" type="AN" xmlTag="ContactFunctionCode"/>
+        <Element id="93" maxLength="35" minLength="1" name="Name"
+                 required="C" type="AN" xmlTag="Name"/>
+        <Element id="365" maxLength="2" minLength="2"
+                 name="Communication Number Qualifier" required="C" type="AN"
+                 xmlTag="CommunicationNumberQualifier"/>
+        <Element id="364" maxLength="25" minLength="1"
+                 name="Communication Number" required="C" type="AN" xmlTag="CommunicationNumber"/>
+        <Element id="365_2" maxLength="2" minLength="2"
+                 name="Communication Number Qualifier" required="C" type="AN"
+                 xmlTag="CommunicationNumberQualifier_2"/>
+        <Element id="364_2" maxLength="25" minLength="1"
+                 name="Communication Number" required="C" type="AN" xmlTag="CommunicationNumber_2"/>
+    </Segment>
+    <Segment id="DTM" loop="10" name="Date/Time/Period" required="C"
+             xmlTag="DateTimePeriod">
+        <Element id="374" maxLength="3" minLength="3"
+                 name="Date/Time Qualifier" required="M" type="AN" xmlTag="DateTimeQualifier"/>
+        <Element id="373" maxLength="6" minLength="6" name="Date"
+                 required="C" type="AN" xmlTag="Date"/>
+        <Element id="337" maxLength="6" minLength="4" name="Time"
+                 required="C" type="AN" xmlTag="Time"/>
+        <Element id="623" maxLength="2" minLength="2" name="Time Code"
+                 required="C" type="AN" xmlTag="TimeCode"/>
+        <Element id="624" maxLength="2" minLength="2" name="Century"
+                 required="C" type="N" xmlTag="Century"/>
+    </Segment>
+    <Segment id="CTB" loop="25" name="Restrictions/Conditions"
+             required="C" xmlTag="RestrictionsConditions">
+        <Element id="688" maxLength="2" minLength="2"
+                 name="Restrictions/Conditions Qualifier" required="M" type="AN"
+                 xmlTag="RestrictionsConditionsQualifier"/>
+        <Element id="352" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description"/>
+        <Element id="673" maxLength="2" minLength="2" name="Quantity Qualifier"
+                 required="C" type="AN" xmlTag="QuantityQualifier"/>
+        <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                 required="C" type="AN" xmlTag="Quantity"/>
+        <Element id="522" maxLength="2" minLength="1"
+                 name="Amount Qualifier Code" required="C" type="AN" xmlTag="AmountQualifierCode"/>
+        <Element id="610" maxLength="9" minLength="1" name="Amount"
+                 required="C" type="N" xmlTag="Amount"/>
+    </Segment>
+    <Segment id="CUR" loop="5" name="Currency" required="C" xmlTag="Currency">
+        <Element id="98" maxLength="2" minLength="2"
+                 name="Entity Identifier Code" required="M" type="AN"
+                 xmlTag="EntityIdentifierCode"/>
+        <Element id="100" maxLength="3" minLength="3" name="Currency Code"
+                 required="M" type="AN" xmlTag="CurrencyCode"/>
+        <Element id="280" maxLength="6" minLength="4" name="Exchange Rate"
+                 required="C" type="AN" xmlTag="ExchangeRate"/>
+        <Element id="98_2" maxLength="2" minLength="2"
+                 name="Entity Identifier Code" required="C" type="AN"
+                 xmlTag="EntityIdentifierCode_2"/>
+        <Element id="100_2" maxLength="3" minLength="3" name="Currency Code"
+                 required="C" type="AN" xmlTag="CurrencyCode_2"/>
+        <Element id="669" maxLength="3" minLength="3"
+                 name="Currency Market/Exchange Code" required="C" type="AN"
+                 xmlTag="CurrencyMarketExchangeCode"/>
+        <Element id="374" maxLength="3" minLength="3"
+                 name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier"/>
+        <Element id="373" maxLength="6" minLength="6" name="Date"
+                 required="C" type="AN" xmlTag="Date"/>
+        <Element id="337" maxLength="6" minLength="4" name="Time"
+                 required="C" type="AN" xmlTag="Time"/>
+        <Element id="374_2" maxLength="3" minLength="3"
+                 name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier_2"/>
+        <Element id="373_2" maxLength="6" minLength="6" name="Date"
+                 required="C" type="AN" xmlTag="Date_2"/>
+        <Element id="337_2" maxLength="6" minLength="4" name="Time"
+                 required="C" type="AN" xmlTag="Time_2"/>
+        <Element id="374_3" maxLength="3" minLength="3"
+                 name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier_3"/>
+        <Element id="373_3" maxLength="6" minLength="6" name="Date"
+                 required="C" type="AN" xmlTag="Date_3"/>
+        <Element id="337_3" maxLength="6" minLength="4" name="Time"
+                 required="C" type="AN" xmlTag="Time_3"/>
+        <Element id="374_4" maxLength="3" minLength="3"
+                 name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier_4"/>
+        <Element id="373_4" maxLength="6" minLength="6" name="Date"
+                 required="C" type="AN" xmlTag="Date_4"/>
+        <Element id="337_4" maxLength="6" minLength="4" name="Time"
+                 required="C" type="AN" xmlTag="Time_4"/>
+        <Element id="374_5" maxLength="3" minLength="3"
+                 name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier_5"/>
+        <Element id="373_5" maxLength="6" minLength="6" name="Date"
+                 required="C" type="AN" xmlTag="Date_5"/>
+        <Element id="337_5" maxLength="6" minLength="4" name="Time"
+                 required="C" type="AN" xmlTag="Time_5"/>
+    </Segment>
+    <Segment id="SSS" loop="25" name="Special Services" required="C"
+             xmlTag="SpecialServices">
+        <Element id="248" maxLength="1" minLength="1"
+                 name="Allowance or Charge Indicator" required="M" type="AN"
+                 xmlTag="AllowanceOrChargeIndicator"/>
+        <Element id="559" maxLength="2" minLength="2"
+                 name="Agency Qualifier Code" required="M" type="AN" xmlTag="AgencyQualifierCode"/>
+        <Element id="560" maxLength="10" minLength="2"
+                 name="Special Services Code" required="M" type="AN" xmlTag="SpecialServicesCode"/>
+        <Element id="561" maxLength="45" minLength="1"
+                 name="Service Marks and Numbers" required="C" type="AN"
+                 xmlTag="ServiceMarksAndNumbers"/>
+        <Element id="359" maxLength="9" minLength="1"
+                 name="Allowance or Charge Rate" required="C" type="AN"
+                 xmlTag="AllowanceOrChargeRate"/>
+        <Element id="360" maxLength="9" minLength="1"
+                 name="Allowance or Charge Total Amount" required="C" type="N"
+                 xmlTag="AllowanceOrChargeTotalAmount"/>
+        <Element id="352" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description"/>
+        <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                 required="C" type="AN" xmlTag="Quantity"/>
+        <Element id="822" maxLength="15" minLength="1"
+                 name="Source Subqualifier" required="C" type="AN" xmlTag="SourceSubqualifier"/>
+    </Segment>
+    <Segment id="ITD" loop="2" name="Terms of Sale/Deferred Terms of Sale"
+             required="C" xmlTag="TermsOfSaleDeferredTermsOfSale">
+        <Element id="336" maxLength="2" minLength="2" name="Terms Type Code"
+                 required="C" type="AN" xmlTag="TermsTypeCode"/>
+        <Element id="333" maxLength="2" minLength="1"
+                 name="Terms Basis Date Code" required="C" type="AN" xmlTag="TermsBasisDateCode"/>
+        <Element id="338" maxLength="6" minLength="1"
+                 name="Terms Discount Percent" required="C" type="AN"
+                 xmlTag="TermsDiscountPercent"/>
+        <Element id="370" maxLength="6" minLength="6"
+                 name="Terms Discount Due Date" required="C" type="AN"
+                 xmlTag="TermsDiscountDueDate"/>
+        <Element id="351" maxLength="3" minLength="1"
+                 name="Terms Discount Days Due" required="C" type="N"
+                 xmlTag="TermsDiscountDaysDue"/>
+        <Element id="446" maxLength="6" minLength="6" name="Terms Net Due Date"
+                 required="C" type="AN" xmlTag="TermsNetDueDate"/>
+        <Element id="386" maxLength="3" minLength="1" name="Terms Net Days"
+                 required="C" type="N" xmlTag="TermsNetDays"/>
+        <Element id="362" maxLength="10" minLength="1"
+                 name="Terms Discount Amount" required="C" type="N" xmlTag="TermsDiscountAmount"/>
+        <Element id="388" maxLength="6" minLength="6"
+                 name="Terms Deferred Due Date" required="C" type="AN"
+                 xmlTag="TermsDeferredDueDate"/>
+        <Element id="389" maxLength="10" minLength="1"
+                 name="Deferred Amount Due" required="C" type="N" xmlTag="DeferredAmountDue"/>
+        <Element id="342" maxLength="5" minLength="1"
+                 name="Percent of Invoice Payable" required="C" type="AN"
+                 xmlTag="PercentOfInvoicePayable"/>
+        <Element id="352" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description"/>
+        <Element id="765" maxLength="2" minLength="1" name="Day of Month"
+                 required="C" type="N" xmlTag="DayOfMonth"/>
+        <Element id="107" maxLength="1" minLength="1"
+                 name="Payment Method Code" required="C" type="AN" xmlTag="PaymentMethodCode"/>
+        <Element id="954" maxLength="10" minLength="1" name="Percent"
+                 required="C" type="AN" xmlTag="Percent"/>
+    </Segment>
+    <Segment id="LDT" loop="n" name="Lead Time" required="C"
+             xmlTag="LeadTime">
+        <Element id="345" maxLength="2" minLength="2" name="Lead Time Code"
+                 required="M" type="AN" xmlTag="LeadTimeCode"/>
+        <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                 required="M" type="AN" xmlTag="Quantity"/>
+        <Element id="344" maxLength="2" minLength="2"
+                 name="Unit of Time Period or Interval" required="M" type="AN"
+                 xmlTag="UnitOfTimePeriodOrInterval"/>
+        <Element id="373" maxLength="6" minLength="6" name="Date"
+                 required="C" type="AN" xmlTag="Date"/>
+    </Segment>
+    <Segment id="ITA" loop="5" name="Allowance, Charge or Service"
+             required="C" xmlTag="Allowance">
+        <Element id="248" maxLength="1" minLength="1"
+                 name="Allowance or Charge Indicator" required="M" type="AN"
+                 xmlTag="AllowanceOrChargeIndicator"/>
+        <Element id="559" maxLength="2" minLength="2"
+                 name="Agency Qualifier Code" required="C" type="AN" xmlTag="AgencyQualifierCode"/>
+        <Element id="560" maxLength="10" minLength="2"
+                 name="Special Services Code" required="C" type="AN" xmlTag="SpecialServicesCode"/>
+        <Element id="331" maxLength="2" minLength="2"
+                 name="Allowance or Charge Method of Handling Code" required="M" type="AN"
+                 xmlTag="AllowanceOrChargeMethodOfHandling"/>
+        <Element id="341" maxLength="16" minLength="1"
+                 name="Allowance or Charge Number" required="C" type="AN"
+                 xmlTag="AllowanceOrChargeNumber"/>
+        <Element id="359" maxLength="9" minLength="1"
+                 name="Allowance or Charge Rate" required="C" type="AN"
+                 xmlTag="AllowanceOrChargeRate"/>
+        <Element id="360" maxLength="9" minLength="1"
+                 name="Allowance or Charge Total Amount" required="C" type="N"
+                 xmlTag="AllowanceOrChargeTotalAmount"/>
+        <Element id="378" maxLength="1" minLength="1"
+                 name="Allowance/Charge Percent Qualifier" required="C" type="AN"
+                 xmlTag="AllowanceChargePercentQualifier"/>
+        <Element id="332" maxLength="6" minLength="1"
+                 name="Allowance or Charge Percent" required="C" type="AN"
+                 xmlTag="AllowanceOrChargePercent"/>
+        <Element id="339" maxLength="10" minLength="1"
+                 name="Allowance or Charge Quantity" required="C" type="AN"
+                 xmlTag="AllowanceOrChargeQuantity"/>
+        <Element id="355" maxLength="2" minLength="2"
+                 name="Unit or Basis for Measurement Code" required="C" type="AN"
+                 xmlTag="UnitOrBasisForMeasurementCode"/>
+        <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                 required="C" type="AN" xmlTag="Quantity"/>
+        <Element id="352" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description"/>
+        <Element id="150" maxLength="3" minLength="3"
+                 name="Special Charge or Allowance Code" required="C" type="AN"
+                 xmlTag="SpecialChargeOrAllowanceCode"/>
+        <Element id="822" maxLength="15" minLength="1"
+                 name="Source Subqualifier" required="C" type="AN" xmlTag="SourceSubqualifier"/>
+        <Element id="662" maxLength="1" minLength="1" name="Relationship Code"
+                 required="C" type="AN" xmlTag="RelationshipCode"/>
+    </Segment>
+    <Segment id="FOB" loop="1" name="F.O.B. Related Instructions"
+             required="C" xmlTag="FOBRelatedInstructions">
+        <Element id="146" maxLength="2" minLength="2"
+                 name="Shipment Method of Payment" required="M" type="AN"
+                 xmlTag="ShipmentMethodOfPayment"/>
+        <Element id="309" maxLength="2" minLength="1" name="Location Qualifier"
+                 required="C" type="AN" xmlTag="LocationQualifier"/>
+        <Element id="352" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description"/>
+        <Element id="334" maxLength="2" minLength="2"
+                 name="Transportation Terms Qualifier Code" required="C" type="AN"
+                 xmlTag="TransportationTermsQualifierCode"/>
+        <Element id="335" maxLength="3" minLength="3"
+                 name="Transportation Terms Code" required="C" type="AN"
+                 xmlTag="TransportationTermsCode"/>
+        <Element id="309_2" maxLength="2" minLength="1"
+                 name="Location Qualifier" required="C" type="AN" xmlTag="LocationQualifier_2"/>
+        <Element id="352_2" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description_2"/>
+        <Element id="54" maxLength="2" minLength="2"
+                 name="Risk of Loss Qualifier" required="C" type="AN" xmlTag="RiskOfLossQualifier"/>
+        <Element id="352_3" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description_3"/>
+    </Segment>
+    <SegmentGroup id="Group_1" loop="200" required="C"
+                  xmlTag="SegmentGroup_1">
+        <Segment id="N1" loop="1" name="Name" required="C" xmlTag="Name">
+            <Element id="98" maxLength="2" minLength="2"
+                     name="Entity Identifier Code" required="M" type="AN"
+                     xmlTag="EntityIdentifierCode"/>
+            <Element id="93" maxLength="35" minLength="1" name="Name"
+                     required="C" type="AN" xmlTag="Name"/>
+            <Element id="66" maxLength="2" minLength="1"
+                     name="Identification Code Qualifier" required="C" type="AN"
+                     xmlTag="IdentificationCodeQualifier"/>
+            <Element id="67" maxLength="17" minLength="2"
+                     name="Identification Code" required="C" type="AN" xmlTag="IdentificationCode"/>
+        </Segment>
+        <Segment id="N2" loop="2" name="Additional Name Information"
+                 required="C" xmlTag="AdditionalNameInformation">
+            <Element id="93" maxLength="35" minLength="1" name="Name"
+                     required="M" type="AN" xmlTag="Name"/>
+            <Element id="93_2" maxLength="35" minLength="1" name="Name"
+                     required="C" type="AN" xmlTag="Name_2"/>
+        </Segment>
+        <Segment id="N3" loop="2" name="Address Information" required="C"
+                 xmlTag="AddressInformation">
+            <Element id="166" maxLength="35" minLength="1"
+                     name="Address Information" required="M" type="AN" xmlTag="AddressInformation"/>
+            <Element id="166_2" maxLength="35" minLength="1"
+                     name="Address Information" required="C" type="AN" xmlTag="AddressInformation_2"/>
+        </Segment>
+        <Segment id="N4" loop="1" name="Geographic Location" required="C"
+                 xmlTag="GeographicLocation">
+            <Element id="19" maxLength="30" minLength="2" name="City Name"
+                     required="C" type="AN" xmlTag="CityName"/>
+            <Element id="156" maxLength="2" minLength="2"
+                     name="State or Province Code" required="C" type="AN"
+                     xmlTag="StateOrProvinceCode"/>
+            <Element id="116" maxLength="9" minLength="3" name="Postal Code"
+                     required="C" type="AN" xmlTag="PostalCode"/>
+            <Element id="26" maxLength="3" minLength="2" name="Country Code"
+                     required="C" type="AN" xmlTag="CountryCode"/>
+            <Element id="309" maxLength="2" minLength="1"
+                     name="Location Qualifier" required="C" type="AN" xmlTag="LocationQualifier"/>
+            <Element id="310" maxLength="25" minLength="1"
+                     name="Location Identifier" required="C" type="AN" xmlTag="LocationIdentifier"/>
+        </Segment>
+        <Segment id="REF" loop="12" name="Reference Numbers" required="C"
+                 xmlTag="ReferenceNumbers">
+            <Element id="128" maxLength="2" minLength="2"
+                     name="Reference Number Qualifier" required="M" type="AN"
+                     xmlTag="ReferenceNumberQualifier"/>
+            <Element id="127" maxLength="30" minLength="1" name="Reference Number"
+                     required="C" type="AN" xmlTag="ReferenceNumber"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+        </Segment>
+        <Segment id="PER" loop="3" name="Administrative Communications Contact"
+                 required="C" xmlTag="AdministrativeCommunicationsContact">
+            <Element id="366" maxLength="2" minLength="2"
+                     name="Contact Function Code" required="M" type="AN" xmlTag="ContactFunctionCode"/>
+            <Element id="93" maxLength="35" minLength="1" name="Name"
+                     required="C" type="AN" xmlTag="Name"/>
+            <Element id="365" maxLength="2" minLength="2"
+                     name="Communication Number Qualifier" required="C" type="AN"
+                     xmlTag="CommunicationNumberQualifier"/>
+            <Element id="364" maxLength="25" minLength="1"
+                     name="Communication Number" required="C" type="AN" xmlTag="CommunicationNumber"/>
+            <Element id="365_2" maxLength="2" minLength="2"
+                     name="Communication Number Qualifier" required="C" type="AN"
+                     xmlTag="CommunicationNumberQualifier_2"/>
+            <Element id="364_2" maxLength="25" minLength="1"
+                     name="Communication Number" required="C" type="AN"
+                     xmlTag="CommunicationNumber_2"/>
+        </Segment>
+        <Segment id="DTM" loop="10" name="Date/Time/Period" required="C"
+                 xmlTag="DateTimePeriod">
+            <Element id="374" maxLength="3" minLength="3"
+                     name="Date/Time Qualifier" required="M" type="AN" xmlTag="DateTimeQualifier"/>
+            <Element id="373" maxLength="6" minLength="6" name="Date"
+                     required="C" type="AN" xmlTag="Date"/>
+            <Element id="337" maxLength="6" minLength="4" name="Time"
+                     required="C" type="AN" xmlTag="Time"/>
+            <Element id="623" maxLength="2" minLength="2" name="Time Code"
+                     required="C" type="AN" xmlTag="TimeCode"/>
+            <Element id="624" maxLength="2" minLength="2" name="Century"
+                     required="C" type="N" xmlTag="Century"/>
+        </Segment>
+    </SegmentGroup>
+    <SegmentGroup id="Group_2" loop="700000" required="C"
+                  xmlTag="SegmentGroup_2">
+        <Segment id="LIN" loop="1" name="Item Identification"
+                 required="C" xmlTag="ItemIdentification">
+            <Element id="350" maxLength="11" minLength="1"
+                     name="Assigned Identification" required="C" type="AN"
+                     xmlTag="AssignedIdentification"/>
+            <Element id="235" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="M" type="AN"
+                     xmlTag="ProductServiceIDQualifier"/>
+            <Element id="234" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="M" type="AN" xmlTag="ProductServiceID"/>
+            <Element id="235_2" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_2"/>
+            <Element id="234_2" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_2"/>
+            <Element id="235_3" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_3"/>
+            <Element id="234_3" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_3"/>
+            <Element id="235_4" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_4"/>
+            <Element id="234_4" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_4"/>
+            <Element id="235_5" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_5"/>
+            <Element id="234_5" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_5"/>
+            <Element id="235_6" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_6"/>
+            <Element id="234_6" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_6"/>
+            <Element id="235_7" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_7"/>
+            <Element id="234_7" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_7"/>
+            <Element id="235_8" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_8"/>
+            <Element id="234_8" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_8"/>
+            <Element id="235_9" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_9"/>
+            <Element id="234_9" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_9"/>
+            <Element id="235_10" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_10"/>
+            <Element id="234_10" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_10"/>
+            <Element id="235_11" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_11"/>
+            <Element id="234_11" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_11"/>
+            <Element id="235_12" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_12"/>
+            <Element id="234_12" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_12"/>
+            <Element id="235_13" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_13"/>
+            <Element id="234_13" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_13"/>
+            <Element id="235_14" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_14"/>
+            <Element id="234_14" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_14"/>
+            <Element id="235_15" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_15"/>
+            <Element id="234_15" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_15"/>
+        </Segment>
+        <Segment id="SLN" loop="100" name="Subline Item Detail"
+                 required="C" xmlTag="SublineItemDetail">
+            <Element id="350" maxLength="11" minLength="1"
+                     name="Assigned Identification" required="M" type="AN"
+                     xmlTag="AssignedIdentification"/>
+            <Element id="350_2" maxLength="11" minLength="1"
+                     name="Assigned Identification" required="C" type="AN"
+                     xmlTag="AssignedIdentification_2"/>
+            <Element id="661" maxLength="1" minLength="1"
+                     name="Configuration Code" required="M" type="AN" xmlTag="ConfigurationCode"/>
+            <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                     required="M" type="AN" xmlTag="Quantity"/>
+            <Element id="355" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="M" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode"/>
+            <Element id="212" maxLength="14" minLength="1" name="Unit Price"
+                     required="C" type="AN" xmlTag="UnitPrice"/>
+            <Element id="639" maxLength="2" minLength="2"
+                     name="Basis of Unit Price Code" required="C" type="AN"
+                     xmlTag="BasisOfUnitPriceCode"/>
+            <Element id="662" maxLength="1" minLength="1" name="Relationship Code"
+                     required="C" type="AN" xmlTag="RelationshipCode"/>
+            <Element id="235" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier"/>
+            <Element id="234" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID"/>
+            <Element id="235_2" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_2"/>
+            <Element id="234_2" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_2"/>
+            <Element id="235_3" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_3"/>
+            <Element id="234_3" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_3"/>
+            <Element id="235_4" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_4"/>
+            <Element id="234_4" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_4"/>
+            <Element id="235_5" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_5"/>
+            <Element id="234_5" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_5"/>
+            <Element id="235_6" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_6"/>
+            <Element id="234_6" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_6"/>
+            <Element id="235_7" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_7"/>
+            <Element id="234_7" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_7"/>
+            <Element id="235_8" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_8"/>
+            <Element id="234_8" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_8"/>
+            <Element id="235_9" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_9"/>
+            <Element id="234_9" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_9"/>
+            <Element id="235_10" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="C" type="AN"
+                     xmlTag="ProductServiceIDQualifier_10"/>
+            <Element id="234_10" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="C" type="AN" xmlTag="ProductServiceID_10"/>
+        </Segment>
+        <Segment id="DTM" loop="10" name="Date/Time/Period" required="C"
+                 xmlTag="DateTimePeriod">
+            <Element id="374" maxLength="3" minLength="3"
+                     name="Date/Time Qualifier" required="M" type="AN" xmlTag="DateTimeQualifier"/>
+            <Element id="373" maxLength="6" minLength="6" name="Date"
+                     required="C" type="AN" xmlTag="Date"/>
+            <Element id="337" maxLength="6" minLength="4" name="Time"
+                     required="C" type="AN" xmlTag="Time"/>
+            <Element id="623" maxLength="2" minLength="2" name="Time Code"
+                     required="C" type="AN" xmlTag="TimeCode"/>
+            <Element id="624" maxLength="2" minLength="2" name="Century"
+                     required="C" type="N" xmlTag="Century"/>
+        </Segment>
+        <Segment id="REF" loop="12" name="Reference Numbers" required="C"
+                 xmlTag="ReferenceNumbers">
+            <Element id="128" maxLength="2" minLength="2"
+                     name="Reference Number Qualifier" required="M" type="AN"
+                     xmlTag="ReferenceNumberQualifier"/>
+            <Element id="127" maxLength="30" minLength="1" name="Reference Number"
+                     required="C" type="AN" xmlTag="ReferenceNumber"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+        </Segment>
+        <Segment id="PER" loop="3" name="Administrative Communications Contact"
+                 required="C" xmlTag="AdministrativeCommunicationsContact">
+            <Element id="366" maxLength="2" minLength="2"
+                     name="Contact Function Code" required="M" type="AN" xmlTag="ContactFunctionCode"/>
+            <Element id="93" maxLength="35" minLength="1" name="Name"
+                     required="C" type="AN" xmlTag="Name"/>
+            <Element id="365" maxLength="2" minLength="2"
+                     name="Communication Number Qualifier" required="C" type="AN"
+                     xmlTag="CommunicationNumberQualifier"/>
+            <Element id="364" maxLength="25" minLength="1"
+                     name="Communication Number" required="C" type="AN" xmlTag="CommunicationNumber"/>
+            <Element id="365_2" maxLength="2" minLength="2"
+                     name="Communication Number Qualifier" required="C" type="AN"
+                     xmlTag="CommunicationNumberQualifier_2"/>
+            <Element id="364_2" maxLength="25" minLength="1"
+                     name="Communication Number" required="C" type="AN"
+                     xmlTag="CommunicationNumber_2"/>
+        </Segment>
+        <Segment id="CTB" loop="25" name="Restrictions/Conditions"
+                 required="C" xmlTag="RestrictionsConditions">
+            <Element id="688" maxLength="2" minLength="2"
+                     name="Restrictions/Conditions Qualifier" required="M" type="AN"
+                     xmlTag="RestrictionsConditionsQualifier"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+            <Element id="673" maxLength="2" minLength="2"
+                     name="Quantity Qualifier" required="C" type="AN" xmlTag="QuantityQualifier"/>
+            <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                     required="C" type="AN" xmlTag="Quantity"/>
+            <Element id="522" maxLength="2" minLength="1"
+                     name="Amount Qualifier Code" required="C" type="AN" xmlTag="AmountQualifierCode"/>
+            <Element id="610" maxLength="9" minLength="1" name="Amount"
+                     required="C" type="N" xmlTag="Amount"/>
+        </Segment>
+        <Segment id="PID" loop="200" name="Product/Item Description"
+                 required="C" xmlTag="ProductItemDescription">
+            <Element id="349" maxLength="1" minLength="1"
+                     name="Item Description Type" required="M" type="AN" xmlTag="ItemDescriptionType"/>
+            <Element id="750" maxLength="3" minLength="2"
+                     name="Product/Process Characteristic Code" required="C" type="AN"
+                     xmlTag="ProductProcessCharacteristicCode"/>
+            <Element id="559" maxLength="2" minLength="2"
+                     name="Agency Qualifier Code" required="C" type="AN" xmlTag="AgencyQualifierCode"/>
+            <Element id="751" maxLength="12" minLength="1"
+                     name="Product Description Code" required="C" type="AN"
+                     xmlTag="ProductDescriptionCode"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+            <Element id="752" maxLength="2" minLength="2"
+                     name="Surface/Layer/Position Code" required="C" type="AN"
+                     xmlTag="SurfaceLayerPositionCode"/>
+            <Element id="822" maxLength="15" minLength="1"
+                     name="Source Subqualifier" required="C" type="AN" xmlTag="SourceSubqualifier"/>
+            <Element id="1073" maxLength="1" minLength="1"
+                     name="Yes/No Condition or Response Code" required="C" type="AN"
+                     xmlTag="YesNoConditionOrResponseCode"/>
+        </Segment>
+        <Segment id="MEA" loop="40" name="Measurements" required="C"
+                 xmlTag="Measurements">
+            <Element id="737" maxLength="2" minLength="2"
+                     name="Measurement Reference ID Code" required="C" type="AN"
+                     xmlTag="MeasurementReferenceIDCode"/>
+            <Element id="738" maxLength="3" minLength="1"
+                     name="Measurement Qualifier" required="C" type="AN"
+                     xmlTag="MeasurementQualifier"/>
+            <Element id="739" maxLength="10" minLength="1"
+                     name="Measurement Value" required="C" type="AN" xmlTag="MeasurementValue"/>
+            <CompositeElement id="C001" name="Composite Unit of Measure"
+                              required="C" xmlTag="CompositeUnitOfMeasureCE">
+                <Element id="355" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="M" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode"/>
+                <Element id="1018" maxLength="15" minLength="1" name="Exponent"
+                         required="C" type="AN" xmlTag="Exponent"/>
+                <Element id="649" maxLength="10" minLength="1" name="Multiplier"
+                         required="C" type="AN" xmlTag="Multiplier"/>
+                <Element id="355_2" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="C" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode_2"/>
+                <Element id="1018_2" maxLength="15" minLength="1" name="Exponent"
+                         required="C" type="AN" xmlTag="Exponent_2"/>
+                <Element id="649_2" maxLength="10" minLength="1" name="Multiplier"
+                         required="C" type="AN" xmlTag="Multiplier_2"/>
+                <Element id="355_3" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="C" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode_3"/>
+                <Element id="1018_3" maxLength="15" minLength="1" name="Exponent"
+                         required="C" type="AN" xmlTag="Exponent_3"/>
+                <Element id="649_3" maxLength="10" minLength="1" name="Multiplier"
+                         required="C" type="AN" xmlTag="Multiplier_3"/>
+                <Element id="355_4" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="C" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode_4"/>
+                <Element id="1018_4" maxLength="15" minLength="1" name="Exponent"
+                         required="C" type="AN" xmlTag="Exponent_4"/>
+                <Element id="649_4" maxLength="10" minLength="1" name="Multiplier"
+                         required="C" type="AN" xmlTag="Multiplier_4"/>
+                <Element id="355_5" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="C" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode_5"/>
+                <Element id="1018_5" maxLength="15" minLength="1" name="Exponent"
+                         required="C" type="AN" xmlTag="Exponent_5"/>
+                <Element id="649_5" maxLength="10" minLength="1" name="Multiplier"
+                         required="C" type="AN" xmlTag="Multiplier_5"/>
+            </CompositeElement>
+            <Element id="740" maxLength="10" minLength="1" name="Range Minimum"
+                     required="C" type="AN" xmlTag="RangeMinimum"/>
+            <Element id="741" maxLength="10" minLength="1" name="Range Maximum"
+                     required="C" type="AN" xmlTag="RangeMaximum"/>
+            <Element id="935" maxLength="2" minLength="2"
+                     name="Measurement Significance Code" required="C" type="AN"
+                     xmlTag="MeasurementSignificanceCode"/>
+            <Element id="936" maxLength="2" minLength="2"
+                     name="Measurement Attribute Code" required="C" type="AN"
+                     xmlTag="MeasurementAttributeCode"/>
+            <Element id="752" maxLength="2" minLength="2"
+                     name="Surface/Layer/Position Code" required="C" type="AN"
+                     xmlTag="SurfaceLayerPositionCode"/>
+            <Element id="1373" maxLength="4" minLength="2"
+                     name="Measurement Method or Device" required="C" type="AN"
+                     xmlTag="MeasurementMethodOrDevice"/>
+        </Segment>
+        <Segment id="PKG" loop="25" name="Marking, Packaging, Loading"
+                 required="C" xmlTag="Marking">
+            <Element id="349" maxLength="1" minLength="1"
+                     name="Item Description Type" required="C" type="AN" xmlTag="ItemDescriptionType"/>
+            <Element id="753" maxLength="5" minLength="1"
+                     name="Packaging Characteristic Code" required="C" type="AN"
+                     xmlTag="PackagingCharacteristicCode"/>
+            <Element id="559" maxLength="2" minLength="2"
+                     name="Agency Qualifier Code" required="C" type="AN" xmlTag="AgencyQualifierCode"/>
+            <Element id="754" maxLength="7" minLength="1"
+                     name="Packaging Description Code" required="C" type="AN"
+                     xmlTag="PackagingDescriptionCode"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+            <Element id="400" maxLength="2" minLength="2"
+                     name="Unit Load Option Code" required="C" type="AN" xmlTag="UnitLoadOptionCode"/>
+        </Segment>
+        <Segment id="PO4" loop="1" name="Item Physical Details"
+                 required="C" xmlTag="ItemPhysicalDetails">
+            <Element id="356" maxLength="6" minLength="1" name="Pack"
+                     required="C" type="N" xmlTag="Pack"/>
+            <Element id="357" maxLength="8" minLength="1" name="Size"
+                     required="C" type="AN" xmlTag="Size"/>
+            <Element id="355" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="C" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode"/>
+            <Element id="103" maxLength="5" minLength="5" name="Packaging Code"
+                     required="C" type="AN" xmlTag="PackagingCode"/>
+            <Element id="187" maxLength="2" minLength="1" name="Weight Qualifier"
+                     required="C" type="AN" xmlTag="WeightQualifier"/>
+            <Element id="384" maxLength="9" minLength="1"
+                     name="Gross Weight per Pack" required="C" type="AN" xmlTag="GrossWeightPerPack"/>
+            <Element id="355_2" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="C" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode_2"/>
+            <Element id="385" maxLength="9" minLength="1"
+                     name="Gross Volume per Pack" required="C" type="AN" xmlTag="GrossVolumePerPack"/>
+            <Element id="355_3" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="C" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode_3"/>
+            <Element id="82" maxLength="8" minLength="1" name="Length"
+                     required="C" type="AN" xmlTag="Length"/>
+            <Element id="189" maxLength="8" minLength="1" name="Width"
+                     required="C" type="AN" xmlTag="Width"/>
+            <Element id="65" maxLength="8" minLength="1" name="Height"
+                     required="C" type="AN" xmlTag="Height"/>
+            <Element id="355_4" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="C" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode_4"/>
+        </Segment>
+        <Segment id="TD4" loop="1"
+                 name="Carrier Details (Special Handling, or Hazardous Materials, or Both)"
+                 required="C" xmlTag="CarrierDetailsSpecialHandling">
+            <Element id="152" maxLength="3" minLength="2"
+                     name="Special Handling Code" required="C" type="AN" xmlTag="SpecialHandlingCode"/>
+            <Element id="208" maxLength="1" minLength="1"
+                     name="Hazardous Material Code Qualifier" required="C" type="AN"
+                     xmlTag="HazardousMaterialCodeQualifier"/>
+            <Element id="209" maxLength="4" minLength="2"
+                     name="Hazardous Material Class Code" required="C" type="AN"
+                     xmlTag="HazardousMaterialClassCode"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+        </Segment>
+        <Segment id="SSS" loop="25" name="Special Services" required="C"
+                 xmlTag="SpecialServices">
+            <Element id="248" maxLength="1" minLength="1"
+                     name="Allowance or Charge Indicator" required="M" type="AN"
+                     xmlTag="AllowanceOrChargeIndicator"/>
+            <Element id="559" maxLength="2" minLength="2"
+                     name="Agency Qualifier Code" required="M" type="AN" xmlTag="AgencyQualifierCode"/>
+            <Element id="560" maxLength="10" minLength="2"
+                     name="Special Services Code" required="M" type="AN" xmlTag="SpecialServicesCode"/>
+            <Element id="561" maxLength="45" minLength="1"
+                     name="Service Marks and Numbers" required="C" type="AN"
+                     xmlTag="ServiceMarksAndNumbers"/>
+            <Element id="359" maxLength="9" minLength="1"
+                     name="Allowance or Charge Rate" required="C" type="AN"
+                     xmlTag="AllowanceOrChargeRate"/>
+            <Element id="360" maxLength="9" minLength="1"
+                     name="Allowance or Charge Total Amount" required="C" type="N"
+                     xmlTag="AllowanceOrChargeTotalAmount"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+            <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                     required="C" type="AN" xmlTag="Quantity"/>
+            <Element id="822" maxLength="15" minLength="1"
+                     name="Source Subqualifier" required="C" type="AN" xmlTag="SourceSubqualifier"/>
+        </Segment>
+        <Segment id="ITD" loop="2" name="Terms of Sale/Deferred Terms of Sale"
+                 required="C" xmlTag="TermsOfSaleDeferredTermsOfSale">
+            <Element id="336" maxLength="2" minLength="2" name="Terms Type Code"
+                     required="C" type="AN" xmlTag="TermsTypeCode"/>
+            <Element id="333" maxLength="2" minLength="1"
+                     name="Terms Basis Date Code" required="C" type="AN" xmlTag="TermsBasisDateCode"/>
+            <Element id="338" maxLength="6" minLength="1"
+                     name="Terms Discount Percent" required="C" type="AN"
+                     xmlTag="TermsDiscountPercent"/>
+            <Element id="370" maxLength="6" minLength="6"
+                     name="Terms Discount Due Date" required="C" type="AN"
+                     xmlTag="TermsDiscountDueDate"/>
+            <Element id="351" maxLength="3" minLength="1"
+                     name="Terms Discount Days Due" required="C" type="N"
+                     xmlTag="TermsDiscountDaysDue"/>
+            <Element id="446" maxLength="6" minLength="6"
+                     name="Terms Net Due Date" required="C" type="AN" xmlTag="TermsNetDueDate"/>
+            <Element id="386" maxLength="3" minLength="1" name="Terms Net Days"
+                     required="C" type="N" xmlTag="TermsNetDays"/>
+            <Element id="362" maxLength="10" minLength="1"
+                     name="Terms Discount Amount" required="C" type="N" xmlTag="TermsDiscountAmount"/>
+            <Element id="388" maxLength="6" minLength="6"
+                     name="Terms Deferred Due Date" required="C" type="AN"
+                     xmlTag="TermsDeferredDueDate"/>
+            <Element id="389" maxLength="10" minLength="1"
+                     name="Deferred Amount Due" required="C" type="N" xmlTag="DeferredAmountDue"/>
+            <Element id="342" maxLength="5" minLength="1"
+                     name="Percent of Invoice Payable" required="C" type="AN"
+                     xmlTag="PercentOfInvoicePayable"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+            <Element id="765" maxLength="2" minLength="1" name="Day of Month"
+                     required="C" type="N" xmlTag="DayOfMonth"/>
+            <Element id="107" maxLength="1" minLength="1"
+                     name="Payment Method Code" required="C" type="AN" xmlTag="PaymentMethodCode"/>
+            <Element id="954" maxLength="10" minLength="1" name="Percent"
+                     required="C" type="AN" xmlTag="Percent"/>
+        </Segment>
+        <Segment id="LDT" loop="1" name="Lead Time" required="C"
+                 xmlTag="LeadTime">
+            <Element id="345" maxLength="2" minLength="2" name="Lead Time Code"
+                     required="M" type="AN" xmlTag="LeadTimeCode"/>
+            <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                     required="M" type="AN" xmlTag="Quantity"/>
+            <Element id="344" maxLength="2" minLength="2"
+                     name="Unit of Time Period or Interval" required="M" type="AN"
+                     xmlTag="UnitOfTimePeriodOrInterval"/>
+            <Element id="373" maxLength="6" minLength="6" name="Date"
+                     required="C" type="AN" xmlTag="Date"/>
+        </Segment>
+        <Segment id="ITA" loop="5" name="Allowance, Charge or Service"
+                 required="C" xmlTag="Allowance">
+            <Element id="248" maxLength="1" minLength="1"
+                     name="Allowance or Charge Indicator" required="M" type="AN"
+                     xmlTag="AllowanceOrChargeIndicator"/>
+            <Element id="559" maxLength="2" minLength="2"
+                     name="Agency Qualifier Code" required="C" type="AN" xmlTag="AgencyQualifierCode"/>
+            <Element id="560" maxLength="10" minLength="2"
+                     name="Special Services Code" required="C" type="AN" xmlTag="SpecialServicesCode"/>
+            <Element id="331" maxLength="2" minLength="2"
+                     name="Allowance or Charge Method of Handling Code" required="M"
+                     type="AN" xmlTag="AllowanceOrChargeMethodOfHandling"/>
+            <Element id="341" maxLength="16" minLength="1"
+                     name="Allowance or Charge Number" required="C" type="AN"
+                     xmlTag="AllowanceOrChargeNumber"/>
+            <Element id="359" maxLength="9" minLength="1"
+                     name="Allowance or Charge Rate" required="C" type="AN"
+                     xmlTag="AllowanceOrChargeRate"/>
+            <Element id="360" maxLength="9" minLength="1"
+                     name="Allowance or Charge Total Amount" required="C" type="N"
+                     xmlTag="AllowanceOrChargeTotalAmount"/>
+            <Element id="378" maxLength="1" minLength="1"
+                     name="Allowance/Charge Percent Qualifier" required="C" type="AN"
+                     xmlTag="AllowanceChargePercentQualifier"/>
+            <Element id="332" maxLength="6" minLength="1"
+                     name="Allowance or Charge Percent" required="C" type="AN"
+                     xmlTag="AllowanceOrChargePercent"/>
+            <Element id="339" maxLength="10" minLength="1"
+                     name="Allowance or Charge Quantity" required="C" type="AN"
+                     xmlTag="AllowanceOrChargeQuantity"/>
+            <Element id="355" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="C" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode"/>
+            <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                     required="C" type="AN" xmlTag="Quantity"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+            <Element id="150" maxLength="3" minLength="3"
+                     name="Special Charge or Allowance Code" required="C" type="AN"
+                     xmlTag="SpecialChargeOrAllowanceCode"/>
+            <Element id="822" maxLength="15" minLength="1"
+                     name="Source Subqualifier" required="C" type="AN" xmlTag="SourceSubqualifier"/>
+            <Element id="662" maxLength="1" minLength="1" name="Relationship Code"
+                     required="C" type="AN" xmlTag="RelationshipCode"/>
+        </Segment>
+        <Segment id="FOB" loop="1" name="F.O.B. Related Instructions"
+                 required="C" xmlTag="FOBRelatedInstructions">
+            <Element id="146" maxLength="2" minLength="2"
+                     name="Shipment Method of Payment" required="M" type="AN"
+                     xmlTag="ShipmentMethodOfPayment"/>
+            <Element id="309" maxLength="2" minLength="1"
+                     name="Location Qualifier" required="C" type="AN" xmlTag="LocationQualifier"/>
+            <Element id="352" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description"/>
+            <Element id="334" maxLength="2" minLength="2"
+                     name="Transportation Terms Qualifier Code" required="C" type="AN"
+                     xmlTag="TransportationTermsQualifierCode"/>
+            <Element id="335" maxLength="3" minLength="3"
+                     name="Transportation Terms Code" required="C" type="AN"
+                     xmlTag="TransportationTermsCode"/>
+            <Element id="309_2" maxLength="2" minLength="1"
+                     name="Location Qualifier" required="C" type="AN" xmlTag="LocationQualifier_2"/>
+            <Element id="352_2" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description_2"/>
+            <Element id="54" maxLength="2" minLength="2"
+                     name="Risk of Loss Qualifier" required="C" type="AN"
+                     xmlTag="RiskOfLossQualifier"/>
+            <Element id="352_3" maxLength="80" minLength="1" name="Description"
+                     required="C" type="AN" xmlTag="Description_3"/>
+        </Segment>
+        <Segment id="TC2" loop="2" name="Commodity" required="C"
+                 xmlTag="Commodity">
+            <Element id="23" maxLength="1" minLength="1"
+                     name="Commodity Code Qualifier" required="M" type="AN"
+                     xmlTag="CommodityCodeQualifier"/>
+            <Element id="22" maxLength="16" minLength="1" name="Commodity Code"
+                     required="M" type="AN" xmlTag="CommodityCode"/>
+        </Segment>
+        <SegmentGroup id="Group_3" loop="100" required="C"
+                      xmlTag="SegmentGroup_3">
+            <Segment id="CTP" loop="1" name="Pricing Information"
+                     required="C" xmlTag="PricingInformation">
+                <Element id="687" maxLength="2" minLength="2"
+                         name="Class of Trade Code" required="C" type="AN" xmlTag="ClassOfTradeCode"/>
+                <Element id="236" maxLength="3" minLength="3"
+                         name="Price Identifier Code" required="C" type="AN"
+                         xmlTag="PriceIdentifierCode"/>
+                <Element id="212" maxLength="14" minLength="1" name="Unit Price"
+                         required="C" type="AN" xmlTag="UnitPrice"/>
+                <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                         required="C" type="AN" xmlTag="Quantity"/>
+                <Element id="355" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="C" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode"/>
+                <Element id="648" maxLength="3" minLength="3"
+                         name="Price Multiplier Qualifier" required="C" type="AN"
+                         xmlTag="PriceMultiplierQualifier"/>
+                <Element id="649" maxLength="10" minLength="1" name="Multiplier"
+                         required="C" type="AN" xmlTag="Multiplier"/>
+                <Element id="782" maxLength="15" minLength="1" name="Monetary Amount"
+                         required="C" type="AN" xmlTag="MonetaryAmount"/>
+            </Segment>
+            <Segment id="DTM" loop="10" name="Date/Time/Period" required="C"
+                     xmlTag="DateTimePeriod">
+                <Element id="374" maxLength="3" minLength="3"
+                         name="Date/Time Qualifier" required="M" type="AN" xmlTag="DateTimeQualifier"/>
+                <Element id="373" maxLength="6" minLength="6" name="Date"
+                         required="C" type="AN" xmlTag="Date"/>
+                <Element id="337" maxLength="6" minLength="4" name="Time"
+                         required="C" type="AN" xmlTag="Time"/>
+                <Element id="623" maxLength="2" minLength="2" name="Time Code"
+                         required="C" type="AN" xmlTag="TimeCode"/>
+                <Element id="624" maxLength="2" minLength="2" name="Century"
+                         required="C" type="N" xmlTag="Century"/>
+            </Segment>
+            <Segment id="LDT" loop="1" name="Lead Time" required="C"
+                     xmlTag="LeadTime">
+                <Element id="345" maxLength="2" minLength="2" name="Lead Time Code"
+                         required="M" type="AN" xmlTag="LeadTimeCode"/>
+                <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                         required="M" type="AN" xmlTag="Quantity"/>
+                <Element id="344" maxLength="2" minLength="2"
+                         name="Unit of Time Period or Interval" required="M" type="AN"
+                         xmlTag="UnitOfTimePeriodOrInterval"/>
+                <Element id="373" maxLength="6" minLength="6" name="Date"
+                         required="C" type="AN" xmlTag="Date"/>
+            </Segment>
+            <Segment id="CUR" loop="5" name="Currency" required="C"
+                     xmlTag="Currency">
+                <Element id="98" maxLength="2" minLength="2"
+                         name="Entity Identifier Code" required="M" type="AN"
+                         xmlTag="EntityIdentifierCode"/>
+                <Element id="100" maxLength="3" minLength="3" name="Currency Code"
+                         required="M" type="AN" xmlTag="CurrencyCode"/>
+                <Element id="280" maxLength="6" minLength="4" name="Exchange Rate"
+                         required="C" type="AN" xmlTag="ExchangeRate"/>
+                <Element id="98_2" maxLength="2" minLength="2"
+                         name="Entity Identifier Code" required="C" type="AN"
+                         xmlTag="EntityIdentifierCode_2"/>
+                <Element id="100_2" maxLength="3" minLength="3" name="Currency Code"
+                         required="C" type="AN" xmlTag="CurrencyCode_2"/>
+                <Element id="669" maxLength="3" minLength="3"
+                         name="Currency Market/Exchange Code" required="C" type="AN"
+                         xmlTag="CurrencyMarketExchangeCode"/>
+                <Element id="374" maxLength="3" minLength="3"
+                         name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier"/>
+                <Element id="373" maxLength="6" minLength="6" name="Date"
+                         required="C" type="AN" xmlTag="Date"/>
+                <Element id="337" maxLength="6" minLength="4" name="Time"
+                         required="C" type="AN" xmlTag="Time"/>
+                <Element id="374_2" maxLength="3" minLength="3"
+                         name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier_2"/>
+                <Element id="373_2" maxLength="6" minLength="6" name="Date"
+                         required="C" type="AN" xmlTag="Date_2"/>
+                <Element id="337_2" maxLength="6" minLength="4" name="Time"
+                         required="C" type="AN" xmlTag="Time_2"/>
+                <Element id="374_3" maxLength="3" minLength="3"
+                         name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier_3"/>
+                <Element id="373_3" maxLength="6" minLength="6" name="Date"
+                         required="C" type="AN" xmlTag="Date_3"/>
+                <Element id="337_3" maxLength="6" minLength="4" name="Time"
+                         required="C" type="AN" xmlTag="Time_3"/>
+                <Element id="374_4" maxLength="3" minLength="3"
+                         name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier_4"/>
+                <Element id="373_4" maxLength="6" minLength="6" name="Date"
+                         required="C" type="AN" xmlTag="Date_4"/>
+                <Element id="337_4" maxLength="6" minLength="4" name="Time"
+                         required="C" type="AN" xmlTag="Time_4"/>
+                <Element id="374_5" maxLength="3" minLength="3"
+                         name="Date/Time Qualifier" required="C" type="AN" xmlTag="DateTimeQualifier_5"/>
+                <Element id="373_5" maxLength="6" minLength="6" name="Date"
+                         required="C" type="AN" xmlTag="Date_5"/>
+                <Element id="337_5" maxLength="6" minLength="4" name="Time"
+                         required="C" type="AN" xmlTag="Time_5"/>
+            </Segment>
+            <Segment id="PO4" loop="1" name="Item Physical Details"
+                     required="C" xmlTag="ItemPhysicalDetails">
+                <Element id="356" maxLength="6" minLength="1" name="Pack"
+                         required="C" type="N" xmlTag="Pack"/>
+                <Element id="357" maxLength="8" minLength="1" name="Size"
+                         required="C" type="AN" xmlTag="Size"/>
+                <Element id="355" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="C" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode"/>
+                <Element id="103" maxLength="5" minLength="5" name="Packaging Code"
+                         required="C" type="AN" xmlTag="PackagingCode"/>
+                <Element id="187" maxLength="2" minLength="1" name="Weight Qualifier"
+                         required="C" type="AN" xmlTag="WeightQualifier"/>
+                <Element id="384" maxLength="9" minLength="1"
+                         name="Gross Weight per Pack" required="C" type="AN" xmlTag="GrossWeightPerPack"/>
+                <Element id="355_2" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="C" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode_2"/>
+                <Element id="385" maxLength="9" minLength="1"
+                         name="Gross Volume per Pack" required="C" type="AN" xmlTag="GrossVolumePerPack"/>
+                <Element id="355_3" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="C" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode_3"/>
+                <Element id="82" maxLength="8" minLength="1" name="Length"
+                         required="C" type="AN" xmlTag="Length"/>
+                <Element id="189" maxLength="8" minLength="1" name="Width"
+                         required="C" type="AN" xmlTag="Width"/>
+                <Element id="65" maxLength="8" minLength="1" name="Height"
+                         required="C" type="AN" xmlTag="Height"/>
+                <Element id="355_4" maxLength="2" minLength="2"
+                         name="Unit or Basis for Measurement Code" required="C" type="AN"
+                         xmlTag="UnitOrBasisForMeasurementCode_4"/>
+            </Segment>
+            <Segment id="CTB" loop="5" name="Restrictions/Conditions"
+                     required="C" xmlTag="RestrictionsConditions">
+                <Element id="688" maxLength="2" minLength="2"
+                         name="Restrictions/Conditions Qualifier" required="M" type="AN"
+                         xmlTag="RestrictionsConditionsQualifier"/>
+                <Element id="352" maxLength="80" minLength="1" name="Description"
+                         required="C" type="AN" xmlTag="Description"/>
+                <Element id="673" maxLength="2" minLength="2"
+                         name="Quantity Qualifier" required="C" type="AN" xmlTag="QuantityQualifier"/>
+                <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                         required="C" type="AN" xmlTag="Quantity"/>
+                <Element id="522" maxLength="2" minLength="1"
+                         name="Amount Qualifier Code" required="C" type="AN"
+                         xmlTag="AmountQualifierCode"/>
+                <Element id="610" maxLength="9" minLength="1" name="Amount"
+                         required="C" type="N" xmlTag="Amount"/>
+            </Segment>
+            <Segment id="REF" loop="n" name="Reference Numbers" required="C"
+                     xmlTag="ReferenceNumbers">
+                <Element id="128" maxLength="2" minLength="2"
+                         name="Reference Number Qualifier" required="M" type="AN"
+                         xmlTag="ReferenceNumberQualifier"/>
+                <Element id="127" maxLength="30" minLength="1"
+                         name="Reference Number" required="C" type="AN" xmlTag="ReferenceNumber"/>
+                <Element id="352" maxLength="80" minLength="1" name="Description"
+                         required="C" type="AN" xmlTag="Description"/>
+            </Segment>
+        </SegmentGroup>
+        <SegmentGroup id="Group_4" loop="200" required="C"
+                      xmlTag="SegmentGroup_4">
+            <Segment id="N1" loop="1" name="Name" required="C" xmlTag="Name">
+                <Element id="98" maxLength="2" minLength="2"
+                         name="Entity Identifier Code" required="M" type="AN"
+                         xmlTag="EntityIdentifierCode"/>
+                <Element id="93" maxLength="35" minLength="1" name="Name"
+                         required="C" type="AN" xmlTag="Name"/>
+                <Element id="66" maxLength="2" minLength="1"
+                         name="Identification Code Qualifier" required="C" type="AN"
+                         xmlTag="IdentificationCodeQualifier"/>
+                <Element id="67" maxLength="17" minLength="2"
+                         name="Identification Code" required="C" type="AN" xmlTag="IdentificationCode"/>
+            </Segment>
+            <Segment id="N2" loop="2" name="Additional Name Information"
+                     required="C" xmlTag="AdditionalNameInformation">
+                <Element id="93" maxLength="35" minLength="1" name="Name"
+                         required="M" type="AN" xmlTag="Name"/>
+                <Element id="93_2" maxLength="35" minLength="1" name="Name"
+                         required="C" type="AN" xmlTag="Name_2"/>
+            </Segment>
+            <Segment id="N3" loop="2" name="Address Information"
+                     required="C" xmlTag="AddressInformation">
+                <Element id="166" maxLength="35" minLength="1"
+                         name="Address Information" required="M" type="AN" xmlTag="AddressInformation"/>
+                <Element id="166_2" maxLength="35" minLength="1"
+                         name="Address Information" required="C" type="AN" xmlTag="AddressInformation_2"/>
+            </Segment>
+            <Segment id="N4" loop="1" name="Geographic Location"
+                     required="C" xmlTag="GeographicLocation">
+                <Element id="19" maxLength="30" minLength="2" name="City Name"
+                         required="C" type="AN" xmlTag="CityName"/>
+                <Element id="156" maxLength="2" minLength="2"
+                         name="State or Province Code" required="C" type="AN"
+                         xmlTag="StateOrProvinceCode"/>
+                <Element id="116" maxLength="9" minLength="3" name="Postal Code"
+                         required="C" type="AN" xmlTag="PostalCode"/>
+                <Element id="26" maxLength="3" minLength="2" name="Country Code"
+                         required="C" type="AN" xmlTag="CountryCode"/>
+                <Element id="309" maxLength="2" minLength="1"
+                         name="Location Qualifier" required="C" type="AN" xmlTag="LocationQualifier"/>
+                <Element id="310" maxLength="25" minLength="1"
+                         name="Location Identifier" required="C" type="AN" xmlTag="LocationIdentifier"/>
+            </Segment>
+            <Segment id="REF" loop="12" name="Reference Numbers"
+                     required="C" xmlTag="ReferenceNumbers">
+                <Element id="128" maxLength="2" minLength="2"
+                         name="Reference Number Qualifier" required="M" type="AN"
+                         xmlTag="ReferenceNumberQualifier"/>
+                <Element id="127" maxLength="30" minLength="1"
+                         name="Reference Number" required="C" type="AN" xmlTag="ReferenceNumber"/>
+                <Element id="352" maxLength="80" minLength="1" name="Description"
+                         required="C" type="AN" xmlTag="Description"/>
+            </Segment>
+            <Segment id="PER" loop="3"
+                     name="Administrative Communications Contact" required="C"
+                     xmlTag="AdministrativeCommunicationsContact">
+                <Element id="366" maxLength="2" minLength="2"
+                         name="Contact Function Code" required="M" type="AN"
+                         xmlTag="ContactFunctionCode"/>
+                <Element id="93" maxLength="35" minLength="1" name="Name"
+                         required="C" type="AN" xmlTag="Name"/>
+                <Element id="365" maxLength="2" minLength="2"
+                         name="Communication Number Qualifier" required="C" type="AN"
+                         xmlTag="CommunicationNumberQualifier"/>
+                <Element id="364" maxLength="25" minLength="1"
+                         name="Communication Number" required="C" type="AN" xmlTag="CommunicationNumber"/>
+                <Element id="365_2" maxLength="2" minLength="2"
+                         name="Communication Number Qualifier" required="C" type="AN"
+                         xmlTag="CommunicationNumberQualifier_2"/>
+                <Element id="364_2" maxLength="25" minLength="1"
+                         name="Communication Number" required="C" type="AN"
+                         xmlTag="CommunicationNumber_2"/>
+            </Segment>
+            <Segment id="DTM" loop="10" name="Date/Time/Period" required="C"
+                     xmlTag="DateTimePeriod">
+                <Element id="374" maxLength="3" minLength="3"
+                         name="Date/Time Qualifier" required="M" type="AN" xmlTag="DateTimeQualifier"/>
+                <Element id="373" maxLength="6" minLength="6" name="Date"
+                         required="C" type="AN" xmlTag="Date"/>
+                <Element id="337" maxLength="6" minLength="4" name="Time"
+                         required="C" type="AN" xmlTag="Time"/>
+                <Element id="623" maxLength="2" minLength="2" name="Time Code"
+                         required="C" type="AN" xmlTag="TimeCode"/>
+                <Element id="624" maxLength="2" minLength="2" name="Century"
+                         required="C" type="N" xmlTag="Century"/>
+            </Segment>
+        </SegmentGroup>
+    </SegmentGroup>
+    <SegmentGroup id="Group_5" loop="10" required="C"
+                  xmlTag="SegmentGroup_5">
+        <Segment id="PKL" loop="1" name="Multi-Pack Configuration"
+                 required="C" xmlTag="MultiPackConfiguration">
+            <Element id="235" maxLength="2" minLength="2"
+                     name="Product/Service ID Qualifier" required="M" type="AN"
+                     xmlTag="ProductServiceIDQualifier"/>
+            <Element id="234" maxLength="30" minLength="1"
+                     name="Product/Service ID" required="M" type="AN" xmlTag="ProductServiceID"/>
+            <Element id="355" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="M" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode"/>
+            <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                     required="M" type="AN" xmlTag="Quantity"/>
+            <Element id="65" maxLength="8" minLength="1" name="Height"
+                     required="C" type="AN" xmlTag="Height"/>
+            <Element id="189" maxLength="8" minLength="1" name="Width"
+                     required="C" type="AN" xmlTag="Width"/>
+            <Element id="677" maxLength="6" minLength="1" name="Item Depth"
+                     required="C" type="AN" xmlTag="ItemDepth"/>
+            <Element id="355_2" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="C" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode_2"/>
+            <Element id="384" maxLength="9" minLength="1"
+                     name="Gross Weight per Pack" required="C" type="AN" xmlTag="GrossWeightPerPack"/>
+            <Element id="355_3" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="C" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode_3"/>
+            <Element id="385" maxLength="9" minLength="1"
+                     name="Gross Volume per Pack" required="C" type="AN" xmlTag="GrossVolumePerPack"/>
+            <Element id="35_5" maxLength="2" minLength="2" name="Disposition Code"
+                     required="C" type="AN" xmlTag="DispositionCode_5"/>
+        </Segment>
+        <Segment id="CTP" loop="1" name="Pricing Information"
+                 required="C" xmlTag="PricingInformation">
+            <Element id="687" maxLength="2" minLength="2"
+                     name="Class of Trade Code" required="C" type="AN" xmlTag="ClassOfTradeCode"/>
+            <Element id="236" maxLength="3" minLength="3"
+                     name="Price Identifier Code" required="C" type="AN" xmlTag="PriceIdentifierCode"/>
+            <Element id="212" maxLength="14" minLength="1" name="Unit Price"
+                     required="C" type="AN" xmlTag="UnitPrice"/>
+            <Element id="380" maxLength="15" minLength="1" name="Quantity"
+                     required="C" type="AN" xmlTag="Quantity"/>
+            <Element id="355" maxLength="2" minLength="2"
+                     name="Unit or Basis for Measurement Code" required="C" type="AN"
+                     xmlTag="UnitOrBasisForMeasurementCode"/>
+            <Element id="648" maxLength="3" minLength="3"
+                     name="Price Multiplier Qualifier" required="C" type="AN"
+                     xmlTag="PriceMultiplierQualifier"/>
+            <Element id="649" maxLength="10" minLength="1" name="Multiplier"
+                     required="C" type="AN" xmlTag="Multiplier"/>
+            <Element id="782" maxLength="15" minLength="1" name="Monetary Amount"
+                     required="C" type="AN" xmlTag="MonetaryAmount"/>
+        </Segment>
+    </SegmentGroup>
+    <Segment id="CTT" loop="1" name="Transaction Totals" required="M"
+             xmlTag="TransactionTotals">
+        <Element id="354" maxLength="6" minLength="1"
+                 name="Number of Line Items" required="M" type="N" xmlTag="NumberOfLineItems"/>
+        <Element id="347" maxLength="10" minLength="1" name="Hash Total"
+                 required="C" type="AN" xmlTag="HashTotal"/>
+        <Element id="81" maxLength="10" minLength="1" name="Weight"
+                 required="C" type="AN" xmlTag="Weight"/>
+        <Element id="355" maxLength="2" minLength="2"
+                 name="Unit or Basis for Measurement Code" required="C" type="AN"
+                 xmlTag="UnitOrBasisForMeasurementCode"/>
+        <Element id="183" maxLength="8" minLength="1" name="Volume"
+                 required="C" type="AN" xmlTag="Volume"/>
+        <Element id="355_2" maxLength="2" minLength="2"
+                 name="Unit or Basis for Measurement Code" required="C" type="AN"
+                 xmlTag="UnitOrBasisForMeasurementCode_2"/>
+        <Element id="352" maxLength="80" minLength="1" name="Description"
+                 required="C" type="AN" xmlTag="Description"/>
+    </Segment>
+    <Segment id="SE" loop="1" name="Transaction Set Trailer"
+             required="M" xmlTag="TransactionSetTrailer">
+        <Element id="96" maxLength="10" minLength="1"
+                 name="Number of Included Segments" required="M" type="N"
+                 xmlTag="NumberOfIncludedSegments"/>
+        <Element id="329" maxLength="9" minLength="4"
+                 name="Transaction Set Control Number" required="M" type="AN"
+                 xmlTag="TransactionSetControlNumber"/>
+    </Segment>
+</Message>
