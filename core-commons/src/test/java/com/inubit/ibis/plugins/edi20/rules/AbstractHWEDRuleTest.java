@@ -12,6 +12,8 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
+import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -19,25 +21,35 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Created with IntelliJ IDEA. User: r4fter Date: 28.02.13 Time: 17:21 To change this template use File | Settings |
- * File Templates.
+ * @author r4fter
  */
-public class AbstractEDIRuleTest {
+public class AbstractHWEDRuleTest {
 
-    private AbstractEDIRule rule;
+    private AbstractHWEDRule rule;
 
     @Before
     public void setUp() throws Exception {
-        this.rule = new AbstractEDIRule(getDocument("EDIFACT-IFCSUM-D-96A.xml")) {
+        this.rule = new AbstractHWEDRule(getDocument("EDIFACT-IFCSUM-D-96A.xml")) {
             @Override
             public String getLayout() {
                 return "hwed";
             }
 
             @Override
+            public void closeCurrentRuleToken(IToken token) {
+                // do nothing
+            }
+
+            @Override
+            public boolean isEndOfRule() {
+                return false;
+            }
+
+            @Override
             public String getStandard() {
                 return "EDIFACT";
             }
+
         };
     }
 
@@ -47,7 +59,7 @@ public class AbstractEDIRuleTest {
     }
 
     private File getFile(String fileName) throws URISyntaxException {
-        URL url = AbstractEDIRuleTest.class.getResource(fileName);
+        URL url = AbstractHWEDRuleTest.class.getResource(fileName);
         assertNotNull("File not found: " + fileName, url);
         return new File(url.toURI());
     }
@@ -166,8 +178,9 @@ public class AbstractEDIRuleTest {
         assertEquals("0062", element.getID());
         assertEquals("MessageReferenceNumber", element.getXmlTag());
         assertEquals("Message reference number", element.getDescription());
-        assertEquals(1, element.getMinLength());
-        assertEquals(14, element.getMaxLength());
+        assertTrue(element instanceof HwedRuleElement);
+        assertEquals(1, ((HwedRuleElement) element).getMinLength());
+        assertEquals(14, ((HwedRuleElement) element).getMaxLength());
         assertEquals("AN", element.getType());
         assertEquals("/Message/Segment[@id='UNH']/Element[@id='0062']", element.getXPath());
         assertEquals("/Root/UNH/0062", element.getRulePath());

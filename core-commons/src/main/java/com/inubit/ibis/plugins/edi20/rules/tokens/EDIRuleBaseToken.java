@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleTokenFactory;
 import com.inubit.ibis.utils.StringUtil;
 import org.dom4j.Element;
 
@@ -96,7 +97,7 @@ public class EDIRuleBaseToken implements IRuleToken {
         List<Element> childElements = getRuleElement().elements();
         List<IRuleToken> children = new ArrayList<IRuleToken>(childElements.size());
         for (Element childElement : childElements) {
-            children.add(EDIRuleTokenFactory.getInstance(childElement));
+            children.add(HwfpeRuleTokenFactory.getInstance(childElement));
         }
         return children;
     }
@@ -106,7 +107,7 @@ public class EDIRuleBaseToken implements IRuleToken {
      */
     public IRuleToken nextChildren() {
         if (getChildIterator().hasNext()) {
-            return EDIRuleTokenFactory.getInstance(getChildIterator().next());
+            return HwfpeRuleTokenFactory.getInstance(getChildIterator().next());
         }
         return null;
     }
@@ -145,7 +146,7 @@ public class EDIRuleBaseToken implements IRuleToken {
      */
     public IRuleToken getParent() {
         if (getRuleElement().getParent() != null) {
-            return EDIRuleTokenFactory.getInstance(getRuleElement().getParent());
+            return HwfpeRuleTokenFactory.getInstance(getRuleElement().getParent());
         }
         return null;
     }

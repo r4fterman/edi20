@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleTokenFactory;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleTokenFactory;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
 import org.dom4j.Document;
@@ -19,7 +21,7 @@ import org.dom4j.Element;
  */
 public abstract class AbstractEDIRule {
 
-    private EDIRuleRoot fRootElement;
+    private EDIRuleRoot ruleElement;
 
     /**
      * @param ruleDocument
@@ -31,8 +33,10 @@ public abstract class AbstractEDIRule {
         if (!isValidRuleDocument(ruleDocument)) {
             throw new InubitException("Invalid rule document!");
         }
-        fRootElement = (EDIRuleRoot) EDIRuleTokenFactory.getInstance(ruleDocument.getRootElement());
+        this.ruleElement = createRootElement(ruleDocument);
     }
+
+    protected abstract EDIRuleRoot createRootElement(Document ruleDocument);
 
     private boolean isValidRuleDocument(final Document ruleDocument) {
         if (ruleDocument == null) {
@@ -65,7 +69,7 @@ public abstract class AbstractEDIRule {
      */
     private boolean isSetCorrectStandardAndLayout(Element rootElement) {
         if (rootElement != null) {
-            IRuleToken ruleToken = EDIRuleTokenFactory.getInstance(rootElement);
+            IRuleToken ruleToken = HwfpeRuleTokenFactory.getInstance(rootElement);
             if (ruleToken instanceof EDIRuleRoot) {
                 EDIRuleRoot root = (EDIRuleRoot) ruleToken;
                 return root.getStandard().equals(getStandard()) && root.getLayout().equals(getLayout());
@@ -85,16 +89,16 @@ public abstract class AbstractEDIRule {
      * @return root element
      */
     protected EDIRuleRoot getRootElement() {
-        return fRootElement;
+        return ruleElement;
     }
 
     /**
      * @return agency
      */
     public String getAgency() {
-        IRuleToken rootToken = getRootElement();
-        if (rootToken instanceof EDIRuleRoot) {
-            return ((EDIRuleRoot) rootToken).getAgency();
+        EDIRuleRoot rootToken = getRootElement();
+        if (rootToken != null) {
+            return rootToken.getAgency();
         }
         return "";
     }
@@ -103,9 +107,9 @@ public abstract class AbstractEDIRule {
      * @return rule description
      */
     public String getDescription() {
-        IRuleToken rootToken = getRootElement();
-        if (rootToken instanceof EDIRuleRoot) {
-            return ((EDIRuleRoot) rootToken).getDescription();
+        EDIRuleRoot rootToken = getRootElement();
+        if (rootToken != null) {
+            return rootToken.getDescription();
         }
         return "";
     }
@@ -119,9 +123,9 @@ public abstract class AbstractEDIRule {
      * @return release, e.g. 96A
      */
     public String getRelease() {
-        IRuleToken rootToken = getRootElement();
-        if (rootToken instanceof EDIRuleRoot) {
-            return ((EDIRuleRoot) rootToken).getRelease();
+        EDIRuleRoot rootToken = getRootElement();
+        if (rootToken != null) {
+            return rootToken.getRelease();
         }
         return "";
     }
@@ -143,9 +147,9 @@ public abstract class AbstractEDIRule {
      * @return rule version, e.g. D
      */
     public String getVersion() {
-        IRuleToken rootToken = getRootElement();
-        if (rootToken instanceof EDIRuleRoot) {
-            return ((EDIRuleRoot) rootToken).getVersion();
+        EDIRuleRoot rootToken = getRootElement();
+        if (rootToken != null) {
+            return rootToken.getVersion();
         }
         return "";
     }
@@ -156,14 +160,21 @@ public abstract class AbstractEDIRule {
     }
 
     public List<EDIRuleSegment> getSegments() {
-        List<EDIRuleSegment> segments = new ArrayList<EDIRuleSegment>();
-
         EDIRuleRoot root = getRootElement();
-        for (IRuleToken child : root.getChildrens()) {
+        return getSegments(root);
+    }
+
+    private List<EDIRuleSegment> getSegments(EDIRuleBaseToken token) {
+        List<EDIRuleSegment> segments = new ArrayList<EDIRuleSegment>();
+        for (IRuleToken child : token.getChildrens()) {
+            if (child instanceof EDIRuleSegmentGroup) {
+                segments.addAll(getSegments((EDIRuleSegmentGroup) child));
+            }
             if (child instanceof EDIRuleSegment) {
                 segments.add((EDIRuleSegment) child);
             }
         }
         return segments;
+
     }
 }

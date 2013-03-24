@@ -5,7 +5,7 @@ import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
 /**
  * @author r4fter
  */
-public class UnknownDelimiterToken extends EDIDocumentToken {
+public abstract class UnknownDelimiterToken extends EDIDocumentToken {
 
     /**
      * @param tokenString
@@ -17,4 +17,8 @@ public class UnknownDelimiterToken extends EDIDocumentToken {
         super(tokenString, tokenPosition, IDelimiters.DELIMITER_UNKNOWN);
     }
 
+    /**
+     * @return token identifier
+     */
+    public abstract VDASegmentIdentifier getIdentifier();
 }

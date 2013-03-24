@@ -1,14 +1,18 @@
-package com.inubit.ibis.plugins.edi20.rules.tokens;
+package com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe;
 
 import java.util.Hashtable;
 
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import org.dom4j.Element;
 
 /**
  * @author r4fter
  */
-public class EDIRuleTokenFactory {
+public final class HwfpeRuleTokenFactory {
 
     private static final String NAME_RULESEGMENT = "Segment";
     private static final String NAME_RULEELEMENT = "Element";
@@ -17,14 +21,14 @@ public class EDIRuleTokenFactory {
 
     private static final String NAME_MESSAGE = "Message";
 
-    private static final Hashtable<Element, IRuleToken> fInstanceCache = new Hashtable<Element, IRuleToken>(100);
+    private static final Hashtable<Element, IRuleToken> instanceCache = new Hashtable<Element, IRuleToken>(100);
 
     public static IRuleToken getInstance(final Element ruleElement) throws IllegalArgumentException {
         if (ruleElement == null) {
             throw new IllegalArgumentException("Element is null!");
         }
-        if (fInstanceCache.containsKey(ruleElement)) {
-            IRuleToken token = fInstanceCache.get(ruleElement);
+        if (instanceCache.containsKey(ruleElement)) {
+            IRuleToken token = instanceCache.get(ruleElement);
 //			if (token instanceof EDIRuleBaseToken) {
 //				((EDIRuleBaseToken) token).resetChildIterator();
 //			}
@@ -39,7 +43,7 @@ public class EDIRuleTokenFactory {
             return addToCache(ruleElement, new EDIRuleSegment(ruleElement));
         }
         if (NAME_RULEELEMENT.equals(ruleElementName)) {
-            return addToCache(ruleElement, new EDIRuleElement(ruleElement));
+            return addToCache(ruleElement, new HwfpeRuleElement(ruleElement));
         }
         if (NAME_RULECOMPOSITEELEMENT.equals(ruleElementName)) {
             return addToCache(ruleElement, new EDIRuleCompositeElement(ruleElement));
@@ -52,7 +56,7 @@ public class EDIRuleTokenFactory {
 
     private static IRuleToken addToCache(final Element ruleElement, final IRuleToken token) {
         if (ruleElement != null && token != null) {
-            fInstanceCache.put(ruleElement, token);
+            instanceCache.put(ruleElement, token);
         }
         return token;
     }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.*;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
 import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.XPathUtil;
@@ -26,6 +27,11 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
      */
     public AbstractHWEDRule(final Document ediRuleDocument) throws InubitException {
         super(ediRuleDocument);
+    }
+
+    @Override
+    protected EDIRuleRoot createRootElement(Document ruleDocument) {
+        return (EDIRuleRoot) HwedRuleTokenFactory.getInstance(ruleDocument.getRootElement());
     }
 
     @Override
@@ -134,8 +140,8 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     /**
      * @param segmentID
      *         segment ID to check
-     * @return <code>true</code> if this rule contains at least one further segment with the given ID, <code>false</code>
-     *         otherwise
+     * @return <code>true</code> if this rule contains at least one further segment with the given ID,
+     *         <code>false</code> otherwise
      */
     public boolean containsSegment(final String segmentID) {
         return containsSegment(segmentID, null);
@@ -146,8 +152,8 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
      *         segment ID to check
      * @param startFromToken
      *         rule token to start search from
-     * @return <code>true</code> if this rule contains at least one further segment with the given ID, <code>false</code>
-     *         otherwise
+     * @return <code>true</code> if this rule contains at least one further segment with the given ID,
+     *         <code>false</code> otherwise
      */
     public boolean containsSegment(final String segmentID, final EDIRuleBaseToken startFromToken) {
         Element startElement = getRootElement().getElement();

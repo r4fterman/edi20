@@ -40,8 +40,8 @@ public class VDALexicalScannerTest {
         while (scanner.hasMoreTokens()) {
             builder.append(scanner.nextToken().getToken());
         }
-        long fileLength = edifactFile.length() + 1;
-        assertEquals("Length differs!", fileLength, Long.parseLong("" + builder.length()));
+        long fileLength = edifactFile.length();
+        assertEquals("Length differs!", fileLength, Long.parseLong(String.valueOf(builder.length())));
     }
 
     @Test
@@ -50,15 +50,30 @@ public class VDALexicalScannerTest {
 
         VDALexicalScanner scanner = new VDALexicalScanner(new StringBuilder(ediStr), new VDADelimiters());
         assertTrue(scanner.hasMoreTokens());
-        assertEquals("51101AG03     CKDVW    ", scanner.nextToken().getToken());
+
+        IToken token = scanner.nextToken();
+        assertTrue(token.getClass().equals(UnknownDelimiterToken.class));
+        assertEquals("51101AG03     CKDVW    ", token.getToken());
         assertTrue(scanner.hasMoreTokens());
-        assertEquals("\n", scanner.nextToken().getToken());
+
+        token = scanner.nextToken();
+        assertTrue(token.getClass().equals(VDASegmentDelimiterToken.class));
+        assertEquals("\n", token.getToken());
         assertTrue(scanner.hasMoreTokens());
-        assertEquals("51201001000000002020610000000001020523", scanner.nextToken().getToken());
+
+        token = scanner.nextToken();
+        assertTrue(token.getClass().equals(UnknownDelimiterToken.class));
+        assertEquals("51201001000000002020610000000001020523", token.getToken());
         assertTrue(scanner.hasMoreTokens());
-        assertEquals("\n", scanner.nextToken().getToken());
+
+        token = scanner.nextToken();
+        assertTrue(token.getClass().equals(VDASegmentDelimiterToken.class));
+        assertEquals("\n", token.getToken());
         assertTrue(scanner.hasMoreTokens());
-        assertEquals("51301 ", scanner.nextToken().getToken());
+
+        token = scanner.nextToken();
+        assertTrue(token.getClass().equals(UnknownDelimiterToken.class));
+        assertEquals("51301 ", token.getToken());
         assertFalse(scanner.hasMoreTokens());
     }
 

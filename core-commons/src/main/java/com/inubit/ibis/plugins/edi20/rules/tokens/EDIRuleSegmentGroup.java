@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleTokenFactory;
 import org.dom4j.Element;
 
 /**
@@ -29,7 +30,7 @@ public class EDIRuleSegmentGroup extends EDIRuleSegment {
     public IRuleToken getFirstSegment() {
         Element firstChild = getFirstChildElement();
         if (firstChild != null) {
-            return EDIRuleTokenFactory.getInstance(firstChild);
+            return HwfpeRuleTokenFactory.getInstance(firstChild);
         }
         return null;
     }

@@ -28,8 +28,4 @@ public interface IToken {
      */
     int getDelimiterType();
 
-    /**
-     * Method closes this token. E.g. it can be reset for further use.
-     */
-    void close();
 }

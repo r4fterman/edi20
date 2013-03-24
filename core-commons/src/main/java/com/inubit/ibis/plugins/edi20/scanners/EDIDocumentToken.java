@@ -7,20 +7,9 @@ import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
  */
 public class EDIDocumentToken implements IToken {
 
-    private String fToken;
-    private int fPosition;
-    private int fDelimiterType = IDelimiters.DELIMITER_UNKNOWN;
-
-    /**
-     * @param tokenString
-     *         token string
-     * @param position
-     *         position in document
-     */
-    public EDIDocumentToken(final String tokenString, final int position) {
-        fToken = tokenString;
-        fPosition = position;
-    }
+    private String token;
+    private int position;
+    private int delimiterType = IDelimiters.DELIMITER_UNKNOWN;
 
     /**
      * @param tokenString
@@ -31,29 +20,29 @@ public class EDIDocumentToken implements IToken {
      *         delimiter identifier
      */
     public EDIDocumentToken(final String tokenString, final int position, final int delimiterIdentifier) {
-        fToken = tokenString;
-        fPosition = position;
-        fDelimiterType = delimiterIdentifier;
+        this.token = tokenString;
+        this.position = position;
+        this.delimiterType = delimiterIdentifier;
     }
 
     @Override
     public int getDelimiterType() {
-        return fDelimiterType;
+        return delimiterType;
     }
 
     @Override
     public boolean isDelimiter() {
-        return fDelimiterType != IDelimiters.DELIMITER_UNKNOWN;
+        return getDelimiterType() != IDelimiters.DELIMITER_UNKNOWN;
     }
 
     @Override
     public int getPosition() {
-        return fPosition;
+        return position;
     }
 
     @Override
     public String getToken() {
-        return fToken;
+        return token;
     }
 
     @Override
@@ -61,8 +50,4 @@ public class EDIDocumentToken implements IToken {
         return getToken() + " (start:" + getPosition() + ", length:" + getToken().length() + ")";
     }
 
-    @Override
-    public void close() {
-        // do nothing
-    }
 }

@@ -23,7 +23,19 @@ public class VDAParserTest {
         String testFile = "VDA4905_1.txt";
         String ruleFile = "VDA-4905-1--.xml";
 
-        VDALexicalScanner scanner = new VDALexicalScanner(getFileContent(testFile), new VDADelimiters());
+        StringBuilder content = getFileContent(testFile);
+        VDALexicalScanner scanner = new VDALexicalScanner(content, new VDADelimiters());
+        VDARule rule = new VDARule(getDocument(ruleFile));
+        VDAParser parser = new VDAParser(scanner, rule);
+        parser.parse();
+    }
+
+    @Test
+    public void testParseString() throws Exception {
+        String testString = "51201001000000002020610000000001020523 1H9 609 075 A         1H9 609 075 A        AGA130291S2300001ABT STL  S              50    ";
+        String ruleFile = "VDA-4905-1--.xml";
+
+        VDALexicalScanner scanner = new VDALexicalScanner(new StringBuilder(testString), new VDADelimiters());
         VDARule rule = new VDARule(getDocument(ruleFile));
         VDAParser parser = new VDAParser(scanner, rule);
         parser.parse();

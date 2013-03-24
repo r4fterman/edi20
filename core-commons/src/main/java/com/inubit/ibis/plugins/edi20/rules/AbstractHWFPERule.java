@@ -5,6 +5,7 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleTokenFactory;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
 
@@ -21,6 +22,11 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
      */
     public AbstractHWFPERule(final Document ruleDocument) throws InubitException {
         super(ruleDocument);
+    }
+
+    @Override
+    protected EDIRuleRoot createRootElement(Document ruleDocument) {
+        return (EDIRuleRoot) HwfpeRuleTokenFactory.getInstance(ruleDocument.getRootElement());
     }
 
     @Override

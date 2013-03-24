@@ -1,13 +1,14 @@
 package com.inubit.ibis.plugins.edi20.parsers.datanorm;
 
-import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
+import com.inubit.ibis.plugins.edi20.rules.AbstractMSWEDRule;
+import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
 
 /**
  * @author r4fter
  */
-public class DATANORMRule extends AbstractEDIRule {
+public class DATANORMRule extends AbstractMSWEDRule {
 
     /**
      * @param datanormRuleDocument
@@ -20,8 +21,13 @@ public class DATANORMRule extends AbstractEDIRule {
     }
 
     @Override
-    public String getLayout() {
-        return "mswed";
+    public void closeCurrentRuleToken(IToken token) {
+        // ignore
+    }
+
+    @Override
+    public boolean isEndOfRule() {
+        return false;
     }
 
     @Override

@@ -8,7 +8,7 @@ import com.inubit.ibis.utils.StringUtil;
  */
 public final class VDATokenFactory {
 
-    private static VDATokenFactory fFactoryInstance;
+    private static VDATokenFactory factoryInstance;
 
     /**
      * Initialized factory instance
@@ -21,16 +21,16 @@ public final class VDATokenFactory {
         if (vdaDelimiters == null) {
             throw new IllegalArgumentException("VDA delimiters are not set!");
         }
-        if (fFactoryInstance == null) {
-            fFactoryInstance = new VDATokenFactory(vdaDelimiters);
+        if (factoryInstance == null) {
+            factoryInstance = new VDATokenFactory(vdaDelimiters);
         }
-        return fFactoryInstance;
+        return factoryInstance;
     }
 
-    private VDADelimiters fDelimiters;
+    private VDADelimiters delimiters;
 
     private VDATokenFactory(final VDADelimiters vdaDelimiters) {
-        fDelimiters = vdaDelimiters;
+        this.delimiters = vdaDelimiters;
     }
 
     /**
@@ -45,11 +45,11 @@ public final class VDATokenFactory {
         if (StringUtil.isNotSet(tokenString)) {
             throw new IllegalArgumentException("Token not set!");
         }
-        switch (fDelimiters.getDelimiterIdentifier(tokenString)) {
+        switch (delimiters.getDelimiterIdentifier(tokenString)) {
             case VDADelimiters.DELIMITER_SEGMENT:
                 return new VDASegmentDelimiterToken(tokenString, tokenPosition);
             default:
-                return new UnknownDelimiterToken(tokenString, tokenPosition);
+                return new VDAUnknownDelimiterToken(tokenString, tokenPosition);
         }
     }
 
