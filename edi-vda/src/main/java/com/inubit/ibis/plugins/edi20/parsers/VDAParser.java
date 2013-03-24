@@ -1,13 +1,12 @@
-package com.inubit.ibis.plugins.edi20.parsers.vda;
+package com.inubit.ibis.plugins.edi20.parsers;
 
-import com.inubit.ibis.plugins.edi20.parsers.HWFPEParser;
-import com.inubit.ibis.plugins.edi20.parsers.vda.delimiters.VDADelimiters;
-import com.inubit.ibis.plugins.edi20.parsers.vda.rules.VDARule;
-import com.inubit.ibis.plugins.edi20.parsers.vda.scanners.VDALexicalScanner;
+import com.inubit.ibis.plugins.edi20.parsers.delimiters.VDADelimiters;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
+import com.inubit.ibis.plugins.edi20.rules.VDARule;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.VDALexicalScanner;
 import com.inubit.ibis.utils.InubitException;
 
 /**

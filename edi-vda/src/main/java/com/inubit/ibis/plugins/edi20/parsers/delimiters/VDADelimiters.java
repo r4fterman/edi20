@@ -1,4 +1,4 @@
-package com.inubit.ibis.plugins.edi20.parsers.vda.delimiters;
+package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 
 import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
 import com.inubit.ibis.utils.StringUtil;

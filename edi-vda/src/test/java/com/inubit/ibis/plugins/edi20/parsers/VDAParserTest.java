@@ -1,13 +1,13 @@
-package com.inubit.ibis.plugins.edi20.parsers.vda;
+package com.inubit.ibis.plugins.edi20.parsers;
 
 import static junit.framework.Assert.assertNotNull;
 
 import java.io.File;
 import java.net.URL;
 
-import com.inubit.ibis.plugins.edi20.parsers.vda.delimiters.VDADelimiters;
-import com.inubit.ibis.plugins.edi20.parsers.vda.rules.VDARule;
-import com.inubit.ibis.plugins.edi20.parsers.vda.scanners.VDALexicalScanner;
+import com.inubit.ibis.plugins.edi20.parsers.delimiters.VDADelimiters;
+import com.inubit.ibis.plugins.edi20.rules.VDARule;
+import com.inubit.ibis.plugins.edi20.scanners.VDALexicalScanner;
 import com.inubit.ibis.utils.FileUtils;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;

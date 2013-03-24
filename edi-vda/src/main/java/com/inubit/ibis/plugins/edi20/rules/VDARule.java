@@ -1,6 +1,5 @@
-package com.inubit.ibis.plugins.edi20.parsers.vda.rules;
+package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.AbstractHWFPERule;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.utils.InubitException;

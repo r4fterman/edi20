@@ -1,4 +1,4 @@
-package com.inubit.ibis.plugins.edi20.parsers.vda.delimiters;
+package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 
 import static org.junit.Assert.assertEquals;
 

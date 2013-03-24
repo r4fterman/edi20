@@ -1,4 +1,4 @@
-package com.inubit.ibis.plugins.edi20.parsers.vda.rules;
+package com.inubit.ibis.plugins.edi20.rules;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,6 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
@@ -34,9 +33,6 @@ public class VDARuleTest {
         return null;
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#EDIFACTRule(org.dom4j.Document)} .
-     */
     @Test
     public void testEDIFACTRule_VDA_4905_1() {
         try {
@@ -63,9 +59,6 @@ public class VDARuleTest {
         }
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getAgency()} .
-     */
     @Test
     public void testGetAgency() {
         try {
@@ -80,9 +73,6 @@ public class VDARuleTest {
         }
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getDescription()} .
-     */
     @Test
     public void testGetDescription() {
         try {
@@ -97,9 +87,6 @@ public class VDARuleTest {
         }
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getLayout()} .
-     */
     @Test
     public void testGetLayout() {
         try {
@@ -114,9 +101,6 @@ public class VDARuleTest {
         }
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getRelease()} .
-     */
     @Test
     public void testGetRelease() {
         try {
@@ -131,9 +115,6 @@ public class VDARuleTest {
         }
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getStandard()} .
-     */
     @Test
     public void testGetStandard() {
         try {
@@ -148,9 +129,6 @@ public class VDARuleTest {
         }
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getType()} .
-     */
     @Test
     public void testGetType() {
         try {
@@ -165,9 +143,6 @@ public class VDARuleTest {
         }
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getVersion()} .
-     */
     @Test
     public void testGetVersion() {
         try {
@@ -182,9 +157,6 @@ public class VDARuleTest {
         }
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#hasMoreRuleTokens()} .
-     */
     @Test
     public void testHasMoreRuleTokens() {
         try {
@@ -198,9 +170,6 @@ public class VDARuleTest {
         }
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#toString()} .
-     */
     @Test
     public void testToString() {
         try {

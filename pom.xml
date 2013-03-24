@@ -10,6 +10,7 @@
         <module>core-scanners</module>
         <module>core-parsers</module>
         <module>edi-edifact</module>
+        <module>edi-vda</module>
     </modules>
     <name>EDI_2.0</name>
     <description>EDI-XML Adapter</description>

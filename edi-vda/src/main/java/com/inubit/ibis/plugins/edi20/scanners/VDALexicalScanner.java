@@ -1,8 +1,6 @@
-package com.inubit.ibis.plugins.edi20.parsers.vda.scanners;
+package com.inubit.ibis.plugins.edi20.scanners;
 
-import com.inubit.ibis.plugins.edi20.parsers.vda.delimiters.VDADelimiters;
-import com.inubit.ibis.plugins.edi20.scanners.EDILexicalScanner;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.parsers.delimiters.VDADelimiters;
 
 /**
  * @author r4fter

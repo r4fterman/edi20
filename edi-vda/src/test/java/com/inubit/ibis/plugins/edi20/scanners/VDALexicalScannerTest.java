@@ -1,11 +1,11 @@
-package com.inubit.ibis.plugins.edi20.parsers.vda.scanners;
+package com.inubit.ibis.plugins.edi20.scanners;
 
 import static junit.framework.Assert.*;
 
 import java.io.File;
 import java.net.URL;
 
-import com.inubit.ibis.plugins.edi20.parsers.vda.delimiters.VDADelimiters;
+import com.inubit.ibis.plugins.edi20.parsers.delimiters.VDADelimiters;
 import com.inubit.ibis.utils.FileUtils;
 import org.junit.Test;
 
