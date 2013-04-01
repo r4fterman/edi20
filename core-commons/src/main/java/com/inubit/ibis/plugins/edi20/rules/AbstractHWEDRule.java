@@ -3,7 +3,12 @@ package com.inubit.ibis.plugins.edi20.rules;
 import java.util.List;
 
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.*;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
 import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.InubitException;
@@ -87,7 +92,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
             }
 
             IRuleToken childToken = null;
-            while ((childToken = ruleSegmentGroup.nextChildren()) != null) {
+            if ((childToken = ruleSegmentGroup.nextChildren()) != null) {
                 return parseUntilNextSegment(childToken, segmentID);
             }
             throw new InubitException("Segment [" + segmentID + "] not found!");

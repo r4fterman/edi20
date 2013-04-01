@@ -10,8 +10,7 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import org.dom4j.Element;
 
 /**
- * Created with IntelliJ IDEA. User: r4fter Date: 24.03.13 Time: 16:49 To change this template use File | Settings |
- * File Templates.
+ * @author r4fter
  */
 public final class HwedRuleTokenFactory {
 
@@ -29,11 +28,7 @@ public final class HwedRuleTokenFactory {
             throw new IllegalArgumentException("Element is null!");
         }
         if (instanceCache.containsKey(ruleElement)) {
-            IRuleToken token = instanceCache.get(ruleElement);
-//			if (token instanceof EDIRuleBaseToken) {
-//				((EDIRuleBaseToken) token).resetChildIterator();
-//			}
-            return token;
+            return instanceCache.get(ruleElement);
         }
 
         String ruleElementName = ruleElement.getName();

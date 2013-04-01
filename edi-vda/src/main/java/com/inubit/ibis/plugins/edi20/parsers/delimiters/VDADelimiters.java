@@ -1,7 +1,6 @@
 package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 
 import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
-import com.inubit.ibis.utils.StringUtil;
 
 /**
  * Class contains all VDA delimiters.
@@ -12,13 +11,13 @@ public class VDADelimiters implements IDelimiters {
 
     public static final int DELIMITER_SEGMENT = 1;
 
-    private String fSegmentDelimiter = "\n";
+    private String segmentDelimiter = "\n";
 
     @Override
     public String getDelimiter(final int delimiterIdentifier) {
         switch (delimiterIdentifier) {
             case DELIMITER_SEGMENT:
-                return fSegmentDelimiter;
+                return segmentDelimiter;
             default:
                 return "";
         }
@@ -28,35 +27,28 @@ public class VDADelimiters implements IDelimiters {
     public void setDelimiter(final String delimiter, final int delimiterIdentifier) {
         switch (delimiterIdentifier) {
             case DELIMITER_SEGMENT:
-                fSegmentDelimiter = delimiter;
+                this.segmentDelimiter = delimiter;
         }
     }
 
     @Override
-    public int getEscapeDelimiterIndentifier() {
+    public int getEscapeDelimiterIdentifier() {
         return DELIMITER_UNKNOWN;
     }
 
     @Override
     public boolean containsDelimiter(final String delimiter) {
-        if (StringUtil.isSet(delimiter)) {
-            if (isSegmentDelimiter(delimiter)) {
-                return true;
-            }
-        }
-        return false;
+        return isSegmentDelimiter(delimiter);
     }
 
     private boolean isSegmentDelimiter(final String delimiter) {
-        return fSegmentDelimiter.equals(delimiter);
+        return segmentDelimiter.equals(delimiter);
     }
 
     @Override
     public int getDelimiterIdentifier(final String delimiter) {
-        if (StringUtil.isSet(delimiter)) {
-            if (isSegmentDelimiter(delimiter)) {
-                return DELIMITER_SEGMENT;
-            }
+        if (isSegmentDelimiter(delimiter)) {
+            return DELIMITER_SEGMENT;
         }
         return DELIMITER_UNKNOWN;
     }
@@ -65,7 +57,7 @@ public class VDADelimiters implements IDelimiters {
      * @return segment delimiter
      */
     public String getSegmentDelimiter() {
-        return fSegmentDelimiter;
+        return getDelimiter(DELIMITER_SEGMENT);
     }
 
 }

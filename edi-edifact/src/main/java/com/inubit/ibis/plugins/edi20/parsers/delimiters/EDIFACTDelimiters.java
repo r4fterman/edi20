@@ -10,17 +10,17 @@ public class EDIFACTDelimiters implements IDelimiters {
 
     public static final int DELIMITER_ELEMENT = 0;
     public static final int DELIMITER_SEGMENT = 1;
-    public static final int DELIMITER_COMPLEXELEMENT = 2;
+    public static final int DELIMITER_COMPLEX_ELEMENT = 2;
     public static final int DELIMITER_DECIMAL = 3;
     public static final int DELIMITER_ESCAPE = 4;
 
     private static final String SEGMENT_UNA = "UNA";
 
-    private String fComplexElementDelimiter = ":";
-    private String fDecimalDelimiter = ".";
-    private String fElementDelimiter = "+";
-    private String fSegmentDelimiter = "'";
-    private String fEscapeDelimiter = "?";
+    private String complexElementDelimiter = ":";
+    private String decimalDelimiter = ".";
+    private String elementDelimiter = "+";
+    private String segmentDelimiter = "'";
+    private String escapeDelimiter = "?";
 
     /**
      * Constructor.
@@ -31,6 +31,7 @@ public class EDIFACTDelimiters implements IDelimiters {
 
     /**
      * @param beginOfDocument
+     *         indicates begin of document
      */
     public EDIFACTDelimiters(final String beginOfDocument) {
         if (StringUtil.isNotSet(beginOfDocument)) {
@@ -75,10 +76,7 @@ public class EDIFACTDelimiters implements IDelimiters {
         if (isEscapeDelimiter(delimiter)) {
             return true;
         }
-        if (isSegmentDelimiter(delimiter)) {
-            return true;
-        }
-        return false;
+        return isSegmentDelimiter(delimiter);
     }
 
     private boolean isSegmentDelimiter(final String delimiter) {
@@ -102,7 +100,7 @@ public class EDIFACTDelimiters implements IDelimiters {
     }
 
     public String getComplexElementDelimiter() {
-        return getDelimiter(DELIMITER_COMPLEXELEMENT);
+        return getDelimiter(DELIMITER_COMPLEX_ELEMENT);
     }
 
     public String getDecimalDelimiter() {
@@ -112,7 +110,7 @@ public class EDIFACTDelimiters implements IDelimiters {
     @Override
     public int getDelimiterIdentifier(final String delimiter) {
         if (isComplexElementDelimiter(delimiter)) {
-            return DELIMITER_COMPLEXELEMENT;
+            return DELIMITER_COMPLEX_ELEMENT;
         }
         if (isDecimalDelimiter(delimiter)) {
             return DELIMITER_DECIMAL;
@@ -133,15 +131,15 @@ public class EDIFACTDelimiters implements IDelimiters {
     public String getDelimiter(final int delimiterIdentifier) {
         switch (delimiterIdentifier) {
             case DELIMITER_ELEMENT:
-                return fElementDelimiter;
+                return elementDelimiter;
             case DELIMITER_SEGMENT:
-                return fSegmentDelimiter;
-            case DELIMITER_COMPLEXELEMENT:
-                return fComplexElementDelimiter;
+                return segmentDelimiter;
+            case DELIMITER_COMPLEX_ELEMENT:
+                return complexElementDelimiter;
             case DELIMITER_DECIMAL:
-                return fDecimalDelimiter;
+                return decimalDelimiter;
             case DELIMITER_ESCAPE:
-                return fEscapeDelimiter;
+                return escapeDelimiter;
             case IDelimiters.DELIMITER_UNKNOWN:
             default:
                 return "";
@@ -153,11 +151,11 @@ public class EDIFACTDelimiters implements IDelimiters {
     }
 
     public String getEscapeDelimiter() {
-        return getDelimiter(getEscapeDelimiterIndentifier());
+        return getDelimiter(getEscapeDelimiterIdentifier());
     }
 
     @Override
-    public int getEscapeDelimiterIndentifier() {
+    public int getEscapeDelimiterIdentifier() {
         return DELIMITER_ESCAPE;
     }
 
@@ -166,7 +164,7 @@ public class EDIFACTDelimiters implements IDelimiters {
     }
 
     public void setComplextElementDelimiter(final String complexElementDelimiter) {
-        setDelimiter(complexElementDelimiter, DELIMITER_COMPLEXELEMENT);
+        setDelimiter(complexElementDelimiter, DELIMITER_COMPLEX_ELEMENT);
     }
 
     public void setDecimalDelimiter(final String decimalDelimiter) {
@@ -176,23 +174,22 @@ public class EDIFACTDelimiters implements IDelimiters {
     @Override
     public void setDelimiter(final String delimiter, final int delimiterIdentifier) {
         switch (delimiterIdentifier) {
-            case DELIMITER_COMPLEXELEMENT:
-                fComplexElementDelimiter = delimiter;
+            case DELIMITER_COMPLEX_ELEMENT:
+                complexElementDelimiter = delimiter;
                 return;
             case DELIMITER_DECIMAL:
-                fDecimalDelimiter = delimiter;
+                decimalDelimiter = delimiter;
                 return;
             case DELIMITER_ELEMENT:
-                fElementDelimiter = delimiter;
+                elementDelimiter = delimiter;
                 return;
             case DELIMITER_ESCAPE:
-                fEscapeDelimiter = delimiter;
+                escapeDelimiter = delimiter;
                 return;
             case DELIMITER_SEGMENT:
-                fSegmentDelimiter = delimiter;
+                segmentDelimiter = delimiter;
                 return;
             default:
-                return;
         }
     }
 

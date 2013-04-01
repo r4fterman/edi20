@@ -1,10 +1,13 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
+import com.inubit.ibis.plugins.edi20.rules.AbstractHWEDRule;
+import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.IScanner;
 import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Hierarchical with element delimiter (HWED)
@@ -15,9 +18,11 @@ public abstract class HWEDParser extends AbstractEDIParser {
 
     /**
      * @param scanner
+     *         hwed scanner
      * @param rule
+     *         hwed rule
      */
-    public HWEDParser(final IScanner scanner, final AbstractEDIRule rule) {
+    public HWEDParser(final IScanner scanner, final AbstractHWEDRule rule) {
         super(scanner, rule);
     }
 
@@ -49,6 +54,34 @@ public abstract class HWEDParser extends AbstractEDIParser {
             if (!StringUtil.isWhitespacesOnly(unparsedPart)) {
                 throw new InubitException("Rule parsing complete but message still contains data [" + unparsedPart + "]!");
             }
+        }
+    }
+
+    protected void validateMessagePartAgainstRuleElement(String messagePart, HwedRuleElement ruleElement) throws RuleViolationException {
+        if (ruleElement.isMandatory()) {
+            if (StringUtils.isEmpty(messagePart)) {
+                throw new RuleViolationException("Mandatory element [" + ruleElement + "] has not content in message!");
+            }
+        }
+
+        if (StringUtils.isNotBlank(messagePart)) {
+            int length = messagePart.length();
+            validateMinLength(ruleElement, length);
+            validateMaxLength(ruleElement, length);
+        }
+    }
+
+    private void validateMaxLength(HwedRuleElement ruleElement, int length) throws RuleViolationException {
+        int max = ruleElement.getMaxLength();
+        if (length > max) {
+            throw new RuleViolationException("Element [" + ruleElement + "] is longer than declared (length:" + length + ",max:" + max + "!");
+        }
+    }
+
+    private void validateMinLength(HwedRuleElement ruleElement, int length) throws RuleViolationException {
+        int min = ruleElement.getMinLength();
+        if (length < min) {
+            throw new RuleViolationException("Element [" + ruleElement + "] is shorter than declared (length:" + length + ",min:" + min + "!");
         }
     }
 

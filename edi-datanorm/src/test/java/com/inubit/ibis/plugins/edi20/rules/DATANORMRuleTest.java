@@ -1,4 +1,4 @@
-package com.inubit.ibis.plugins.edi20.parsers.datanorm;
+package com.inubit.ibis.plugins.edi20.rules;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import java.io.File;
 import java.net.URL;
 
-import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.junit.Test;
@@ -15,13 +14,6 @@ import org.junit.Test;
  * @author r4fter
  */
 public class DATANORMRuleTest {
-
-    private Document getRuleDocument(final String ruleDocumentName) throws Exception {
-        URL url = DATANORMRuleTest.class.getResource(ruleDocumentName);
-        assertNotNull("File not found: " + ruleDocumentName, url);
-        File xmlFile = new File(url.toURI());
-        return XmlUtils.getDocumentThrowing(xmlFile);
-    }
 
     @Test
     public void testEDIFACTRule_DATANORM_ALL_4_0() throws Exception {
@@ -111,4 +103,10 @@ public class DATANORMRuleTest {
         assertEquals("DATANORM-All-4.0----", rule.toString());
     }
 
+    private Document getRuleDocument(final String ruleDocumentName) throws Exception {
+        URL url = DATANORMRuleTest.class.getResource(ruleDocumentName);
+        assertNotNull("File not found: " + ruleDocumentName, url);
+        File xmlFile = new File(url.toURI());
+        return XmlUtils.getDocumentThrowing(xmlFile);
+    }
 }

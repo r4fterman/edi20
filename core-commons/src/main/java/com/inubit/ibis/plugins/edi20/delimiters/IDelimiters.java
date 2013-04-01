@@ -32,7 +32,7 @@ public interface IDelimiters {
     /**
      * @return identifier for Escape delimiter or {@link #DELIMITER_UNKNOWN} if no such identifier exists
      */
-    public int getEscapeDelimiterIndentifier();
+    public int getEscapeDelimiterIdentifier();
 
     /**
      * @param delimiter

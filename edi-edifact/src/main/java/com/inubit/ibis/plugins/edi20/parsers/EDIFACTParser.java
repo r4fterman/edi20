@@ -11,6 +11,7 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
 import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
@@ -27,13 +28,6 @@ public class EDIFACTParser extends HWEDParser {
 
     private static final int SEGMENT_OR_SEGMENTGROUP = 1;
     private static final int ELEMENT_OR_COMPLEXELEMENT = 2;
-
-    // private static final int ENVELOPER_SEGMENT_OR_SEGMENTGROUP = 11;
-
-    public static EDIFACTParser buildParser(StringBuilder textInputDocument, EDIFACTRule rule) throws InubitException {
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(textInputDocument, getDelimiter(textInputDocument));
-        return new EDIFACTParser(scanner, rule);
-    }
 
     private static EDIFACTDelimiters getDelimiter(final StringBuilder textInputDocument) {
         return new EDIFACTDelimiters(textInputDocument.substring(0, 10));
@@ -73,7 +67,7 @@ public class EDIFACTParser extends HWEDParser {
         if (EDIFACTDelimiters.DELIMITER_SEGMENT == token.getDelimiterType()) {
             // segment finished
             fState = SEGMENT_OR_SEGMENTGROUP;
-        } else if (EDIFACTDelimiters.DELIMITER_COMPLEXELEMENT == token.getDelimiterType()) {
+        } else if (EDIFACTDelimiters.DELIMITER_COMPLEX_ELEMENT == token.getDelimiterType()) {
             // complex element finished
             fState = ELEMENT_OR_COMPLEXELEMENT;
         } else if (EDIFACTDelimiters.DELIMITER_ELEMENT == token.getDelimiterType()) {
@@ -119,10 +113,10 @@ public class EDIFACTParser extends HWEDParser {
         if (!assertTokenIsSet(token, ruleToken.isMandatory())) {
             throw new InubitException("Invalid token [" + token + "]! Expected mandatory rule token [" + ruleToken + "].");
         }
-        if (ruleToken instanceof EDIRuleElement) {
-            EDIRuleElement elementToken = (EDIRuleElement) ruleToken;
-            int min = Integer.valueOf(elementToken.getMinLength()).intValue();
-            int max = Integer.valueOf(elementToken.getMaxLength()).intValue();
+        if (ruleToken instanceof HwedRuleElement) {
+            HwedRuleElement elementToken = (HwedRuleElement) ruleToken;
+            int min = Integer.valueOf(elementToken.getMinLength());
+            int max = Integer.valueOf(elementToken.getMaxLength());
             if (!assertTokenHasValidLength(token, min, max)) {
                 throw new InubitException("Invalid token [" + token + "]! Does not match rule token size [" + ruleToken + "].");
             }
@@ -138,10 +132,7 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     private boolean assertTokenIsSet(final String token, final boolean shouldBeSet) {
-        if (shouldBeSet) {
-            return StringUtil.isSet(token);
-        }
-        return true;
+        return !shouldBeSet || StringUtil.isSet(token);
     }
 
     private void parseElementOrComplexElement(final String element) throws InubitException {
@@ -204,10 +195,7 @@ public class EDIFACTParser extends HWEDParser {
         if (detectorToken.equals("UNA")) {
             return true;
         }
-        if (detectorToken.equals("UNB")) {
-            return true;
-        }
-        return false;
+        return detectorToken.equals("UNB");
     }
 
 }

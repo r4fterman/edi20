@@ -1,12 +1,12 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
 import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.utils.InubitException;
 
 /**
- * Created with IntelliJ IDEA. User: r4fter Date: 24.03.13 Time: 15:20 To change this template use File | Settings |
- * File Templates.
+ * @author r4fter
  */
-public class UnknownDelimiterTokenException extends Exception {
+public class UnknownDelimiterTokenException extends InubitException {
 
     public UnknownDelimiterTokenException(IToken token) {
         super("Unknown delimiter token found: " + token.toString());

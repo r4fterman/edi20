@@ -20,5 +20,5 @@ public abstract class UnknownDelimiterToken extends EDIDocumentToken {
     /**
      * @return token identifier
      */
-    public abstract VDASegmentIdentifier getIdentifier();
+    public abstract IIdentifier getIdentifier();
 }

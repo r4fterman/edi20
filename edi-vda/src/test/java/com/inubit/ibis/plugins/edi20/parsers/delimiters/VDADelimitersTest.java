@@ -14,7 +14,7 @@ public class VDADelimitersTest {
     public void testGetEscapeDelimiterUnknown() {
         VDADelimiters delimiters = new VDADelimiters();
 
-        assertEquals(IDelimiters.DELIMITER_UNKNOWN, delimiters.getEscapeDelimiterIndentifier());
+        assertEquals(IDelimiters.DELIMITER_UNKNOWN, delimiters.getEscapeDelimiterIdentifier());
     }
 
     @Test

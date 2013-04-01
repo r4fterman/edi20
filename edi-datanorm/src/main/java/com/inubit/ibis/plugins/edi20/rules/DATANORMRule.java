@@ -1,6 +1,5 @@
-package com.inubit.ibis.plugins.edi20.parsers.datanorm;
+package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.AbstractMSWEDRule;
 import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;

@@ -1,8 +1,7 @@
 package com.inubit.ibis.plugins.edi20.scanners;
 
 /**
- * Created with IntelliJ IDEA. User: r4fter Date: 24.03.13 Time: 15:45 To change this template use File | Settings |
- * File Templates.
+ * @author r4fter
  */
 public class VDAUnknownDelimiterToken extends UnknownDelimiterToken {
 
@@ -17,7 +16,7 @@ public class VDAUnknownDelimiterToken extends UnknownDelimiterToken {
     }
 
     @Override
-    public VDASegmentIdentifier getIdentifier() {
+    public IIdentifier getIdentifier() {
         return new VDASegmentIdentifier(getToken().substring(0, 3));
     }
 }

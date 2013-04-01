@@ -17,10 +17,6 @@ public class VDALexicalScanner extends EDILexicalScanner {
         super(textInputDocument, delimiters);
     }
 
-    private VDADelimiters getVDADelimiter() {
-        return (VDADelimiters) getDelimiters();
-    }
-
     @Override
     protected IToken getNextToken(final int position) {
         int index = getIndexOfNextDelimiter(position);
@@ -29,11 +25,19 @@ public class VDALexicalScanner extends EDILexicalScanner {
             index = getInputDocument().length();
         }
         String str = getInputDocument().substring(position, index);
+        return createToken(position, str);
+    }
+
+    private IToken createToken(int position, String str) {
         return VDATokenFactory.getInstance(getVDADelimiter()).getToken(str, position);
     }
 
     private int getIndexOfNextDelimiter(final int position) {
         return getIndexOfDelimiter(position, getVDADelimiter().getSegmentDelimiter());
+    }
+
+    private VDADelimiters getVDADelimiter() {
+        return (VDADelimiters) getDelimiters();
     }
 
 }

@@ -12,7 +12,7 @@ import org.dom4j.Element;
 /**
  * @author r4fter
  */
-public class EDIRuleBaseToken implements IRuleToken {
+public abstract class EDIRuleBaseToken implements IRuleToken {
 
     private static final String ATTRIBUTE_NAME_ID = "id";
     private static final String ATTRIBUTE_NAME_NAME = "name";
@@ -26,16 +26,16 @@ public class EDIRuleBaseToken implements IRuleToken {
     private static final int STATUS_INPROGRESS = 2;
     private static final int STATUS_CHECKED = 3;
 
-    private Element fRuleElement;
-    private Iterator<Element> fChildIterator;
-    private int fStatus = STATUS_NEW;
+    private Element ruleElement;
+    private Iterator<Element> childIterator;
+    private int status = STATUS_NEW;
 
     public EDIRuleBaseToken(final Element ruleElement) {
-        fRuleElement = ruleElement;
+        this.ruleElement = ruleElement;
     }
 
     public Element getElement() {
-        return fRuleElement;
+        return ruleElement;
     }
 
     @Override
@@ -79,28 +79,27 @@ public class EDIRuleBaseToken implements IRuleToken {
     }
 
     protected Element getRuleElement() {
-        return fRuleElement;
+        return ruleElement;
     }
 
     /**
      * @return if this rule token has child rule tokens
      */
     public boolean hasChildren() {
-        if (getRuleElement() != null) {
-            return getRuleElement().elements().size() > 0;
-        }
-        return false;
+        return getRuleElement() != null && !getRuleElement().elements().isEmpty();
     }
 
     @SuppressWarnings("unchecked")
     public List<IRuleToken> getChildrens() {
         List<Element> childElements = getRuleElement().elements();
         List<IRuleToken> children = new ArrayList<IRuleToken>(childElements.size());
-        for (Element childElement : childElements) {
-            children.add(HwfpeRuleTokenFactory.getInstance(childElement));
-        }
+//        for (Element childElement : childElements) {
+//            children.add(createElementInstance(childElement));
+//        }
         return children;
     }
+
+//    protected abstract IRuleToken createElementInstance(Element childElement);
 
     /**
      * @return next rule child token or <code>null</code> if no such child exists
@@ -112,33 +111,28 @@ public class EDIRuleBaseToken implements IRuleToken {
         return null;
     }
 
-    public void resetChildIterator() {
-        fChildIterator = null;
-        fStatus = STATUS_NEW;
-    }
-
     public boolean isChecked() {
-        return fStatus == STATUS_CHECKED;
+        return status == STATUS_CHECKED;
     }
 
     public void setChecked() {
-        fStatus = STATUS_CHECKED;
+        status = STATUS_CHECKED;
     }
 
     public boolean isInProgress() {
-        return fStatus == STATUS_INPROGRESS;
+        return status == STATUS_INPROGRESS;
     }
 
     public void setInProgress() {
-        fStatus = STATUS_INPROGRESS;
+        status = STATUS_INPROGRESS;
     }
 
     @SuppressWarnings("unchecked")
     private Iterator<Element> getChildIterator() {
-        if (fChildIterator == null) {
-            fChildIterator = getRuleElement().elementIterator();
+        if (childIterator == null) {
+            childIterator = getRuleElement().elementIterator();
         }
-        return fChildIterator;
+        return childIterator;
     }
 
     /**
@@ -206,8 +200,8 @@ public class EDIRuleBaseToken implements IRuleToken {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((fChildIterator == null) ? 0 : fChildIterator.hashCode());
-        result = prime * result + ((fRuleElement == null) ? 0 : fRuleElement.hashCode());
+        result = prime * result + ((childIterator == null) ? 0 : childIterator.hashCode());
+        result = prime * result + ((ruleElement == null) ? 0 : ruleElement.hashCode());
         return result;
     }
 
@@ -223,18 +217,18 @@ public class EDIRuleBaseToken implements IRuleToken {
             return false;
         }
         EDIRuleBaseToken other = (EDIRuleBaseToken) obj;
-        if (fChildIterator == null) {
-            if (other.fChildIterator != null) {
+        if (childIterator == null) {
+            if (other.childIterator != null) {
                 return false;
             }
-        } else if (!fChildIterator.equals(other.fChildIterator)) {
+        } else if (!childIterator.equals(other.childIterator)) {
             return false;
         }
-        if (fRuleElement == null) {
-            if (other.fRuleElement != null) {
+        if (ruleElement == null) {
+            if (other.ruleElement != null) {
                 return false;
             }
-        } else if (!fRuleElement.equals(other.fRuleElement)) {
+        } else if (!ruleElement.equals(other.ruleElement)) {
             return false;
         }
         if (StringUtil.isSet(getID())) {

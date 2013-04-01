@@ -25,10 +25,10 @@ public final class EDIFACTTokenFactory {
         return fFactoryInstance;
     }
 
-    private EDIFACTDelimiters fDelimiter;
+    private EDIFACTDelimiters delimiters;
 
-    private EDIFACTTokenFactory(final EDIFACTDelimiters delimiter) {
-        fDelimiter = delimiter;
+    private EDIFACTTokenFactory(final EDIFACTDelimiters edifactDelimiters) {
+        this.delimiters = edifactDelimiters;
     }
 
     /**
@@ -43,15 +43,15 @@ public final class EDIFACTTokenFactory {
         if (StringUtil.isNotSet(tokenString)) {
             throw new IllegalArgumentException("Token not set!");
         }
-        switch (fDelimiter.getDelimiterIdentifier(tokenString)) {
-            case EDIFACTDelimiters.DELIMITER_COMPLEXELEMENT:
+        switch (delimiters.getDelimiterIdentifier(tokenString)) {
+            case EDIFACTDelimiters.DELIMITER_COMPLEX_ELEMENT:
                 return new ComplexElementDelimiterToken(tokenString, tokenPosition);
             case EDIFACTDelimiters.DELIMITER_ELEMENT:
                 return new ElementDelimiterToken(tokenString, tokenPosition);
             case EDIFACTDelimiters.DELIMITER_SEGMENT:
                 return new SegmentDelimiterToken(tokenString, tokenPosition);
             default:
-                return new UnknownDelimiterToken(tokenString, tokenPosition);
+                return new EDIFACTUnknownDelimiterToken(tokenString, tokenPosition);
         }
     }
 

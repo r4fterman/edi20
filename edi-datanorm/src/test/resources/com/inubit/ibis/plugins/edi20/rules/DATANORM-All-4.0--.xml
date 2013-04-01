@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Message agency="-" name="DATANORM segments " release="-" type="All" version="4.0" standard="DATANORM" layout="mswed">
+    <Segment id="A" loop="n" name="Hauptsatz A" required="C" xmlTag="HauptsatzA">
+        <Element id="02" maxLength="1" minLength="1" name="Kennzeichen" required="C" type="AN" xmlTag="Kennzeichen" />
+        <Element id="03" maxLength="15" minLength="1" name="Artikelnummer" required="C" type="AN"
+                xmlTag="Artikelnummer" />
+        <Element id="04" maxLength="2" minLength="1" name="Textkennzeichen" required="C" type="AN"
+                xmlTag="Textkennzeichen" />
+        <Element id="05" maxLength="40" minLength="1" name="Artikelbez. 1" required="C" type="AN"
+                xmlTag="Artikelbez1" />
+        <Element id="06" maxLength="40" minLength="1" name="Artikelbez. 2" required="C" type="AN"
+                xmlTag="Artikelbez2" />
+        <Element id="07" maxLength="1" minLength="1" name="Preiskennzeichen" required="C" type="N"
+                xmlTag="Preiskennzeichen" />
+        <Element id="08" maxLength="1" minLength="1" name="Preiseinheit" required="C" type="N" xmlTag="Preiseinheit" />
+        <Element id="09" maxLength="4" minLength="1" name="Mengeneinheit" required="C" type="AN"
+                xmlTag="Mengeneinheit" />
+        <Element id="10" maxLength="9" minLength="1" name="Preis" required="C" type="N" xmlTag="Preis" />
+        <Element id="11" maxLength="4" minLength="1" name="Rabattgruppe" required="C" type="AN" xmlTag="Rabattgruppe" />
+        <Element id="12" maxLength="3" minLength="1" name="Warenhauptgruppe" required="C" type="AN"
+                xmlTag="Warenhauptgruppe" />
+        <Element id="13" maxLength="8" minLength="1" name="Langtextschlussel" required="C" type="AN"
+                xmlTag="Langtextschlussel" />
+    </Segment>
+    <Segment id="C" loop="n" name="Leistungssatz C" required="C" xmlTag="LeistungssatzC">
+        <Element id="02" maxLength="1" minLength="1" name="Kennzeichen" required="C" type="AN" xmlTag="Kennzeichen" />
+        <Element id="03" maxLength="4" minLength="1" name="Satzkennung BAU" required="C" type="AN"
+                xmlTag="Satzkennung-BAU" />
+        <Element id="04" maxLength="1" minLength="1" name="Erganzungssatz Fliesen" required="C" type="AN"
+                xmlTag="ErganzungssatzFliesen" />
+        <Element id="05" maxLength="3" minLength="1" name="MKF-Erganzung" required="C" type="AN"
+                xmlTag="MKF-Erganzung" />
+        <Element id="06" maxLength="8" minLength="1" name="Herstellername" required="C" type="AN"
+                xmlTag="Herstellername" />
+        <Element id="07" maxLength="15" minLength="1" name="Artikelnummer" required="C" type="AN"
+                xmlTag="Artikelnummer" />
+        <Element id="08" maxLength="1" minLength="1" name="Segment" required="C" type="AN" xmlTag="Segment" />
+        <Element id="09" maxLength="6" minLength="1" name="Preise gültig ab TTMMJJ" required="C" type="N"
+                xmlTag="PreiseGultigAbTTMMJJ" />
+        <Element id="10" maxLength="5" minLength="1" name="Länge in mm" required="C" type="N" xmlTag="LangeInMM" />
+        <Element id="11" maxLength="5" minLength="1" name="Breite  in mm" required="C" type="N" xmlTag="BreiteInMM" />
+        <Element id="12" maxLength="5" minLength="1" name="Stärke in mm" required="C" type="N" xmlTag="StarkeInMM" />
+        <Element id="13" maxLength="2" minLength="1" name="Sortierung" required="C" type="AN" xmlTag="Sortierung" />
+        <Element id="14" maxLength="1" minLength="1" name="Beanspr.gruppe" required="C" type="N"
+                xmlTag="BeansprGruppe" />
+        <Element id="15" maxLength="1" minLength="1" name="Frostsicher" required="C" type="AN" xmlTag="Frostsicher" />
+        <Element id="16" maxLength="1" minLength="1" name="Abgabeeinheit" required="C" type="AN"
+                xmlTag="Abgabeeinheit" />
+        <Element id="17" maxLength="8" minLength="1" name="Bedarf Stk ME" required="C" type="N" xmlTag="BedarfStk" />
+        <Element id="18" maxLength="7" minLength="1" name="Gewicht  ME" required="C" type="N" xmlTag="Gewicht" />
+        <Element id="19" maxLength="3" minLength="1" name="Stück je Paket" required="C" type="N"
+                xmlTag="StuckJePaket" />
+        <Element id="20" maxLength="5" minLength="1" name="Stück je Palette" required="C" type="N"
+                xmlTag="StuckJePalette" />
+        <Element id="21" maxLength="7" minLength="1" name="Stück je VE" required="C" type="N" xmlTag="StuckJeVE" />
+        <Element id="22" maxLength="13" minLength="1" name="Frei" required="C" type="AN" xmlTag="Frei" />
+        <Element id="23" maxLength="2" minLength="1" name="Rutschhemmung" required="C" type="N"
+                xmlTag="Rutschhemmung" />
+        <Element id="24" maxLength="2" minLength="1" name="Verdräng -raum cm3 dm2" required="C" type="N"
+                xmlTag="Verdrang-raumCm3Dm2" />
+        <Element id="25" maxLength="1" minLength="1" name="Eignung Barfußber. A B C" required="C" type="AN"
+                xmlTag="EignungBarfussber" />
+        <Element id="26" maxLength="8" minLength="1" name="Großhändler" required="C" type="AN" xmlTag="Grosshandler" />
+        <Element id="27" maxLength="15" minLength="1" name="Art.-Nr. Großhändler" required="C" type="AN"
+                xmlTag="ArtNrGrosshandler" />
+        <Element id="28" maxLength="1" minLength="1" name="Lagergeführt Großh. J N" required="C" type="AN"
+                xmlTag="LagergefuhrtGrosshJN" />
+    </Segment>
+    <Segment id="B" loop="n" name="Hauptsatz B" required="C" xmlTag="HauptsatzB">
+        <Element id="02" maxLength="1" minLength="1" name="Kennzeichen" required="C" type="AN" xmlTag="Kennzeichen" />
+        <Element id="03" maxLength="15" minLength="1" name="Artikelnummer" required="C" type="AN"
+                xmlTag="Artikelnummer" />
+        <Element id="04" maxLength="15" minLength="1" name="Matchcode" required="C" type="AN" xmlTag="Matchcode" />
+        <Element id="05" maxLength="15" minLength="1" name="Alternativ-Artikelnummer" required="C" type="AN"
+                xmlTag="Alternativ-Artikelnummer" />
+        <Element id="06" maxLength="8" minLength="1" name="Katalogseite" required="C" type="AN" xmlTag="Katalogseite" />
+        <Element id="07a" maxLength="1" minLength="1" name="Kupfer-Gewichtsmerker" required="C" type="N"
+                xmlTag="Kupfer-Gewichtsmerker" />
+        <Element id="07b" maxLength="3" minLength="1" name="Kupfer-Kennzahl" required="C" type="N"
+                xmlTag="Kupfer-Kennzahl" />
+        <Element id="07c" maxLength="7" minLength="1" name="Kupfer-Gewicht" required="C" type="N"
+                xmlTag="Kupfer-Gewicht" />
+        <Element id="08" maxLength="13" minLength="1" name="EAN-Nummer" required="C" type="AN" xmlTag="EAN-Nummer" />
+        <Element id="09" maxLength="12" minLength="1" name="Anbindungsnummer" required="C" type="AN"
+                xmlTag="Anbindungsnummer" />
+        <Element id="10" maxLength="10" minLength="1" name="Warengruppe" required="C" type="AN" xmlTag="Warengruppe" />
+        <Element id="11" maxLength="2" minLength="1" name="Kostenart" required="C" type="N" xmlTag="Kostenart" />
+        <Element id="12" maxLength="5" minLength="1" name="Verpackungsmenge" required="C" type="N"
+                xmlTag="Verpackungsmenge" />
+        <Element id="13" maxLength="4" minLength="1" name="Reverenznummern-Ersatzkürzel" required="C" type="AN"
+                xmlTag="Reverenznummern-Ersatzkurzel" />
+        <Element id="14" maxLength="17" minLength="1" name="Reverenznummer" required="C" type="AN"
+                xmlTag="Reverenznummer" />
+    </Segment>
+    <Segment id="S" loop="n" name="Warengruppensatz &quot;S&quot;" required="C" xmlTag="Warengruppensatz-S">
+        <Element id="02" maxLength="1" minLength="1" name="frei" required="C" type="AN" xmlTag="Frei" />
+        <Element id="03" maxLength="3" minLength="1" name="Hauptwarengruppe" required="C" type="AN"
+                xmlTag="Hauptwarengruppe" />
+        <Element id="04" maxLength="40" minLength="1" name="Hauptwarengruppen-Bezeichn" required="C" type="AN"
+                xmlTag="Hauptwarengruppen-Bezeichn" />
+        <Element id="05" maxLength="10" minLength="1" name="frei" required="C" type="AN" xmlTag="Frei" />
+        <Element id="06" maxLength="40" minLength="1" name="frei" required="C" type="AN" xmlTag="Frei" />
+    </Segment>
+    <Segment id="R" loop="n" name="Rabattsatz &quot;R&quot;" required="C" xmlTag="Rabattsatz-R">
+        <Element id="02" maxLength="1" minLength="1" name="frei" required="C" type="AN" xmlTag="Frei" />
+        <Element id="03" maxLength="4" minLength="1" name="Rabatt-Gruppe" required="C" type="AN"
+                xmlTag="Rabatt-Gruppe" />
+        <Element id="04" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="AN"
+                xmlTag="Rabattkennzeichen" />
+        <Element id="05" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N" xmlTag="Rabatt-Multi" />
+        <Element id="06" maxLength="40" minLength="1" name="Rabattgruppenbezeichnung" required="C" type="AN"
+                xmlTag="Rabattgruppenbezeichnung" />
+    </Segment>
+    <Segment id="J" loop="n" name="Artikel-Set-Satz &quot;J&quot;" required="C" xmlTag="Artikel-Set-Satz-J">
+        <Element id="02" maxLength="1" minLength="1" name="Kennzeichen" required="C" type="AN" xmlTag="Kennzeichen" />
+        <Element id="03" maxLength="15" minLength="1" name="Set-Satznummer" required="C" type="AN"
+                xmlTag="Set-Satznummer" />
+        <Element id="04" maxLength="2" minLength="1" name="Zeilennummer" required="C" type="N" xmlTag="Zeilennummer" />
+        <Element id="05" maxLength="1" minLength="1" name="Set-Merker" required="C" type="AN" xmlTag="Set-Merker" />
+        <Element id="06" maxLength="15" minLength="1" name="Match-Code" required="C" type="AN" xmlTag="Match-Code" />
+        <Element id="07" maxLength="28" minLength="1" name="Beschreibungstext" required="C" type="AN"
+                xmlTag="Beschreibungstext" />
+        <Element id="08" maxLength="1" minLength="1" name="Aufrufmerker" required="C" type="AN" xmlTag="Aufrufmerker" />
+        <Element id="09" maxLength="15" minLength="1" name="Artikel- bzw. Folge-Set" required="C" type="AN"
+                xmlTag="Artikel-FolgeSet" />
+        <Element id="10" maxLength="8" minLength="1" name="Menge" required="C" type="AN" xmlTag="Menge" />
+    </Segment>
+
+    <Segment id="P" loop="n" name="Preisänderungssatz &quot;P&quot;" required="C" xmlTag="Preisanderungssatz-P">
+        <Element id="02" maxLength="1" minLength="1" name="Kennzeichen" required="C" type="AN" xmlTag="Kennzeichen" />
+        <Element id="03a" maxLength="15" minLength="1" name="Artikelnummer" required="C" type="AN"
+                xmlTag="Artikelnummer-a" />
+        <Element id="04a" maxLength="1" minLength="1" name="Preiskennzeichen" required="C" type="N"
+                xmlTag="Preiskennzeichen-a" />
+        <Element id="05a" maxLength="9" minLength="1" name="Preis" required="C" type="N" xmlTag="Preis-a" />
+        <Element id="06a" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="N"
+                xmlTag="Rabattkennzeichen-a" />
+        <Element id="07a" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N"
+                xmlTag="Rabatt-Multi-a" />
+        <Element id="08a" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="N"
+                xmlTag="Rabattkennzeichen-a" />
+        <Element id="09a" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N"
+                xmlTag="Rabatt-Multi-a" />
+        <Element id="010a" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="N"
+                xmlTag="Rabattkennzeichen-a" />
+        <Element id="011a" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N"
+                xmlTag="Rabatt-Multi-a" />
+        <Element id="03b" maxLength="15" minLength="1" name="Artikelnummer" required="C" type="AN"
+                xmlTag="Artikelnummer-b" />
+        <Element id="04b" maxLength="1" minLength="1" name="Preiskennzeichen" required="C" type="N"
+                xmlTag="Preiskennzeichen-b" />
+        <Element id="05b" maxLength="9" minLength="1" name="Preis" required="C" type="N" xmlTag="Preis-b" />
+        <Element id="06b" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="N"
+                xmlTag="Rabattkennzeichen-b" />
+        <Element id="07b" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N"
+                xmlTag="Rabatt-Multi-b" />
+        <Element id="08b" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="N"
+                xmlTag="Rabattkennzeichen-b" />
+        <Element id="09b" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N"
+                xmlTag="Rabatt-Multi-b" />
+        <Element id="010b" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="N"
+                xmlTag="Rabattkennzeichen-b" />
+        <Element id="011b" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N"
+                xmlTag="Rabatt-Multi-b" />
+        <Element id="03c" maxLength="15" minLength="1" name="Artikelnummer" required="C" type="AN"
+                xmlTag="Artikelnummer-c" />
+        <Element id="04c" maxLength="1" minLength="1" name="Preiskennzeichen" required="C" type="N"
+                xmlTag="Preiskennzeichen-c" />
+        <Element id="05c" maxLength="9" minLength="1" name="Preis" required="C" type="N" xmlTag="Preis-c" />
+        <Element id="06c" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="N"
+                xmlTag="Rabattkennzeichen-c" />
+        <Element id="07c" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N"
+                xmlTag="Rabatt-Multi-c" />
+        <Element id="08c" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="N"
+                xmlTag="Rabattkennzeichen-c" />
+        <Element id="09c" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N"
+                xmlTag="Rabatt-Multi-c" />
+        <Element id="010c" maxLength="1" minLength="1" name="Rabattkennzeichen" required="C" type="N"
+                xmlTag="Rabattkennzeichen-c" />
+        <Element id="011c" maxLength="4" minLength="1" name="Rabatt/Multi" required="C" type="N"
+                xmlTag="Rabatt-Multi-c" />
+    </Segment>
+    <Segment id="D" loop="n" name="Dimensionstext-Bereich &quot;D&quot;" required="C" xmlTag="Dimensionstext-Bereich-D">
+        <Element id="02" maxLength="1" minLength="1" name="Kennzeichen" required="C" type="AN" xmlTag="Kennzeichen" />
+        <Element id="03" maxLength="15" minLength="1" name="Artikelnummer" required="C" type="AN"
+                xmlTag="Artikelnummer" />
+        <Element id="04" maxLength="2" minLength="1" name="Zeilennummer" required="C" type="N" xmlTag="Zeilennummer" />
+        <Element id="05" maxLength="1" minLength="1" name="Unterkennzeichen" required="C" type="AN"
+                xmlTag="Unterkennzeichen" />
+        <Element id="06a" maxLength="8" minLength="1" name="Frei" required="C" type="AN" xmlTag="Frei" />
+        <Element id="07a" maxLength="40" minLength="1" name="Zeilentext" required="C" type="AN" xmlTag="Zeilentext-a" />
+        <Element id="06b" maxLength="8" minLength="1" name="Einfügetextblock-Nummer b" required="C" type="AN"
+                xmlTag="Einfugetextblock-Nummer-b" />
+        <Element id="07b" maxLength="40" minLength="1" name="Frei b" required="C" type="AN" xmlTag="Frei-b" />
+        <Element id="06c" maxLength="8" minLength="1" name="Einfügetextblock-Nummer c" required="C" type="AN"
+                xmlTag="Einfugetextblock-Nummer-c" />
+        <Element id="07c" maxLength="40" minLength="1" name="Zeilentext c" required="C" type="AN"
+                xmlTag="Zeilentext-c" />
+        <Element id="08" maxLength="2" minLength="1" name="Zeilennummer" required="C" type="N" xmlTag="Zeilennummer" />
+        <Element id="09" maxLength="1" minLength="1" name="Unterkennzeichen" required="C" type="AN"
+                xmlTag="Unterkennzeichen" />
+        <Element id="10" maxLength="8" minLength="1" name="Einfügetextblock-Nummer" required="C" type="AN"
+                xmlTag="Einfugetextblock-Nummer" />
+        <Element id="11" maxLength="40" minLength="1" name="Teilentext" required="C" type="AN" xmlTag="Teilentext" />
+    </Segment>
+
+</Message>

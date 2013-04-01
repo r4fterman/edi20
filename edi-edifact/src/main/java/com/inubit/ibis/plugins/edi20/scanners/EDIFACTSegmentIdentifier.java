@@ -3,14 +3,15 @@ package com.inubit.ibis.plugins.edi20.scanners;
 /**
  * @author r4fter
  */
-public class VDASegmentIdentifier {
+public class EDIFACTSegmentIdentifier implements IIdentifier {
 
     private final String identifier;
 
-    public VDASegmentIdentifier(String identifier) {
+    public EDIFACTSegmentIdentifier(String identifier) {
         this.identifier = identifier;
     }
 
+    @Override
     public String getID() {
         return identifier;
     }
