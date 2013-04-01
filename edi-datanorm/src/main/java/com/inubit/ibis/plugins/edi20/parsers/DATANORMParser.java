@@ -3,7 +3,7 @@ package com.inubit.ibis.plugins.edi20.parsers;
 import java.util.List;
 
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.DATANORMDelimiters;
-import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
+import com.inubit.ibis.plugins.edi20.rules.AbstractMSWEDRule;
 import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
@@ -28,7 +28,7 @@ public class DATANORMParser extends MSWEDParser {
      * @param rule
      *         EDI rule
      */
-    public DATANORMParser(IScanner scanner, AbstractEDIRule rule) {
+    public DATANORMParser(IScanner scanner, AbstractMSWEDRule rule) {
         super(scanner, rule);
     }
 
