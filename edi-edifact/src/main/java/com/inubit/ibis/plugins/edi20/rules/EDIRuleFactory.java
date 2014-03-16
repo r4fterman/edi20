@@ -1,7 +1,5 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import java.io.File;
-
 import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
@@ -13,6 +11,8 @@ import com.inubit.ibis.utils.XmlFileFilter;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
+
+import java.io.File;
 
 /**
  * @author r4fter
@@ -51,7 +51,7 @@ public final class EDIRuleFactory {
         }
 
         String edifactRuleFileName = ruleFileName + XmlFileFilter.FILE_EXTENSION_XML;
-        File edifactRuleFile = new File(EDIUtil.RULEFILE_FOLDER, edifactRuleFileName);
+        File edifactRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, edifactRuleFileName);
         if (!edifactRuleFile.exists()) {
             throw new InubitException("EDI rule file not found [" + edifactRuleFile.getAbsolutePath() + "]!");
         }

@@ -5,22 +5,22 @@ package com.inubit.ibis.plugins.edi20.utils;
 
 import com.inubit.ibis.utils.StringUtil;
 
+import java.io.File;
+
 /**
  * @author r4fter
  */
 public final class EDIUtil {
 
-    public static final String RULEFILE_FOLDER = "/Development/EDI_2.0/testfiles/rules";
+    private static final File USER_FOLDER = new File(System.getProperty("user.dir"));
+    public static final File RULE_FILE_FOLDER = new File(USER_FOLDER, "testfiles/rules");
 
     /**
      * Method checks whether the token delimiter is escaped in the given token.
      *
-     * @param token
-     *         token to check
-     * @param tokenDelimiter
-     *         token delimiter
-     * @param escapeDelimiter
-     *         escape delimiter
+     * @param token           token to check
+     * @param tokenDelimiter  token delimiter
+     * @param escapeDelimiter escape delimiter
      * @return <code>true</code> if token delimiter is escaped, <code>false</code> otherwise
      */
     public static boolean isEscaped(final String token, final String tokenDelimiter, final String escapeDelimiter) {
@@ -49,10 +49,8 @@ public final class EDIUtil {
     /**
      * Method counts all conjuncted escape delimiters in the given text by parsing the text backward.
      *
-     * @param text
-     *         text to parse
-     * @param escapeDelimiter
-     *         escape delimiter to count
+     * @param text            text to parse
+     * @param escapeDelimiter escape delimiter to count
      * @return count of escape delimiters
      */
     private static int countEscapeDelimiters(final String text, final String escapeDelimiter) {

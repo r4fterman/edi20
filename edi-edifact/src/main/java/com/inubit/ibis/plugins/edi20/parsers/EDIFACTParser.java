@@ -1,7 +1,5 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import java.io.File;
-
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.plugins.edi20.rules.EDIFACTEnveloperRule;
@@ -19,33 +17,43 @@ import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
 import com.inubit.ibis.utils.XmlUtils;
 
+import java.io.File;
+
 /**
  * @author r4fter
  */
 public class EDIFACTParser extends HWEDParser {
 
-    private static final String ENVELOPER_RULEFILENAME = "EDIFACT-ENVELOPER.xml";
+    private static final String ENVELOPER_RULE_FILE_NAME = "EDIFACT-ENVELOPER.xml";
 
-    private static final int SEGMENT_OR_SEGMENTGROUP = 1;
-    private static final int ELEMENT_OR_COMPLEXELEMENT = 2;
-
-    private static EDIFACTDelimiters getDelimiter(final StringBuilder textInputDocument) {
-        return new EDIFACTDelimiters(textInputDocument.substring(0, 10));
-    }
+    private static final int SEGMENT_OR_SEGMENT_GROUP = 1;
+    private static final int ELEMENT_OR_COMPLEX_ELEMENT = 2;
 
     private EDIFACTEnveloperRule fEnveloper;
-    private int fState = SEGMENT_OR_SEGMENTGROUP;
+    private int fState = SEGMENT_OR_SEGMENT_GROUP;
 
     private EDIFACTRule fCurrentRule;
 
     public EDIFACTParser(final EDIFACTLexicalScanner scanner, final EDIFACTRule rule) throws InubitException {
         super(scanner, rule);
-        File enveloperRuleFile = new File(EDIUtil.RULEFILE_FOLDER, ENVELOPER_RULEFILENAME);
-        if (!enveloperRuleFile.exists()) {
-            throw new InubitException("Enveloper rule file is missing!");
+        initializeEnveloperFile();
+    }
+
+    private void initializeEnveloperFile() throws InubitException {
+        if (!EDIUtil.RULE_FILE_FOLDER.exists()) {
+            throw new InubitException("Rule file folder is missing (" + EDIUtil.RULE_FILE_FOLDER + ")!");
         }
+        for (File file : EDIUtil.RULE_FILE_FOLDER.listFiles()) {
+            System.out.println("Found file: " + file);
+        }
+
+        File enveloperRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, ENVELOPER_RULE_FILE_NAME);
+        if (!enveloperRuleFile.exists()) {
+            throw new InubitException("Enveloper rule file is missing (" + enveloperRuleFile + ")!");
+        }
+
         try {
-            fEnveloper = new EDIFACTEnveloperRule(XmlUtils.getDocumentThrowing(enveloperRuleFile));
+            this.fEnveloper = new EDIFACTEnveloperRule(XmlUtils.getDocumentThrowing(enveloperRuleFile));
         } catch (Exception e) {
             throw new InubitException("Error parsing enveloper rule file!", e);
         }
@@ -66,13 +74,13 @@ public class EDIFACTParser extends HWEDParser {
         getEDIFACTRule().closeCurrentRuleToken(token);
         if (EDIFACTDelimiters.DELIMITER_SEGMENT == token.getDelimiterType()) {
             // segment finished
-            fState = SEGMENT_OR_SEGMENTGROUP;
+            fState = SEGMENT_OR_SEGMENT_GROUP;
         } else if (EDIFACTDelimiters.DELIMITER_COMPLEX_ELEMENT == token.getDelimiterType()) {
             // complex element finished
-            fState = ELEMENT_OR_COMPLEXELEMENT;
+            fState = ELEMENT_OR_COMPLEX_ELEMENT;
         } else if (EDIFACTDelimiters.DELIMITER_ELEMENT == token.getDelimiterType()) {
             // element finished
-            fState = ELEMENT_OR_COMPLEXELEMENT;
+            fState = ELEMENT_OR_COMPLEX_ELEMENT;
         } else {
             throw new InubitException("Unknown delimiter [" + token.getToken() + "] found!");
         }
@@ -82,11 +90,11 @@ public class EDIFACTParser extends HWEDParser {
     protected void parseToken(final IToken token) throws InubitException {
         // System.out.println("EDIFACTParser.parseToken(" + fState + "): " + token.getToken());
         switch (fState) {
-            case SEGMENT_OR_SEGMENTGROUP:
+            case SEGMENT_OR_SEGMENT_GROUP:
                 parseSegment(token.getToken());
-                fState = ELEMENT_OR_COMPLEXELEMENT;
+                fState = ELEMENT_OR_COMPLEX_ELEMENT;
                 break;
-            case ELEMENT_OR_COMPLEXELEMENT:
+            case ELEMENT_OR_COMPLEX_ELEMENT:
                 parseElementOrComplexElement(token.getToken());
                 break;
             default:

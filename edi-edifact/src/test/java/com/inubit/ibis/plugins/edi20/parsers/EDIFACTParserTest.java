@@ -1,13 +1,5 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNotNull;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.plugins.edi20.rules.EDIFACTRule;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
@@ -17,6 +9,14 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
 
 /**
  * @author r4fter
