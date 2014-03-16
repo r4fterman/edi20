@@ -26,14 +26,4 @@ public class EDIFACTEnveloperRule extends EDIFACTRule {
         return "Enveloper";
     }
 
-//	@Override
-//	protected boolean isSetCorrectStandardAndLayout(final Element rootElement) {
-//		return true;
-//	}
-
-//	@Override
-//	protected void setCurrentRuleToken(IRuleToken currentRuleElement) {
-//		System.out.println("EDIFACTEnveloperRule.setCurrentRuleToken(): " + currentRuleElement);
-//		super.setCurrentRuleToken(currentRuleElement);
-//	}
 }

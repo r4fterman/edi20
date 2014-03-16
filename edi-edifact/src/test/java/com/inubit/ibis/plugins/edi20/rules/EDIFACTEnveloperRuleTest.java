@@ -1,16 +1,15 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import com.inubit.ibis.utils.XmlUtils;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.junit.Test;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import com.inubit.ibis.utils.XmlUtils;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.junit.Test;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author r4fter
@@ -61,7 +60,6 @@ public class EDIFACTEnveloperRuleTest {
 
     private Document getDocument(final String documentName) throws URISyntaxException, DocumentException {
         URL url = EDIFACTEnveloperRuleTest.class.getResource(documentName);
-        assertNotNull("File not found: " + documentName, url);
         return XmlUtils.getDocumentThrowing(new File(url.toURI()));
     }
 }

@@ -1,13 +1,13 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
+import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
+import com.inubit.ibis.utils.StringUtil;
+import org.dom4j.Element;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleTokenFactory;
-import com.inubit.ibis.utils.StringUtil;
-import org.dom4j.Element;
 
 /**
  * @author r4fter
@@ -17,16 +17,16 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     private static final String ATTRIBUTE_NAME_ID = "id";
     private static final String ATTRIBUTE_NAME_NAME = "name";
     private static final String ATTRIBUTE_NAME_REQUIRED = "required";
-    private static final String ATTRIBUTE_NAME_XMLTAG = "xmlTag";
+    private static final String ATTRIBUTE_NAME_XML_TAG = "xmlTag";
 
     private static final String REQUIRED_MANDATORY = "M";
     private static final String REQUIRED_CONDITIONAL = "C";
 
     private static final int STATUS_NEW = 1;
-    private static final int STATUS_INPROGRESS = 2;
+    private static final int STATUS_IN_PROGRESS = 2;
     private static final int STATUS_CHECKED = 3;
 
-    private Element ruleElement;
+    private final Element ruleElement;
     private Iterator<Element> childIterator;
     private int status = STATUS_NEW;
 
@@ -75,7 +75,7 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
      * @return XML tag
      */
     public String getXmlTag() {
-        return getRuleElement().attributeValue(ATTRIBUTE_NAME_XMLTAG, "");
+        return getRuleElement().attributeValue(ATTRIBUTE_NAME_XML_TAG, "");
     }
 
     protected Element getRuleElement() {
@@ -90,23 +90,25 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     }
 
     @SuppressWarnings("unchecked")
-    public List<IRuleToken> getChildrens() {
+    public List<IRuleToken> getChildren() {
         List<Element> childElements = getRuleElement().elements();
         List<IRuleToken> children = new ArrayList<IRuleToken>(childElements.size());
-//        for (Element childElement : childElements) {
-//            children.add(createElementInstance(childElement));
-//        }
+        for (Element childElement : childElements) {
+            children.add(createElementInstance(childElement));
+        }
         return children;
     }
 
-//    protected abstract IRuleToken createElementInstance(Element childElement);
+    protected IRuleToken createElementInstance(final Element element) {
+        return HwedRuleTokenFactory.getInstance(element);
+    }
 
     /**
      * @return next rule child token or <code>null</code> if no such child exists
      */
     public IRuleToken nextChildren() {
         if (getChildIterator().hasNext()) {
-            return HwfpeRuleTokenFactory.getInstance(getChildIterator().next());
+            return createElementInstance(getChildIterator().next());
         }
         return null;
     }
@@ -120,11 +122,11 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     }
 
     public boolean isInProgress() {
-        return status == STATUS_INPROGRESS;
+        return status == STATUS_IN_PROGRESS;
     }
 
     public void setInProgress() {
-        status = STATUS_INPROGRESS;
+        status = STATUS_IN_PROGRESS;
     }
 
     @SuppressWarnings("unchecked")
@@ -140,7 +142,7 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
      */
     public IRuleToken getParent() {
         if (getRuleElement().getParent() != null) {
-            return HwfpeRuleTokenFactory.getInstance(getRuleElement().getParent());
+            return createElementInstance(getRuleElement().getParent());
         }
         return null;
     }
@@ -181,12 +183,11 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     }
 
     /**
-     * @param childToken
-     *         child token
+     * @param childToken child token
      * @return index or -1 if the given token is not a child of this token
      */
     public int getIndexOfChild(final EDIRuleBaseToken childToken) {
-        List<IRuleToken> children = getChildrens();
+        List<IRuleToken> children = getChildren();
         for (int i = 0; i < children.size(); i++) {
             IRuleToken child = children.get(i);
             if (child.getID().equals(childToken.getID())) {

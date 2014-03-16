@@ -4,10 +4,10 @@
     <groupId>EDI_2.0</groupId>
     <artifactId>EDI_2.0</artifactId>
     <packaging>pom</packaging>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
+
     <modules>
         <module>core-commons</module>
-        <module>core-scanners</module>
         <module>core-parsers</module>
         <module>edi-edifact</module>
         <module>edi-vda</module>

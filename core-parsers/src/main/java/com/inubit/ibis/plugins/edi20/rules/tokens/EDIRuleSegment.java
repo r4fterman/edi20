@@ -1,13 +1,13 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRepeatableRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author r4fter
@@ -70,7 +70,7 @@ public class EDIRuleSegment extends EDIRuleBaseToken implements IRepeatableRuleT
 
     public List<IElementRuleToken> getElements() {
         List<IElementRuleToken> elements = new ArrayList<IElementRuleToken>();
-        for (IRuleToken child : getChildrens()) {
+        for (IRuleToken child : getChildren()) {
             if (child instanceof IElementRuleToken) {
                 elements.add((IElementRuleToken) child);
             }

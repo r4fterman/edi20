@@ -1,14 +1,7 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import java.util.List;
-
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
+import com.inubit.ibis.plugins.edi20.rules.tokens.*;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
 import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.InubitException;
@@ -16,6 +9,8 @@ import com.inubit.ibis.utils.XPathUtil;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.Node;
+
+import java.util.List;
 
 /**
  * @author r4fter
@@ -35,7 +30,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     }
 
     @Override
-    protected EDIRuleRoot createRootElement(Document ruleDocument) {
+    protected EDIRuleRoot createRootElement(final Document ruleDocument) {
         return (EDIRuleRoot) HwedRuleTokenFactory.getInstance(ruleDocument.getRootElement());
     }
 

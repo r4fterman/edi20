@@ -32,14 +32,14 @@ public final class RuleUtil {
                     }
                     return getFollowingSibling(parentToken);
                 }
-                return parentBaseToken.getChildrens().get(idx);
+                return parentBaseToken.getChildren().get(idx);
             }
         }
         return null;
     }
 
     private static boolean isLastChild(final EDIRuleBaseToken parentBaseToken, final int index) {
-        return index == parentBaseToken.getChildrens().size();
+        return index == parentBaseToken.getChildren().size();
     }
 
     /**
@@ -54,7 +54,7 @@ public final class RuleUtil {
         if (ruleToken instanceof EDIRuleBaseToken) {
             EDIRuleBaseToken ruleBaseToken = (EDIRuleBaseToken) ruleToken;
             if (ruleBaseToken.hasChildren()) {
-                return ruleBaseToken.getChildrens().get(0);
+                return ruleBaseToken.getChildren().get(0);
             }
             return getFollowingSibling(ruleToken);
         }

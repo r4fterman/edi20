@@ -1,12 +1,5 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.List;
-
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
@@ -20,6 +13,13 @@ import org.dom4j.DocumentException;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
 /**
  * @author r4fter
  */
@@ -31,12 +31,7 @@ public class AbstractHWEDRuleTest {
     public void setUp() throws Exception {
         this.rule = new AbstractHWEDRule(getDocument("EDIFACT-IFCSUM-D-96A.xml")) {
             @Override
-            public String getLayout() {
-                return "hwed";
-            }
-
-            @Override
-            public void closeCurrentRuleToken(IToken token) {
+            public void closeCurrentRuleToken(final IToken token) {
                 // do nothing
             }
 
@@ -53,14 +48,13 @@ public class AbstractHWEDRuleTest {
         };
     }
 
-    private Document getDocument(String fileName) throws DocumentException, URISyntaxException {
+    private Document getDocument(final String fileName) throws DocumentException, URISyntaxException {
         File file = getFile(fileName);
         return XmlUtils.getDocumentThrowing(file);
     }
 
-    private File getFile(String fileName) throws URISyntaxException {
+    private File getFile(final String fileName) throws URISyntaxException {
         URL url = AbstractHWEDRuleTest.class.getResource(fileName);
-        assertNotNull("File not found: " + fileName, url);
         return new File(url.toURI());
     }
 
@@ -178,7 +172,7 @@ public class AbstractHWEDRuleTest {
         assertEquals("0062", element.getID());
         assertEquals("MessageReferenceNumber", element.getXmlTag());
         assertEquals("Message reference number", element.getDescription());
-        assertTrue(element instanceof HwedRuleElement);
+        assertTrue("Element: " + element.getClass().getCanonicalName(), element instanceof HwedRuleElement);
         assertEquals(1, ((HwedRuleElement) element).getMinLength());
         assertEquals(14, ((HwedRuleElement) element).getMaxLength());
         assertEquals("AN", element.getType());
@@ -234,8 +228,9 @@ public class AbstractHWEDRuleTest {
         List<EDIRuleSegment> segments = rule.getSegments();
         assertEquals(13, segments.size());
 
-        assertTrue(segments.get(6) instanceof EDIRuleSegmentGroup);
-        EDIRuleSegmentGroup segmentGroup = (EDIRuleSegmentGroup) segments.get(6);
+        EDIRuleSegment segment = segments.get(6);
+        assertTrue("Segment: " + segment.getClass().getCanonicalName(), segment instanceof EDIRuleSegmentGroup);
+        EDIRuleSegmentGroup segmentGroup = (EDIRuleSegmentGroup) segment;
 
         assertEquals("Group_1", segmentGroup.getID());
         assertEquals("A group of segments containing references and constants which apply to the entire message.", segmentGroup.getDescription());

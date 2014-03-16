@@ -1,13 +1,13 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe;
 
-import java.util.Hashtable;
-
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import org.dom4j.Element;
+
+import java.util.Hashtable;
 
 /**
  * @author r4fter

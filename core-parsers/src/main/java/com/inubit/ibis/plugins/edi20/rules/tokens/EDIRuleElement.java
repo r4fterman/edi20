@@ -40,4 +40,5 @@ public abstract class EDIRuleElement extends EDIRuleBaseToken implements IElemen
     public String toString() {
         return "(Element) " + super.toString() + ", type=" + getType();
     }
+
 }

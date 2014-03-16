@@ -1,16 +1,18 @@
 package com.inubit.ibis.plugins.edi20.scanners;
 
-import static junit.framework.Assert.assertFalse;
-import static org.junit.Assert.*;
+import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
+import com.inubit.ibis.utils.FileUtils;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
-import com.inubit.ibis.utils.FileUtils;
-import org.junit.Test;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author rafter
@@ -40,8 +42,10 @@ public class EDIFACTLexicalScannerTest {
         while (scanner.hasMoreTokens()) {
             builder.append(scanner.nextToken().getToken());
         }
-        long fileLength = edifactFile.length() + 1;
-        assertEquals("Length differs!", fileLength, Long.parseLong(String.valueOf(builder.length()), 0));
+
+        int scannerLength = builder.toString().length();
+        int contentLength = content.length();
+        assertEquals("Content differs!" + contentLength + "!=" + scannerLength, contentLength, scannerLength);
     }
 
     @Test

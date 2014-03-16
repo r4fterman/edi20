@@ -1,11 +1,10 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
+import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import org.dom4j.Element;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleTokenFactory;
-import org.dom4j.Element;
 
 /**
  * @author r4fter
@@ -30,7 +29,7 @@ public class EDIRuleSegmentGroup extends EDIRuleSegment {
     public IRuleToken getFirstSegment() {
         Element firstChild = getFirstChildElement();
         if (firstChild != null) {
-            return HwfpeRuleTokenFactory.getInstance(firstChild);
+            return createElementInstance(firstChild);
         }
         return null;
     }
@@ -53,7 +52,7 @@ public class EDIRuleSegmentGroup extends EDIRuleSegment {
 
     public List<EDIRuleSegment> getSegments() {
         List<EDIRuleSegment> segments = new ArrayList<EDIRuleSegment>();
-        for (IRuleToken child : getChildrens()) {
+        for (IRuleToken child : getChildren()) {
             if (child instanceof EDIRuleSegment) {
                 segments.add((EDIRuleSegment) child);
             }

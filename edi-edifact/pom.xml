@@ -8,8 +8,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>EDI_EDIFACT</groupId>
     <artifactId>edifact</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>

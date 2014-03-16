@@ -1,11 +1,11 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import org.dom4j.Element;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author r4fter
@@ -27,7 +27,7 @@ public class EDIRuleCompositeElement extends EDIRuleBaseToken implements IElemen
 
     public List<IElementRuleToken> getElements() {
         List<IElementRuleToken> elements = new ArrayList<IElementRuleToken>();
-        for (IRuleToken child : getChildrens()) {
+        for (IRuleToken child : getChildren()) {
             if (child instanceof EDIRuleElement) {
                 elements.add((IElementRuleToken) child);
             }
