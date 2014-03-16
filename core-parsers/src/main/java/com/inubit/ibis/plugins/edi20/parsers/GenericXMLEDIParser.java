@@ -31,11 +31,11 @@ public class GenericXMLEDIParser implements IGenericParser {
     }
 
     private void init(final Document xmlInputDocument) throws InubitException {
-//        parser = EDIParserRegistry.getInstance(xmlInputDocument).getParser();
+//        parsers = EDIParserRegistry.getInstance(xmlInputDocument).getParser();
     }
 
     private void init(final Document xmlInputDocument, AbstractEDIRule rule) throws InubitException {
-//        parser = EDIParserRegistry.getInstance(xmlInputDocument).getParser(rule);
+//        parsers = EDIParserRegistry.getInstance(xmlInputDocument).getParser(rule);
     }
 
     public void parse() throws InubitException {

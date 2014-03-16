@@ -3,7 +3,7 @@ package com.inubit.ibis.plugins.edi20.scanners;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 
 /**
- * Scanner splits input document into tokens. Tokens will be analyzed by parser according to the given rule.
+ * Scanner splits input document into tokens. Tokens will be analyzed by parsers according to the given rule.
  *
  * @author rafter
  */

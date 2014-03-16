@@ -77,14 +77,12 @@ public abstract class AbstractEDIRule {
     private boolean isSetCorrectLayout(final EDIRuleRoot root) {
         String layout = root.getLayout();
         String ruleLayout = getLayout();
-        System.out.println("com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule.isSetCorrectLayout: [" + layout + "]=[" + ruleLayout + "]");
         return layout.equals(ruleLayout);
     }
 
     private boolean isSetCorrectStandard(final EDIRuleRoot root) {
         String standard = root.getStandard();
         String ruleStandard = getStandard();
-        System.out.println("com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule.isSetCorrectStandard: [" + standard + "]=[" + ruleStandard + "]");
         return standard.equals(ruleStandard);
     }
 

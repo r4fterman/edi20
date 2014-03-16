@@ -7,7 +7,7 @@ import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
 
 /**
- * Factory returns instance of parser useable for the given input.
+ * Factory returns instance of parsers useable for the given input.
  *
  * @author rafter
  */

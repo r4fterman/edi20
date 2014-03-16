@@ -6,7 +6,7 @@ import com.inubit.ibis.utils.StringUtil;
 import org.dom4j.Document;
 
 /**
- * Generic parser reads input document and detects whether to parse document with EDIParser or XMLParser.
+ * Generic parsers reads input document and detects whether to parse document with EDIParser or XMLParser.
  *
  * @author rafter
  */

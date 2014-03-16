@@ -5,7 +5,7 @@ import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
 
 /**
- * Scanner splits input document into tokens. Tokens will be analyzed by parser according to the given rule.
+ * Scanner splits input document into tokens. Tokens will be analyzed by parsers according to the given rule.
  *
  * @author rafter
  */

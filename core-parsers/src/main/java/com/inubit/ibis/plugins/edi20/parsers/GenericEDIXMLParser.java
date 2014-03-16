@@ -42,7 +42,7 @@ public class GenericEDIXMLParser implements IGenericParser {
     @Override
     public void parse() throws InubitException {
         if (parser == null) {
-            throw new InubitException("No parser was not instantiated for input document!");
+            throw new InubitException("No parsers was not instantiated for input document!");
         }
         try {
             parser.parse();

@@ -1,10 +1,10 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.InubitException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author r4fter
@@ -24,7 +24,7 @@ public final class EDIParserRegistry {
     /**
      * @param textInputDocument
      *         text input document
-     * @return EDI parser factory instance
+     * @return EDI parsers factory instance
      */
     public static EDIParserRegistry getInstance(final StringBuilder textInputDocument) {
         return new EDIParserRegistry(textInputDocument);
@@ -37,10 +37,10 @@ public final class EDIParserRegistry {
     }
 
     /**
-     * @return parser instance
+     * @return parsers instance
      *
      * @throws InubitException
-     *         if retrieving parser instance failed
+     *         if retrieving parsers instance failed
      */
     public IEDIParser getParser() throws InubitException {
         for (IEDIParser parser : REGISTERED_PARSER) {
@@ -54,10 +54,10 @@ public final class EDIParserRegistry {
     /**
      * @param rule
      *         EDI rule
-     * @return parser instance for the given rule
+     * @return parsers instance for the given rule
      *
      * @throws InubitException
-     *         if no parser was found for the given rule
+     *         if no parsers was found for the given rule
      */
     public IEDIParser getParser(final AbstractEDIRule rule) throws InubitException {
         for (IEDIParser parser : REGISTERED_PARSER) {
