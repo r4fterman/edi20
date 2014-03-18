@@ -8,7 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>datanorm</artifactId>
+    <artifactId>edi-datanorm</artifactId>
     <version>0.0.1</version>
 
     <dependencies>
