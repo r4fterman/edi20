@@ -161,7 +161,8 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
             startElement = startFromToken.getElement();
         }
 
-        List<Node> segments = XPathUtil.evaluateXPathAsNodeList(getChildSegmentsXPath(segmentID), startElement);
+        String xPath = getChildSegmentsXPath(segmentID);
+        List<Node> segments = XPathUtil.evaluateXPathAsNodeList(xPath, startElement);
         if (segments.size() > 0) {
             return true;
         }
@@ -172,7 +173,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
                 return containsSegment(segmentID, parentToken);
             }
         }
-        return false;
+        return segments.size() == 1;
     }
 
     private String getChildSegmentsXPath(final String segmentID) {

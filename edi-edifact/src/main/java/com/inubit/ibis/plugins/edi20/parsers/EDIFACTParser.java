@@ -16,6 +16,7 @@ import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
 import com.inubit.ibis.utils.XmlUtils;
+import org.dom4j.Document;
 
 import java.io.File;
 
@@ -29,10 +30,10 @@ public class EDIFACTParser extends HWEDParser {
     private static final int SEGMENT_OR_SEGMENT_GROUP = 1;
     private static final int ELEMENT_OR_COMPLEX_ELEMENT = 2;
 
-    private EDIFACTEnveloperRule fEnveloper;
     private int fState = SEGMENT_OR_SEGMENT_GROUP;
 
-    private EDIFACTRule fCurrentRule;
+    private EDIFACTEnveloperRule enveloperRule;
+    private EDIFACTRule currentRule;
 
     public EDIFACTParser(final EDIFACTLexicalScanner scanner, final EDIFACTRule rule) throws InubitException {
         super(scanner, rule);
@@ -40,27 +41,28 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     private void initializeEnveloperFile() throws InubitException {
+        try {
+            File enveloperRuleFile = ensureEnveloperFileExists();
+            Document document = XmlUtils.getDocumentThrowing(enveloperRuleFile);
+            this.enveloperRule = new EDIFACTEnveloperRule(document);
+        } catch (Exception e) {
+            throw new InubitException("Error parsing enveloperRule rule file!", e);
+        }
+    }
+
+    private File ensureEnveloperFileExists() throws InubitException {
         if (!EDIUtil.RULE_FILE_FOLDER.exists()) {
             throw new InubitException("Rule file folder is missing (" + EDIUtil.RULE_FILE_FOLDER + ")!");
         }
-        for (File file : EDIUtil.RULE_FILE_FOLDER.listFiles()) {
-            System.out.println("Found file: " + file);
-        }
-
         File enveloperRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, ENVELOPER_RULE_FILE_NAME);
         if (!enveloperRuleFile.exists()) {
             throw new InubitException("Enveloper rule file is missing (" + enveloperRuleFile + ")!");
         }
-
-        try {
-            this.fEnveloper = new EDIFACTEnveloperRule(XmlUtils.getDocumentThrowing(enveloperRuleFile));
-        } catch (Exception e) {
-            throw new InubitException("Error parsing enveloper rule file!", e);
-        }
+        return enveloperRuleFile;
     }
 
     public EDIFACTEnveloperRule getEnveloper() {
-        return fEnveloper;
+        return enveloperRule;
     }
 
     @Override
@@ -169,23 +171,21 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     private EDIFACTRule getEDIFACTRule() {
-        if (fCurrentRule == null) {
-            fCurrentRule = (EDIFACTRule) getRule();
+        if (currentRule == null) {
+            currentRule = (EDIFACTRule) getRule();
         }
-        return fCurrentRule;
+        return currentRule;
     }
 
     private EDIFACTRule getEDIFACTRule(final String segmentID) {
         if (isEnveloperSegment(segmentID)) {
-            fCurrentRule = getEnveloperRule();
-        } else {
-            fCurrentRule = (EDIFACTRule) getRule();
+            return getEnveloperRule();
         }
-        return fCurrentRule;
+        return (EDIFACTRule) getRule();
     }
 
     private EDIFACTRule getEnveloperRule() {
-        return fEnveloper;
+        return enveloperRule;
     }
 
     private boolean isEnveloperSegment(final String segmentID) {

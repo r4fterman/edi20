@@ -4,23 +4,23 @@
     <parent>
         <artifactId>EDI_2.0</artifactId>
         <groupId>EDI_2.0</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>vda</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <dependencies>
         <dependency>
             <groupId>EDI_2.0</groupId>
             <artifactId>core-commons</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
         <dependency>
             <groupId>EDI_2.0</groupId>
             <artifactId>core-parsers</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
