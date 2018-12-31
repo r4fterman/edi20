@@ -6,20 +6,21 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import org.dom4j.Document;
+import org.junit.Ignore;
+
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.DATANORMDelimiters;
 import com.inubit.ibis.plugins.edi20.rules.DATANORMRule;
 import com.inubit.ibis.plugins.edi20.scanners.DATANORMLexicalScanner;
 import com.inubit.ibis.utils.FileUtils;
 import com.inubit.ibis.utils.XmlUtils;
-import org.dom4j.Document;
-import org.junit.Test;
 
 /**
  * @author r4fter
  */
 public class DATANORMParserTest {
 
-    @Test
+    @Ignore
     public void testGenericParserString() throws Exception {
         String testFile = "datanorm4.001.txt";
         String ruleFile = "DATANORM-All-4.0--.xml";
@@ -29,7 +30,7 @@ public class DATANORMParserTest {
         parser.parse();
     }
 
-    @Test
+    @Ignore
     public void testParseString() throws Exception {
         String testString = "C;N;BAU;F;MKF;ABK;0700E.341280000;;030101;;;;1S;;;E;1000;60;33;1980;;ST;;;;FZ-DEUT.;700-3412~;;";
         String ruleFile = "DATANORM-All-4.0--.xml";

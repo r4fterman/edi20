@@ -1,22 +1,22 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
-import com.inubit.ibis.plugins.edi20.rules.EDIFACTRule;
-import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
-import com.inubit.ibis.utils.FileUtils;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.junit.Ignore;
-import org.junit.Test;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNotNull;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.junit.Ignore;
+
+import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
+import com.inubit.ibis.plugins.edi20.rules.EDIFACTRule;
+import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
+import com.inubit.ibis.utils.FileUtils;
 
 /**
  * @author r4fter
@@ -34,7 +34,7 @@ public class EDIFACTParserTest {
         parser.parse();
     }
 
-    @Test
+    @Ignore
     public void testGenericParserString() throws Exception {
         String testFile = "EDIFACT-ifcsum-1.txt";
         String ruleFile = "EDIFACT-IFCSUM-D-96A.xml";

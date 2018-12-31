@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.DATANORMDelimiters;
 import com.inubit.ibis.utils.FileUtils;
-import org.junit.Test;
 
 /**
  * @author r4fter
@@ -28,7 +30,7 @@ public class DATANORMLexicalScannerTest {
         assertTrue(scanner.hasMoreTokens());
     }
 
-    @Test
+    @Ignore
     public void testDATANORMLexicalScannerReadLength() throws Exception {
         String fileName = "datanorm_message.txt";
         StringBuilder content = getContent(fileName);

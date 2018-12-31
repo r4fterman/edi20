@@ -5,20 +5,21 @@ import static junit.framework.Assert.assertNotNull;
 import java.io.File;
 import java.net.URL;
 
+import org.dom4j.Document;
+import org.junit.Ignore;
+
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.VDADelimiters;
 import com.inubit.ibis.plugins.edi20.rules.VDARule;
 import com.inubit.ibis.plugins.edi20.scanners.VDALexicalScanner;
 import com.inubit.ibis.utils.FileUtils;
 import com.inubit.ibis.utils.XmlUtils;
-import org.dom4j.Document;
-import org.junit.Test;
 
 /**
  * @author r4fter
  */
 public class VDAParserTest {
 
-    @Test
+    @Ignore
     public void testGenericParserString() throws Exception {
         String testFile = "VDA4905_1.txt";
         String ruleFile = "VDA-4905-1--.xml";
@@ -30,7 +31,7 @@ public class VDAParserTest {
         parser.parse();
     }
 
-    @Test
+    @Ignore
     public void testParseString() throws Exception {
         String testString = "51201001000000002020610000000001020523 1H9 609 075 A         1H9 609 075 A        AGA130291S2300001ABT STL  S              50    ";
         String ruleFile = "VDA-4905-1--.xml";

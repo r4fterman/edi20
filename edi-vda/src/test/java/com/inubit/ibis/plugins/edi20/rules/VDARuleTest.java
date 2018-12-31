@@ -1,16 +1,19 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import com.inubit.ibis.utils.InubitException;
-import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
-import org.junit.Test;
+import org.junit.Ignore;
+
+import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.XmlUtils;
 
 /**
  * @author r4fter
@@ -33,7 +36,7 @@ public class VDARuleTest {
         return null;
     }
 
-    @Test
+    @Ignore
     public void testEDIFACTRule_VDA_4905_1() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
@@ -46,7 +49,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testEDIFACTRule_VDA_4913_4() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4913-4--.xml");
@@ -59,7 +62,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testGetAgency() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
@@ -73,7 +76,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testGetDescription() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
@@ -87,7 +90,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testGetLayout() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
@@ -101,7 +104,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testGetRelease() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
@@ -115,7 +118,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testGetStandard() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
@@ -129,7 +132,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testGetType() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
@@ -143,7 +146,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testGetVersion() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
@@ -157,7 +160,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testHasMoreRuleTokens() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
@@ -170,7 +173,7 @@ public class VDARuleTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testToString() {
         try {
             Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
