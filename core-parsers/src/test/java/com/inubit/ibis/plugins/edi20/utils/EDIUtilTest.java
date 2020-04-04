@@ -1,85 +1,86 @@
 package com.inubit.ibis.plugins.edi20.utils;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 /**
  * @author r4fter
  */
-public class EDIUtilTest {
+class EDIUtilTest {
 
     @Test
-    public void testIsEscapedEDIFACTSegmentStartsWithEscapeSign() {
+    void testIsEscapedEDIFACTSegmentStartsWithEscapeSign() {
         String token = "?'";
-        assertEquals(true, EDIUtil.isEscaped(token, "'", "?"));
+        assertThat(EDIUtil.isEscaped(token, "'", "?"), is(true));
     }
 
     @Test
-    public void testIsEscapedEDIFACTSegmentOneEscapeSign() {
+    void testIsEscapedEDIFACTSegmentOneEscapeSign() {
         String token = "bla bla bla 1234567890 ?'";
-        assertEquals(true, EDIUtil.isEscaped(token, "'", "?"));
+        assertThat(EDIUtil.isEscaped(token, "'", "?"), is(true));
     }
 
     @Test
-    public void testIsEscapedEDIFACTSegmentTwoEscapeSign() {
+    void testIsEscapedEDIFACTSegmentTwoEscapeSign() {
         String token = "bla bla bla 1234567890 ??'";
-        assertEquals(false, EDIUtil.isEscaped(token, "'", "?"));
+        assertThat(EDIUtil.isEscaped(token, "'", "?"), is(false));
     }
 
     @Test
-    public void testIsEscapedEDIFACTSegmentThreeEscapeSign() {
+    void testIsEscapedEDIFACTSegmentThreeEscapeSign() {
         String token = "bla bla bla 1234567890 ???'";
-        assertEquals(true, EDIUtil.isEscaped(token, "'", "?"));
+        assertThat(EDIUtil.isEscaped(token, "'", "?"), is(true));
     }
 
     @Test
-    public void testIsEscapeEDIFACTSegmentFourEscapeSign() {
+    void testIsEscapeEDIFACTSegmentFourEscapeSign() {
         String token = "bla bla bla 1234567890 ????'";
-        assertEquals(false, EDIUtil.isEscaped(token, "'", "?"));
+        assertThat(EDIUtil.isEscaped(token, "'", "?"), is(false));
     }
 
     @Test
-    public void testIsEscapedEmptyTokenEmptyDelimiter() {
-        assertEquals(false, EDIUtil.isEscaped("", "'", "?"));
+    void testIsEscapedEmptyTokenEmptyDelimiter() {
+        assertThat(EDIUtil.isEscaped("", "'", "?"), is(false));
     }
 
     @Test
-    public void testIsEscapedEmptyDelimiter() {
+    void testIsEscapedEmptyDelimiter() {
         String token = "bla bla bla 1234567890 ?'";
-        assertEquals(false, EDIUtil.isEscaped(token, "", "?"));
+        assertThat(EDIUtil.isEscaped(token, "", "?"), is(false));
     }
 
     @Test
-    public void testIsEscapedEmptyEscapeDelimiter() {
+    void testIsEscapedEmptyEscapeDelimiter() {
         String token = "bla bla bla 1234567890 ?'";
-        assertEquals(false, EDIUtil.isEscaped(token, "'", ""));
+        assertThat(EDIUtil.isEscaped(token, "'", ""), is(false));
     }
 
     @Test
-    public void testIsEscapedEmptyTokenEmptyDelimiterEmptyEscapeDelimiter() {
-        assertEquals(false, EDIUtil.isEscaped("", "", ""));
+    void testIsEscapedEmptyTokenEmptyDelimiterEmptyEscapeDelimiter() {
+        assertThat(EDIUtil.isEscaped("", "", ""), is(false));
     }
 
     @Test
-    public void testIsEscapedNULLToken() {
-        assertEquals(false, EDIUtil.isEscaped(null, "'", "?"));
+    void testIsEscapedNULLToken() {
+        assertThat(EDIUtil.isEscaped(null, "'", "?"), is(false));
     }
 
     @Test
-    public void testIsEscapedNULLDelimiter() {
+    void testIsEscapedNULLDelimiter() {
         String token = "bla bla bla 1234567890 ?'";
-        assertEquals(false, EDIUtil.isEscaped(token, null, "?"));
+        assertThat(EDIUtil.isEscaped(token, null, "?"), is(false));
     }
 
     @Test
-    public void testIsEscapedNULLEscapeDelimiter() {
+    void testIsEscapedNULLEscapeDelimiter() {
         String token = "bla bla bla 1234567890 ?'";
-        assertEquals(false, EDIUtil.isEscaped(token, "'", null));
+        assertThat(EDIUtil.isEscaped(token, "'", null), is(false));
     }
 
     @Test
-    public void testIsEscapedNULLTokenNULLDelimiterNULLEscapeDelimiter() {
-        assertEquals(false, EDIUtil.isEscaped(null, null, null));
+    void testIsEscapedNULLTokenNULLDelimiterNULLEscapeDelimiter() {
+        assertThat(EDIUtil.isEscaped(null, null, null), is(false));
     }
 }

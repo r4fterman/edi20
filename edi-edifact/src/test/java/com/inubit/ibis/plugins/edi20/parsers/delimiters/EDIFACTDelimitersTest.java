@@ -1,110 +1,109 @@
 package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 
-import static junit.framework.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 /**
  * @author r4fter
  */
-public class EDIFACTDelimitersTest {
+class EDIFACTDelimitersTest {
 
     @Test
-    public void testStandardEDIFACTDelimiters() {
+    void testStandardEDIFACTDelimiters() {
         // set custom delimiter
         String beginOfDocument = "UNA:+.? '";
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters(beginOfDocument);
-        assertEquals(":", delimiters.getComplexElementDelimiter());
-        assertEquals(".", delimiters.getDecimalDelimiter());
-        assertEquals("+", delimiters.getElementDelimiter());
-        assertEquals("?", delimiters.getEscapeDelimiter());
-        assertEquals("'", delimiters.getSegmentDelimiter());
+        assertThat(delimiters.getComplexElementDelimiter(), is(":"));
+        assertThat(delimiters.getDecimalDelimiter(), is("."));
+        assertThat(delimiters.getElementDelimiter(), is("+"));
+        assertThat(delimiters.getEscapeDelimiter(), is("?"));
+        assertThat(delimiters.getSegmentDelimiter(), is("'"));
     }
 
     @Test
-    public void testEDIFACTDelimiters_SegmentIsSlash() {
+    void testEDIFACTDelimiters_SegmentIsSlash() {
         // set custom delimiter
         String beginOfDocument = "UNA/',+ :";
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters(beginOfDocument);
-        assertEquals("/", delimiters.getComplexElementDelimiter());
-        assertEquals(",", delimiters.getDecimalDelimiter());
-        assertEquals("'", delimiters.getElementDelimiter());
-        assertEquals("+", delimiters.getEscapeDelimiter());
-        assertEquals(":", delimiters.getSegmentDelimiter());
+        assertThat(delimiters.getComplexElementDelimiter(), is("/"));
+        assertThat(delimiters.getDecimalDelimiter(), is(","));
+        assertThat(delimiters.getElementDelimiter(), is("'"));
+        assertThat(delimiters.getEscapeDelimiter(), is("+"));
+        assertThat(delimiters.getSegmentDelimiter(), is(":"));
     }
 
     @Test
-    public void testEDIFACTDelimiters_SegmentIsDoubleDot() {
+    void testEDIFACTDelimiters_SegmentIsDoubleDot() {
         // set default delimiter
         String beginOfDocument = "UNB+UNOB:3+";
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters(beginOfDocument);
-        assertEquals(":", delimiters.getComplexElementDelimiter());
-        assertEquals(".", delimiters.getDecimalDelimiter());
-        assertEquals("+", delimiters.getElementDelimiter());
-        assertEquals("?", delimiters.getEscapeDelimiter());
-        assertEquals("'", delimiters.getSegmentDelimiter());
+        assertThat(delimiters.getComplexElementDelimiter(), is(":"));
+        assertThat(delimiters.getDecimalDelimiter(), is("."));
+        assertThat(delimiters.getElementDelimiter(), is("+"));
+        assertThat(delimiters.getEscapeDelimiter(), is("?"));
+        assertThat(delimiters.getSegmentDelimiter(), is("'"));
     }
 
     @Test
-    public void testEmptyEDIFACTDelimiters() {
+    void testEmptyEDIFACTDelimiters() {
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters("");
-        assertEquals(":", delimiters.getComplexElementDelimiter());
-        assertEquals(".", delimiters.getDecimalDelimiter());
-        assertEquals("+", delimiters.getElementDelimiter());
-        assertEquals("?", delimiters.getEscapeDelimiter());
-        assertEquals("'", delimiters.getSegmentDelimiter());
+        assertThat(delimiters.getComplexElementDelimiter(), is(":"));
+        assertThat(delimiters.getDecimalDelimiter(), is("."));
+        assertThat(delimiters.getElementDelimiter(), is("+"));
+        assertThat(delimiters.getEscapeDelimiter(), is("?"));
+        assertThat(delimiters.getSegmentDelimiter(), is("'"));
     }
 
     @Test
-    public void testNULLEDIFACTDelimiters() {
+    void testNULLEDIFACTDelimiters() {
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters(null);
-        assertEquals(":", delimiters.getComplexElementDelimiter());
-        assertEquals(".", delimiters.getDecimalDelimiter());
-        assertEquals("+", delimiters.getElementDelimiter());
-        assertEquals("?", delimiters.getEscapeDelimiter());
-        assertEquals("'", delimiters.getSegmentDelimiter());
+        assertThat(delimiters.getComplexElementDelimiter(), is(":"));
+        assertThat(delimiters.getDecimalDelimiter(), is("."));
+        assertThat(delimiters.getElementDelimiter(), is("+"));
+        assertThat(delimiters.getEscapeDelimiter(), is("?"));
+        assertThat(delimiters.getSegmentDelimiter(), is("'"));
     }
 
     @Test
-    public void testEDIFACTDelimiters_DefaultConstructor() {
+    void testEDIFACTDelimiters_DefaultConstructor() {
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters();
-        assertEquals(":", delimiters.getComplexElementDelimiter());
-        assertEquals(".", delimiters.getDecimalDelimiter());
-        assertEquals("+", delimiters.getElementDelimiter());
-        assertEquals("?", delimiters.getEscapeDelimiter());
-        assertEquals("'", delimiters.getSegmentDelimiter());
+        assertThat(delimiters.getComplexElementDelimiter(), is(":"));
+        assertThat(delimiters.getDecimalDelimiter(), is("."));
+        assertThat(delimiters.getElementDelimiter(), is("+"));
+        assertThat(delimiters.getEscapeDelimiter(), is("?"));
+        assertThat(delimiters.getSegmentDelimiter(), is("'"));
     }
 
     @Test
-    public void testDelimiters_ContainsTokenDoubleDot() {
+    void testDelimiters_ContainsTokenDoubleDot() {
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters();
-        assertTrue(delimiters.containsDelimiter(":"));
+        assertThat(delimiters.containsDelimiter(":"), is(true));
     }
 
     @Test
-    public void testDelimiters_ContainsTokenSlash() {
+    void testDelimiters_ContainsTokenSlash() {
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters();
-        assertFalse(delimiters.containsDelimiter("/"));
+        assertThat(delimiters.containsDelimiter("/"), is(false));
     }
 
     @Test
-    public void testDelimiters_ContainsTokenUNB() {
+    void testDelimiters_ContainsTokenUNB() {
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters();
-        assertFalse(delimiters.containsDelimiter("UNB"));
+        assertThat(delimiters.containsDelimiter("UNB"), is(false));
     }
 
     @Test
-    public void testDelimiters_ContainsTokenEmpty() {
+    void testDelimiters_ContainsTokenEmpty() {
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters();
-        assertFalse(delimiters.containsDelimiter(""));
+        assertThat(delimiters.containsDelimiter(""), is(false));
     }
 
     @Test
-    public void testDelimiters_ContainsTokenNULL() {
+    void testDelimiters_ContainsTokenNULL() {
         EDIFACTDelimiters delimiters = new EDIFACTDelimiters();
-        assertFalse(delimiters.containsDelimiter(null));
+        assertThat(delimiters.containsDelimiter(null), is(false));
     }
 
 }

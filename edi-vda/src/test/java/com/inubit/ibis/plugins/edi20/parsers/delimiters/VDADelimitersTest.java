@@ -1,9 +1,11 @@
 package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 
-import static org.junit.Assert.assertEquals;
-
 import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 /**
  * @author r4fter
@@ -14,49 +16,49 @@ public class VDADelimitersTest {
     public void testGetEscapeDelimiterUnknown() {
         VDADelimiters delimiters = new VDADelimiters();
 
-        assertEquals(IDelimiters.DELIMITER_UNKNOWN, delimiters.getEscapeDelimiterIdentifier());
+        assertThat(delimiters.getEscapeDelimiterIdentifier(), is(IDelimiters.DELIMITER_UNKNOWN));
     }
 
     @Test
     public void testGetSegmentDelimiter() {
         VDADelimiters delimiters = new VDADelimiters();
 
-        assertEquals("\n", delimiters.getDelimiter(VDADelimiters.DELIMITER_SEGMENT));
+        assertThat(delimiters.getDelimiter(VDADelimiters.DELIMITER_SEGMENT), is("\n"));
     }
 
     @Test
     public void testGetDelimiterUnknown() {
         VDADelimiters delimiters = new VDADelimiters();
 
-        assertEquals("", delimiters.getDelimiter(IDelimiters.DELIMITER_UNKNOWN));
+        assertThat(delimiters.getDelimiter(IDelimiters.DELIMITER_UNKNOWN), is(emptyString()));
     }
 
     @Test
     public void testGetDelimiterZero() {
         VDADelimiters delimiters = new VDADelimiters();
 
-        assertEquals("", delimiters.getDelimiter(0));
+        assertThat(delimiters.getDelimiter(0), is(emptyString()));
     }
 
     @Test
     public void testGetSegmentDelimiterIdentifier() {
         VDADelimiters delimiters = new VDADelimiters();
 
-        assertEquals(VDADelimiters.DELIMITER_SEGMENT, delimiters.getDelimiterIdentifier("\n"));
+        assertThat(delimiters.getDelimiterIdentifier("\n"), is(VDADelimiters.DELIMITER_SEGMENT));
     }
 
     @Test
     public void testGetDelimiterIdentifierEmpty() {
         VDADelimiters delimiters = new VDADelimiters();
 
-        assertEquals(IDelimiters.DELIMITER_UNKNOWN, delimiters.getDelimiterIdentifier(""));
+        assertThat(delimiters.getDelimiterIdentifier(""), is(IDelimiters.DELIMITER_UNKNOWN));
     }
 
     @Test
     public void testGetDelimiterIdentifierNull() {
         VDADelimiters delimiters = new VDADelimiters();
 
-        assertEquals(IDelimiters.DELIMITER_UNKNOWN, delimiters.getDelimiterIdentifier(null));
+        assertThat(delimiters.getDelimiterIdentifier(null), is(IDelimiters.DELIMITER_UNKNOWN));
     }
 
 }

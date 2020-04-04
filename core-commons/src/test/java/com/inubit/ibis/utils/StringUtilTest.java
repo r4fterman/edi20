@@ -1,181 +1,170 @@
 package com.inubit.ibis.utils;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Vector;
 
-import org.junit.Test;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 /**
  * @author r4fter
  */
-public class StringUtilTest {
+class StringUtilTest {
 
     @Test
-    public void testIsNotSetEmptyString() {
-        assertTrue(StringUtil.isNotSet(""));
+    void testIsNotSetEmptyString() {
+        assertThat(StringUtil.isNotSet(""), is(true));
     }
 
     @Test
-    public void testIsNotSetNULLString() {
-        assertTrue(StringUtil.isNotSet((String) null));
+    void testIsNotSetNULLString() {
+        assertThat(StringUtil.isNotSet((String) null), is(true));
     }
 
     @Test
-    public void testIsNotSetString() {
-        assertFalse(StringUtil.isNotSet("Text"));
+    void testIsNotSetString() {
+        assertThat(StringUtil.isNotSet("Text"), is(false));
     }
 
     @Test
-    public void testIsNotSetWhitespaceString() {
-        assertFalse(StringUtil.isNotSet(" "));
+    void testIsNotSetWhitespaceString() {
+        assertThat(StringUtil.isNotSet(" "), is(false));
     }
 
     @Test
-    public void testIsSetEmptyString() {
-        assertFalse(StringUtil.isSet(""));
+    void testIsSetEmptyString() {
+        assertThat(StringUtil.isSet(""), is(false));
     }
 
     @Test
-    public void testIsSetnNULLString() {
-        assertFalse(StringUtil.isSet((String) null));
+    void testIsSetNULLString() {
+        assertThat(StringUtil.isSet((String) null), is(false));
     }
 
     @Test
-    public void testIsSetString() {
-        assertTrue(StringUtil.isSet("text"));
+    void testIsSetString() {
+        assertThat(StringUtil.isSet("text"), is(true));
     }
 
     @Test
-    public void testIsSetWhitespaceString() {
-        assertTrue(StringUtil.isSet(" "));
+    void testIsSetWhitespaceString() {
+        assertThat(StringUtil.isSet(" "), is(true));
     }
 
     @Test
-    public void testIsSetEmptyStringBuffer() {
-        assertFalse(StringUtil.isSet(new StringBuffer("")));
+    void testIsSetEmptyStringBuffer() {
+        assertThat(StringUtil.isSet(new StringBuffer()), is(false));
     }
 
     @Test
-    public void testIsSetNULLStringBuffer() {
-        assertFalse(StringUtil.isSet((StringBuffer) null));
+    void testIsSetNULLStringBuffer() {
+        assertThat(StringUtil.isSet((StringBuffer) null), is(false));
     }
 
     @Test
-    public void testIsSetStringBuffer() {
-        assertTrue(StringUtil.isSet(new StringBuffer("text")));
+    void testIsSetStringBuffer() {
+        assertThat(StringUtil.isSet(new StringBuffer("text")), is(true));
     }
 
     @Test
-    public void testIsSetWhitespaceStringBuffer() {
-        assertTrue(StringUtil.isSet(new StringBuffer(" ")));
+    void testIsSetWhitespaceStringBuffer() {
+        assertThat(StringUtil.isSet(new StringBuffer(" ")), is(true));
     }
 
     @Test
-    public void testIsNotSetEmptyStringBuffer() {
-        assertTrue(StringUtil.isNotSet(new StringBuffer("")));
+    void testIsNotSetEmptyStringBuffer() {
+        assertThat(StringUtil.isNotSet(new StringBuffer()), is(true));
     }
 
     @Test
-    public void testIsNotSetNULLStringBuffer() {
-        assertTrue(StringUtil.isNotSet((StringBuffer) null));
+    void testIsNotSetNULLStringBuffer() {
+        assertThat(StringUtil.isNotSet((StringBuffer) null), is(true));
     }
 
     @Test
-    public void testIsNotSetStringBuffer() {
-        assertFalse(StringUtil.isNotSet(new StringBuffer("text")));
+    void testIsNotSetStringBuffer() {
+        assertThat(StringUtil.isNotSet(new StringBuffer("text")), is(false));
     }
 
     @Test
-    public void testIsNotSetWhitespaceStringBuffer() {
-        assertTrue(StringUtil.isNotSet(new StringBuffer("")));
+    void testIsNotSetWhitespaceStringBuffer() {
+        assertThat(StringUtil.isNotSet(new StringBuffer()), is(true));
     }
 
     @Test
-    public void testIsOneOfEmptyStringEmptyListOfString() {
-        assertFalse(StringUtil.isOneOf("", new Vector<String>(0)));
+    void testIsOneOfEmptyStringEmptyListOfString() {
+        assertThat(StringUtil.isOneOf("", List.of()), is(false));
     }
 
     @Test
-    public void testIsOneOfNULLStringEmptyListOfString() {
-        assertFalse(StringUtil.isOneOf(null, new Vector<String>(0)));
+    void testIsOneOfNULLStringEmptyListOfString() {
+        assertThat(StringUtil.isOneOf(null, List.of()), is(false));
     }
 
     @Test
-    public void testIsOneOfEmptyStringNULLListOfString() {
-        assertFalse(StringUtil.isOneOf("", (List<String>) null));
+    void testIsOneOfEmptyStringNULLListOfString() {
+        assertThat(StringUtil.isOneOf("", (List<String>) null), is(false));
     }
 
     @Test
-    public void testIsOneOfNULLStringNULLListOfString() {
-        assertFalse(StringUtil.isOneOf(null, (List<String>) null));
+    void testIsOneOfNULLStringNULLListOfString() {
+        assertThat(StringUtil.isOneOf(null, (List<String>) null), is(false));
     }
 
     @Test
-    public void testIsOneOfEmptyStringListOfString() {
-        List<String> valueList = new Vector<String>(1);
-        valueList.add("");
-        assertFalse(StringUtil.isOneOf("", valueList));
+    void testIsOneOfEmptyStringListOfString() {
+        List<String> valueList = List.of("");
+        assertThat(StringUtil.isOneOf("", valueList), is(false));
     }
 
     @Test
-    public void testIsOneOfWhitespaceStringListOfEmptyString() {
-        List<String> valueList = new Vector<String>(1);
-        valueList.add("");
-        assertFalse(StringUtil.isOneOf(" ", valueList));
+    void testIsOneOfWhitespaceStringListOfEmptyString() {
+        List<String> valueList = List.of("");
+        assertThat(StringUtil.isOneOf(" ", valueList), is(false));
     }
 
     @Test
-    public void testIsOneOfStringListOfMatchingString() {
-        List<String> valueList = new Vector<String>(1);
-        valueList.add("text");
-        assertTrue(StringUtil.isOneOf("text", valueList));
+    void testIsOneOfStringListOfMatchingString() {
+        List<String> valueList = List.of("text");
+        assertThat(StringUtil.isOneOf("text", valueList), is(true));
     }
 
     @Test
-    public void testIsOneOfStringListOfNonMatchingString() {
-        List<String> valueList = new Vector<String>(3);
-        valueList.add(" text");
-        valueList.add(" text ");
-        valueList.add("text ");
-        assertFalse(StringUtil.isOneOf("text", valueList));
+    void testIsOneOfStringListOfNonMatchingString() {
+        List<String> valueList = List.of(" text", " text ", "text ");
+        assertThat(StringUtil.isOneOf("text", valueList), is(false));
     }
 
     @Test
-    public void testIsOneOfStringListOfMatchingStrings() {
-        List<String> valueList = new Vector<String>(4);
-        valueList.add(" text");
-        valueList.add(" text ");
-        valueList.add("text ");
-        valueList.add("text");
-        assertTrue(StringUtil.isOneOf("text", valueList));
+    void testIsOneOfStringListOfMatchingStrings() {
+        List<String> valueList = List.of(" text", " text ", "text ", "text");
+        assertThat(StringUtil.isOneOf("text", valueList), is(true));
     }
 
     @Test
-    public void testIsWhitespacesOnlyEmptyString() {
-        assertFalse(StringUtil.isWhitespacesOnly(""));
+    void testIsWhitespacesOnlyEmptyString() {
+        assertThat(StringUtil.isWhitespacesOnly(""), is(false));
     }
 
     @Test
-    public void testIsWhitespacesOnlyNULLString() {
-        assertFalse(StringUtil.isWhitespacesOnly(null));
+    void testIsWhitespacesOnlyNULLString() {
+        assertThat(StringUtil.isWhitespacesOnly(null), is(false));
     }
 
     @Test
-    public void testIsWhitespacesOnlyString() {
-        assertFalse(StringUtil.isWhitespacesOnly("text"));
+    void testIsWhitespacesOnlyString() {
+        assertThat(StringUtil.isWhitespacesOnly("text"), is(false));
     }
 
     @Test
-    public void testIsWhitespacesOnlyStringWithWhitespaces() {
-        assertFalse(StringUtil.isWhitespacesOnly("	text "));
+    void testIsWhitespacesOnlyStringWithWhitespaces() {
+        assertThat(StringUtil.isWhitespacesOnly("	text "), is(false));
     }
 
     @Test
-    public void testIsWhitespacesOnlyWhitespaceString() {
-        assertTrue(StringUtil.isWhitespacesOnly("   	"));
+    void testIsWhitespacesOnlyWhitespaceString() {
+        assertThat(StringUtil.isWhitespacesOnly("   	"), is(true));
     }
 
 }

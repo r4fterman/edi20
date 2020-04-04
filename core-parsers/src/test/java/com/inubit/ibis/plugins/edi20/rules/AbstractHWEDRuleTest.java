@@ -10,25 +10,29 @@ import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 /**
  * @author r4fter
  */
-public class AbstractHWEDRuleTest {
+class AbstractHWEDRuleTest {
 
     private AbstractHWEDRule rule;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    void setUp() throws Exception {
         this.rule = new AbstractHWEDRule(getDocument("EDIFACT-IFCSUM-D-96A.xml")) {
             @Override
             public void closeCurrentRuleToken(final IToken token) {
@@ -44,7 +48,6 @@ public class AbstractHWEDRuleTest {
             public String getStandard() {
                 return "EDIFACT";
             }
-
         };
     }
 
@@ -59,206 +62,206 @@ public class AbstractHWEDRuleTest {
     }
 
     @Test
-    public void testGetCurrentRuleToken() throws Exception {
+    void testGetCurrentRuleToken() {
 //        IRuleToken currentToken = rule.getCurrentRuleToken();
-//        assertTrue(currentToken instanceof EDIRuleRoot);
+//        assertThat(currentToken instanceOf( EDIRuleRoot);
     }
 
     @Test
-    public void testGetRootElementName() throws Exception {
-        assertEquals("Root", rule.getRootElementName());
+    void testGetRootElementName() {
+        assertThat(rule.getRootElementName(), is("Root"));
     }
 
     @Test
-    public void testGetRootElement() throws Exception {
-        assertNotNull(rule.getRootElement());
+    void testGetRootElement() {
+        assertThat(rule.getRootElement(), not(nullValue()));
     }
 
     @Test
-    public void testGetAgency() throws Exception {
-        assertEquals("UN", rule.getAgency());
+    void testGetAgency() {
+        assertThat(rule.getAgency(), is("UN"));
     }
 
     @Test
-    public void testGetDescription() throws Exception {
-        assertEquals("Forwarding and Consolidation Summary Message", rule.getDescription());
+    void testGetDescription() {
+        assertThat(rule.getDescription(), is("Forwarding and Consolidation Summary Message"));
     }
 
     @Test
-    public void testGetRelease() throws Exception {
-        assertEquals("96A", rule.getRelease());
+    void testGetRelease() {
+        assertThat(rule.getRelease(), is("96A"));
     }
 
     @Test
-    public void testGetType() throws Exception {
-        assertEquals("IFCSUM", rule.getType());
+    void testGetType() {
+        assertThat(rule.getType(), is("IFCSUM"));
     }
 
     @Test
-    public void testGetVersion() throws Exception {
-        assertEquals("D", rule.getVersion());
+    void testGetVersion() {
+        assertThat(rule.getVersion(), is("D"));
     }
 
     @Test
-    public void testGetSegments() throws Exception {
+    void testGetSegments() {
         List<EDIRuleSegment> segments = rule.getSegments();
-        assertEquals(13, segments.size());
+        assertThat(segments.size(), is(13));
 
-        assertTrue(segments.get(0) instanceof EDIRuleSegment);
-        assertTrue(segments.get(1) instanceof EDIRuleSegment);
-        assertTrue(segments.get(2) instanceof EDIRuleSegment);
-        assertTrue(segments.get(3) instanceof EDIRuleSegment);
-        assertTrue(segments.get(4) instanceof EDIRuleSegment);
-        assertTrue(segments.get(5) instanceof EDIRuleSegment);
-        assertTrue(segments.get(6) instanceof EDIRuleSegmentGroup);
-        assertTrue(segments.get(7) instanceof EDIRuleSegmentGroup);
-        assertTrue(segments.get(8) instanceof EDIRuleSegmentGroup);
-        assertTrue(segments.get(9) instanceof EDIRuleSegmentGroup);
-        assertTrue(segments.get(10) instanceof EDIRuleSegmentGroup);
-        assertTrue(segments.get(11) instanceof EDIRuleSegmentGroup);
-        assertTrue(segments.get(12) instanceof EDIRuleSegment);
+        assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
+        assertThat(segments.get(1), instanceOf(EDIRuleSegment.class));
+        assertThat(segments.get(2), instanceOf(EDIRuleSegment.class));
+        assertThat(segments.get(3), instanceOf(EDIRuleSegment.class));
+        assertThat(segments.get(4), instanceOf(EDIRuleSegment.class));
+        assertThat(segments.get(5), instanceOf(EDIRuleSegment.class));
+        assertThat(segments.get(6), instanceOf(EDIRuleSegmentGroup.class));
+        assertThat(segments.get(7), instanceOf(EDIRuleSegmentGroup.class));
+        assertThat(segments.get(8), instanceOf(EDIRuleSegmentGroup.class));
+        assertThat(segments.get(9), instanceOf(EDIRuleSegmentGroup.class));
+        assertThat(segments.get(10), instanceOf(EDIRuleSegmentGroup.class));
+        assertThat(segments.get(11), instanceOf(EDIRuleSegmentGroup.class));
+        assertThat(segments.get(12), instanceOf(EDIRuleSegment.class));
     }
 
     @Test
-    public void testSegmentDetails() throws Exception {
+    void testSegmentDetails() {
         List<EDIRuleSegment> segments = rule.getSegments();
-        assertEquals(13, segments.size());
+        assertThat(segments.size(), is(13));
 
-        assertTrue(segments.get(0) instanceof EDIRuleSegment);
+        assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
-        assertEquals("UNH", segment.getID());
-        assertEquals("Message Header", segment.getDescription());
-        assertEquals("/Message/Segment[@id='UNH']", segment.getXPath());
-        assertEquals("/Root/UNH", segment.getRulePath());
-        assertEquals("MessageHeader", segment.getXmlTag());
-        assertEquals(1, segment.getLoop());
-        assertEquals(1, segment.getCurrentLoopCount());
-        assertFalse(segment.isLoopLimitReached());
-        assertFalse(segment.isChecked());
-        assertFalse(segment.isInProgress());
-        assertFalse(segment.isConditional());
-        assertTrue(segment.isMandatory());
+        assertThat(segment.getID(), is("UNH"));
+        assertThat(segment.getDescription(), is("Message Header"));
+        assertThat(segment.getXPath(), is("/Message/Segment[@id='UNH']"));
+        assertThat(segment.getRulePath(), is("/Root/UNH"));
+        assertThat(segment.getXmlTag(), is("MessageHeader"));
+        assertThat(segment.getLoop(), is(1));
+        assertThat(segment.getCurrentLoopCount(), is(1));
+        assertThat(segment.isLoopLimitReached(), is(false));
+        assertThat(segment.isChecked(), is(false));
+        assertThat(segment.isInProgress(), is(false));
+        assertThat(segment.isConditional(), is(false));
+        assertThat(segment.isMandatory(), is(true));
     }
 
     @Test
-    public void testGetElementsFromSegment() throws Exception {
+    void testGetElementsFromSegment() {
         List<EDIRuleSegment> segments = rule.getSegments();
-        assertEquals(13, segments.size());
+        assertThat(segments.size(), is(13));
 
-        assertTrue(segments.get(0) instanceof EDIRuleSegment);
-        EDIRuleSegment segment = segments.get(0);
-        List<IElementRuleToken> elements = segment.getElements();
-        assertEquals(4, elements.size());
-
-        assertTrue(elements.get(0) instanceof EDIRuleElement);
-        assertTrue(elements.get(1) instanceof EDIRuleCompositeElement);
-        assertTrue(elements.get(2) instanceof EDIRuleElement);
-        assertTrue(elements.get(3) instanceof EDIRuleCompositeElement);
-    }
-
-    @Test
-    public void testGetElementDetails() throws Exception {
-        List<EDIRuleSegment> segments = rule.getSegments();
-        assertEquals(13, segments.size());
-
-        assertTrue(segments.get(0) instanceof EDIRuleSegment);
+        assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
         List<IElementRuleToken> elements = segment.getElements();
-        assertEquals(4, elements.size());
+        assertThat(elements.size(), is(4));
 
-        assertTrue(elements.get(0) instanceof EDIRuleElement);
+        assertThat(elements.get(0), instanceOf(EDIRuleElement.class));
+        assertThat(elements.get(1), instanceOf(EDIRuleCompositeElement.class));
+        assertThat(elements.get(2), instanceOf(EDIRuleElement.class));
+        assertThat(elements.get(3), instanceOf(EDIRuleCompositeElement.class));
+    }
+
+    @Test
+    void testGetElementDetails() {
+        List<EDIRuleSegment> segments = rule.getSegments();
+        assertThat(segments.size(), is(13));
+
+        assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
+        EDIRuleSegment segment = segments.get(0);
+        List<IElementRuleToken> elements = segment.getElements();
+        assertThat(elements.size(), is(4));
+
+        assertThat(elements.get(0), instanceOf(EDIRuleElement.class));
         EDIRuleElement element = (EDIRuleElement) elements.get(0);
 
-        assertEquals("0062", element.getID());
-        assertEquals("MessageReferenceNumber", element.getXmlTag());
-        assertEquals("Message reference number", element.getDescription());
-        assertTrue("Element: " + element.getClass().getCanonicalName(), element instanceof HwedRuleElement);
-        assertEquals(1, ((HwedRuleElement) element).getMinLength());
-        assertEquals(14, ((HwedRuleElement) element).getMaxLength());
-        assertEquals("AN", element.getType());
-        assertEquals("/Message/Segment[@id='UNH']/Element[@id='0062']", element.getXPath());
-        assertEquals("/Root/UNH/0062", element.getRulePath());
+        assertThat(element.getID(), is("0062"));
+        assertThat(element.getXmlTag(), is("MessageReferenceNumber"));
+        assertThat(element.getDescription(), is("Message reference number"));
+        assertThat("Element: " + element.getClass().getCanonicalName(), element, instanceOf(HwedRuleElement.class));
+        assertThat(((HwedRuleElement) element).getMinLength(), is(1));
+        assertThat(((HwedRuleElement) element).getMaxLength(), is(14));
+        assertThat(element.getType(), is("AN"));
+        assertThat(element.getXPath(), is("/Message/Segment[@id='UNH']/Element[@id='0062']"));
+        assertThat(element.getRulePath(), is("/Root/UNH/0062"));
     }
 
     @Test
-    public void testGetCompositeElementDetails() throws Exception {
+    void testGetCompositeElementDetails() {
         List<EDIRuleSegment> segments = rule.getSegments();
-        assertEquals(13, segments.size());
+        assertThat(segments.size(), is(13));
 
-        assertTrue(segments.get(0) instanceof EDIRuleSegment);
+        assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
         List<IElementRuleToken> elements = segment.getElements();
-        assertEquals(4, elements.size());
+        assertThat(elements.size(), is(4));
 
-        assertTrue(elements.get(1) instanceof EDIRuleCompositeElement);
+        assertThat(elements.get(1), instanceOf(EDIRuleCompositeElement.class));
         EDIRuleCompositeElement element = (EDIRuleCompositeElement) elements.get(1);
 
-        assertEquals("S009", element.getID());
-        assertEquals("MessageIdentifierCE", element.getXmlTag());
-        assertEquals("Message Identifier", element.getDescription());
-        assertEquals("/Message/Segment[@id='UNH']/CompositeElement[@id='S009']", element.getXPath());
-        assertEquals("/Root/UNH/S009", element.getRulePath());
+        assertThat(element.getID(), is("S009"));
+        assertThat(element.getXmlTag(), is("MessageIdentifierCE"));
+        assertThat(element.getDescription(), is("Message Identifier"));
+        assertThat(element.getXPath(), is("/Message/Segment[@id='UNH']/CompositeElement[@id='S009']"));
+        assertThat(element.getRulePath(), is("/Root/UNH/S009"));
     }
 
     @Test
-    public void testGetElementsFromCompositeElement() throws Exception {
+    void testGetElementsFromCompositeElement() {
         List<EDIRuleSegment> segments = rule.getSegments();
-        assertEquals(13, segments.size());
+        assertThat(segments.size(), is(13));
 
-        assertTrue(segments.get(0) instanceof EDIRuleSegment);
+        assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
         List<IElementRuleToken> elements = segment.getElements();
-        assertEquals(4, elements.size());
+        assertThat(elements.size(), is(4));
 
-        assertTrue(elements.get(1) instanceof EDIRuleCompositeElement);
+        assertThat(elements.get(1), instanceOf(EDIRuleCompositeElement.class));
         EDIRuleCompositeElement element = (EDIRuleCompositeElement) elements.get(1);
 
         elements = element.getElements();
-        assertEquals(5, elements.size());
+        assertThat(elements.size(), is(5));
 
-        assertTrue(elements.get(0) instanceof EDIRuleElement);
-        assertTrue(elements.get(1) instanceof EDIRuleElement);
-        assertTrue(elements.get(2) instanceof EDIRuleElement);
-        assertTrue(elements.get(3) instanceof EDIRuleElement);
-        assertTrue(elements.get(4) instanceof EDIRuleElement);
+        assertThat(elements.get(0), instanceOf(EDIRuleElement.class));
+        assertThat(elements.get(1), instanceOf(EDIRuleElement.class));
+        assertThat(elements.get(2), instanceOf(EDIRuleElement.class));
+        assertThat(elements.get(3), instanceOf(EDIRuleElement.class));
+        assertThat(elements.get(4), instanceOf(EDIRuleElement.class));
     }
 
     @Test
-    public void testGetSegmentGroupDetails() throws Exception {
+    void testGetSegmentGroupDetails() {
         List<EDIRuleSegment> segments = rule.getSegments();
-        assertEquals(13, segments.size());
+        assertThat(segments.size(), is(13));
 
         EDIRuleSegment segment = segments.get(6);
-        assertTrue("Segment: " + segment.getClass().getCanonicalName(), segment instanceof EDIRuleSegmentGroup);
+        assertThat("Segment: " + segment.getClass().getCanonicalName(), segment, instanceOf(EDIRuleSegmentGroup.class));
         EDIRuleSegmentGroup segmentGroup = (EDIRuleSegmentGroup) segment;
 
-        assertEquals("Group_1", segmentGroup.getID());
-        assertEquals("A group of segments containing references and constants which apply to the entire message.", segmentGroup.getDescription());
-        assertEquals("SegmentGroup_1", segmentGroup.getXmlTag());
-        assertEquals(9, segmentGroup.getLoop());
-        assertEquals(1, segmentGroup.getCurrentLoopCount());
-        assertEquals("/Root/Group_1", segmentGroup.getRulePath());
-        assertEquals("/Message/SegmentGroup[@id='Group_1']", segmentGroup.getXPath());
+        assertThat(segmentGroup.getID(), is("Group_1"));
+        assertThat(segmentGroup.getDescription(), is("A group of segments containing references and constants which apply to the entire message."));
+        assertThat(segmentGroup.getXmlTag(), is("SegmentGroup_1"));
+        assertThat(segmentGroup.getLoop(), is(9));
+        assertThat(segmentGroup.getCurrentLoopCount(), is(1));
+        assertThat(segmentGroup.getRulePath(), is("/Root/Group_1"));
+        assertThat(segmentGroup.getXPath(), is("/Message/SegmentGroup[@id='Group_1']"));
 
-        assertFalse(segmentGroup.isMandatory());
-        assertTrue(segmentGroup.isConditional());
-        assertFalse(segmentGroup.isChecked());
-        assertFalse(segmentGroup.isInProgress());
-        assertFalse(segmentGroup.isLoopLimitReached());
+        assertThat(segmentGroup.isMandatory(), is(false));
+        assertThat(segmentGroup.isConditional(), is(true));
+        assertThat(segmentGroup.isChecked(), is(false));
+        assertThat(segmentGroup.isInProgress(), is(false));
+        assertThat(segmentGroup.isLoopLimitReached(), is(false));
     }
 
     @Test
-    public void testGetSegmentsFromSegmentGroup() throws Exception {
+    void testGetSegmentsFromSegmentGroup() {
         List<EDIRuleSegment> segments = rule.getSegments();
-        assertEquals(13, segments.size());
+        assertThat(segments.size(), is(13));
 
-        assertTrue(segments.get(6) instanceof EDIRuleSegmentGroup);
+        assertThat(segments.get(6), instanceOf(EDIRuleSegmentGroup.class));
         EDIRuleSegmentGroup segment = (EDIRuleSegmentGroup) segments.get(6);
 
         segments = segment.getSegments();
-        assertEquals(2, segments.size());
+        assertThat(segments.size(), is(2));
 
-        assertTrue(segments.get(0) instanceof EDIRuleSegment);
-        assertTrue(segments.get(1) instanceof EDIRuleSegment);
+        assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
+        assertThat(segments.get(1), instanceOf(EDIRuleSegment.class));
     }
 }

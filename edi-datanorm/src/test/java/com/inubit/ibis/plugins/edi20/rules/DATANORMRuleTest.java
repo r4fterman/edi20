@@ -1,111 +1,113 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import com.inubit.ibis.utils.XmlUtils;
+import org.dom4j.Document;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.net.URL;
 
-import com.inubit.ibis.utils.XmlUtils;
-import org.dom4j.Document;
-import org.junit.Test;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 /**
  * @author r4fter
  */
-public class DATANORMRuleTest {
+class DATANORMRuleTest {
 
     @Test
-    public void testEDIFACTRule_DATANORM_ALL_4_0() throws Exception {
+    void testEDIFACTRule_DATANORM_ALL_4_0() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
+        assertThat(rule, not(nullValue()));
     }
 
     @Test
-    public void testGetAgency() throws Exception {
+    void testGetAgency() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
-        assertEquals("-", rule.getAgency());
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getAgency(), is("-"));
     }
 
     @Test
-    public void testGetDescription() throws Exception {
+    void testGetDescription() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
-        assertEquals("DATANORM segments ", rule.getDescription());
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getDescription(), is("DATANORM segments "));
     }
 
     @Test
-    public void testGetLayout() throws Exception {
+    void testGetLayout() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
-        assertEquals("mswed", rule.getLayout());
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getLayout(), is("mswed"));
     }
 
     @Test
-    public void testGetRelease() throws Exception {
+    void testGetRelease() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
-        assertEquals("-", rule.getRelease());
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getRelease(), is("-"));
     }
 
     @Test
-    public void testGetStandard() throws Exception {
+    void testGetStandard() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
-        assertEquals("DATANORM", rule.getStandard());
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getStandard(), is("DATANORM"));
     }
 
     @Test
-    public void testGetType() throws Exception {
+    void testGetType() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
-        assertEquals("All", rule.getType());
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getType(), is("All"));
     }
 
     @Test
-    public void testGetVersion() throws Exception {
+    void testGetVersion() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
-        assertEquals("4.0", rule.getVersion());
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getVersion(), is("4.0"));
     }
 
     @Test
-    public void testHasMoreRuleTokens() throws Exception {
+    void testHasMoreRuleTokens() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
+        assertThat(rule, not(nullValue()));
     }
 
     @Test
-    public void testToString() throws Exception {
+    void testToString() throws Exception {
         Document ruleDoc = getRuleDocument("DATANORM-All-4.0--.xml");
-        assertNotNull(ruleDoc);
+        assertThat(ruleDoc, not(nullValue()));
         AbstractEDIRule rule = new DATANORMRule(ruleDoc);
-        assertNotNull(rule);
-        assertEquals("DATANORM-All-4.0----", rule.toString());
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.toString(), is("DATANORM-All-4.0----"));
     }
 
     private Document getRuleDocument(final String ruleDocumentName) throws Exception {
         URL url = DATANORMRuleTest.class.getResource(ruleDocumentName);
-        assertNotNull("File not found: " + ruleDocumentName, url);
+        assertThat("File not found: " + ruleDocumentName, url, not(nullValue()));
         File xmlFile = new File(url.toURI());
         return XmlUtils.getDocumentThrowing(xmlFile);
     }

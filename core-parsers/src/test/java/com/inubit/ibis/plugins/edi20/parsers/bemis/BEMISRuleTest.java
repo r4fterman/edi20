@@ -1,296 +1,174 @@
 package com.inubit.ibis.plugins.edi20.parsers.bemis;
 
-import static org.junit.Assert.*;
+import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
+import com.inubit.ibis.utils.XmlUtils;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
-import com.inubit.ibis.utils.InubitException;
-import com.inubit.ibis.utils.XmlUtils;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.junit.Test;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 /**
  * @author r4fter
  */
-public class BEMISRuleTest {
+class BEMISRuleTest {
 
-    private Document getRuleDocument(final String ruleDocumentName) {
-        try {
-            URL url = BEMISRuleTest.class.getResource(ruleDocumentName);
-            assertNotNull("File not found: " + ruleDocumentName, url);
-            File xmlFile = new File(url.toURI());
-            return XmlUtils.getDocumentThrowing(xmlFile);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        } catch (DocumentException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
-        return null;
-    }
-
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#EDIFACTRule(org.dom4j.Document)} .
-     */
-    @Test
-    public void testEDIFACTRule_BEMIS_7135_IN_1_0_A() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    private Document getRuleDocument(final String ruleDocumentName) throws URISyntaxException, DocumentException {
+        URL url = BEMISRuleTest.class.getResource(ruleDocumentName);
+        assertThat("File not found: " + ruleDocumentName, url, not(nullValue()));
+        File xmlFile = new File(url.toURI());
+        return XmlUtils.getDocumentThrowing(xmlFile);
     }
 
     @Test
-    public void testEDIFACTRule_BEMIS_7135_OUT_1_0_A() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-OUT-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testEDIFACTRule_BEMIS_7135_IN_1_0_A() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
     }
 
     @Test
-    public void testEDIFACTRule_BEMIS_7170_IN_1_0_A() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7170-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testEDIFACTRule_BEMIS_7135_OUT_1_0_A() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-OUT-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
     }
 
     @Test
-    public void testEDIFACTRule_BEMIS_7170_OUT_1_0_A() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7170-OUT-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testEDIFACTRule_BEMIS_7170_IN_1_0_A() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7170-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
     }
 
     @Test
-    public void testEDIFACTRule_BEMIS_7255_IN_1_0_A() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7255-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testEDIFACTRule_BEMIS_7170_OUT_1_0_A() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7170-OUT-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
     }
 
     @Test
-    public void testEDIFACTRule_BEMIS_7255_OUT_1_0_A() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7255-OUT-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testEDIFACTRule_BEMIS_7255_IN_1_0_A() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7255-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
     }
 
     @Test
-    public void testEDIFACTRule_BEMIS_7280_IN_1_0_A() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7280-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testEDIFACTRule_BEMIS_7255_OUT_1_0_A() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7255-OUT-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
     }
 
     @Test
-    public void testEDIFACTRule_BEMIS_7280_OUT_1_0_A() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7280-OUT-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testEDIFACTRule_BEMIS_7280_IN_1_0_A() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7280-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getAgency()} .
-     */
     @Test
-    public void testGetAgency() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("BAAN Electronic Message Interchange System", rule.getAgency());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testEDIFACTRule_BEMIS_7280_OUT_1_0_A() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7280-OUT-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getDescription()} .
-     */
     @Test
-    public void testGetDescription() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("Trading Invoice", rule.getDescription());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testGetAgency() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getAgency(), is("BAAN Electronic Message Interchange System"));
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getLayout()} .
-     */
     @Test
-    public void testGetLayout() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("hwed", rule.getLayout());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testGetDescription() throws Exception{
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getDescription(), is("Trading Invoice"));
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getRelease()} .
-     */
     @Test
-    public void testGetRelease() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("A", rule.getRelease());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testGetLayout() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getLayout(), is("hwed"));
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getStandard()} .
-     */
     @Test
-    public void testGetStandard() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("BEMIS", rule.getStandard());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testGetRelease() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getRelease(), is("A"));
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getType()} .
-     */
     @Test
-    public void testGetType() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("7135-IN", rule.getType());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testGetStandard() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getStandard(), is("BEMIS"));
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#getVersion()} .
-     */
     @Test
-    public void testGetVersion() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("1.0", rule.getVersion());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testGetType() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getType(), is("7135-IN"));
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#hasMoreRuleTokens()} .
-     */
     @Test
-    public void testHasMoreRuleTokens() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testGetVersion() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.getVersion(), is("1.0"));
     }
 
-    /**
-     * Test method for {@link com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule#toString()} .
-     */
     @Test
-    public void testToString() {
-        try {
-            Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new BEMISRule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("BEMIS-7135-IN-1.0-A-BAAN Electronic Message Interchange System", rule.toString());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    void testHasMoreRuleTokens() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
+    }
+
+    @Test
+    void testToString() throws Exception {
+        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        assertThat(ruleDoc, not(nullValue()));
+        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        assertThat(rule, not(nullValue()));
+        assertThat(rule.toString(), is("BEMIS-7135-IN-1.0-A-BAAN Electronic Message Interchange System"));
     }
 
 }
