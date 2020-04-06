@@ -22,12 +22,12 @@ script:
   - mvn clean install -Pci
 
 after_script:
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.core.commons.xml ./core-commons/target/coverage-reports/jacoco.xml --input-type jacoco
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.core.parsers.xml ./core-parsers/target/coverage-reports/jacoco.xml --input-type jacoco
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.edi.datanorm.xml ./edi-datanorm/target/coverage-reports/jacoco.xml --input-type jacoco
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.edi.edifact.xml ./edi-ediform/target/coverage-reports/jacoco.xml --input-type jacoco
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.edi.vda.xml ./edi-vda/target/coverage-reports/jacoco.xml --input-type jacoco
-  - ./cc-test-reporter sum-coverage ./target/coverage/codeclimate.*.xml -p 5
+  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.core-commons.json ./core-commons/target/coverage-reports/jacoco.xml -t jacoco
+  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.core-parsers.json ./core-parsers/target/coverage-reports/jacoco.xml -t jacoco
+  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.edi-datanorm.json ./edi-datanorm/target/coverage-reports/jacoco.xml -t jacoco
+  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.edi-edifact.json ./edi-ediform/target/coverage-reports/jacoco.xml -t jacoco
+  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.edi-vda.json ./edi-vda/target/coverage-reports/jacoco.xml -t jacoco
+  - ./cc-test-reporter sum-coverage ./target/coverage/codeclimate.*.json -p 5
   - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi
 
 after_success:
