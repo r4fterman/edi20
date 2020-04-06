@@ -1,6 +1,6 @@
 env:
   global:
-    - CODECOV_TOKEN=:d9501c65-0569-4f71-ae65-c6791f7c4b79
+    - CODECOV_TOKEN=d9501c65-0569-4f71-ae65-c6791f7c4b79
     - CC_TEST_REPORTER_ID=db93c8757baf4dd6272963ffa6f16fa3fdb0b9850a81f9bd33d28e940f025228
 
 language: java
@@ -22,5 +22,6 @@ script:
   - mvn clean install -Pci
 
 after_success:
+  - ./cc-test-reporter after-build
   - ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
   - bash <(curl -s https://codecov.io/bash)
