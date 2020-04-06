@@ -14,7 +14,6 @@ before_install:
   - export PATH=$M2_HOME/bin:$PATH
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
 
 install: /bin/true
 
@@ -22,15 +21,13 @@ script:
   - mvn clean install -Pci
 
 after_script:
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.core-commons.json ./core-commons/target/coverage-reports/jacoco.xml -t jacoco
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.core-parsers.json ./core-parsers/target/coverage-reports/jacoco.xml -t jacoco
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.edi-datanorm.json ./edi-datanorm/target/coverage-reports/jacoco.xml -t jacoco
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.edi-edifact.json ./edi-ediform/target/coverage-reports/jacoco.xml -t jacoco
-  - ./cc-test-reporter format-coverage -o ./target/coverage/codeclimate.edi-vda.json ./edi-vda/target/coverage-reports/jacoco.xml -t jacoco
+  - ./cc-test-reporter format-coverage ./core-commons/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.core-commons.json
+  - ./cc-test-reporter format-coverage ./core-parsers/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.core-parsers.json
+  - ./cc-test-reporter format-coverage ./edi-datanorm/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-datanorm.json
+  - ./cc-test-reporter format-coverage ./edi-ediform/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-edifact.json
+  - ./cc-test-reporter format-coverage ./edi-vda/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-vda.json
   - ./cc-test-reporter sum-coverage ./target/coverage/codeclimate.*.json -p 5
-  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi
 
 after_success:
-  - ./cc-test-reporter after-build
   - ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
   - bash <(curl -s https://codecov.io/bash)
