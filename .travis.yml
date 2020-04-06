@@ -25,7 +25,7 @@ after_script:
   - JACOCO_SOURCE_PATH=./core-commons/src/main/java ./cc-test-reporter format-coverage ./core-commons/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.core-commons.json
   - JACOCO_SOURCE_PATH=./core-parsers/src/main/java ./cc-test-reporter format-coverage ./core-parsers/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.core-parsers.json
   - JACOCO_SOURCE_PATH=./edi-datanorm/src/main/java ./cc-test-reporter format-coverage ./edi-datanorm/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-datanorm.json
-  - JACOCO_SOURCE_PATH=./edi-edifact/src/main/java ./cc-test-reporter format-coverage ./edi-ediform/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-edifact.json
+  - JACOCO_SOURCE_PATH=./edi-edifact/src/main/java ./cc-test-reporter format-coverage ./edi-edifact/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-edifact.json
   - JACOCO_SOURCE_PATH=./edi-vda/src/main/java ./cc-test-reporter format-coverage ./edi-vda/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-vda.json
   - ./cc-test-reporter sum-coverage ./target/coverage/codeclimate.*.json -p 5
   - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage -i ./target/coverage/codeclimate.json; fi
