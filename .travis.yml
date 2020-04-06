@@ -1,5 +1,7 @@
-global:
-  - CC_REPORTER_ID=db93c8757baf4dd6272963ffa6f16fa3fdb0b9850a81f9bd33d28e940f025228
+env:
+  global:
+    - CODECOV_TOKEN=:d9501c65-0569-4f71-ae65-c6791f7c4b79
+    - CC_TEST_REPORTER_ID=db93c8757baf4dd6272963ffa6f16fa3fdb0b9850a81f9bd33d28e940f025228
 
 language: java
 
@@ -13,13 +15,11 @@ before_install:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
-  - sudo fc-cache -f -v
 
 install: /bin/true
 
 script:
   - mvn clean install -Pci
-  - JACOCO_SOURCE_PATH=src/main/java ./cc-test-reporter format-coverage ./target/coverage-reports/jacoco.xml --input-type jacoco
 
 after_success:
   - ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
