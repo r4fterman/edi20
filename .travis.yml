@@ -28,6 +28,7 @@ after_script:
   - JACOCO_SOURCE_PATH=./edi-edifact/src/main/java ./cc-test-reporter format-coverage ./edi-edifact/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-edifact.json
   - JACOCO_SOURCE_PATH=./edi-vda/src/main/java ./cc-test-reporter format-coverage ./edi-vda/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-vda.json
   - ./cc-test-reporter sum-coverage ./target/coverage/codeclimate.*.json -p 5
+  - ls -l ./target/coverage
   - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage -i ./target/coverage/codeclimate.json; fi
 
 after_success:
