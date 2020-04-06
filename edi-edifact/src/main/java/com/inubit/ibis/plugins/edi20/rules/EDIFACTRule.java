@@ -58,7 +58,7 @@ public class EDIFACTRule extends AbstractHWEDRule {
 //            if (!isRepeatOnToken(currentRuleToken)) {
 //                // go out
 //                IRuleToken newCurrentRuleToken = RuleUtil.getParentFollowingSibling(currentRuleToken);
-//                // TODO: checkRepeat(newCurrentRuleToken, currentRuleToken);
+//                //todo: checkRepeat(newCurrentRuleToken, currentRuleToken);
 //                setCurrentRuleToken(newCurrentRuleToken);
 //            }
 //        } else if (isTokenClosingRuleToken(token, currentRuleToken)) {
@@ -68,7 +68,7 @@ public class EDIFACTRule extends AbstractHWEDRule {
 //                if (newCurrentRuleToken == null) {
 //                    newCurrentRuleToken = RuleUtil.getParentFollowingSibling(newCurrentRuleToken);
 //                }
-//                // TODO: checkRepeat(newCurrentRuleToken, currentRuleToken);
+//                //todo: checkRepeat(newCurrentRuleToken, currentRuleToken);
 //                setCurrentRuleToken(newCurrentRuleToken);
 //            }
 //        } else {

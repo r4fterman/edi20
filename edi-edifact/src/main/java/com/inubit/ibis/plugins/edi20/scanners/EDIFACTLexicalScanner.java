@@ -3,7 +3,8 @@ package com.inubit.ibis.plugins.edi20.scanners;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 
 /**
- * Scanner splits input document into tokens. Tokens will be analyzed by parsers according to the given rule.
+ * Scanner splits input document into tokens. Tokens will be analyzed by parsers
+ * according to the given rule.
  *
  * @author rafter
  */
@@ -12,12 +13,12 @@ public class EDIFACTLexicalScanner extends EDILexicalScanner {
     /**
      * Constructor creates new EDI lexical scanner.
      *
-     * @param inputDocument
-     *         input document
-     * @param delimiter
-     *         delimiter
+     * @param inputDocument input document
+     * @param delimiter delimiter
      */
-    public EDIFACTLexicalScanner(final StringBuilder inputDocument, final EDIFACTDelimiters delimiter) {
+    public EDIFACTLexicalScanner(
+            final StringBuilder inputDocument,
+            final EDIFACTDelimiters delimiter) {
         super(inputDocument, delimiter);
     }
 
@@ -32,7 +33,7 @@ public class EDIFACTLexicalScanner extends EDILexicalScanner {
             // no next token found
             index = getInputDocument().length();
         }
-        String str = getInputDocument().substring(position, index);
+        final String str = getInputDocument().substring(position, index);
         return EDIFACTTokenFactory.getInstance(getEDIFACTDelimiter()).getToken(str, position);
     }
 

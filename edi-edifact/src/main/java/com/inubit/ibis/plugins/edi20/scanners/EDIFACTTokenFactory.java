@@ -11,8 +11,7 @@ public final class EDIFACTTokenFactory {
     private static EDIFACTTokenFactory fFactoryInstance;
 
     /**
-     * @param edifactDelimiters
-     *         EDIFACT delimiters
+     * @param edifactDelimiters EDIFACT delimiters
      * @return initialized factory instance
      */
     public static EDIFACTTokenFactory getInstance(final EDIFACTDelimiters edifactDelimiters) {
@@ -28,18 +27,18 @@ public final class EDIFACTTokenFactory {
     private EDIFACTDelimiters delimiters;
 
     private EDIFACTTokenFactory(final EDIFACTDelimiters edifactDelimiters) {
-        this.delimiters = edifactDelimiters;
+        delimiters = edifactDelimiters;
     }
 
     /**
-     * @param tokenString
-     *         token string
-     * @param tokenPosition
-     *         token position in document
-     * @return token instance initialized with the given information or an {@link UnknownDelimiterToken} if the given
-     *         #tokenString is unknown
+     * @param tokenString token string
+     * @param tokenPosition token position in document
+     * @return token instance initialized with the given information or an
+     * {@link UnknownDelimiterToken} if the given #tokenString is unknown
      */
-    public IToken getToken(final String tokenString, final int tokenPosition) {
+    public IToken getToken(
+            final String tokenString,
+            final int tokenPosition) {
         if (StringUtil.isNotSet(tokenString)) {
             throw new IllegalArgumentException("Token not set!");
         }

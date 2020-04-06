@@ -31,7 +31,7 @@ public class HL7Rule extends AbstractHWEDRule {
     }
 
     @Override
-    public void closeCurrentRuleToken(IToken token) {
-        // TODO: implement
+    public void closeCurrentRuleToken(final IToken token) {
+        //todo: implement
     }
 }

@@ -25,13 +25,14 @@ public abstract class AbstractEDIRule {
 
     /**
      * @param ruleDocument rule document
-     * @throws InubitException if the given rule document is not a valid EDI rule document
+     * @throws InubitException if the given rule document is not a valid EDI
+     * rule document
      */
     public AbstractEDIRule(final Document ruleDocument) throws InubitException {
         if (!isValidRuleDocument(ruleDocument)) {
             throw new InvalidRuleException();
         }
-        this.ruleElement = createRootElement(ruleDocument);
+        ruleElement = createRootElement(ruleDocument);
     }
 
     protected abstract EDIRuleRoot createRootElement(Document ruleDocument);
@@ -40,34 +41,32 @@ public abstract class AbstractEDIRule {
         if (ruleDocument == null) {
             return false;
         }
-        Element rootElement = ruleDocument.getRootElement();
+
+        final Element rootElement = ruleDocument.getRootElement();
         if (!isSetRootElement(rootElement)) {
             return false;
         }
-        if (!isSetCorrectStandardAndLayout(rootElement)) {
-            return false;
-        }
-        return true;
+
+        return isSetCorrectStandardAndLayout(rootElement);
     }
 
     private boolean isSetRootElement(final Element rootElement) {
         if (rootElement != null) {
-            String name = rootElement.getName();
+            final String name = rootElement.getName();
             return StringUtil.isSet(name);
         }
         return false;
     }
 
     /**
-     * @param rootElement
-     * @return <code>true</code> if standard and layout are set correctly on the rule root element, <code>false</code>
-     * otherwise
+     * @return <code>true</code> if standard and layout are set correctly on the
+     * rule root element, <code>false</code> otherwise
      */
     private boolean isSetCorrectStandardAndLayout(final Element rootElement) {
         if (rootElement != null) {
-            IRuleToken ruleToken = HwedRuleTokenFactory.getInstance(rootElement);
+            final IRuleToken ruleToken = HwedRuleTokenFactory.getInstance(rootElement);
             if (ruleToken instanceof EDIRuleRoot) {
-                EDIRuleRoot root = (EDIRuleRoot) ruleToken;
+                final EDIRuleRoot root = (EDIRuleRoot) ruleToken;
                 return isSetCorrectStandard(root) && isSetCorrectLayout(root);
             }
         }
@@ -75,14 +74,14 @@ public abstract class AbstractEDIRule {
     }
 
     private boolean isSetCorrectLayout(final EDIRuleRoot root) {
-        String layout = root.getLayout();
-        String ruleLayout = getLayout();
+        final String layout = root.getLayout();
+        final String ruleLayout = getLayout();
         return layout.equals(ruleLayout);
     }
 
     private boolean isSetCorrectStandard(final EDIRuleRoot root) {
-        String standard = root.getStandard();
-        String ruleStandard = getStandard();
+        final String standard = root.getStandard();
+        final String ruleStandard = getStandard();
         return standard.equals(ruleStandard);
     }
 
@@ -104,7 +103,7 @@ public abstract class AbstractEDIRule {
      * @return agency
      */
     public String getAgency() {
-        EDIRuleRoot rootToken = getRootElement();
+        final EDIRuleRoot rootToken = getRootElement();
         if (rootToken != null) {
             return rootToken.getAgency();
         }
@@ -115,7 +114,7 @@ public abstract class AbstractEDIRule {
      * @return rule description
      */
     public String getDescription() {
-        EDIRuleRoot rootToken = getRootElement();
+        final EDIRuleRoot rootToken = getRootElement();
         if (rootToken != null) {
             return rootToken.getDescription();
         }
@@ -131,7 +130,7 @@ public abstract class AbstractEDIRule {
      * @return release, e.g. 96A
      */
     public String getRelease() {
-        EDIRuleRoot rootToken = getRootElement();
+        final EDIRuleRoot rootToken = getRootElement();
         if (rootToken != null) {
             return rootToken.getRelease();
         }
@@ -144,9 +143,9 @@ public abstract class AbstractEDIRule {
      * @return rule type, e.g. IFCSUM
      */
     public String getType() {
-        IRuleToken rootToken = getRootElement();
-        if (rootToken instanceof EDIRuleRoot) {
-            return ((EDIRuleRoot) rootToken).getType();
+        final EDIRuleRoot rootToken = getRootElement();
+        if (rootToken != null) {
+            return rootToken.getType();
         }
         return "";
     }
@@ -155,7 +154,7 @@ public abstract class AbstractEDIRule {
      * @return rule version, e.g. D
      */
     public String getVersion() {
-        EDIRuleRoot rootToken = getRootElement();
+        final EDIRuleRoot rootToken = getRootElement();
         if (rootToken != null) {
             return rootToken.getVersion();
         }
@@ -168,13 +167,13 @@ public abstract class AbstractEDIRule {
     }
 
     public List<EDIRuleSegment> getSegments() {
-        EDIRuleRoot root = getRootElement();
+        final EDIRuleRoot root = getRootElement();
         return getSegments(root);
     }
 
     private List<EDIRuleSegment> getSegments(final EDIRuleBaseToken token) {
-        List<EDIRuleSegment> segments = new ArrayList<EDIRuleSegment>();
-        for (IRuleToken child : token.getChildren()) {
+        final List<EDIRuleSegment> segments = new ArrayList<>();
+        for (final IRuleToken child : token.getChildren()) {
             if (child instanceof EDIRuleSegmentGroup) {
                 //segments.addAll(getSegments((EDIRuleSegmentGroup) child));
             }

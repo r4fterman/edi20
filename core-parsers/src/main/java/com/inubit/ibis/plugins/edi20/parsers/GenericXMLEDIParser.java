@@ -15,7 +15,6 @@ public class GenericXMLEDIParser implements IGenericParser {
     /**
      * @param inputDocument
      *         input document
-     * @throws InubitException
      */
     public GenericXMLEDIParser(final Document inputDocument) throws InubitException {
         init(inputDocument);
@@ -24,20 +23,24 @@ public class GenericXMLEDIParser implements IGenericParser {
     /**
      * @param inputDocument
      *         input document
-     * @throws InubitException
      */
-    public GenericXMLEDIParser(final Document inputDocument, final AbstractEDIRule rule) throws InubitException {
+    public GenericXMLEDIParser(
+            final Document inputDocument,
+            final AbstractEDIRule rule) throws InubitException {
         init(inputDocument, rule);
     }
 
-    private void init(final Document xmlInputDocument) throws InubitException {
-//        parsers = EDIParserRegistry.getInstance(xmlInputDocument).getParser();
+    private void init(final Document xmlInputDocument) {
+        //        parsers = EDIParserRegistry.getInstance(xmlInputDocument).getParser();
     }
 
-    private void init(final Document xmlInputDocument, AbstractEDIRule rule) throws InubitException {
-//        parsers = EDIParserRegistry.getInstance(xmlInputDocument).getParser(rule);
+    private void init(
+            final Document xmlInputDocument,
+            final AbstractEDIRule rule) {
+        //        parsers = EDIParserRegistry.getInstance(xmlInputDocument).getParser(rule);
     }
 
+    @Override
     public void parse() throws InubitException {
         parser.parse();
     }

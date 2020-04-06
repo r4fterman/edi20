@@ -7,11 +7,15 @@ import com.inubit.ibis.utils.InubitException;
  */
 public class RuleViolationException extends InubitException {
 
-    public RuleViolationException(String message) {
+    private static final long serialVersionUID = -7709090253868519629L;
+
+    public RuleViolationException(final String message) {
         this(message, null);
     }
 
-    public RuleViolationException(String message, Throwable cause) {
+    public RuleViolationException(
+            final String message,
+            final Throwable cause) {
         super(message, cause);
     }
 

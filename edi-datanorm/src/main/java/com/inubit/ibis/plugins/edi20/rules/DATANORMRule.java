@@ -20,7 +20,7 @@ public class DATANORMRule extends AbstractMSWEDRule {
     }
 
     @Override
-    public void closeCurrentRuleToken(IToken token) {
+    public void closeCurrentRuleToken(final IToken token) {
         // ignore
     }
 

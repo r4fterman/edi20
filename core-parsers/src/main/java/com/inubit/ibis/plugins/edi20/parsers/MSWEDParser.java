@@ -15,7 +15,9 @@ public abstract class MSWEDParser extends HWEDParser {
      * @param rule
      *         EDI rule
      */
-    public MSWEDParser(IScanner scanner, AbstractMSWEDRule rule) {
+    public MSWEDParser(
+            final IScanner scanner,
+            final AbstractMSWEDRule rule) {
         super(scanner, rule);
     }
 
@@ -25,12 +27,12 @@ public abstract class MSWEDParser extends HWEDParser {
     }
 
     @Override
-    public boolean canParse(AbstractEDIRule rule) {
+    public boolean canParse(final AbstractEDIRule rule) {
         return true;
     }
 
     @Override
-    public boolean canParse(StringBuilder inputDocument) {
+    public boolean canParse(final StringBuilder inputDocument) {
         return true;
     }
 }

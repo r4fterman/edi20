@@ -35,17 +35,19 @@ public class EDIFACTParser extends HWEDParser {
     private EDIFACTEnveloperRule enveloperRule;
     private EDIFACTRule currentRule;
 
-    public EDIFACTParser(final EDIFACTLexicalScanner scanner, final EDIFACTRule rule) throws InubitException {
+    public EDIFACTParser(
+            final EDIFACTLexicalScanner scanner,
+            final EDIFACTRule rule) throws InubitException {
         super(scanner, rule);
         initializeEnveloperFile();
     }
 
     private void initializeEnveloperFile() throws InubitException {
         try {
-            File enveloperRuleFile = ensureEnveloperFileExists();
-            Document document = XmlUtils.getDocumentThrowing(enveloperRuleFile);
-            this.enveloperRule = new EDIFACTEnveloperRule(document);
-        } catch (Exception e) {
+            final File enveloperRuleFile = ensureEnveloperFileExists();
+            final Document document = XmlUtils.getDocumentThrowing(enveloperRuleFile);
+            enveloperRule = new EDIFACTEnveloperRule(document);
+        } catch (final Exception e) {
             throw new InubitException("Error parsing enveloperRule rule file!", e);
         }
     }
@@ -54,7 +56,7 @@ public class EDIFACTParser extends HWEDParser {
         if (!EDIUtil.RULE_FILE_FOLDER.exists()) {
             throw new InubitException("Rule file folder is missing (" + EDIUtil.RULE_FILE_FOLDER + ")!");
         }
-        File enveloperRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, ENVELOPER_RULE_FILE_NAME);
+        final File enveloperRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, ENVELOPER_RULE_FILE_NAME);
         if (!enveloperRuleFile.exists()) {
             throw new InubitException("Enveloper rule file is missing (" + enveloperRuleFile + ")!");
         }
@@ -108,8 +110,10 @@ public class EDIFACTParser extends HWEDParser {
         parseSegment(segmentID, getEDIFACTRule(segmentID));
     }
 
-    private void parseSegment(final String segmentID, final EDIFACTRule rule) throws InubitException {
-        EDIRuleSegment segment = rule.nextSegment(segmentID);
+    private void parseSegment(
+            final String segmentID,
+            final EDIFACTRule rule) throws InubitException {
+        final EDIRuleSegment segment = rule.nextSegment(segmentID);
         if (segment != null) {
             validRuleToken(segmentID, segment);
             System.out.println("EDIFACTParser.parseSegment(" + fState + "): [S:" + segmentID + " (" + segment.getLoop() + ", "
@@ -119,21 +123,26 @@ public class EDIFACTParser extends HWEDParser {
         throw new InubitException("Segment [" + segmentID + "] not found in rule!");
     }
 
-    private void validRuleToken(final String token, final EDIRuleBaseToken ruleToken) throws InubitException {
+    private void validRuleToken(
+            final String token,
+            final EDIRuleBaseToken ruleToken) throws InubitException {
         if (!assertTokenIsSet(token, ruleToken.isMandatory())) {
             throw new InubitException("Invalid token [" + token + "]! Expected mandatory rule token [" + ruleToken + "].");
         }
         if (ruleToken instanceof HwedRuleElement) {
-            HwedRuleElement elementToken = (HwedRuleElement) ruleToken;
-            int min = Integer.valueOf(elementToken.getMinLength());
-            int max = Integer.valueOf(elementToken.getMaxLength());
+            final HwedRuleElement elementToken = (HwedRuleElement) ruleToken;
+            final int min = elementToken.getMinLength();
+            final int max = elementToken.getMaxLength();
             if (!assertTokenHasValidLength(token, min, max)) {
                 throw new InubitException("Invalid token [" + token + "]! Does not match rule token size [" + ruleToken + "].");
             }
         }
     }
 
-    private boolean assertTokenHasValidLength(final String token, final int min, final int max) {
+    private boolean assertTokenHasValidLength(
+            final String token,
+            final int min,
+            final int max) {
         int length = 0;
         if (StringUtil.isSet(token)) {
             length = token.length();
@@ -141,17 +150,21 @@ public class EDIFACTParser extends HWEDParser {
         return min <= length && max >= length;
     }
 
-    private boolean assertTokenIsSet(final String token, final boolean shouldBeSet) {
+    private boolean assertTokenIsSet(
+            final String token,
+            final boolean shouldBeSet) {
         return !shouldBeSet || StringUtil.isSet(token);
     }
 
     private void parseElementOrComplexElement(final String element) throws InubitException {
-        EDIFACTRule rule = getEDIFACTRule();
+        final EDIFACTRule rule = getEDIFACTRule();
         parseElementOrComplexElement(element, rule);
     }
 
-    private void parseElementOrComplexElement(final String element, final EDIFACTRule rule) throws InubitException {
-        IRuleToken nextChild = rule.nextElement();
+    private void parseElementOrComplexElement(
+            final String element,
+            final EDIFACTRule rule) throws InubitException {
+        final IRuleToken nextChild = rule.nextElement();
         if (nextChild != null) {
             // next children found
             if (nextChild instanceof EDIRuleCompositeElement) {
@@ -160,7 +173,7 @@ public class EDIFACTParser extends HWEDParser {
                 return;
             }
             if (nextChild instanceof EDIRuleElement) {
-                EDIRuleElement ruleElement = (EDIRuleElement) nextChild;
+                final EDIRuleElement ruleElement = (EDIRuleElement) nextChild;
                 validRuleToken(element, ruleElement);
                 System.out.println("EDIFACTParser.parseElementOrComplexElement(" + fState + "): [E:" + ruleElement.getID() + "]=[" + element + "]");
                 return;
@@ -193,13 +206,13 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     @Override
-    public boolean canParse(AbstractEDIRule rule) {
+    public boolean canParse(final AbstractEDIRule rule) {
         return rule instanceof EDIFACTRule;
     }
 
     @Override
-    public boolean canParse(StringBuilder inputDocument) {
-        String detectorToken = inputDocument.substring(0, 3);
+    public boolean canParse(final StringBuilder inputDocument) {
+        final String detectorToken = inputDocument.substring(0, 3);
         if (detectorToken.equals("UNA")) {
             return true;
         }

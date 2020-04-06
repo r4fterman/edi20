@@ -15,19 +15,20 @@ public class VDADelimiters implements IDelimiters {
 
     @Override
     public String getDelimiter(final int delimiterIdentifier) {
-        switch (delimiterIdentifier) {
-            case DELIMITER_SEGMENT:
-                return segmentDelimiter;
-            default:
-                return "";
+        if (delimiterIdentifier == DELIMITER_SEGMENT) {
+            return segmentDelimiter;
         }
+        return "";
     }
 
     @Override
-    public void setDelimiter(final String delimiter, final int delimiterIdentifier) {
-        switch (delimiterIdentifier) {
-            case DELIMITER_SEGMENT:
-                this.segmentDelimiter = delimiter;
+    public void setDelimiter(
+            final String delimiter,
+            final int delimiterIdentifier) {
+        if (delimiterIdentifier == DELIMITER_SEGMENT) {
+            segmentDelimiter = delimiter;
+        } else {
+            throw new IllegalStateException("Unexpected value: " + delimiterIdentifier);
         }
     }
 

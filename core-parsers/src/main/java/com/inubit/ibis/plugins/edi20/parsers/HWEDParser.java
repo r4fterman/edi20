@@ -10,7 +10,7 @@ import com.inubit.ibis.utils.StringUtil;
 import org.apache.commons.lang.StringUtils;
 
 /**
- * Hierarchical with element delimiter (HWED)
+ * Hierarchical with element delimiter (HWED).
  *
  * @author r4fter
  */
@@ -22,7 +22,9 @@ public abstract class HWEDParser extends AbstractEDIParser {
      * @param rule
      *         hwed rule
      */
-    public HWEDParser(final IScanner scanner, final AbstractHWEDRule rule) {
+    public HWEDParser(
+            final IScanner scanner,
+            final AbstractHWEDRule rule) {
         super(scanner, rule);
     }
 
@@ -35,7 +37,7 @@ public abstract class HWEDParser extends AbstractEDIParser {
 
     private void parseTokens() throws InubitException {
         while (getScanner().hasMoreTokens() && !isEndOfRule()) {
-            IToken token = getScanner().nextToken();
+            final IToken token = getScanner().nextToken();
             if (token.isDelimiter()) {
                 parseDelimiter(token);
             } else {
@@ -45,11 +47,11 @@ public abstract class HWEDParser extends AbstractEDIParser {
 
         if (isEndOfRule() && getScanner().hasMoreTokens()) {
             // empty the scanner
-            StringBuilder unparsedBuilder = new StringBuilder("");
+            final StringBuilder unparsedBuilder = new StringBuilder();
             while (getScanner().hasMoreTokens()) {
                 unparsedBuilder.append(getScanner().nextToken().getToken());
             }
-            String unparsedPart = unparsedBuilder.toString();
+            final String unparsedPart = unparsedBuilder.toString();
             // ignore white spaces at the end of message
             if (!StringUtil.isWhitespacesOnly(unparsedPart)) {
                 throw new InubitException("Rule parsing complete but message still contains data [" + unparsedPart + "]!");
@@ -57,7 +59,9 @@ public abstract class HWEDParser extends AbstractEDIParser {
         }
     }
 
-    protected void validateMessagePartAgainstRuleElement(String messagePart, HwedRuleElement ruleElement) throws RuleViolationException {
+    protected void validateMessagePartAgainstRuleElement(
+            final String messagePart,
+            final HwedRuleElement ruleElement) throws RuleViolationException {
         if (ruleElement.isMandatory()) {
             if (StringUtils.isEmpty(messagePart)) {
                 throw new RuleViolationException("Mandatory element [" + ruleElement + "] has not content in message!");
@@ -65,21 +69,25 @@ public abstract class HWEDParser extends AbstractEDIParser {
         }
 
         if (StringUtils.isNotBlank(messagePart)) {
-            int length = messagePart.length();
+            final int length = messagePart.length();
             validateMinLength(ruleElement, length);
             validateMaxLength(ruleElement, length);
         }
     }
 
-    private void validateMaxLength(HwedRuleElement ruleElement, int length) throws RuleViolationException {
-        int max = ruleElement.getMaxLength();
+    private void validateMaxLength(
+            final HwedRuleElement ruleElement,
+            final int length) throws RuleViolationException {
+        final int max = ruleElement.getMaxLength();
         if (length > max) {
             throw new RuleViolationException("Element [" + ruleElement + "] is longer than declared (length:" + length + ",max:" + max + "!");
         }
     }
 
-    private void validateMinLength(HwedRuleElement ruleElement, int length) throws RuleViolationException {
-        int min = ruleElement.getMinLength();
+    private void validateMinLength(
+            final HwedRuleElement ruleElement,
+            final int length) throws RuleViolationException {
+        final int min = ruleElement.getMinLength();
         if (length < min) {
             throw new RuleViolationException("Element [" + ruleElement + "] is shorter than declared (length:" + length + ",min:" + min + "!");
         }
@@ -88,6 +96,7 @@ public abstract class HWEDParser extends AbstractEDIParser {
     /**
      * @return <code>true</code> if end of rule is reached
      */
+    @Override
     protected abstract boolean isEndOfRule();
 
     /**
@@ -98,6 +107,7 @@ public abstract class HWEDParser extends AbstractEDIParser {
      * @throws InubitException
      *         if parsing token failed
      */
+    @Override
     protected abstract void parseToken(IToken token) throws InubitException;
 
     /**
@@ -108,6 +118,7 @@ public abstract class HWEDParser extends AbstractEDIParser {
      * @throws InubitException
      *         if parsing delimiter token failed
      */
+    @Override
     protected abstract void parseDelimiter(IToken delimiterToken) throws InubitException;
 
 }

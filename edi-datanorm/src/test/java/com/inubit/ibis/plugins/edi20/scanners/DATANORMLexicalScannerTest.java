@@ -23,34 +23,34 @@ class DATANORMLexicalScannerTest {
 
     @Test
     void testDATANORMLexicalScanner() throws Exception {
-        String fileName = "datanorm_message.txt";
-        StringBuilder content = getContent(fileName);
+        final String fileName = "datanorm_message.txt";
+        final StringBuilder content = getContent(fileName);
 
-        DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(content, new DATANORMDelimiters());
+        final DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(content, new DATANORMDelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
     }
 
     @Disabled
     void testDATANORMLexicalScannerReadLength() throws Exception {
-        String fileName = "datanorm_message.txt";
-        StringBuilder content = getContent(fileName);
+        final String fileName = "datanorm_message.txt";
+        final StringBuilder content = getContent(fileName);
 
-        DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(content, new DATANORMDelimiters());
+        final DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(content, new DATANORMDelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
 
-        StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
         while (scanner.hasMoreTokens()) {
             builder.append(scanner.nextToken().getToken());
         }
-        long fileLength = getFile(fileName).length();
+        final long fileLength = getFile(fileName).length();
         assertThat("Length differs!", Long.parseLong(String.valueOf(builder.length())), is(fileLength));
     }
 
     @Test
     void testDATANORMLexicalScannerNoEscape() {
-        String ediStr = "C;N;BAU;F;MKF;ABK;0563E.341200000;\n;030101;;;;1S;;;E;25000;62;33;\n;;ST;;;;FZ-DEUT.;563-3412~;;";
+        final String ediStr = "C;N;BAU;F;MKF;ABK;0563E.341200000;\n;030101;;;;1S;;;E;25000;62;33;\n;;ST;;;;FZ-DEUT.;563-3412~;;";
 
-        DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(new StringBuilder(ediStr), new DATANORMDelimiters());
+        final DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(new StringBuilder(ediStr), new DATANORMDelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
 
         IToken token = scanner.nextToken();
@@ -287,7 +287,7 @@ class DATANORMLexicalScannerTest {
 
     @Test
     void testDATANORMLexicalScannerEmptyDocEmptyDelimiter() {
-        assertThrows(IllegalArgumentException.class, () -> new DATANORMLexicalScanner(new StringBuilder(""), new DATANORMDelimiters()));
+        assertThrows(IllegalArgumentException.class, () -> new DATANORMLexicalScanner(new StringBuilder(), new DATANORMDelimiters()));
     }
 
     @Test
@@ -300,13 +300,13 @@ class DATANORMLexicalScannerTest {
         assertThrows(IllegalArgumentException.class, () -> new DATANORMLexicalScanner(null, null));
     }
 
-    private StringBuilder getContent(String fileName) throws IOException, URISyntaxException {
-        File file = getFile(fileName);
+    private StringBuilder getContent(final String fileName) throws IOException, URISyntaxException {
+        final File file = getFile(fileName);
         return FileUtils.getContents(file);
     }
 
-    private File getFile(String fileName) throws URISyntaxException {
-        URL url = DATANORMLexicalScannerTest.class.getResource(fileName);
+    private File getFile(final String fileName) throws URISyntaxException {
+        final URL url = DATANORMLexicalScannerTest.class.getResource(fileName);
         assertThat("File not found: " + fileName, url, not(nullValue()));
         return new File(url.toURI());
     }

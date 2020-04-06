@@ -39,7 +39,7 @@ class EDIFACTLexicalScannerTest {
         EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(content, new EDIFACTDelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
 
-        StringBuilder builder = new StringBuilder("");
+        StringBuilder builder = new StringBuilder();
         while (scanner.hasMoreTokens()) {
             builder.append(scanner.nextToken().getToken());
         }
@@ -91,7 +91,7 @@ class EDIFACTLexicalScannerTest {
 
     @Test
     void testEDILexicalScannerEmptyDocEmptyDelim() {
-        assertThrows(IllegalArgumentException.class, () -> new EDIFACTLexicalScanner(new StringBuilder(""), new EDIFACTDelimiters()));
+        assertThrows(IllegalArgumentException.class, () -> new EDIFACTLexicalScanner(new StringBuilder(), new EDIFACTDelimiters()));
     }
 
     @Test
@@ -104,7 +104,7 @@ class EDIFACTLexicalScannerTest {
         assertThrows(IllegalArgumentException.class, () -> new EDIFACTLexicalScanner(null, null));
     }
 
-    private File getFile(String testFile) throws URISyntaxException {
+    private File getFile(final String testFile) throws URISyntaxException {
         URL url = EDIFACTLexicalScannerTest.class.getResource(testFile);
         assertThat("File not found: " + testFile, url, not(nullValue()));
         return new File(url.toURI());

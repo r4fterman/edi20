@@ -11,13 +11,13 @@ import java.util.List;
  */
 public final class EDIParserRegistry {
 
-    private static final List<IEDIParser> REGISTERED_PARSER = new ArrayList<IEDIParser>();
+    private static final List<IEDIParser> REGISTERED_PARSER = new ArrayList<>();
 
-    public static void register(IEDIParser parser) {
+    public static void register(final IEDIParser parser) {
         REGISTERED_PARSER.add(parser);
     }
 
-    public static void deregister(IEDIParser parser) {
+    public static void deregister(final IEDIParser parser) {
         REGISTERED_PARSER.remove(parser);
     }
 
@@ -38,12 +38,11 @@ public final class EDIParserRegistry {
 
     /**
      * @return parsers instance
-     *
      * @throws InubitException
      *         if retrieving parsers instance failed
      */
     public IEDIParser getParser() throws InubitException {
-        for (IEDIParser parser : REGISTERED_PARSER) {
+        for (final IEDIParser parser : REGISTERED_PARSER) {
             if (parser.canParse(fTextInputDocument)) {
                 return parser;
             }
@@ -55,12 +54,11 @@ public final class EDIParserRegistry {
      * @param rule
      *         EDI rule
      * @return parsers instance for the given rule
-     *
      * @throws InubitException
      *         if no parsers was found for the given rule
      */
     public IEDIParser getParser(final AbstractEDIRule rule) throws InubitException {
-        for (IEDIParser parser : REGISTERED_PARSER) {
+        for (final IEDIParser parser : REGISTERED_PARSER) {
             if (parser.canParse(rule)) {
                 return parser;
             }

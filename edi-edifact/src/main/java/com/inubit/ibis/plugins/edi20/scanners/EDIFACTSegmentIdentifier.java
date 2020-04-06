@@ -7,7 +7,7 @@ public class EDIFACTSegmentIdentifier implements IIdentifier {
 
     private final String identifier;
 
-    public EDIFACTSegmentIdentifier(String identifier) {
+    public EDIFACTSegmentIdentifier(final String identifier) {
         this.identifier = identifier;
     }
 

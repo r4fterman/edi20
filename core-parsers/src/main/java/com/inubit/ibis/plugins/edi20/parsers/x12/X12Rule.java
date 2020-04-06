@@ -16,7 +16,7 @@ public class X12Rule extends AbstractHWEDRule {
      * @throws InubitException
      *         if the given rule document is not a valid X12 rule document
      */
-    public X12Rule(Document x12RuleDocument) throws InubitException {
+    public X12Rule(final Document x12RuleDocument) throws InubitException {
         super(x12RuleDocument);
     }
 
@@ -31,7 +31,7 @@ public class X12Rule extends AbstractHWEDRule {
     }
 
     @Override
-    public void closeCurrentRuleToken(IToken token) {
-        // TODO: implement
+    public void closeCurrentRuleToken(final IToken token) {
+        //todo: implement
     }
 }

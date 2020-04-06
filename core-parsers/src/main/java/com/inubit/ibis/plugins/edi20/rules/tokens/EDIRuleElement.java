@@ -12,7 +12,7 @@ public abstract class EDIRuleElement extends EDIRuleBaseToken implements IElemen
     private static final int INTEGER_NOT_SET = -1;
     private static final String ATTRIBUTE_NAME_TYPE = "type";
 
-    public EDIRuleElement(Element ruleElement) {
+    public EDIRuleElement(final Element ruleElement) {
         super(ruleElement);
     }
 
@@ -21,11 +21,11 @@ public abstract class EDIRuleElement extends EDIRuleBaseToken implements IElemen
      *         integer value as string
      * @return parsed integer value or -1
      */
-    protected int getIntegerValue(String integerValue) {
+    protected int getIntegerValue(final String integerValue) {
         if (StringUtil.isSet(integerValue)) {
             try {
                 return Integer.parseInt(integerValue);
-            } catch (NumberFormatException e) {
+            } catch (final NumberFormatException e) {
                 // do nothing
             }
         }

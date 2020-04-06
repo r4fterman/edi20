@@ -23,44 +23,46 @@ class DATANORMParserTest {
 
     @Disabled
     void testGenericParserString() throws Exception {
-        String testFile = "datanorm4.001.txt";
-        String ruleFile = "DATANORM-All-4.0--.xml";
+        final String testFile = "datanorm4.001.txt";
+        final String ruleFile = "DATANORM-All-4.0--.xml";
 
-        StringBuilder content = getFileContent(testFile);
-        DATANORMParser parser = getDatanormParser(ruleFile, content);
+        final StringBuilder content = getFileContent(testFile);
+        final DATANORMParser parser = getDatanormParser(ruleFile, content);
         parser.parse();
     }
 
     @Disabled
     void testParseString() throws Exception {
-        String testString = "C;N;BAU;F;MKF;ABK;0700E.341280000;;030101;;;;1S;;;E;1000;60;33;1980;;ST;;;;FZ-DEUT.;700-3412~;;";
-        String ruleFile = "DATANORM-All-4.0--.xml";
+        final String testString = "C;N;BAU;F;MKF;ABK;0700E.341280000;;030101;;;;1S;;;E;1000;60;33;1980;;ST;;;;FZ-DEUT.;700-3412~;;";
+        final String ruleFile = "DATANORM-All-4.0--.xml";
 
-        StringBuilder content = new StringBuilder(testString);
-        DATANORMParser parser = getDatanormParser(ruleFile, content);
+        final StringBuilder content = new StringBuilder(testString);
+        final DATANORMParser parser = getDatanormParser(ruleFile, content);
         parser.parse();
     }
 
-    private DATANORMParser getDatanormParser(String ruleFile, StringBuilder content) throws Exception {
-        DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(content, new DATANORMDelimiters());
-        DATANORMRule rule = new DATANORMRule(getDocument(ruleFile));
+    private DATANORMParser getDatanormParser(
+            final String ruleFile,
+            final StringBuilder content) throws Exception {
+        final DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(content, new DATANORMDelimiters());
+        final DATANORMRule rule = new DATANORMRule(getDocument(ruleFile));
         return new DATANORMParser(scanner, rule);
     }
 
     private Document getDocument(final String testFile) throws Exception {
-        File file = getFile(testFile);
+        final File file = getFile(testFile);
         return XmlUtils.getDocumentThrowing(file);
     }
 
     private StringBuilder getFileContent(final String testFile) throws Exception {
-        File file = getFile(testFile);
-        StringBuilder content = FileUtils.getContents(file);
+        final File file = getFile(testFile);
+        final StringBuilder content = FileUtils.getContents(file);
         assertThat(content, not(nullValue()));
         return content;
     }
 
-    private File getFile(String testFile) throws URISyntaxException {
-        URL url = DATANORMParserTest.class.getResource(testFile);
+    private File getFile(final String testFile) throws URISyntaxException {
+        final URL url = DATANORMParserTest.class.getResource(testFile);
         assertThat("File not found: " + testFile, url, not(nullValue()));
         return new File(url.toURI());
     }

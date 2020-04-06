@@ -14,7 +14,7 @@ public class DATANORMDelimiters implements IDelimiters {
     private String elementDelimiter = ";";
 
     @Override
-    public String getDelimiter(int delimiterIdentifier) {
+    public String getDelimiter(final int delimiterIdentifier) {
         switch (delimiterIdentifier) {
             case SEGMENT_DELIMITER:
                 return segmentDelimiter;
@@ -26,13 +26,15 @@ public class DATANORMDelimiters implements IDelimiters {
     }
 
     @Override
-    public void setDelimiter(String delimiter, int delimiterIdentifier) {
+    public void setDelimiter(
+            final String delimiter,
+            final int delimiterIdentifier) {
         switch (delimiterIdentifier) {
             case SEGMENT_DELIMITER:
-                this.segmentDelimiter = delimiter;
+                segmentDelimiter = delimiter;
                 break;
             case ELEMENT_DELIMITER:
-                this.elementDelimiter = delimiter;
+                elementDelimiter = delimiter;
                 break;
             default:
                 break;
@@ -45,20 +47,20 @@ public class DATANORMDelimiters implements IDelimiters {
     }
 
     @Override
-    public boolean containsDelimiter(String delimiter) {
+    public boolean containsDelimiter(final String delimiter) {
         return isSegmentDelimiter(delimiter) || isElementDelimiter(delimiter);
     }
 
-    private boolean isElementDelimiter(String delimiter) {
+    private boolean isElementDelimiter(final String delimiter) {
         return elementDelimiter.equals(delimiter);
     }
 
-    private boolean isSegmentDelimiter(String delimiter) {
+    private boolean isSegmentDelimiter(final String delimiter) {
         return segmentDelimiter.equals(delimiter);
     }
 
     @Override
-    public int getDelimiterIdentifier(String delimiter) {
+    public int getDelimiterIdentifier(final String delimiter) {
         if (isSegmentDelimiter(delimiter)) {
             return SEGMENT_DELIMITER;
         }

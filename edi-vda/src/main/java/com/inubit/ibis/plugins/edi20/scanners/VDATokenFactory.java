@@ -11,7 +11,7 @@ public final class VDATokenFactory {
     private static VDATokenFactory factoryInstance;
 
     /**
-     * Initialized factory instance
+     * Initialized factory instance.
      *
      * @param vdaDelimiters
      *         VDA delimiters
@@ -30,7 +30,7 @@ public final class VDATokenFactory {
     private VDADelimiters delimiters;
 
     private VDATokenFactory(final VDADelimiters vdaDelimiters) {
-        this.delimiters = vdaDelimiters;
+        delimiters = vdaDelimiters;
     }
 
     /**
@@ -38,19 +38,19 @@ public final class VDATokenFactory {
      *         token string
      * @param tokenPosition
      *         token position in document
-     * @return token instance initialized with the given information or an {@link UnknownDelimiterToken} if the given
-     *         #tokenString is unknown
+     * @return token instance initialized with the given information or an
+     * {@link UnknownDelimiterToken} if the given #tokenString is unknown
      */
-    public IToken getToken(final String tokenString, final int tokenPosition) {
+    public IToken getToken(
+            final String tokenString,
+            final int tokenPosition) {
         if (StringUtil.isNotSet(tokenString)) {
             throw new IllegalArgumentException("Token not set!");
         }
-        switch (delimiters.getDelimiterIdentifier(tokenString)) {
-            case VDADelimiters.DELIMITER_SEGMENT:
-                return new VDASegmentDelimiterToken(tokenString, tokenPosition);
-            default:
-                return new VDAUnknownDelimiterToken(tokenString, tokenPosition);
+        if (delimiters.getDelimiterIdentifier(tokenString) == VDADelimiters.DELIMITER_SEGMENT) {
+            return new VDASegmentDelimiterToken(tokenString, tokenPosition);
         }
+        return new VDAUnknownDelimiterToken(tokenString, tokenPosition);
     }
 
 }

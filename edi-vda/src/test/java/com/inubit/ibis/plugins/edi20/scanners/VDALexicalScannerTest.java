@@ -92,12 +92,12 @@ class VDALexicalScannerTest {
         assertThrows(IllegalArgumentException.class, () -> new VDALexicalScanner(null, null));
     }
 
-    private StringBuilder getContent(String testFile) throws URISyntaxException, IOException {
+    private StringBuilder getContent(final String testFile) throws URISyntaxException, IOException {
         File file = getFile(testFile);
         return FileUtils.getContents(file);
     }
 
-    private File getFile(String testFile) throws URISyntaxException {
+    private File getFile(final String testFile) throws URISyntaxException {
         URL url = VDALexicalScannerTest.class.getResource(testFile);
         assertThat("File not found: " + testFile, url, not(nullValue()));
         return new File(url.toURI());

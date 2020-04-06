@@ -10,9 +10,11 @@ public class DATANORMSegmentDelimiterToken implements IToken {
     private final String token;
     private final int position;
 
-    public DATANORMSegmentDelimiterToken(String tokenString, int tokenPosition) {
-        this.token = tokenString;
-        this.position = tokenPosition;
+    public DATANORMSegmentDelimiterToken(
+            final String tokenString,
+            final int tokenPosition) {
+        token = tokenString;
+        position = tokenPosition;
     }
 
     @Override

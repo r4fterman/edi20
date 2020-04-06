@@ -28,7 +28,7 @@ public class EDIRuleSegment extends EDIRuleBaseToken implements IRepeatableRuleT
         // <Segment id="RFF" loop="1" name="Reference" required="M" xmlTag="Reference">
         try {
             return Integer.parseInt(getRuleElement().attributeValue(ATTRIBUTE_NAME_LOOP, String.valueOf(NO_LOOP)));
-        } catch (NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             return NO_LOOP;
         }
     }
@@ -64,13 +64,13 @@ public class EDIRuleSegment extends EDIRuleBaseToken implements IRepeatableRuleT
         return currentLoopCount + 1;
     }
 
-    public void addLoopCount(int loopCount) {
-        this.currentLoopCount += loopCount;
+    public void addLoopCount(final int loopCount) {
+        currentLoopCount += loopCount;
     }
 
     public List<IElementRuleToken> getElements() {
-        List<IElementRuleToken> elements = new ArrayList<IElementRuleToken>();
-        for (IRuleToken child : getChildren()) {
+        final List<IElementRuleToken> elements = new ArrayList<>();
+        for (final IRuleToken child : getChildren()) {
             if (child instanceof IElementRuleToken) {
                 elements.add((IElementRuleToken) child);
             }

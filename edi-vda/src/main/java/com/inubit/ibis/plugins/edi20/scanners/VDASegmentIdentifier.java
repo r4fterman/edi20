@@ -7,7 +7,7 @@ public class VDASegmentIdentifier implements IIdentifier {
 
     private final String identifier;
 
-    public VDASegmentIdentifier(String identifier) {
+    public VDASegmentIdentifier(final String identifier) {
         this.identifier = identifier;
     }
 

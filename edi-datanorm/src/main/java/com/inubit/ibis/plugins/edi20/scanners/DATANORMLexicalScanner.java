@@ -13,22 +13,26 @@ public class DATANORMLexicalScanner extends EDILexicalScanner {
      * @param delimiters
      *         EDI delimiters
      */
-    public DATANORMLexicalScanner(StringBuilder inputDocument, DATANORMDelimiters delimiters) {
+    public DATANORMLexicalScanner(
+            final StringBuilder inputDocument,
+            final DATANORMDelimiters delimiters) {
         super(inputDocument, delimiters);
     }
 
     @Override
-    protected IToken getNextToken(int position) {
+    protected IToken getNextToken(final int position) {
         int index = getIndexOfNextDelimiter(position);
         if (index == -1) {
             // no next token found
             index = getInputDocument().length();
         }
-        String str = getInputDocument().substring(position, index);
+        final String str = getInputDocument().substring(position, index);
         return createToken(position, str);
     }
 
-    private IToken createToken(int position, String str) {
+    private IToken createToken(
+            final int position,
+            final String str) {
         return DATANORMTokenFactory.getInstance(getDATANORMDelimiter()).getToken(str, position);
     }
 

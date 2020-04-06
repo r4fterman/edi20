@@ -10,7 +10,7 @@ import com.inubit.ibis.utils.InubitException;
  */
 public interface IRepeatableRuleToken {
 
-    static final int NO_LOOP = 1;
+    int NO_LOOP = 1;
 
     /**
      * @return loop count or {@link #NO_LOOP}

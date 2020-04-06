@@ -11,7 +11,9 @@ public class VDAUnknownDelimiterToken extends UnknownDelimiterToken {
      * @param tokenPosition
      *         token position in document
      */
-    public VDAUnknownDelimiterToken(String tokenString, int tokenPosition) {
+    public VDAUnknownDelimiterToken(
+            final String tokenString,
+            final int tokenPosition) {
         super(tokenString, tokenPosition);
     }
 

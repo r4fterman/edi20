@@ -30,15 +30,14 @@ public class EDIFACTDelimiters implements IDelimiters {
     }
 
     /**
-     * @param beginOfDocument
-     *         indicates begin of document
+     * @param beginOfDocument indicates begin of document
      */
     public EDIFACTDelimiters(final String beginOfDocument) {
         if (StringUtil.isNotSet(beginOfDocument)) {
             return;
         }
         // UNA:+.? '
-        int length = SEGMENT_UNA.length();
+        final int length = SEGMENT_UNA.length();
         if (beginOfDocument.startsWith(SEGMENT_UNA) && beginOfDocument.length() >= length + 6) {
             // complex delimiter
             setComplextElementDelimiter(beginOfDocument.substring(length, length + 1));
@@ -54,7 +53,9 @@ public class EDIFACTDelimiters implements IDelimiters {
         }
     }
 
-    public EDIFACTDelimiters(final String segmentDelimiter, final String elementDelimiter) {
+    public EDIFACTDelimiters(
+            final String segmentDelimiter,
+            final String elementDelimiter) {
         setSegmentDelimiter(segmentDelimiter);
         setElementDelimiter(elementDelimiter);
     }
@@ -172,7 +173,9 @@ public class EDIFACTDelimiters implements IDelimiters {
     }
 
     @Override
-    public void setDelimiter(final String delimiter, final int delimiterIdentifier) {
+    public void setDelimiter(
+            final String delimiter,
+            final int delimiterIdentifier) {
         switch (delimiterIdentifier) {
             case DELIMITER_COMPLEX_ELEMENT:
                 complexElementDelimiter = delimiter;

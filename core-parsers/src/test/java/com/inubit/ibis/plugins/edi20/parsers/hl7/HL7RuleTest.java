@@ -22,104 +22,104 @@ import static org.hamcrest.junit.MatcherAssert.assertThat;
 class HL7RuleTest {
 
     private Document getRuleDocument(final String ruleDocumentName) throws URISyntaxException, DocumentException {
-        URL url = HL7RuleTest.class.getResource(ruleDocumentName);
+        final URL url = HL7RuleTest.class.getResource(ruleDocumentName);
         assertThat("File not found: " + ruleDocumentName, url, not(nullValue()));
-        File xmlFile = new File(url.toURI());
+        final File xmlFile = new File(url.toURI());
         return XmlUtils.getDocumentThrowing(xmlFile);
     }
 
     @Test
     void testEDIFACTRule_HL7_SRM_S01_v231() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
-    void testEDIFACTRule_HL7_SRM_2_3() throws Exception{
-        Document ruleDoc = getRuleDocument("HL7-SRM-2.3--.xml");
+    void testEDIFACTRule_HL7_SRM_2_3() throws Exception {
+        final Document ruleDoc = getRuleDocument("HL7-SRM-2.3--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testGetAgency() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getAgency(), is(emptyString()));
     }
 
     @Test
     void testGetDescription() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getDescription(), is("SRM/SRR - Request new appointment booking"));
     }
 
     @Test
     void testGetLayout() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getLayout(), is("hwed"));
     }
 
     @Test
     void testGetRelease() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getRelease(), is("-"));
     }
 
     @Test
     void testGetStandard() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getStandard(), is("HL7"));
     }
 
     @Test
     void testGetType() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getType(), is("SRM_S01"));
     }
 
     @Test
     void testGetVersion() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getVersion(), is("v231"));
     }
 
     @Test
     void testHasMoreRuleTokens() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testToString() throws Exception {
-        Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
+        final Document ruleDoc = getRuleDocument("HL7-SRM_S01-v231--.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new HL7Rule(ruleDoc);
+        final AbstractEDIRule rule = new HL7Rule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.toString(), is("HL7-SRM_S01-v231---"));
     }

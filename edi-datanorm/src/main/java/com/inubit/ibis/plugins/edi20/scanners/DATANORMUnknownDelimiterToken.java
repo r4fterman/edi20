@@ -11,13 +11,15 @@ public class DATANORMUnknownDelimiterToken extends UnknownDelimiterToken {
      * @param tokenPosition
      *         token position in document
      */
-    public DATANORMUnknownDelimiterToken(String tokenString, int tokenPosition) {
+    public DATANORMUnknownDelimiterToken(
+            final String tokenString,
+            final int tokenPosition) {
         super(tokenString, tokenPosition);
     }
 
     @Override
     public IIdentifier getIdentifier() {
-        String token = getToken();
+        final String token = getToken();
         int idx = 1;
         if (token.contains(";")) {
             idx = token.indexOf(";");

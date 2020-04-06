@@ -13,10 +13,6 @@ public class EDIFACTEnveloperRule extends EDIFACTRule {
         return "ENVELOPER";
     }
 
-    /**
-     * @param enveloperDocument
-     * @throws InubitException
-     */
     public EDIFACTEnveloperRule(final Document enveloperDocument) throws InubitException {
         super(enveloperDocument);
     }

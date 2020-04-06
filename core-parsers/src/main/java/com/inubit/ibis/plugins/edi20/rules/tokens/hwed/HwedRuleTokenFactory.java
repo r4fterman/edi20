@@ -22,17 +22,17 @@ public final class HwedRuleTokenFactory {
     private static final String NAME_MESSAGE = "Message";
     private static final String NAME_ENVELOPER = "Enveloper";
 
-    private static final Hashtable<Element, IRuleToken> instanceCache = new Hashtable<Element, IRuleToken>(100);
+    private static final Hashtable<Element, IRuleToken> INSTANCE_CACHE = new Hashtable<>(100);
 
     public static IRuleToken getInstance(final Element ruleElement) throws IllegalArgumentException {
         if (ruleElement == null) {
             throw new IllegalArgumentException("Element is null!");
         }
-        if (instanceCache.containsKey(ruleElement)) {
-            return instanceCache.get(ruleElement);
+        if (INSTANCE_CACHE.containsKey(ruleElement)) {
+            return INSTANCE_CACHE.get(ruleElement);
         }
 
-        String ruleElementName = ruleElement.getName();
+        final String ruleElementName = ruleElement.getName();
         if (isRootElement(ruleElementName)) {
             return addToCache(ruleElement, new EDIRuleRoot(ruleElement));
         }
@@ -78,9 +78,11 @@ public final class HwedRuleTokenFactory {
         return NAME_MESSAGE.equals(ruleElementName);
     }
 
-    private static IRuleToken addToCache(final Element ruleElement, final IRuleToken token) {
+    private static IRuleToken addToCache(
+            final Element ruleElement,
+            final IRuleToken token) {
         if (ruleElement != null && token != null) {
-            instanceCache.put(ruleElement, token);
+            INSTANCE_CACHE.put(ruleElement, token);
         }
         return token;
     }

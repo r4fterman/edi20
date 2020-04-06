@@ -25,42 +25,42 @@ class EDIFACTParserTest {
 
     @Disabled
     void testGenericParserDocument() throws Exception {
-        String testFile = "EDIFACT-ifcsum-1.xml";
-        String ruleFile = "EDIFACT-IFCSUM-D-96A.xml";
+        final String testFile = "EDIFACT-ifcsum-1.xml";
+        final String ruleFile = "EDIFACT-IFCSUM-D-96A.xml";
 
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(getFileContent(testFile), new EDIFACTDelimiters());
-        EDIFACTRule rule = new EDIFACTRule(getDocument(ruleFile));
-        EDIFACTParser parser = new EDIFACTParser(scanner, rule);
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(getFileContent(testFile), new EDIFACTDelimiters());
+        final EDIFACTRule rule = new EDIFACTRule(getDocument(ruleFile));
+        final EDIFACTParser parser = new EDIFACTParser(scanner, rule);
         parser.parse();
     }
 
     @Disabled
     void testGenericParserString() throws Exception {
-        String testFile = "EDIFACT-ifcsum-1.txt";
-        String ruleFile = "EDIFACT-IFCSUM-D-96A.xml";
+        final String testFile = "EDIFACT-ifcsum-1.txt";
+        final String ruleFile = "EDIFACT-IFCSUM-D-96A.xml";
 
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(getFileContent(testFile), new EDIFACTDelimiters());
-        EDIFACTRule rule = new EDIFACTRule(getDocument(ruleFile));
-        EDIFACTParser parser = new EDIFACTParser(scanner, rule);
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(getFileContent(testFile), new EDIFACTDelimiters());
+        final EDIFACTRule rule = new EDIFACTRule(getDocument(ruleFile));
+        final EDIFACTParser parser = new EDIFACTParser(scanner, rule);
         parser.parse();
     }
 
     @Disabled
     void testLexicalPosition() throws Exception {
-        StringBuilder content = new StringBuilder("UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'");
-        String ruleFile = "EDIFACT-IFCSUM-D-96A.xml";
+        final StringBuilder content = new StringBuilder("UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'");
+        final String ruleFile = "EDIFACT-IFCSUM-D-96A.xml";
 
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(content, new EDIFACTDelimiters());
-        EDIFACTRule rule = new EDIFACTRule(getDocument(ruleFile));
-        EDIFACTParser parser = new EDIFACTParser(scanner, rule);
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(content, new EDIFACTDelimiters());
+        final EDIFACTRule rule = new EDIFACTRule(getDocument(ruleFile));
+        final EDIFACTParser parser = new EDIFACTParser(scanner, rule);
         parser.parse();
     }
 
     private StringBuilder getFileContent(final String testFile) throws IOException, URISyntaxException {
-        URL url = EDIFACTParserTest.class.getResource(testFile);
+        final URL url = EDIFACTParserTest.class.getResource(testFile);
         assertThat("File not found: " + testFile, url, not(nullValue()));
-        File tFile = new File(url.toURI());
-        StringBuilder content = FileUtils.getContents(tFile);
+        final File tFile = new File(url.toURI());
+        final StringBuilder content = FileUtils.getContents(tFile);
         assertThat(content, not(nullValue()));
         assertThat(content.length(), not(0));
         System.out.println("EDIFACTParserTest.getFileContent(): load file [" + testFile + "]");
@@ -68,8 +68,8 @@ class EDIFACTParserTest {
     }
 
     private Document getDocument(final String testFile) throws DocumentException, IOException, URISyntaxException {
-        StringBuilder content = getFileContent(testFile);
-        Document document = DocumentHelper.parseText(content.toString());
+        final StringBuilder content = getFileContent(testFile);
+        final Document document = DocumentHelper.parseText(content.toString());
         assertThat(document, not(nullValue()));
         System.out.println("EDIFACTParserTest.getDocument(): load rule [" + testFile + "]");
         return document;

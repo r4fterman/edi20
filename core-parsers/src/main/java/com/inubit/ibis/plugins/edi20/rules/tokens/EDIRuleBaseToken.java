@@ -2,12 +2,12 @@ package com.inubit.ibis.plugins.edi20.rules.tokens;
 
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
-import com.inubit.ibis.utils.StringUtil;
 import org.dom4j.Element;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author r4fter
@@ -58,14 +58,16 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     }
 
     /**
-     * @return <code>true</code> if this rule token is mandatory, <code>false</code> otherwise
+     * @return <code>true</code> if this rule token is mandatory,
+     * <code>false</code> otherwise
      */
     public boolean isMandatory() {
         return getRequired().equals(REQUIRED_MANDATORY);
     }
 
     /**
-     * @return <code>true</code> if this rule token is conditional, <code>false</code> otherwise
+     * @return <code>true</code> if this rule token is conditional,
+     * <code>false</code> otherwise
      */
     public boolean isConditional() {
         return getRequired().equals(REQUIRED_CONDITIONAL);
@@ -89,11 +91,10 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
         return getRuleElement() != null && !getRuleElement().elements().isEmpty();
     }
 
-    @SuppressWarnings("unchecked")
     public List<IRuleToken> getChildren() {
-        List<Element> childElements = getRuleElement().elements();
-        List<IRuleToken> children = new ArrayList<IRuleToken>(childElements.size());
-        for (Element childElement : childElements) {
+        final List<Element> childElements = getRuleElement().elements();
+        final List<IRuleToken> children = new ArrayList<>(childElements.size());
+        for (final Element childElement : childElements) {
             children.add(createElementInstance(childElement));
         }
         return children;
@@ -104,7 +105,8 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     }
 
     /**
-     * @return next rule child token or <code>null</code> if no such child exists
+     * @return next rule child token or <code>null</code> if no such child
+     * exists
      */
     public IRuleToken nextChildren() {
         if (getChildIterator().hasNext()) {
@@ -129,7 +131,6 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
         status = STATUS_IN_PROGRESS;
     }
 
-    @SuppressWarnings("unchecked")
     private Iterator<Element> getChildIterator() {
         if (childIterator == null) {
             childIterator = getRuleElement().elementIterator();
@@ -151,7 +152,7 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
      * @return path to this rule token (in xpath notation)
      */
     public String getRulePath() {
-        StringBuilder pathBuilder = new StringBuilder(getID());
+        final StringBuilder pathBuilder = new StringBuilder(getID());
         EDIRuleBaseToken parent = (EDIRuleBaseToken) getParent();
         while (parent != null) {
             pathBuilder.insert(0, "/");
@@ -171,7 +172,7 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
      * @return XPath to this dom4j node
      */
     public String getXPath() {
-        IRuleToken parent = getParent();
+        final IRuleToken parent = getParent();
         if (parent instanceof EDIRuleBaseToken) {
             return ((EDIRuleBaseToken) parent).getXPath() + getPathString();
         }
@@ -183,13 +184,14 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     }
 
     /**
-     * @param childToken child token
+     * @param childToken
+     *         child token
      * @return index or -1 if the given token is not a child of this token
      */
     public int getIndexOfChild(final EDIRuleBaseToken childToken) {
-        List<IRuleToken> children = getChildren();
+        final List<IRuleToken> children = getChildren();
         for (int i = 0; i < children.size(); i++) {
-            IRuleToken child = children.get(i);
+            final IRuleToken child = children.get(i);
             if (child.getID().equals(childToken.getID())) {
                 return i;
             }
@@ -198,47 +200,18 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((childIterator == null) ? 0 : childIterator.hashCode());
-        result = prime * result + ((ruleElement == null) ? 0 : ruleElement.hashCode());
-        return result;
+    public boolean equals(final Object other) {
+        if (other instanceof EDIRuleBaseToken) {
+            EDIRuleBaseToken that = (EDIRuleBaseToken) other;
+            return status == that.status
+                    && Objects.equals(ruleElement, that.ruleElement)
+                    && Objects.equals(childIterator, that.childIterator);
+        }
+        return false;
     }
 
     @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof EDIRuleBaseToken)) {
-            return false;
-        }
-        EDIRuleBaseToken other = (EDIRuleBaseToken) obj;
-        if (childIterator == null) {
-            if (other.childIterator != null) {
-                return false;
-            }
-        } else if (!childIterator.equals(other.childIterator)) {
-            return false;
-        }
-        if (ruleElement == null) {
-            if (other.ruleElement != null) {
-                return false;
-            }
-        } else if (!ruleElement.equals(other.ruleElement)) {
-            return false;
-        }
-        if (StringUtil.isSet(getID())) {
-            if (StringUtil.isNotSet(other.getID())) {
-                return false;
-            }
-        } else if (!getID().equals(other.getID())) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(ruleElement, childIterator, status);
     }
 }

@@ -1,7 +1,5 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import java.util.List;
-
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
 import com.inubit.ibis.plugins.edi20.rules.VDARule;
@@ -16,6 +14,8 @@ import com.inubit.ibis.plugins.edi20.scanners.VDAUnknownDelimiterToken;
 import com.inubit.ibis.utils.InubitException;
 import org.apache.commons.lang.StringUtils;
 
+import java.util.List;
+
 /**
  * @author r4fter
  */
@@ -27,17 +27,19 @@ public class VDAParser extends HWFPEParser {
      * @param rule
      *         VDA rule
      */
-    public VDAParser(final VDALexicalScanner scanner, final VDARule rule) {
+    public VDAParser(
+            final VDALexicalScanner scanner,
+            final VDARule rule) {
         super(scanner, rule);
     }
 
     @Override
-    public boolean canParse(AbstractEDIRule rule) {
+    public boolean canParse(final AbstractEDIRule rule) {
         return true;
     }
 
     @Override
-    public boolean canParse(StringBuilder inputDocument) {
+    public boolean canParse(final StringBuilder inputDocument) {
         return true;
     }
 
@@ -47,7 +49,7 @@ public class VDAParser extends HWFPEParser {
     }
 
     @Override
-    protected void parseToken(IToken token) throws InubitException {
+    protected void parseToken(final IToken token) throws InubitException {
         if (token instanceof VDAUnknownDelimiterToken) {
             parseToken((VDAUnknownDelimiterToken) token);
         } else {
@@ -56,7 +58,7 @@ public class VDAParser extends HWFPEParser {
     }
 
     @Override
-    protected void parseDelimiter(IToken token) throws InubitException {
+    protected void parseDelimiter(final IToken token) throws InubitException {
         if (token instanceof VDASegmentDelimiterToken) {
             // this token is not part of the rule
         } else {
@@ -64,18 +66,20 @@ public class VDAParser extends HWFPEParser {
         }
     }
 
-    private void parseToken(VDAUnknownDelimiterToken token) throws RuleViolationException {
-        EDIRuleSegment ruleToken = getRuleToken(token);
+    private void parseToken(final VDAUnknownDelimiterToken token) throws RuleViolationException {
+        final EDIRuleSegment ruleToken = getRuleToken(token);
         parseTokenAgainstRuleToken(token, ruleToken);
     }
 
-    private void parseTokenAgainstRuleToken(VDAUnknownDelimiterToken messageToken, EDIRuleSegment ruleToken) throws RuleViolationException {
+    private void parseTokenAgainstRuleToken(
+            final VDAUnknownDelimiterToken messageToken,
+            final EDIRuleSegment ruleToken) throws RuleViolationException {
         // match parts of token with rule token
-        List<IElementRuleToken> elements = ruleToken.getElements();
-        for (IElementRuleToken element : elements) {
+        final List<IElementRuleToken> elements = ruleToken.getElements();
+        for (final IElementRuleToken element : elements) {
             if (element instanceof HwfpeRuleElement) {
-                HwfpeRuleElement ruleElement = (HwfpeRuleElement) element;
-                String part = getMessagePart(messageToken, ruleElement);
+                final HwfpeRuleElement ruleElement = (HwfpeRuleElement) element;
+                final String part = getMessagePart(messageToken, ruleElement);
                 validateMessagePartAgainstRuleElement(part, ruleElement);
             } else {
                 throw new RuleViolationException("Unsupported rule token found: " + element.getClass().getCanonicalName() + "!");
@@ -83,7 +87,9 @@ public class VDAParser extends HWFPEParser {
         }
     }
 
-    private void validateMessagePartAgainstRuleElement(String messagePart, HwfpeRuleElement ruleElement) throws RuleViolationException {
+    private void validateMessagePartAgainstRuleElement(
+            final String messagePart,
+            final HwfpeRuleElement ruleElement) throws RuleViolationException {
         if (ruleElement.isMandatory()) {
             if (StringUtils.isEmpty(messagePart)) {
                 throw new RuleViolationException("Mandatory element [" + ruleElement + "] has not content in message!");
@@ -91,29 +97,31 @@ public class VDAParser extends HWFPEParser {
         }
     }
 
-    private String getMessagePart(VDAUnknownDelimiterToken messageToken, HwfpeRuleElement ruleElement) throws RuleViolationException {
+    private String getMessagePart(
+            final VDAUnknownDelimiterToken messageToken,
+            final HwfpeRuleElement ruleElement) throws RuleViolationException {
         // mandatory part of the token
-        int from = ruleElement.getFromPosition() - 1;
-        int to = ruleElement.getToPosition();
-        String token = messageToken.getToken();
+        final int from = ruleElement.getFromPosition() - 1;
+        final int to = ruleElement.getToPosition();
+        final String token = messageToken.getToken();
         if (to < token.length()) {
             return messageToken.getToken().substring(from, to);
         }
         throw new RuleViolationException("Rule token [" + ruleElement + "(from:" + from + ", to:" + to + ")] out of bound (token length:" + token.length() + ")!");
     }
 
-    private EDIRuleSegment getRuleToken(VDAUnknownDelimiterToken token) throws RuleViolationException {
+    private EDIRuleSegment getRuleToken(final VDAUnknownDelimiterToken token) throws RuleViolationException {
         // get token identifier (e.g. segment identifier)
-        IIdentifier identifier = token.getIdentifier();
+        final IIdentifier identifier = token.getIdentifier();
         // get corresponding rule node
         return getCorrespondingRuleToken(identifier);
     }
 
-    private EDIRuleSegment getCorrespondingRuleToken(IIdentifier identifier) throws RuleViolationException {
+    private EDIRuleSegment getCorrespondingRuleToken(final IIdentifier identifier) throws RuleViolationException {
         // walk through rule finding segment by the given identifier
         // check that for rule violation
-        List<EDIRuleSegment> segments = getRule().getSegments();
-        for (EDIRuleSegment segment : segments) {
+        final List<EDIRuleSegment> segments = getRule().getSegments();
+        for (final EDIRuleSegment segment : segments) {
             if (identifier.getID().equals(segment.getID())) {
                 return segment;
             }

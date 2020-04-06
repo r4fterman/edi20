@@ -1,10 +1,10 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import java.io.OutputStream;
-
 import com.inubit.ibis.plugins.edi20.outputs.IOutputWriter;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+
+import java.io.OutputStream;
 
 /**
  * @author r4fter
@@ -24,7 +24,7 @@ public class EDIFACTWriter implements IOutputWriter {
 
     @Override
     public void write(final OutputStream stream) {
-        // TODO: implement
+        //todo: implement
     }
 
 }

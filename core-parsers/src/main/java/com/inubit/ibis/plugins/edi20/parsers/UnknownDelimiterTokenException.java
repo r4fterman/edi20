@@ -8,7 +8,7 @@ import com.inubit.ibis.utils.InubitException;
  */
 public class UnknownDelimiterTokenException extends InubitException {
 
-    public UnknownDelimiterTokenException(IToken token) {
+    public UnknownDelimiterTokenException(final IToken token) {
         super("Unknown delimiter token found: " + token.toString());
     }
 }

@@ -21,152 +21,152 @@ import static org.hamcrest.junit.MatcherAssert.assertThat;
 class BEMISRuleTest {
 
     private Document getRuleDocument(final String ruleDocumentName) throws URISyntaxException, DocumentException {
-        URL url = BEMISRuleTest.class.getResource(ruleDocumentName);
+        final URL url = BEMISRuleTest.class.getResource(ruleDocumentName);
         assertThat("File not found: " + ruleDocumentName, url, not(nullValue()));
-        File xmlFile = new File(url.toURI());
+        final File xmlFile = new File(url.toURI());
         return XmlUtils.getDocumentThrowing(xmlFile);
     }
 
     @Test
     void testEDIFACTRule_BEMIS_7135_IN_1_0_A() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testEDIFACTRule_BEMIS_7135_OUT_1_0_A() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-OUT-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-OUT-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testEDIFACTRule_BEMIS_7170_IN_1_0_A() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7170-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7170-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testEDIFACTRule_BEMIS_7170_OUT_1_0_A() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7170-OUT-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7170-OUT-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testEDIFACTRule_BEMIS_7255_IN_1_0_A() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7255-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7255-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testEDIFACTRule_BEMIS_7255_OUT_1_0_A() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7255-OUT-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7255-OUT-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testEDIFACTRule_BEMIS_7280_IN_1_0_A() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7280-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7280-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testEDIFACTRule_BEMIS_7280_OUT_1_0_A() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7280-OUT-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7280-OUT-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testGetAgency() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getAgency(), is("BAAN Electronic Message Interchange System"));
     }
 
     @Test
-    void testGetDescription() throws Exception{
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+    void testGetDescription() throws Exception {
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getDescription(), is("Trading Invoice"));
     }
 
     @Test
     void testGetLayout() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getLayout(), is("hwed"));
     }
 
     @Test
     void testGetRelease() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getRelease(), is("A"));
     }
 
     @Test
     void testGetStandard() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getStandard(), is("BEMIS"));
     }
 
     @Test
     void testGetType() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getType(), is("7135-IN"));
     }
 
     @Test
     void testGetVersion() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.getVersion(), is("1.0"));
     }
 
     @Test
     void testHasMoreRuleTokens() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
     }
 
     @Test
     void testToString() throws Exception {
-        Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
         assertThat(ruleDoc, not(nullValue()));
-        AbstractEDIRule rule = new BEMISRule(ruleDoc);
+        final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.toString(), is("BEMIS-7135-IN-1.0-A-BAAN Electronic Message Interchange System"));
     }

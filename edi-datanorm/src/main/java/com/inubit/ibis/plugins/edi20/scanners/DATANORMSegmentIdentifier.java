@@ -7,7 +7,7 @@ public class DATANORMSegmentIdentifier implements IIdentifier {
 
     private final String identifier;
 
-    public DATANORMSegmentIdentifier(String identifier) {
+    public DATANORMSegmentIdentifier(final String identifier) {
         this.identifier = identifier;
     }
 

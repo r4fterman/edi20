@@ -24,11 +24,11 @@ public final class StringUtil {
         return !isNotSet(text);
     }
 
-    public static boolean isSet(StringBuffer textBuffer) {
+    public static boolean isSet(final StringBuffer textBuffer) {
         return !isNotSet(textBuffer);
     }
 
-    public static boolean isNotSet(StringBuilder textBuilder) {
+    public static boolean isNotSet(final StringBuilder textBuilder) {
         return (textBuilder == null || textBuilder.length() == 0);
     }
 
@@ -36,18 +36,22 @@ public final class StringUtil {
         return (textBuffer == null || textBuffer.length() == 0);
     }
 
-    public static boolean isOneOf(final String searchFor, final List<String> valueList) {
+    public static boolean isOneOf(
+            final String searchFor,
+            final List<String> valueList) {
         if (valueList == null || valueList.isEmpty()) {
             return false;
         }
-        return isOneOf(searchFor, valueList.toArray(new String[valueList.size()]));
+        return isOneOf(searchFor, valueList.toArray(new String[0]));
     }
 
-    public static boolean isOneOf(final String searchFor, final String[] valueList) {
+    public static boolean isOneOf(
+            final String searchFor,
+            final String[] valueList) {
         if (valueList == null) {
             return false;
         }
-        for (String value : valueList) {
+        for (final String value : valueList) {
             if (isSet(value) && value.equals(searchFor)) {
                 return true;
             }
@@ -56,15 +60,14 @@ public final class StringUtil {
     }
 
     /**
-     * @param text
-     *         text to check
+     * @param text text to check
      * @return <code>true</code> if the given text contains only white spaces (e.g. \n, \t, \r), <code>false</code>
-     *         otherwise
+     * otherwise
      */
     public static boolean isWhitespacesOnly(final String text) {
         if (isSet(text)) {
-            Pattern p = Pattern.compile("^\\s+$");
-            Matcher m = p.matcher(text);
+            final Pattern p = Pattern.compile("^\\s+$");
+            final Matcher m = p.matcher(text);
             return m.matches();
         }
         return false;

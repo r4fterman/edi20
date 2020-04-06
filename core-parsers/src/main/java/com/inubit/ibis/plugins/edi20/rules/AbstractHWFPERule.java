@@ -25,7 +25,7 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
     }
 
     @Override
-    protected EDIRuleRoot createRootElement(Document ruleDocument) {
+    protected EDIRuleRoot createRootElement(final Document ruleDocument) {
         return (EDIRuleRoot) HwfpeRuleTokenFactory.getInstance(ruleDocument.getRootElement());
     }
 
@@ -35,13 +35,14 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
     }
 
     /**
-     * @return next segment in rule or <code>null</code> if no further segment was found in rule
+     * @return next segment in rule or <code>null</code> if no further segment
+     * was found in rule
      */
-    public EDIRuleSegment nextSegment() throws InubitException {
-//        IRuleToken currentRuleToken = getCurrentRuleToken();
-//        EDIRuleSegment segment = findNextRuleSegment(currentRuleToken);
-//        setCurrentRuleToken(segment);
-//        return segment;
+    public EDIRuleSegment nextSegment() {
+        //        IRuleToken currentRuleToken = getCurrentRuleToken();
+        //        EDIRuleSegment segment = findNextRuleSegment(currentRuleToken);
+        //        setCurrentRuleToken(segment);
+        //        return segment;
         return null;
     }
 
@@ -62,36 +63,36 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
         return null;
     }
 
-    private EDIRuleSegment findNextRuleSegmentFromElement(EDIRuleElement ruleElement) throws InubitException {
-        IRuleToken nextRuleToken = RuleUtil.getParentFollowingSibling(ruleElement);
+    private EDIRuleSegment findNextRuleSegmentFromElement(final EDIRuleElement ruleElement) throws InubitException {
+        final IRuleToken nextRuleToken = RuleUtil.getParentFollowingSibling(ruleElement);
         System.out.println("findNextRuleSegmentFromElement(): nextRuleToken=" + nextRuleToken);
         return findNextRuleSegment(nextRuleToken);
     }
 
-    private EDIRuleSegment findNextRuleSegmentFromSegment(EDIRuleSegment ruleSegment) throws InubitException {
-//        if (ruleSegment.equals(getCurrentRuleToken())) {
-//            if (ruleSegment.canLoop()) {
-//                ruleSegment.looped();
-//                return ruleSegment;
-//            }
-//            return findNextRuleSegment(RuleUtil.getFollowingSibling(ruleSegment));
-//        }
+    private EDIRuleSegment findNextRuleSegmentFromSegment(final EDIRuleSegment ruleSegment) {
+        //        if (ruleSegment.equals(getCurrentRuleToken())) {
+        //            if (ruleSegment.canLoop()) {
+        //                ruleSegment.looped();
+        //                return ruleSegment;
+        //            }
+        //            return findNextRuleSegment(RuleUtil.getFollowingSibling(ruleSegment));
+        //        }
         return ruleSegment;
     }
 
-    private EDIRuleSegment findNextRuleSegmentFromSegmentGroup(EDIRuleSegmentGroup ruleSegmentGroup) throws InubitException {
+    private EDIRuleSegment findNextRuleSegmentFromSegmentGroup(final EDIRuleSegmentGroup ruleSegmentGroup) throws InubitException {
         if (ruleSegmentGroup.canLoop()) {
-            IRuleToken nextRuleToken = RuleUtil.getChildOrFollowingSibling(ruleSegmentGroup);
+            final IRuleToken nextRuleToken = RuleUtil.getChildOrFollowingSibling(ruleSegmentGroup);
             System.out.println("findNextRuleSegmentFromSegmentGroup(): nextRuleToken=" + nextRuleToken);
             return findNextRuleSegment(nextRuleToken);
         }
-        IRuleToken nextRuleToken = RuleUtil.getFollowingSibling(ruleSegmentGroup);
+        final IRuleToken nextRuleToken = RuleUtil.getFollowingSibling(ruleSegmentGroup);
         System.out.println("findNextRuleSegmentFromSegmentGroup(): nextRuleToken=" + nextRuleToken);
         return findNextRuleSegment(nextRuleToken);
     }
 
-    private EDIRuleSegment findNextRuleSegmentFromRoot(EDIRuleRoot ruleRoot) throws InubitException {
-        IRuleToken nextRuleToken = RuleUtil.getChildOrFollowingSibling(ruleRoot);
+    private EDIRuleSegment findNextRuleSegmentFromRoot(final EDIRuleRoot ruleRoot) throws InubitException {
+        final IRuleToken nextRuleToken = RuleUtil.getChildOrFollowingSibling(ruleRoot);
         System.out.println("findNextRuleSegmentFromRoot(): nextRuleToken=" + nextRuleToken);
         return findNextRuleSegment(nextRuleToken);
     }

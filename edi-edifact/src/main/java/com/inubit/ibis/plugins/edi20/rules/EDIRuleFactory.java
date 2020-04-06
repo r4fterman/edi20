@@ -23,7 +23,9 @@ public final class EDIRuleFactory {
 
     private static EDIRuleFactory fInstance;
 
-    public static EDIRuleFactory getInstance(final StringBuilder textInputDocument, final IDelimiters delimiter) {
+    public static EDIRuleFactory getInstance(
+            final StringBuilder textInputDocument,
+            final IDelimiters delimiter) {
         if (fInstance == null) {
             fInstance = new EDIRuleFactory(textInputDocument, delimiter);
         }
@@ -33,38 +35,44 @@ public final class EDIRuleFactory {
     private StringBuilder fTextInputDocument;
     private IDelimiters fDelimiter;
 
-    private EDIRuleFactory(final StringBuilder textInputDocument, final IDelimiters delimiter) {
+    private EDIRuleFactory(
+            final StringBuilder textInputDocument,
+            final IDelimiters delimiter) {
         fTextInputDocument = textInputDocument;
         fDelimiter = delimiter;
     }
 
-    private AbstractEDIRule getEDIFACTRule(final StringBuilder textInputDocument, final boolean detectStandardRuleFileName) throws InubitException {
-        int idx = textInputDocument.indexOf("UNH");
+    private AbstractEDIRule getEDIFACTRule(
+            final StringBuilder textInputDocument,
+            final boolean detectStandardRuleFileName) throws InubitException {
+        final int idx = textInputDocument.indexOf("UNH");
         if (idx == -1) {
             throw new InubitException("Unable to auto detect rule file. No version information found in EDIFACT message!");
         }
-        StringBuilder autoDetectPart = new StringBuilder(textInputDocument.substring(idx));
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(autoDetectPart, (EDIFACTDelimiters) fDelimiter);
+        final StringBuilder autoDetectPart = new StringBuilder(textInputDocument.substring(idx));
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(autoDetectPart, (EDIFACTDelimiters) fDelimiter);
         String ruleFileName = getEDIFACTRuleFileName(scanner, detectStandardRuleFileName);
         if (ruleFileName.endsWith(DELIMITER_RULE_FILE_PART)) {
             ruleFileName = ruleFileName.substring(0, ruleFileName.length() - 1);
         }
 
-        String edifactRuleFileName = ruleFileName + XmlFileFilter.FILE_EXTENSION_XML;
-        File edifactRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, edifactRuleFileName);
+        final String edifactRuleFileName = ruleFileName + XmlFileFilter.FILE_EXTENSION_XML;
+        final File edifactRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, edifactRuleFileName);
         if (!edifactRuleFile.exists()) {
             throw new InubitException("EDI rule file not found [" + edifactRuleFile.getAbsolutePath() + "]!");
         }
         try {
-            Document edifactRuleDocument = XmlUtils.getDocumentThrowing(edifactRuleFile);
+            final Document edifactRuleDocument = XmlUtils.getDocumentThrowing(edifactRuleFile);
             return new EDIFACTRule(edifactRuleDocument);
-        } catch (DocumentException e) {
+        } catch (final DocumentException e) {
             e.printStackTrace();
             throw new InubitException("Unable to load rule file: " + edifactRuleFileName, e);
         }
     }
 
-    private String getEDIFACTRuleFileName(final EDIFACTLexicalScanner scanner, final boolean detectStandardRuleFileName) {
+    private String getEDIFACTRuleFileName(
+            final EDIFACTLexicalScanner scanner,
+            final boolean detectStandardRuleFileName) {
         try {
             if (scanner.hasMoreTokens()) {
                 // UNH
@@ -76,7 +84,7 @@ public final class EDIRuleFactory {
                 // delimiter
                 scanner.nextToken();
             }
-            StringBuilder builder = new StringBuilder("EDIFACT-");
+            final StringBuilder builder = new StringBuilder("EDIFACT-");
 
             // message type
             appendNextTokenToBuilder(scanner, builder, true);
@@ -108,13 +116,16 @@ public final class EDIRuleFactory {
                 scanner.nextToken();
             }
             return builder.toString();
-        } catch (InubitException e) {
+        } catch (final InubitException e) {
             return "";
         }
     }
 
-    private void appendNextTokenToBuilder(EDIFACTLexicalScanner scanner, StringBuilder builder, boolean mandatory) throws InubitException {
-        IToken messageTypeToken = scanner.nextToken();
+    private void appendNextTokenToBuilder(
+            final EDIFACTLexicalScanner scanner,
+            final StringBuilder builder,
+            final boolean mandatory) throws InubitException {
+        final IToken messageTypeToken = scanner.nextToken();
         if (StringUtil.isSet(messageTypeToken.getToken())) {
             builder.append(messageTypeToken.getToken());
             builder.append(DELIMITER_RULE_FILE_PART);

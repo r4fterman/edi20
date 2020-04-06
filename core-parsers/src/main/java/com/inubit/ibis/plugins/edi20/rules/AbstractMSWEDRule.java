@@ -14,7 +14,7 @@ public abstract class AbstractMSWEDRule extends AbstractHWEDRule {
      * @throws InubitException
      *         if the given rule document is not a valid EDI rule document
      */
-    public AbstractMSWEDRule(Document ruleDocument) throws InubitException {
+    public AbstractMSWEDRule(final Document ruleDocument) throws InubitException {
         super(ruleDocument);
     }
 

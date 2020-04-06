@@ -10,7 +10,7 @@ public class DATANORMTokenFactory {
 
     private static DATANORMTokenFactory factoryInstance;
 
-    public static DATANORMTokenFactory getInstance(DATANORMDelimiters datanormDelimiter) {
+    public static DATANORMTokenFactory getInstance(final DATANORMDelimiters datanormDelimiter) {
         if (datanormDelimiter == null) {
             throw new IllegalArgumentException("DATANORM delimiters are not set!");
         }
@@ -23,11 +23,13 @@ public class DATANORMTokenFactory {
 
     private final DATANORMDelimiters delimiters;
 
-    public DATANORMTokenFactory(DATANORMDelimiters datanormDelimiters) {
-        this.delimiters = datanormDelimiters;
+    public DATANORMTokenFactory(final DATANORMDelimiters datanormDelimiters) {
+        delimiters = datanormDelimiters;
     }
 
-    public IToken getToken(String tokenString, int tokenPosition) {
+    public IToken getToken(
+            final String tokenString,
+            final int tokenPosition) {
         if (StringUtils.isEmpty(tokenString)) {
             throw new IllegalArgumentException("Token not set!");
         }

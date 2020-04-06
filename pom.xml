@@ -193,12 +193,6 @@
                             <artifactId>pitest-maven</artifactId>
                             <version>${pitest.plugin.version}</version>
                         </plugin>
-
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>findbugs-maven-plugin</artifactId>
-                            <version>${findbugs.plugin.version}</version>
-                        </plugin>
                     </plugins>
                 </pluginManagement>
 
@@ -240,23 +234,14 @@
                     <!--</plugin>-->
 
                     <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>findbugs-maven-plugin</artifactId>
-                        <configuration>
-                            <!--
-                                Enables analysis which takes more memory but finds more bugs.
-                                In case of OutOfMemory changes the value of the effort element to 'Low'.
-                            -->
-                            <effort>Max</effort>
-                            <threshold>Default</threshold>
-                            <xmlOutput>true</xmlOutput>
-                            <!--<excludeFilterFile>${project.basedir}/../findbugs-exclude.xml</excludeFilterFile>-->
-                            <findbugsXmlOutputDirectory>${project.reporting.outputDirectory}/findbugs-report</findbugsXmlOutputDirectory>
-                        </configuration>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs-maven-plugin</artifactId>
+                        <version>3.1.12.2</version>
                         <executions>
                             <execution>
+                                <phase>verify</phase>
                                 <goals>
-                                    <goal>check</goal>
+                                    <goal>spotbugs</goal>
                                 </goals>
                             </execution>
                         </executions>

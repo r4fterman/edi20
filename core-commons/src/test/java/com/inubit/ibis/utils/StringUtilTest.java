@@ -114,31 +114,31 @@ class StringUtilTest {
 
     @Test
     void testIsOneOfEmptyStringListOfString() {
-        List<String> valueList = List.of("");
+        final List<String> valueList = List.of("");
         assertThat(StringUtil.isOneOf("", valueList), is(false));
     }
 
     @Test
     void testIsOneOfWhitespaceStringListOfEmptyString() {
-        List<String> valueList = List.of("");
+        final List<String> valueList = List.of("");
         assertThat(StringUtil.isOneOf(" ", valueList), is(false));
     }
 
     @Test
     void testIsOneOfStringListOfMatchingString() {
-        List<String> valueList = List.of("text");
+        final List<String> valueList = List.of("text");
         assertThat(StringUtil.isOneOf("text", valueList), is(true));
     }
 
     @Test
     void testIsOneOfStringListOfNonMatchingString() {
-        List<String> valueList = List.of(" text", " text ", "text ");
+        final List<String> valueList = List.of(" text", " text ", "text ");
         assertThat(StringUtil.isOneOf("text", valueList), is(false));
     }
 
     @Test
     void testIsOneOfStringListOfMatchingStrings() {
-        List<String> valueList = List.of(" text", " text ", "text ", "text");
+        final List<String> valueList = List.of(" text", " text ", "text ", "text");
         assertThat(StringUtil.isOneOf("text", valueList), is(true));
     }
 
@@ -159,12 +159,12 @@ class StringUtilTest {
 
     @Test
     void testIsWhitespacesOnlyStringWithWhitespaces() {
-        assertThat(StringUtil.isWhitespacesOnly("	text "), is(false));
+        assertThat(StringUtil.isWhitespacesOnly("   text "), is(false));
     }
 
     @Test
     void testIsWhitespacesOnlyWhitespaceString() {
-        assertThat(StringUtil.isWhitespacesOnly("   	"), is(true));
+        assertThat(StringUtil.isWhitespacesOnly("       "), is(true));
     }
 
 }
