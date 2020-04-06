@@ -11,11 +11,9 @@ GNU General Public License (GPL)
 
     $>./run.sh
     
-# Build Status
+# Status
 
 [![Build Status](https://travis-ci.org/r4fterman/edi20.svg?branch=master)](https://travis-ci.org/r4fterman/edi20)
-
-# Security Analyses
-
 [![Known Vulnerabilities](https://snyk.io/test/github/r4fterman/edi20/badge.svg?targetFile=edi-edifact%2Fpom.xml)](https://snyk.io/test/github/r4fterman/edi20?targetFile=edi-edifact%2Fpom.xml)
-
+<a href="https://codeclimate.com/github/r4fterman/edi20/maintainability"><img src="https://api.codeclimate.com/v1/badges/a211643fcb6e2e306aed/maintainability" /></a>
+<a href="https://codeclimate.com/github/r4fterman/edi20/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a211643fcb6e2e306aed/test_coverage" /></a>
