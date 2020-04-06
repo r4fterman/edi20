@@ -21,6 +21,7 @@ script:
   - mvn clean install -Pci
 
 after_script:
+  - find . -name jacoco.xml
   - JACOCO_SOURCE_PATH=./core-commons/src/main/java ./cc-test-reporter format-coverage ./core-commons/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.core-commons.json
   - JACOCO_SOURCE_PATH=./core-parsers/src/main/java ./cc-test-reporter format-coverage ./core-parsers/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.core-parsers.json
   - JACOCO_SOURCE_PATH=./edi-datanorm/src/main/java ./cc-test-reporter format-coverage ./edi-datanorm/target/coverage-reports/jacoco.xml -t jacoco -o ./target/coverage/codeclimate.edi-datanorm.json
