@@ -3,8 +3,8 @@ package com.inubit.ibis.plugins.edi20.rules.tokens;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import org.dom4j.Element;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author r4fter
@@ -51,12 +51,9 @@ public class EDIRuleSegmentGroup extends EDIRuleSegment {
     }
 
     public List<EDIRuleSegment> getSegments() {
-        List<EDIRuleSegment> segments = new ArrayList<EDIRuleSegment>();
-        for (IRuleToken child : getChildren()) {
-            if (child instanceof EDIRuleSegment) {
-                segments.add((EDIRuleSegment) child);
-            }
-        }
-        return segments;
+        return getChildren().stream()
+                .filter(child -> child instanceof EDIRuleSegment)
+                .map(child -> (EDIRuleSegment) child)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

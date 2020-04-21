@@ -8,10 +8,8 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleTokenFactory;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
+import org.dom4j.Element;
 
-/**
- * @author r4fter
- */
 public abstract class AbstractHWFPERule extends AbstractEDIRule {
 
     /**
@@ -25,8 +23,8 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
     }
 
     @Override
-    protected EDIRuleRoot createRootElement(final Document ruleDocument) {
-        return (EDIRuleRoot) HwfpeRuleTokenFactory.getInstance(ruleDocument.getRootElement());
+    protected IRuleToken getRuleToken(final Element element) {
+        return  HwfpeRuleTokenFactory.getInstance(element);
     }
 
     @Override

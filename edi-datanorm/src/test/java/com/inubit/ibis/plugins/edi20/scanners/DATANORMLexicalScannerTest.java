@@ -2,7 +2,6 @@ package com.inubit.ibis.plugins.edi20.scanners;
 
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.DATANORMDelimiters;
 import com.inubit.ibis.utils.FileUtils;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -16,9 +15,6 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * @author r4fter
- */
 class DATANORMLexicalScannerTest {
 
     @Test
@@ -30,7 +26,7 @@ class DATANORMLexicalScannerTest {
         assertThat(scanner.hasMoreTokens(), is(true));
     }
 
-    @Disabled
+    @Test
     void testDATANORMLexicalScannerReadLength() throws Exception {
         final String fileName = "datanorm_message.txt";
         final StringBuilder content = getContent(fileName);
@@ -53,235 +49,54 @@ class DATANORMLexicalScannerTest {
         final DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(new StringBuilder(ediStr), new DATANORMDelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
 
-        IToken token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("C"));
-        assertThat(scanner.hasMoreTokens(), is(true));
+        IToken token;
 
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("N"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("BAU"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("F"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("MKF"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("ABK"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("0563E.341200000"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMSegmentDelimiterToken.class));
-        assertThat(token.getToken(), is("\n"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("030101"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("1S"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("E"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("25000"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("62"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("33"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMSegmentDelimiterToken.class));
-        assertThat(token.getToken(), is("\n"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("ST"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("FZ-DEUT."));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMUnknownDelimiterToken.class));
-        assertThat(token.getToken(), is("563-3412~"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-        assertThat(scanner.hasMoreTokens(), is(true));
-
-        token = scanner.nextToken();
-        assertThat(token.getClass(), is(DATANORMElementDelimiterToken.class));
-        assertThat(token.getToken(), is(";"));
-
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "C");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "N");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "BAU");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "F");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "MKF");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "ABK");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "0563E.341200000");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMSegmentDelimiterToken.class, "\n");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "030101");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "1S");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "E");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "25000");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "62");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "33");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMSegmentDelimiterToken.class, "\n");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "ST");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "FZ-DEUT.");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "563-3412~");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
+        assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
         assertThat(scanner.hasMoreTokens(), is(false));
     }
 
@@ -298,6 +113,14 @@ class DATANORMLexicalScannerTest {
     @Test
     void testLexicalScannerNullDocNullDelim() {
         assertThrows(IllegalArgumentException.class, () -> new DATANORMLexicalScanner(null, null));
+    }
+
+    private void assertToken(
+            final IToken token,
+            final Class<? extends IToken> tokenClass,
+            final String tokenValue) {
+        assertThat(token.getClass(), is(tokenClass));
+        assertThat(token.getToken(), is(tokenValue));
     }
 
     private StringBuilder getContent(final String fileName) throws IOException, URISyntaxException {

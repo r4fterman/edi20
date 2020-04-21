@@ -9,9 +9,6 @@ import org.dom4j.Element;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author r4fter
- */
 public class EDIRuleSegment extends EDIRuleBaseToken implements IRepeatableRuleToken {
 
     private static final String ATTRIBUTE_NAME_LOOP = "loop";

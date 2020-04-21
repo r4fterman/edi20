@@ -3,9 +3,6 @@ package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
 import com.inubit.ibis.utils.StringUtil;
 
-/**
- * @author r4fter
- */
 public class EDIFACTDelimiters implements IDelimiters {
 
     public static final int DELIMITER_ELEMENT = 0;
@@ -22,9 +19,6 @@ public class EDIFACTDelimiters implements IDelimiters {
     private String segmentDelimiter = "'";
     private String escapeDelimiter = "?";
 
-    /**
-     * Constructor.
-     */
     public EDIFACTDelimiters() {
         // do nothing
     }

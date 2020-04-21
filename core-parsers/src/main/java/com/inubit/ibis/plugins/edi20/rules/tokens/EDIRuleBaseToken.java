@@ -73,9 +73,6 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
         return getRequired().equals(REQUIRED_CONDITIONAL);
     }
 
-    /**
-     * @return XML tag
-     */
     public String getXmlTag() {
         return getRuleElement().attributeValue(ATTRIBUTE_NAME_XML_TAG, "");
     }
@@ -109,8 +106,9 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
      * exists
      */
     public IRuleToken nextChildren() {
-        if (getChildIterator().hasNext()) {
-            return createElementInstance(getChildIterator().next());
+        final Iterator<Element> childIterator = getChildIterator();
+        if (childIterator.hasNext()) {
+            return createElementInstance(childIterator.next());
         }
         return null;
     }
@@ -202,7 +200,7 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     @Override
     public boolean equals(final Object other) {
         if (other instanceof EDIRuleBaseToken) {
-            EDIRuleBaseToken that = (EDIRuleBaseToken) other;
+            final EDIRuleBaseToken that = (EDIRuleBaseToken) other;
             return status == that.status
                     && Objects.equals(ruleElement, that.ruleElement)
                     && Objects.equals(childIterator, that.childIterator);

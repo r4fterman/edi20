@@ -4,20 +4,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author r4fter
- */
 public final class StringUtil {
 
-    /**
-     * Private constructor.
-     */
     private StringUtil() {
         // do nothing
     }
 
     public static boolean isNotSet(final String text) {
-        return (text == null || text.equals(""));
+        return (text == null || text.isEmpty());
     }
 
     public static boolean isSet(final String text) {
@@ -60,13 +54,23 @@ public final class StringUtil {
     }
 
     /**
-     * @param text text to check
-     * @return <code>true</code> if the given text contains only white spaces (e.g. \n, \t, \r), <code>false</code>
-     * otherwise
+     * @param text
+     *         text to check
+     * @return <code>true</code> if the given text contains only white spaces
+     * (e.g. \n, \t, \r), <code>false</code> otherwise
      */
     public static boolean isWhitespacesOnly(final String text) {
         if (isSet(text)) {
             final Pattern p = Pattern.compile("^\\s+$");
+            final Matcher m = p.matcher(text);
+            return m.matches();
+        }
+        return false;
+    }
+
+    public static boolean isLineBreakOnly(final String text) {
+        if (isSet(text)) {
+            final Pattern p = Pattern.compile("^\n$");
             final Matcher m = p.matcher(text);
             return m.matches();
         }

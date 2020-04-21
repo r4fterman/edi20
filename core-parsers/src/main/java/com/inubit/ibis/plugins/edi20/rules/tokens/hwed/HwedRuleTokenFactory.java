@@ -7,11 +7,6 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import org.dom4j.Element;
 
-import java.util.Hashtable;
-
-/**
- * @author r4fter
- */
 public final class HwedRuleTokenFactory {
 
     private static final String NAME_RULE_SEGMENT = "Segment";
@@ -22,15 +17,15 @@ public final class HwedRuleTokenFactory {
     private static final String NAME_MESSAGE = "Message";
     private static final String NAME_ENVELOPER = "Enveloper";
 
-    private static final Hashtable<Element, IRuleToken> INSTANCE_CACHE = new Hashtable<>(100);
+    //private static final Hashtable<Element, IRuleToken> INSTANCE_CACHE = new Hashtable<>(100);
 
     public static IRuleToken getInstance(final Element ruleElement) throws IllegalArgumentException {
         if (ruleElement == null) {
             throw new IllegalArgumentException("Element is null!");
         }
-        if (INSTANCE_CACHE.containsKey(ruleElement)) {
-            return INSTANCE_CACHE.get(ruleElement);
-        }
+//        if (INSTANCE_CACHE.containsKey(ruleElement)) {
+//            return INSTANCE_CACHE.get(ruleElement);
+//        }
 
         final String ruleElementName = ruleElement.getName();
         if (isRootElement(ruleElementName)) {
@@ -81,9 +76,9 @@ public final class HwedRuleTokenFactory {
     private static IRuleToken addToCache(
             final Element ruleElement,
             final IRuleToken token) {
-        if (ruleElement != null && token != null) {
-            INSTANCE_CACHE.put(ruleElement, token);
-        }
+//        if (ruleElement != null && token != null) {
+//            INSTANCE_CACHE.put(ruleElement, token);
+//        }
         return token;
     }
 

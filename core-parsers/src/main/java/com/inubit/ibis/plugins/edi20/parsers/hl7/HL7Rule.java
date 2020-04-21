@@ -5,9 +5,6 @@ import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
 
-/**
- * @author r4fter
- */
 public class HL7Rule extends AbstractHWEDRule {
 
     /**

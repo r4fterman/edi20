@@ -10,12 +10,7 @@ import com.inubit.ibis.plugins.edi20.scanners.IToken;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
 
-/**
- * @author r4fter
- */
 public class EDIFACTRule extends AbstractHWEDRule {
-
-    private static final String LAST_SEGMENTID = "UNZ";
 
     /**
      * @param edifactRuleDocument
@@ -34,14 +29,10 @@ public class EDIFACTRule extends AbstractHWEDRule {
 
     @Override
     public boolean isEndOfRule() {
-//        EDIRuleBaseToken segment = getSegment(getCurrentRuleToken());
-//        if (segment != null) {
-//            return segment.getID().equals(LAST_SEGMENTID);
-//        }
         return false;
     }
 
-    private EDIRuleSegment getSegment(final IRuleToken currentRuleToken) {
+    protected EDIRuleSegment getSegment(final IRuleToken currentRuleToken) {
         if (currentRuleToken instanceof EDIRuleSegment) {
             return (EDIRuleSegment) currentRuleToken;
         }

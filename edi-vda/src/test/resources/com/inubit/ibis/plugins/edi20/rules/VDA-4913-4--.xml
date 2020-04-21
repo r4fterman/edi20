@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Message agency="VDA" name="Data on VDA 4913/4 Delivery Note" release="-" type="4913" version="4" standard="VDA"
+        layout="hwfpe">
+    <Segment id="711" loop="1" name="Header record delivery note" required="M" xmlTag="HeaderRecord">
+        <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType" />
+        <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber" />
+        <Element id="03" posStart="6" posEnd="14" name="Customer code" required="M" type="AN" xmlTag="CustomerCode" />
+        <Element id="04" posStart="15" posEnd="23" name="Supplier code" required="M" type="AN" xmlTag="SupplierCode" />
+        <Element id="05" posStart="24" posEnd="28" name="Transmission number old" required="M" type="N"
+                xmlTag="TransmissionNumberOld" />
+        <Element id="06" posStart="29" posEnd="33" name="Transmission number new" required="M" type="N"
+                xmlTag="TransmissionNumberNew" />
+        <Element id="07" posStart="34" posEnd="39" name="Transmission date" required="M" type="N"
+                xmlTag="TransmissionDate" />
+        <Element id="08" posStart="40" posEnd="48" name="Sub-supplier no." required="C" type="AN"
+                xmlTag="SubSupplier" />
+        <Element id="09" posStart="49" posEnd="57" name="Carrier ID" required="C" type="AN" xmlTag="CarrierID" />
+        <Element id="10" posStart="58" posEnd="58" name="Key to stockist" required="C" type="AN"
+                xmlTag="KeyToStockist" />
+        <Element id="11" posStart="59" posEnd="59" name="Delivery code" required="C" type="AN" xmlTag="DeliveryCode" />
+        <Element id="12" posStart="60" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks" />
+    </Segment>
+    <SegmentGroup id="Shipment" loop="n" name="Shipment related data" required="M" xmlTag="Shipment">
+        <Segment id="712" loop="1" name="One-off transport data" required="M" xmlTag="One-offTransportData">
+            <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType" />
+            <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N"
+                    xmlTag="VersionNumber" />
+            <Element id="03" posStart="6" posEnd="13" name="Shipment Load Reference Number" required="M" type="N"
+                    xmlTag="ShipmentLoadRefNumber" />
+            <Element id="04" posStart="14" posEnd="16" name="Plant Supplier" required="C" type="AN"
+                    xmlTag="PlantSupplier" />
+            <Element id="05" posStart="17" posEnd="30" name="Carrier ID" required="M" type="AN" xmlTag="CarrierID" />
+            <Element id="06" posStart="31" posEnd="36" name="Carrier Transfer Date" required="M" type="N"
+                    xmlTag="CarrierTransferDate" />
+            <Element id="07" posStart="37" posEnd="40" name="Carrier Transfer Time" required="M" type="N"
+                    xmlTag="CarrierTransferTime" />
+            <Element id="08" posStart="41" posEnd="47" name="Gross shipment weight" required="M" type="N"
+                    xmlTag="GrossShipmentWeight" />
+            <Element id="09" posStart="48" posEnd="54" name="Net shipment weight" required="C" type="N"
+                    xmlTag="NetShipmentWeight" />
+            <Element id="10" posStart="55" posEnd="56" name="Pre-payment of Charges Key" required="C" type="N"
+                    xmlTag="Pre-paymentOfChargesKey" />
+            <Element id="11" posStart="57" posEnd="57" name="Carrier transmission Key" required="C" type="AN"
+                    xmlTag="CarrierTransmissionKey" />
+            <Element id="12" posStart="58" posEnd="61" name="Number of packages" required="C" type="N"
+                    xmlTag="NumberOfPackages" />
+            <Element id="13" posStart="62" posEnd="75" name="Transport partner ID" required="C" type="AN"
+                    xmlTag="TransportPartnerID" />
+            <Element id="14" posStart="76" posEnd="77" name="Key to means of tarnsport" required="M" type="N"
+                    xmlTag="KeyToMeansOfTarnsport" />
+            <Element id="15" posStart="78" posEnd="102" name="Means of tarnsport number" required="M" type="AN"
+                    xmlTag="MeansOfTarnsportNumber" />
+            <Element id="16" posStart="103" posEnd="103" name="Code for item 17" required="C" type="AN"
+                    xmlTag="CodeForItem17" />
+            <Element id="17" posStart="104" posEnd="111" name="Content in accordance with item 16" required="C"
+                    type="AN" xmlTag="ContentWithItem16" />
+            <Element id="18" posStart="112" posEnd="117" name="Target Arrival date" required="C" type="N"
+                    xmlTag="TargetArrivalDate" />
+            <Element id="19" posStart="118" posEnd="121" name="Target Arrival time" required="C" type="N"
+                    xmlTag="TargetArrivalTime" />
+            <Element id="20" posStart="122" posEnd="124" name="Load metre" required="C" type="N" xmlTag="LoadMetre" />
+            <Element id="21" posStart="125" posEnd="125" name="Lorry type code" required="C" type="N"
+                    xmlTag="LorryTypeCode" />
+            <Element id="22" posStart="126" posEnd="128" name="Blank" required="C" type="AN" xmlTag="Blank" />
+        </Segment>
+        <SegmentGroup id="DeliveryNotesElements" loop="n" name="Delivery notes" required="C"
+                xmlTag="DeliveryNotesElements">
+            <Segment id="713" loop="1" name="One-off data element of the delivery note" required="M"
+                    xmlTag="One-offDataElement">
+                <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType" />
+                <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N"
+                        xmlTag="VersionNumber" />
+                <Element id="03" posStart="6" posEnd="13" name="Delivery note number" required="M" type="N"
+                        xmlTag="DeliveryNoteNumber" />
+                <Element id="04" posStart="14" posEnd="19" name="Dispach Date" required="M" type="N"
+                        xmlTag="DispachDate" />
+                <Element id="05" posStart="20" posEnd="24" name="Unloading Point" required="M" type="N"
+                        xmlTag="UnloadingPoint" />
+                <Element id="06" posStart="25" posEnd="26" name="Dispach Type" required="M" type="N"
+                        xmlTag="DispachType" />
+                <Element id="07" posStart="27" posEnd="30" name="Customer reference (LAB)" required="C" type="AN"
+                        xmlTag="CustomerReference" />
+                <Element id="08" posStart="31" posEnd="42" name="Order No." required="C" type="AN" xmlTag="OrderNo" />
+                <Element id="09" posStart="43" posEnd="44" name="Process code" required="C" type="N"
+                        xmlTag="ProcessCode" />
+                <Element id="10" posStart="45" posEnd="48" name="Empty 1" required="C" type="AN" xmlTag="Empty1" />
+                <Element id="11" posStart="49" posEnd="51" name="Customer plant" required="M" type="AN"
+                        xmlTag="CustomerPlant" />
+                <Element id="12" posStart="52" posEnd="59" name="Consignment" required="C" type="N"
+                        xmlTag="Consignment" />
+                <Element id="13" posStart="60" posEnd="68" name="Goods receiver ID" required="C" type="AN"
+                        xmlTag="GoodsReceiverID" />
+                <Element id="14" posStart="69" posEnd="69" name="Empty 2" required="C" type="AN" xmlTag="Empty2" />
+                <Element id="15" posStart="70" posEnd="76" name="Customer storage location" required="C" type="AN"
+                        xmlTag="CustomerStorageLocation" />
+                <Element id="16" posStart="77" posEnd="85" name="Supplier ID" required="M" type="AN"
+                        xmlTag="SupplierID" />
+                <Element id="17" posStart="86" posEnd="99" name="Point of assembling" required="C" type="AN"
+                        xmlTag="PointOfAssembling" />
+                <Element id="18" posStart="100" posEnd="103" name="Release no." required="C" type="AN"
+                        xmlTag="ReleaseNo" />
+                <Element id="19" posStart="104" posEnd="109" name="Customer reference" required="C" type="AN"
+                        xmlTag="CustomerReference" />
+                <Element id="20" posStart="110" posEnd="123" name="Customer document No." required="C" type="AN"
+                        xmlTag="CustomerDocumentNo" />
+                <Element id="21" posStart="124" posEnd="128" name="Blank" required="C" type="AN" xmlTag="Blank" />
+            </Segment>
+            <SegmentGroup id="ItemData" loop="n" name="Item data" required="C" xmlTag="ItemData">
+                <Segment id="714" loop="1" name="Delivery note position data" required="M"
+                        xmlTag="DeliveryNotePositionData">
+                    <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N"
+                            xmlTag="RecordType" />
+                    <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N"
+                            xmlTag="VersionNumber" />
+                    <Element id="03" posStart="6" posEnd="27" name="Customer reference number" required="M" type="AN"
+                            xmlTag="CustomerReferenceNumber" />
+                    <Element id="04" posStart="28" posEnd="49" name="Supplier reference number" required="M" type="AN"
+                            xmlTag="SupplierReferenceNumber" />
+                    <Element id="05" posStart="50" posEnd="52" name="Country of origin" required="M" type="N"
+                            xmlTag="CountryOfOrigin" />
+                    <Element id="06" posStart="53" posEnd="65" name="Delivery quantity 1" required="M" type="N"
+                            xmlTag="DeliveryQuantity1" />
+                    <Element id="07" posStart="66" posEnd="67" name="Unit of quantity 1" required="M" type="AN"
+                            xmlTag="UnitOfQuantity1" />
+                    <Element id="08" posStart="68" posEnd="80" name="Delivery quantity 2" required="C" type="N"
+                            xmlTag="DeliveryQuantity2" />
+                    <Element id="09" posStart="81" posEnd="82" name="Unit of quantity 2" required="C" type="AN"
+                            xmlTag="UnitOfQuantity2" />
+                    <Element id="10" posStart="83" posEnd="85" name="VAT rate" required="C" type="N" xmlTag="VATRate" />
+                    <Element id="11" posStart="86" posEnd="86" name="Empty 1" required="C" type="AN" xmlTag="Empty1" />
+                    <Element id="12" posStart="87" posEnd="89" name="Delivery note item number" required="M" type="N"
+                            xmlTag="DeliveryNoteItemNumber" />
+                    <Element id="13" posStart="90" posEnd="90" name="Release Key" required="C" type="AN"
+                            xmlTag="ReleaseKey" />
+                    <Element id="14" posStart="91" posEnd="105" name="Batch Number" required="C" type="AN"
+                            xmlTag="BatchNumber" />
+                    <Element id="15" posStart="106" posEnd="106" name="Code Usage" required="M" type="AN"
+                            xmlTag="CodeUsager" />
+                    <Element id="16" posStart="107" posEnd="114" name="Hazardous substances code" required="C" type="AN"
+                            xmlTag="HazardousSubstancesCode" />
+                    <Element id="17" posStart="115" posEnd="115" name="Preference status" required="M" type="AN"
+                            xmlTag="PreferenceStatus" />
+                    <Element id="18" posStart="116" posEnd="116" name="Dutiable goods" required="C" type="AN"
+                            xmlTag="DutiableGoods" />
+                    <Element id="19" posStart="117" posEnd="117" name="Empty 2" required="C" type="AN"
+                            xmlTag="Empty2" />
+                    <Element id="20" posStart="118" posEnd="118" name="Inventory status" required="C" type="AN"
+                            xmlTag="InventoryStatus" />
+                    <Element id="21" posStart="119" posEnd="120" name="Modified version code" required="C" type="AN"
+                            xmlTag="ModifiedVersionCode" />
+                    <Element id="22" posStart="121" posEnd="128" name="Original delivery note number" required="C"
+                            type="AN" xmlTag="OriginalDeliveryNoteNumber" />
+                </Segment>
+                <Segment id="716" loop="1" name="TextData" required="C" xmlTag="TextData">
+                    <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N"
+                            xmlTag="RecordType" />
+                    <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N"
+                            xmlTag="VersionNumber" />
+                    <Element id="03" posStart="6" posEnd="45" name="text 1" required="M" type="AN" xmlTag="Text1" />
+                    <Element id="04" posStart="46" posEnd="85" name=" text 2" required="C" type="AN" xmlTag="Text2" />
+                    <Element id="05" posStart="86" posEnd="125" name=" text 3" required="C" type="AN" xmlTag="Text3" />
+                    <Element id="06" posStart="126" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks" />
+                </Segment>
+                <Segment id="715" loop="n" name="Packaging data" required="C" xmlTag="PackagingData">
+                    <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N"
+                            xmlTag="RecordType" />
+                    <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N"
+                            xmlTag="VersionNumber" />
+                    <Element id="03" posStart="6" posEnd="27" name="Packaging code customer" required="M" type="AN"
+                            xmlTag="PackagingCodeCustomer" />
+                    <Element id="04" posStart="28" posEnd="49" name="Packaging code supplier" required="C" type="AN"
+                            xmlTag="PackagingCodeSupplier" />
+                    <Element id="05" posStart="50" posEnd="62" name="Number of packing" required="M" type="N"
+                            xmlTag="NumberOfPacking" />
+                    <Element id="06" posStart="63" posEnd="65" name="Delivery note item number" required="M" type="N"
+                            xmlTag="DeliveryNoteItemNumber" />
+                    <Element id="07" posStart="66" posEnd="78" name="Maximum Quantity" required="C" type="N"
+                            xmlTag="MaximumQuantity" />
+                    <Element id="08" posStart="79" posEnd="87" name="Package number from" required="C" type="AN"
+                            xmlTag="PackageNumberFrom" />
+                    <Element id="09" posStart="88" posEnd="96" name="Package number to" required="C" type="AN"
+                            xmlTag="PackageNumberTo" />
+                    <Element id="10" posStart="97" posEnd="108" name="Packaging dimensions" required="C" type="N"
+                            xmlTag="PackagingDimensions" />
+                    <Element id="11" posStart="109" posEnd="109" name="Stacking factor" required="C" type="N"
+                            xmlTag="StackingFactor" />
+                    <Element id="12" posStart="110" posEnd="124" name="Warehouse Release Number" required="C" type="AN"
+                            xmlTag="WarehouseReleaseNumber" />
+                    <Element id="13" posStart="125" posEnd="125" name="Label indicator" required="C" type="AN"
+                            xmlTag="LabelIndicator" />
+                    <Element id="14" posStart="126" posEnd="126" name="Packaging code" required="C" type="AN"
+                            xmlTag="PackagingCode" />
+                    <Element id="15" posStart="127" posEnd="127" name="Property code" required="C" type="AN"
+                            xmlTag="PropertyCode" />
+                    <Element id="16" posStart="128" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks" />
+                </Segment>
+            </SegmentGroup>
+        </SegmentGroup>
+    </SegmentGroup>
+    <Segment id="719" loop="1" name="Trailer record delivery note" required="M" xmlTag="TrailerRecord">
+        <Element id="01" posStart="1" posEnd="3" name="Record type" required="M" type="N" xmlTag="RecordType" />
+        <Element id="02" posStart="4" posEnd="5" name="Version number" required="M" type="N" xmlTag="VersionNumber" />
+        <Element id="03" posStart="6" posEnd="12" name="Counter record type 711" required="M" type="N"
+                xmlTag="CounterRecordType711" />
+        <Element id="04" posStart="13" posEnd="19" name="Counter record type 712" required="M" type="N"
+                xmlTag="CounterRecordType712" />
+        <Element id="05" posStart="20" posEnd="26" name="Counter record type 713" required="M" type="N"
+                xmlTag="CounterRecordType713" />
+        <Element id="06" posStart="27" posEnd="33" name="Counter record type 714" required="M" type="N"
+                xmlTag="CounterRecordType714" />
+        <Element id="07" posStart="34" posEnd="40" name="Counter record type 715" required="M" type="N"
+                xmlTag="CounterRecordType715" />
+        <Element id="08" posStart="41" posEnd="47" name="Counter record type 716" required="M" type="N"
+                xmlTag="CounterRecordType716" />
+        <Element id="09" posStart="48" posEnd="54" name="Counter record type 718" required="M" type="N"
+                xmlTag="CounterRecordType718" />
+        <Element id="10" posStart="55" posEnd="61" name="Counter record type 719" required="M" type="N"
+                xmlTag="CounterRecordType719" />
+        <Element id="11" posStart="62" posEnd="68" name="Counter record type 717" required="M" type="N"
+                xmlTag="CounterRecordType717" />
+        <Element id="12" posStart="69" posEnd="128" name="Blanks" required="C" type="AN" xmlTag="Blanks" />
+    </Segment>
+</Message>

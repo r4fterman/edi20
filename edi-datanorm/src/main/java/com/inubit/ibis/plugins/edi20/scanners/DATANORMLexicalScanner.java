@@ -26,7 +26,7 @@ public class DATANORMLexicalScanner extends EDILexicalScanner {
             // no next token found
             index = getInputDocument().length();
         }
-        final String str = getInputDocument().substring(position, index);
+        final String str = getInputDocument().substring(position, index).replaceAll("\\r\\n?", "\n");
         return createToken(position, str);
     }
 

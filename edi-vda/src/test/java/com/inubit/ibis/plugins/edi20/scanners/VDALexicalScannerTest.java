@@ -15,40 +15,37 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * @author r4fter
- */
 class VDALexicalScannerTest {
+
+    private static final String MESSAGE = "VDA4905_1.txt";
 
     @Test
     void testVDALexicalScanner() throws Exception {
-        String testFile = "VDA4905_1.txt";
-        StringBuilder content = getContent(testFile);
-        VDALexicalScanner scanner = new VDALexicalScanner(content, new VDADelimiters());
+        final StringBuilder content = getContent();
+        final VDALexicalScanner scanner = new VDALexicalScanner(content, new VDADelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
     }
 
     @Test
     void testVDALexicalScannerReadLength() throws Exception {
-        String testFile = "VDA4905_1.txt";
-        StringBuilder content = getContent(testFile);
+        final StringBuilder content = getContent();
 
-        VDALexicalScanner scanner = new VDALexicalScanner(content, new VDADelimiters());
+        final VDALexicalScanner scanner = new VDALexicalScanner(content, new VDADelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
 
-        StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
         while (scanner.hasMoreTokens()) {
             builder.append(scanner.nextToken().getToken());
         }
-        long fileLength = getFile(testFile).length();
+        final long fileLength = getFile().length();
         assertThat("Length differs!", Long.parseLong(String.valueOf(builder.length())), is(fileLength));
     }
 
     @Test
     void testVDALexicalScannerNoEscape() {
-        String ediStr = "51101AG03     CKDVW    \n51201001000000002020610000000001020523\n51301 ";
+        final String ediStr = "51101AG03     CKDVW    \n51201001000000002020610000000001020523\n51301 ";
 
-        VDALexicalScanner scanner = new VDALexicalScanner(new StringBuilder(ediStr), new VDADelimiters());
+        final VDALexicalScanner scanner = new VDALexicalScanner(new StringBuilder(ediStr), new VDADelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
 
         IToken token = scanner.nextToken();
@@ -92,14 +89,14 @@ class VDALexicalScannerTest {
         assertThrows(IllegalArgumentException.class, () -> new VDALexicalScanner(null, null));
     }
 
-    private StringBuilder getContent(final String testFile) throws URISyntaxException, IOException {
-        File file = getFile(testFile);
+    private StringBuilder getContent() throws URISyntaxException, IOException {
+        final File file = getFile();
         return FileUtils.getContents(file);
     }
 
-    private File getFile(final String testFile) throws URISyntaxException {
-        URL url = VDALexicalScannerTest.class.getResource(testFile);
-        assertThat("File not found: " + testFile, url, not(nullValue()));
+    private File getFile() throws URISyntaxException {
+        final URL url = VDALexicalScannerTest.class.getResource(MESSAGE);
+        assertThat("File not found: " + MESSAGE, url, not(nullValue()));
         return new File(url.toURI());
     }
 }

@@ -38,10 +38,12 @@ public abstract class HWEDParser extends AbstractEDIParser {
     private void parseTokens() throws InubitException {
         while (getScanner().hasMoreTokens() && !isEndOfRule()) {
             final IToken token = getScanner().nextToken();
-            if (token.isDelimiter()) {
-                parseDelimiter(token);
-            } else {
-                parseToken(token);
+            if (!StringUtil.isLineBreakOnly(token.getToken())) {
+                if (token.isDelimiter()) {
+                    parseDelimiter(token);
+                } else {
+                    parseToken(token);
+                }
             }
         }
 

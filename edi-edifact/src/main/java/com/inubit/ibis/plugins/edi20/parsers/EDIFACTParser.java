@@ -20,9 +20,6 @@ import org.dom4j.Document;
 
 import java.io.File;
 
-/**
- * @author r4fter
- */
 public class EDIFACTParser extends HWEDParser {
 
     private static final String ENVELOPER_RULE_FILE_NAME = "EDIFACT-ENVELOPER.xml";
@@ -113,14 +110,18 @@ public class EDIFACTParser extends HWEDParser {
     private void parseSegment(
             final String segmentID,
             final EDIFACTRule rule) throws InubitException {
-        final EDIRuleSegment segment = rule.nextSegment(segmentID);
-        if (segment != null) {
-            validRuleToken(segmentID, segment);
-            System.out.println("EDIFACTParser.parseSegment(" + fState + "): [S:" + segmentID + " (" + segment.getLoop() + ", "
-                    + segment.getCurrentLoopCount() + ")]");
-            return;
-        }
-        throw new InubitException("Segment [" + segmentID + "] not found in rule!");
+        final EDIRuleSegment segment = rule.nextSegment(segmentID)
+                .orElseThrow(() -> new InubitException("Segment [" + segmentID + "] not found in rule!"));
+        setCurrentRule(rule);
+        validRuleToken(segmentID, segment);
+
+        System.out.println("EDIFACTParser.parseSegment(" + fState + "): [S:" + segmentID + " (" + segment.getLoop() + ", "
+                + segment.getCurrentLoopCount() + ")]");
+
+    }
+
+    private void setCurrentRule(final EDIFACTRule edifactRule) {
+        currentRule = edifactRule;
     }
 
     private void validRuleToken(
@@ -133,9 +134,10 @@ public class EDIFACTParser extends HWEDParser {
             final HwedRuleElement elementToken = (HwedRuleElement) ruleToken;
             final int min = elementToken.getMinLength();
             final int max = elementToken.getMaxLength();
-            if (!assertTokenHasValidLength(token, min, max)) {
-                throw new InubitException("Invalid token [" + token + "]! Does not match rule token size [" + ruleToken + "].");
-            }
+            // TODO: check token length
+            //if (!assertTokenHasValidLength(token, min, max)) {
+            //    throw new InubitException("Invalid token [" + token + "] with size " + token.length() + "! Does not match rule token size [" + ruleToken + "].");
+            //}
         }
     }
 

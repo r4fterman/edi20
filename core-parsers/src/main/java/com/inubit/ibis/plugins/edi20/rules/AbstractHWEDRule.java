@@ -4,7 +4,6 @@ import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
@@ -16,10 +15,8 @@ import org.dom4j.Element;
 import org.dom4j.Node;
 
 import java.util.List;
+import java.util.Optional;
 
-/**
- * @author r4fter
- */
 public abstract class AbstractHWEDRule extends AbstractEDIRule {
 
     /**
@@ -35,8 +32,8 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     }
 
     @Override
-    protected EDIRuleRoot createRootElement(final Document ruleDocument) {
-        return (EDIRuleRoot) HwedRuleTokenFactory.getInstance(ruleDocument.getRootElement());
+    protected IRuleToken getRuleToken(final Element element) {
+        return HwedRuleTokenFactory.getInstance(element);
     }
 
     @Override
@@ -49,18 +46,57 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
      *
      * @param segmentID
      *         segment ID
-     * @return segment or <code>null</code> if segment is conditional and does
-     * not match the given segment ID
-     * @throws InubitException
-     *         if segment is mandatory and does not match the given segment ID
+     * @return segment or <code>empty</code> if no segment was found for the
+     * given ID
      */
-    public EDIRuleSegment nextSegment(final String segmentID) throws InubitException {
-        // IRuleToken currentRuleToken = getCurrentRuleToken();
-        // EDIRuleSegment segment = parseUntilNextSegment(currentRuleToken, segmentID);
-        // markLoopOnSegment(segment, segmentID);
-        // setCurrentRuleToken(segment);
-        // return segment;
-        return null;
+    public Optional<EDIRuleSegment> nextSegment(final String segmentID) {
+        // TODO: find children starting at last segment found
+        final List<IRuleToken> children = getRootElement().getChildren();
+        for (final IRuleToken child : children) {
+            if (child instanceof EDIRuleSegmentGroup) {
+                final Optional<EDIRuleSegment> nextSegment = nextSegmentInSegmentGroup((EDIRuleSegmentGroup) child, segmentID);
+                if (nextSegment.isPresent()) {
+                    setCurrentRuleToken(nextSegment.get());
+                    return nextSegment;
+                }
+            } else if (child instanceof EDIRuleSegment) {
+                final Optional<EDIRuleSegment> nextSegment = nextSegment((EDIRuleSegment) child, segmentID);
+                if (nextSegment.isPresent()) {
+                    setCurrentRuleToken(nextSegment.get());
+                    return nextSegment;
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    private Optional<EDIRuleSegment> nextSegmentInSegmentGroup(
+            final EDIRuleSegmentGroup segmentGroup,
+            final String segmentID) {
+        final List<EDIRuleSegment> segments = segmentGroup.getSegments();
+        for (final EDIRuleSegment segment : segments) {
+            if (segment instanceof EDIRuleSegmentGroup) {
+                final Optional<EDIRuleSegment> ediRuleSegment = nextSegmentInSegmentGroup((EDIRuleSegmentGroup) segment, segmentID);
+                if (ediRuleSegment.isPresent()) {
+                    return ediRuleSegment;
+                }
+            } else {
+                final Optional<EDIRuleSegment> ediRuleSegment = nextSegment(segment, segmentID);
+                if (ediRuleSegment.isPresent()) {
+                    return ediRuleSegment;
+                }
+            }
+        }
+        return Optional.empty();
+    }
+
+    private Optional<EDIRuleSegment> nextSegment(
+            final EDIRuleSegment segment,
+            final String segmentID) {
+        if (segment.getID().equals(segmentID)) {
+            return Optional.of(segment);
+        }
+        return Optional.empty();
     }
 
     /**
@@ -93,7 +129,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
                 ruleSegmentGroup.setInProgress();
             }
 
-            IRuleToken childToken = ruleSegmentGroup.nextChildren();
+            final IRuleToken childToken = ruleSegmentGroup.nextChildren();
             if (childToken != null) {
                 return parseUntilNextSegment(childToken, segmentID);
             }
@@ -194,11 +230,10 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     }
 
     public EDIRuleBaseToken nextElement() throws InubitException {
-        // System.out.println("AbstractHWEDRule.nextElement(): current=" + getCurrentRuleToken());
-        // EDIRuleBaseToken newCurrentRuleToken = parseUntilNextElement(getCurrentRuleToken());
-        // setCurrentRuleToken(newCurrentRuleToken);
-        // return newCurrentRuleToken;
-        return null;
+        System.out.println("AbstractHWEDRule.nextElement(): current=" + getCurrentRuleToken());
+        final EDIRuleBaseToken newCurrentRuleToken = parseUntilNextElement(getCurrentRuleToken());
+        setCurrentRuleToken(newCurrentRuleToken);
+        return newCurrentRuleToken;
     }
 
     private EDIRuleBaseToken parseUntilNextElement(final IRuleToken currentRuleToken) throws InubitException {
@@ -207,6 +242,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
         }
         if (currentRuleToken instanceof EDIRuleBaseToken) {
             final EDIRuleBaseToken ruleBaseToken = (EDIRuleBaseToken) currentRuleToken;
+            System.out.println("AbstractHWEDRule.parseUntilNextElement: " + ruleBaseToken);
             final IRuleToken nextChild = ruleBaseToken.nextChildren();
             if (nextChild == null) {
                 throw new InubitException("Rule element [" + ruleBaseToken + "] has no child!");

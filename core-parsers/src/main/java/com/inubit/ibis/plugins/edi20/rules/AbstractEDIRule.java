@@ -4,38 +4,36 @@ import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
-import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-/**
- * Class handles EDI rule.
- *
- * @author r4fter
- */
 public abstract class AbstractEDIRule {
 
     private EDIRuleRoot ruleElement;
+    private IRuleToken currentRuleToken;
 
     /**
-     * @param ruleDocument rule document
-     * @throws InubitException if the given rule document is not a valid EDI
-     * rule document
+     * @param ruleDocument
+     *         rule document
+     * @throws InubitException
+     *         if the given rule document is not a valid EDI rule document
      */
     public AbstractEDIRule(final Document ruleDocument) throws InubitException {
         if (!isValidRuleDocument(ruleDocument)) {
             throw new InvalidRuleException();
         }
         ruleElement = createRootElement(ruleDocument);
+        setCurrentRuleToken(ruleElement.getChildren().get(0));
     }
 
-    protected abstract EDIRuleRoot createRootElement(Document ruleDocument);
+    private EDIRuleRoot createRootElement(final Document ruleDocument) {
+        return (EDIRuleRoot) getRuleToken(ruleDocument.getRootElement());
+    }
 
     private boolean isValidRuleDocument(final Document ruleDocument) {
         if (ruleDocument == null) {
@@ -48,6 +46,15 @@ public abstract class AbstractEDIRule {
         }
 
         return isSetCorrectStandardAndLayout(rootElement);
+    }
+
+
+    protected void setCurrentRuleToken(final IRuleToken ruleToken) {
+        currentRuleToken = ruleToken;
+    }
+
+    protected IRuleToken getCurrentRuleToken() {
+        return currentRuleToken;
     }
 
     private boolean isSetRootElement(final Element rootElement) {
@@ -64,7 +71,7 @@ public abstract class AbstractEDIRule {
      */
     private boolean isSetCorrectStandardAndLayout(final Element rootElement) {
         if (rootElement != null) {
-            final IRuleToken ruleToken = HwedRuleTokenFactory.getInstance(rootElement);
+            final IRuleToken ruleToken = getRuleToken(rootElement);
             if (ruleToken instanceof EDIRuleRoot) {
                 final EDIRuleRoot root = (EDIRuleRoot) ruleToken;
                 return isSetCorrectStandard(root) && isSetCorrectLayout(root);
@@ -72,6 +79,8 @@ public abstract class AbstractEDIRule {
         }
         return false;
     }
+
+    protected abstract IRuleToken getRuleToken(Element element);
 
     private boolean isSetCorrectLayout(final EDIRuleRoot root) {
         final String layout = root.getLayout();
@@ -172,16 +181,9 @@ public abstract class AbstractEDIRule {
     }
 
     private List<EDIRuleSegment> getSegments(final EDIRuleBaseToken token) {
-        final List<EDIRuleSegment> segments = new ArrayList<>();
-        for (final IRuleToken child : token.getChildren()) {
-            if (child instanceof EDIRuleSegmentGroup) {
-                //segments.addAll(getSegments((EDIRuleSegmentGroup) child));
-            }
-            if (child instanceof EDIRuleSegment) {
-                segments.add((EDIRuleSegment) child);
-            }
-        }
-        return segments;
-
+        return token.getChildren().stream()
+                .filter(child -> child instanceof EDIRuleSegment)
+                .map(child -> (EDIRuleSegment) child)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

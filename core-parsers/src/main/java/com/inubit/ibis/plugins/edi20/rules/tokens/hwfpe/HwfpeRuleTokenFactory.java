@@ -7,11 +7,6 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import org.dom4j.Element;
 
-import java.util.Hashtable;
-
-/**
- * @author r4fter
- */
 public final class HwfpeRuleTokenFactory {
 
     private static final String NAME_RULESEGMENT = "Segment";
@@ -21,19 +16,19 @@ public final class HwfpeRuleTokenFactory {
 
     private static final String NAME_MESSAGE = "Message";
 
-    private static final Hashtable<Element, IRuleToken> INSTANCE_CACHE = new Hashtable<>(100);
+    //private static final Hashtable<Element, IRuleToken> INSTANCE_CACHE = new Hashtable<>(100);
 
     public static IRuleToken getInstance(final Element ruleElement) throws IllegalArgumentException {
         if (ruleElement == null) {
             throw new IllegalArgumentException("Element is null!");
         }
-        if (INSTANCE_CACHE.containsKey(ruleElement)) {
-            final IRuleToken token = INSTANCE_CACHE.get(ruleElement);
-            // if (token instanceof EDIRuleBaseToken) {
-            //     ((EDIRuleBaseToken) token).resetChildIterator();
-            // }
-            return token;
-        }
+        //        if (INSTANCE_CACHE.containsKey(ruleElement)) {
+        //            final IRuleToken token = INSTANCE_CACHE.get(ruleElement);
+        // if (token instanceof EDIRuleBaseToken) {
+        //     ((EDIRuleBaseToken) token).resetChildIterator();
+        // }
+        //           return token;
+        //}
 
         final String ruleElementName = ruleElement.getName();
         if (NAME_MESSAGE.equals(ruleElementName)) {
@@ -57,9 +52,9 @@ public final class HwfpeRuleTokenFactory {
     private static IRuleToken addToCache(
             final Element ruleElement,
             final IRuleToken token) {
-        if (ruleElement != null && token != null) {
-            INSTANCE_CACHE.put(ruleElement, token);
-        }
+        //        if (ruleElement != null && token != null) {
+        //            INSTANCE_CACHE.put(ruleElement, token);
+        //        }
         return token;
     }
 

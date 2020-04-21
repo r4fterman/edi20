@@ -5,9 +5,6 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
 
-/**
- * @author r4fter
- */
 public class VDARule extends AbstractHWFPERule {
 
     private static final String LAST_SEGMENTID = "519";
