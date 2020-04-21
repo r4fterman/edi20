@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * @author r4fter
  */
-public class EDIRuleSegmentGroup extends EDIRuleSegment {
+public abstract class EDIRuleSegmentGroup extends EDIRuleSegment {
 
     public EDIRuleSegmentGroup(final Element ruleElement) {
         // <SegmentGroup id="Group_1" loop="9"
@@ -27,16 +27,15 @@ public class EDIRuleSegmentGroup extends EDIRuleSegment {
      * @return first segment or <code>null</code> if child segment exists in this group
      */
     public IRuleToken getFirstSegment() {
-        Element firstChild = getFirstChildElement();
+        final Element firstChild = getFirstChildElement();
         if (firstChild != null) {
             return createElementInstance(firstChild);
         }
         return null;
     }
 
-    @SuppressWarnings("unchecked")
     public Element getFirstChildElement() {
-        List<Element> childElements = getRuleElement().elements();
+        final List<Element> childElements = getRuleElement().elements();
         if (childElements.size() > 0) {
             return childElements.get(0);
         }

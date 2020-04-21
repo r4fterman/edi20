@@ -15,7 +15,6 @@ import org.dom4j.Element;
 import org.dom4j.Node;
 
 import java.util.List;
-import java.util.Optional;
 
 public abstract class AbstractHWEDRule extends AbstractEDIRule {
 
@@ -33,70 +32,12 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
 
     @Override
     protected IRuleToken getRuleToken(final Element element) {
-        return HwedRuleTokenFactory.getInstance(element);
+        return new HwedRuleTokenFactory().createInstance(element);
     }
 
     @Override
     public String getLayout() {
         return "hwed";
-    }
-
-    /**
-     * Method returns the next segment for the given ID.
-     *
-     * @param segmentID
-     *         segment ID
-     * @return segment or <code>empty</code> if no segment was found for the
-     * given ID
-     */
-    public Optional<EDIRuleSegment> nextSegment(final String segmentID) {
-        // TODO: find children starting at last segment found
-        final List<IRuleToken> children = getRootElement().getChildren();
-        for (final IRuleToken child : children) {
-            if (child instanceof EDIRuleSegmentGroup) {
-                final Optional<EDIRuleSegment> nextSegment = nextSegmentInSegmentGroup((EDIRuleSegmentGroup) child, segmentID);
-                if (nextSegment.isPresent()) {
-                    setCurrentRuleToken(nextSegment.get());
-                    return nextSegment;
-                }
-            } else if (child instanceof EDIRuleSegment) {
-                final Optional<EDIRuleSegment> nextSegment = nextSegment((EDIRuleSegment) child, segmentID);
-                if (nextSegment.isPresent()) {
-                    setCurrentRuleToken(nextSegment.get());
-                    return nextSegment;
-                }
-            }
-        }
-        return Optional.empty();
-    }
-
-    private Optional<EDIRuleSegment> nextSegmentInSegmentGroup(
-            final EDIRuleSegmentGroup segmentGroup,
-            final String segmentID) {
-        final List<EDIRuleSegment> segments = segmentGroup.getSegments();
-        for (final EDIRuleSegment segment : segments) {
-            if (segment instanceof EDIRuleSegmentGroup) {
-                final Optional<EDIRuleSegment> ediRuleSegment = nextSegmentInSegmentGroup((EDIRuleSegmentGroup) segment, segmentID);
-                if (ediRuleSegment.isPresent()) {
-                    return ediRuleSegment;
-                }
-            } else {
-                final Optional<EDIRuleSegment> ediRuleSegment = nextSegment(segment, segmentID);
-                if (ediRuleSegment.isPresent()) {
-                    return ediRuleSegment;
-                }
-            }
-        }
-        return Optional.empty();
-    }
-
-    private Optional<EDIRuleSegment> nextSegment(
-            final EDIRuleSegment segment,
-            final String segmentID) {
-        if (segment.getID().equals(segmentID)) {
-            return Optional.of(segment);
-        }
-        return Optional.empty();
     }
 
     /**

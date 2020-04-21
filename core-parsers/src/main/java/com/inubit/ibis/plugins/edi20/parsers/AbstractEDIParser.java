@@ -17,15 +17,15 @@ public abstract class AbstractEDIParser implements IEDIParser {
     /**
      * @param scanner
      *         lexical scanner
-     * @param rule
+     * @param ediRule
      *         EDI rule
      */
     public AbstractEDIParser(
             final IScanner scanner,
-            final AbstractEDIRule rule) {
+            final AbstractEDIRule ediRule) {
         super();
         this.scanner = scanner;
-        ediRule = rule;
+        this.ediRule = ediRule;
     }
 
     /**

@@ -10,11 +10,8 @@ import java.util.List;
 /**
  * @author r4fter
  */
-public class EDIRuleCompositeElement extends EDIRuleBaseToken implements IElementRuleToken {
+public abstract class EDIRuleCompositeElement extends EDIRuleBaseToken implements IElementRuleToken {
 
-    /**
-     * @param ruleElement
-     */
     public EDIRuleCompositeElement(final Element ruleElement) {
         super(ruleElement);
     }
@@ -26,8 +23,8 @@ public class EDIRuleCompositeElement extends EDIRuleBaseToken implements IElemen
     }
 
     public List<IElementRuleToken> getElements() {
-        List<IElementRuleToken> elements = new ArrayList<IElementRuleToken>();
-        for (IRuleToken child : getChildren()) {
+        final List<IElementRuleToken> elements = new ArrayList<>();
+        for (final IRuleToken child : getChildren()) {
             if (child instanceof EDIRuleElement) {
                 elements.add((IElementRuleToken) child);
             }

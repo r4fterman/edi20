@@ -24,7 +24,7 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
 
     @Override
     protected IRuleToken getRuleToken(final Element element) {
-        return  HwfpeRuleTokenFactory.getInstance(element);
+        return new HwfpeRuleTokenFactory().createInstance(element);
     }
 
     @Override

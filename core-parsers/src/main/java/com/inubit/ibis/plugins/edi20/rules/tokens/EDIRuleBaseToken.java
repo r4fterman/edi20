@@ -1,7 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
 import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
 import org.dom4j.Element;
 
 import java.util.ArrayList;
@@ -98,7 +97,7 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     }
 
     protected IRuleToken createElementInstance(final Element element) {
-        return HwedRuleTokenFactory.getInstance(element);
+        return getFactory().createInstance(element);
     }
 
     /**
@@ -141,10 +140,12 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
      */
     public IRuleToken getParent() {
         if (getRuleElement().getParent() != null) {
-            return createElementInstance(getRuleElement().getParent());
+            return getFactory().createInstance(getRuleElement().getParent());
         }
         return null;
     }
+
+    protected abstract RuleTokenFactory getFactory();
 
     /**
      * @return path to this rule token (in xpath notation)
