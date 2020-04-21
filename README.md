@@ -1,15 +1,10 @@
 # General
 
-This project provides a free PDF form designer. A UI guides the user to create a PDF document that contains form fields.
-Use this form field to let a customer fill out your PDF and print it with the filled values.
+This project provides a free EDI converter. It can convert any EDI message into XML and visa versa.
 
 # License
 
 GNU General Public License (GPL)
-
-# Run
-
-    $>./run.sh
     
 # Status
 
