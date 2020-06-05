@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
 
@@ -17,7 +17,7 @@ public class DATANORMRule extends AbstractMSWEDRule {
     }
 
     @Override
-    public void closeCurrentRuleToken(final IToken token) {
+    public void closeCurrentRuleToken(final Token token) {
         // ignore
     }
 

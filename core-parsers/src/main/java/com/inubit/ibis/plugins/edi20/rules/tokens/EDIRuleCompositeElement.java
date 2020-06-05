@@ -1,7 +1,7 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import org.dom4j.Element;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author r4fter
  */
-public abstract class EDIRuleCompositeElement extends EDIRuleBaseToken implements IElementRuleToken {
+public abstract class EDIRuleCompositeElement extends EDIRuleBaseToken implements ElementRuleToken {
 
     public EDIRuleCompositeElement(final Element ruleElement) {
         super(ruleElement);
@@ -22,11 +22,11 @@ public abstract class EDIRuleCompositeElement extends EDIRuleBaseToken implement
         return "(Composite) " + super.toString();
     }
 
-    public List<IElementRuleToken> getElements() {
-        final List<IElementRuleToken> elements = new ArrayList<>();
-        for (final IRuleToken child : getChildren()) {
+    public List<ElementRuleToken> getElements() {
+        final List<ElementRuleToken> elements = new ArrayList<>();
+        for (final RuleToken child : getChildren()) {
             if (child instanceof EDIRuleElement) {
-                elements.add((IElementRuleToken) child);
+                elements.add((ElementRuleToken) child);
             }
         }
         return elements;

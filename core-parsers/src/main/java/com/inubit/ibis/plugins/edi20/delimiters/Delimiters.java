@@ -1,9 +1,6 @@
 package com.inubit.ibis.plugins.edi20.delimiters;
 
-/**
- * @author r4fter
- */
-public interface IDelimiters {
+public interface Delimiters {
 
     int DELIMITER_UNKNOWN = -1;
 

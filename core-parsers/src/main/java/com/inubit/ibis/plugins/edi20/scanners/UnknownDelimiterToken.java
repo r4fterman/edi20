@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.scanners;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 
 /**
  * @author r4fter
@@ -14,11 +14,11 @@ public abstract class UnknownDelimiterToken extends EDIDocumentToken {
      *         token position in document
      */
     public UnknownDelimiterToken(final String tokenString, final int tokenPosition) {
-        super(tokenString, tokenPosition, IDelimiters.DELIMITER_UNKNOWN);
+        super(tokenString, tokenPosition, Delimiters.DELIMITER_UNKNOWN);
     }
 
     /**
      * @return token identifier
      */
-    public abstract IIdentifier getIdentifier();
+    public abstract Identifier getIdentifier();
 }

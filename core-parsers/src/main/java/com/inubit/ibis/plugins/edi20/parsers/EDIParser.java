@@ -3,14 +3,8 @@ package com.inubit.ibis.plugins.edi20.parsers;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.InubitException;
 
-/**
- * @author r4fter
- */
-public interface IEDIParser {
+public interface EDIParser {
 
-    /**
-     * @throws InubitException
-     */
     void parse() throws InubitException;
 
     /**

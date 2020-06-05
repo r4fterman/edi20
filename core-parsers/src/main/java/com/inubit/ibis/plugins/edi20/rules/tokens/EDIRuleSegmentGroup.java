@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import org.dom4j.Element;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public abstract class EDIRuleSegmentGroup extends EDIRuleSegment {
     /**
      * @return first segment or <code>null</code> if child segment exists in this group
      */
-    public IRuleToken getFirstSegment() {
+    public RuleToken getFirstSegment() {
         final Element firstChild = getFirstChildElement();
         if (firstChild != null) {
             return createElementInstance(firstChild);

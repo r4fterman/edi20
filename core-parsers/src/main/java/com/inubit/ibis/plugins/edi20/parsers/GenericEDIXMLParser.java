@@ -1,15 +1,15 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import com.inubit.ibis.plugins.edi20.IGenericParser;
+import com.inubit.ibis.plugins.edi20.GenericParser;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.InubitException;
 
 /**
  * @author rafter
  */
-public class GenericEDIXMLParser implements IGenericParser {
+public class GenericEDIXMLParser implements GenericParser {
 
-    private IEDIParser parser = null;
+    private EDIParser parser = null;
 
     public GenericEDIXMLParser(final StringBuilder textInputDocument) throws InubitException {
         init(textInputDocument);

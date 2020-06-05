@@ -20,7 +20,7 @@ public class DATANORMLexicalScanner extends EDILexicalScanner {
     }
 
     @Override
-    protected IToken getNextToken(final int position) {
+    protected Token getNextToken(final int position) {
         int index = getIndexOfNextDelimiter(position);
         if (index == -1) {
             // no next token found
@@ -30,7 +30,7 @@ public class DATANORMLexicalScanner extends EDILexicalScanner {
         return createToken(position, tokenString);
     }
 
-    private IToken createToken(
+    private Token createToken(
             final int position,
             final String tokenString) {
         return DATANORMTokenFactory.getInstance(getDATANORMDelimiter()).getToken(tokenString, position);

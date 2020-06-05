@@ -1,7 +1,7 @@
 package com.inubit.ibis.plugins.edi20.parsers.hl7;
 
 import com.inubit.ibis.plugins.edi20.rules.AbstractHWEDRule;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
 
@@ -28,7 +28,7 @@ public class HL7Rule extends AbstractHWEDRule {
     }
 
     @Override
-    public void closeCurrentRuleToken(final IToken token) {
+    public void closeCurrentRuleToken(final Token token) {
         //todo: implement
     }
 }

@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import org.dom4j.Element;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * @author r4fter
  */
-public abstract class EDIRuleBaseToken implements IRuleToken {
+public abstract class EDIRuleBaseToken implements RuleToken {
 
     private static final String ATTRIBUTE_NAME_ID = "id";
     private static final String ATTRIBUTE_NAME_NAME = "name";
@@ -87,16 +87,16 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
         return getRuleElement() != null && !getRuleElement().elements().isEmpty();
     }
 
-    public List<IRuleToken> getChildren() {
+    public List<RuleToken> getChildren() {
         final List<Element> childElements = getRuleElement().elements();
-        final List<IRuleToken> children = new ArrayList<>(childElements.size());
+        final List<RuleToken> children = new ArrayList<>(childElements.size());
         for (final Element childElement : childElements) {
             children.add(createElementInstance(childElement));
         }
         return children;
     }
 
-    protected IRuleToken createElementInstance(final Element element) {
+    protected RuleToken createElementInstance(final Element element) {
         return getFactory().createInstance(element);
     }
 
@@ -104,7 +104,7 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
      * @return next rule child token or <code>null</code> if no such child
      * exists
      */
-    public IRuleToken nextChildren() {
+    public RuleToken nextChildren() {
         final Iterator<Element> childIterator = getChildIterator();
         if (childIterator.hasNext()) {
             return createElementInstance(childIterator.next());
@@ -138,7 +138,7 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
     /**
      * @return parent rule token or <code>null</code> if no parent exists
      */
-    public IRuleToken getParent() {
+    public RuleToken getParent() {
         if (getRuleElement().getParent() != null) {
             return getFactory().createInstance(getRuleElement().getParent());
         }
@@ -171,7 +171,7 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
      * @return XPath to this dom4j node
      */
     public String getXPath() {
-        final IRuleToken parent = getParent();
+        final RuleToken parent = getParent();
         if (parent instanceof EDIRuleBaseToken) {
             return ((EDIRuleBaseToken) parent).getXPath() + getPathString();
         }
@@ -188,9 +188,9 @@ public abstract class EDIRuleBaseToken implements IRuleToken {
      * @return index or -1 if the given token is not a child of this token
      */
     public int getIndexOfChild(final EDIRuleBaseToken childToken) {
-        final List<IRuleToken> children = getChildren();
+        final List<RuleToken> children = getChildren();
         for (int i = 0; i < children.size(); i++) {
-            final IRuleToken child = children.get(i);
+            final RuleToken child = children.get(i);
             if (child.getID().equals(childToken.getID())) {
                 return i;
             }

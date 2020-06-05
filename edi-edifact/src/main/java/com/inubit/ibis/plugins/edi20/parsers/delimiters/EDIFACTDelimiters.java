@@ -1,9 +1,9 @@
 package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 import com.inubit.ibis.utils.StringUtil;
 
-public class EDIFACTDelimiters implements IDelimiters {
+public class EDIFACTDelimiters implements Delimiters {
 
     public static final int DELIMITER_ELEMENT = 0;
     public static final int DELIMITER_SEGMENT = 1;
@@ -119,7 +119,7 @@ public class EDIFACTDelimiters implements IDelimiters {
         if (isSegmentDelimiter(delimiter)) {
             return DELIMITER_SEGMENT;
         }
-        return IDelimiters.DELIMITER_UNKNOWN;
+        return Delimiters.DELIMITER_UNKNOWN;
     }
 
     @Override
@@ -135,7 +135,7 @@ public class EDIFACTDelimiters implements IDelimiters {
                 return decimalDelimiter;
             case DELIMITER_ESCAPE:
                 return escapeDelimiter;
-            case IDelimiters.DELIMITER_UNKNOWN:
+            case Delimiters.DELIMITER_UNKNOWN:
             default:
                 return "";
         }

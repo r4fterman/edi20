@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import com.inubit.ibis.plugins.edi20.outputs.IOutputWriter;
+import com.inubit.ibis.plugins.edi20.outputs.OutputWriter;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
@@ -9,7 +9,7 @@ import java.io.OutputStream;
 /**
  * @author r4fter
  */
-public class EDIFACTWriter implements IOutputWriter {
+public class EDIFACTWriter implements OutputWriter {
 
     private static final String ELEMENT_NAME_INTERCHANGE = "Interchange";
 

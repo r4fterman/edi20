@@ -3,7 +3,7 @@ package com.inubit.ibis.plugins.edi20.scanners;
 /**
  * @author r4fter
  */
-public class EDIFACTSegmentIdentifier implements IIdentifier {
+public class EDIFACTSegmentIdentifier implements Identifier {
 
     private final String identifier;
 

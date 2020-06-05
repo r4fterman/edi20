@@ -1,15 +1,15 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRepeatableRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RepeatableRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Element;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EDIRuleSegment extends EDIRuleBaseToken implements IRepeatableRuleToken {
+public abstract class EDIRuleSegment extends EDIRuleBaseToken implements RepeatableRuleToken {
 
     private static final String ATTRIBUTE_NAME_LOOP = "loop";
     private static final int NO_LOOP = 1;
@@ -65,11 +65,11 @@ public abstract class EDIRuleSegment extends EDIRuleBaseToken implements IRepeat
         currentLoopCount += loopCount;
     }
 
-    public List<IElementRuleToken> getElements() {
-        final List<IElementRuleToken> elements = new ArrayList<>();
-        for (final IRuleToken child : getChildren()) {
-            if (child instanceof IElementRuleToken) {
-                elements.add((IElementRuleToken) child);
+    public List<ElementRuleToken> getElements() {
+        final List<ElementRuleToken> elements = new ArrayList<>();
+        for (final RuleToken child : getChildren()) {
+            if (child instanceof ElementRuleToken) {
+                elements.add((ElementRuleToken) child);
             }
         }
         return elements;

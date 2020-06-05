@@ -1,18 +1,18 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import com.inubit.ibis.plugins.edi20.outputs.IOutputWriter;
+import com.inubit.ibis.plugins.edi20.outputs.OutputWriter;
 import com.inubit.ibis.plugins.edi20.outputs.OutputWriterFactory;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
-import com.inubit.ibis.plugins.edi20.scanners.IScanner;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.Scanner;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
 
-public abstract class AbstractEDIParser implements IEDIParser {
+public abstract class AbstractEDIParser implements EDIParser {
 
     private final AbstractEDIRule ediRule;
-    private final IScanner scanner;
-    private IOutputWriter writer;
+    private final Scanner scanner;
+    private OutputWriter writer;
 
     /**
      * @param scanner
@@ -21,7 +21,7 @@ public abstract class AbstractEDIParser implements IEDIParser {
      *         EDI rule
      */
     public AbstractEDIParser(
-            final IScanner scanner,
+            final Scanner scanner,
             final AbstractEDIRule ediRule) {
         super();
         this.scanner = scanner;
@@ -38,11 +38,11 @@ public abstract class AbstractEDIParser implements IEDIParser {
     /**
      * @return lexical scanner
      */
-    public IScanner getScanner() {
+    public Scanner getScanner() {
         return scanner;
     }
 
-    public IOutputWriter getWriter() throws InubitException {
+    public OutputWriter getWriter() throws InubitException {
         if (writer == null) {
             writer = OutputWriterFactory.getInstance(getRule());
         }
@@ -58,7 +58,7 @@ public abstract class AbstractEDIParser implements IEDIParser {
 
     private void parseTokens() throws InubitException {
         while (getScanner().hasMoreTokens() && !isEndOfRule()) {
-            final IToken token = getScanner().nextToken();
+            final Token token = getScanner().nextToken();
             if (!StringUtil.isLineBreakOnly(token.getToken())) {
                 if (token.isDelimiter()) {
                     parseDelimiter(token);
@@ -79,7 +79,7 @@ public abstract class AbstractEDIParser implements IEDIParser {
 
     private String getUnparsedPart() {
         // empty the scanner
-        final StringBuilder unparsedBuilder = new StringBuilder("");
+        final StringBuilder unparsedBuilder = new StringBuilder();
         while (getScanner().hasMoreTokens()) {
             unparsedBuilder.append(getScanner().nextToken().getToken());
         }
@@ -88,7 +88,7 @@ public abstract class AbstractEDIParser implements IEDIParser {
 
     protected abstract boolean isEndOfRule();
 
-    protected abstract void parseToken(IToken token) throws InubitException;
+    protected abstract void parseToken(Token token) throws InubitException;
 
-    protected abstract void parseDelimiter(IToken token) throws InubitException;
+    protected abstract void parseDelimiter(Token token) throws InubitException;
 }

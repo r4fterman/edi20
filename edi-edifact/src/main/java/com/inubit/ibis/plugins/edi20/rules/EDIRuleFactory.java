@@ -1,9 +1,9 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
@@ -25,7 +25,7 @@ public final class EDIRuleFactory {
 
     public static EDIRuleFactory getInstance(
             final StringBuilder textInputDocument,
-            final IDelimiters delimiter) {
+            final Delimiters delimiter) {
         if (fInstance == null) {
             fInstance = new EDIRuleFactory(textInputDocument, delimiter);
         }
@@ -33,11 +33,11 @@ public final class EDIRuleFactory {
     }
 
     private StringBuilder fTextInputDocument;
-    private IDelimiters fDelimiter;
+    private Delimiters fDelimiter;
 
     private EDIRuleFactory(
             final StringBuilder textInputDocument,
-            final IDelimiters delimiter) {
+            final Delimiters delimiter) {
         fTextInputDocument = textInputDocument;
         fDelimiter = delimiter;
     }
@@ -125,7 +125,7 @@ public final class EDIRuleFactory {
             final EDIFACTLexicalScanner scanner,
             final StringBuilder builder,
             final boolean mandatory) throws InubitException {
-        final IToken messageTypeToken = scanner.nextToken();
+        final Token messageTypeToken = scanner.nextToken();
         if (StringUtil.isSet(messageTypeToken.getToken())) {
             builder.append(messageTypeToken.getToken());
             builder.append(DELIMITER_RULE_FILE_PART);

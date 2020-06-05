@@ -49,7 +49,7 @@ class DATANORMLexicalScannerTest {
         final DATANORMLexicalScanner scanner = new DATANORMLexicalScanner(new StringBuilder(ediStr), new DATANORMDelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
 
-        IToken token;
+        Token token;
 
         assertToken(scanner.nextToken(), DATANORMUnknownDelimiterToken.class, "C");
         assertToken(scanner.nextToken(), DATANORMElementDelimiterToken.class, ";");
@@ -116,8 +116,8 @@ class DATANORMLexicalScannerTest {
     }
 
     private void assertToken(
-            final IToken token,
-            final Class<? extends IToken> tokenClass,
+            final Token token,
+            final Class<? extends Token> tokenClass,
             final String tokenValue) {
         assertThat(token.getClass(), is(tokenClass));
         assertThat(token.getToken(), is(tokenValue));

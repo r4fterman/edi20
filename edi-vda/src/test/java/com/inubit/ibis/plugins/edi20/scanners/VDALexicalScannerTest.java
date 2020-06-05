@@ -48,7 +48,7 @@ class VDALexicalScannerTest {
         final VDALexicalScanner scanner = new VDALexicalScanner(new StringBuilder(ediStr), new VDADelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
 
-        IToken token = scanner.nextToken();
+        Token token = scanner.nextToken();
         assertThat(token.getClass(), is(VDAUnknownDelimiterToken.class));
         assertThat(token.getToken(), is("51101AG03     CKDVW    "));
         assertThat(scanner.hasMoreTokens(), is(true));

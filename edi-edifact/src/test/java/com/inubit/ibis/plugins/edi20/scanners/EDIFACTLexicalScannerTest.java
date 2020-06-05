@@ -153,8 +153,8 @@ class EDIFACTLexicalScannerTest {
     }
 
     private void assertToken(
-            final IToken token,
-            final Class<? extends IToken> tokenClass,
+            final Token token,
+            final Class<? extends Token> tokenClass,
             final int position,
             final String tokenValue) {
         assertThat("Token is null!", token, not(nullValue()));

@@ -1,9 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules.interfaces;
 
-/**
- * @author r4fter
- */
-public interface IVariableLengthRuleToken {
+public interface VariableLengthRuleToken {
 
     /**
      * @return element min length or -1 if not set

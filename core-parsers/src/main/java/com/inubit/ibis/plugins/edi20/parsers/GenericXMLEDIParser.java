@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import com.inubit.ibis.plugins.edi20.IGenericParser;
+import com.inubit.ibis.plugins.edi20.GenericParser;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
@@ -8,9 +8,9 @@ import org.dom4j.Document;
 /**
  * @author r4fter
  */
-public class GenericXMLEDIParser implements IGenericParser {
+public class GenericXMLEDIParser implements GenericParser {
 
-    private IEDIParser parser;
+    private EDIParser parser;
 
     /**
      * @param inputDocument

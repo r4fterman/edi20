@@ -8,7 +8,7 @@ import com.inubit.ibis.utils.InubitException;
  */
 public final class OutputWriterFactory {
 
-    public static IOutputWriter getInstance(final AbstractEDIRule rule) throws InubitException {
+    public static OutputWriter getInstance(final AbstractEDIRule rule) throws InubitException {
         if (rule == null) {
             throw new IllegalArgumentException("Rule is null!");
         }

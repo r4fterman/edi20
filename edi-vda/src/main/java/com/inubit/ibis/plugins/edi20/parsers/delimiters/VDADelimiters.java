@@ -1,13 +1,13 @@
 package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 
 /**
  * Class contains all VDA delimiters.
  *
  * @author r4fter
  */
-public class VDADelimiters implements IDelimiters {
+public class VDADelimiters implements Delimiters {
 
     public static final int DELIMITER_SEGMENT = 1;
 

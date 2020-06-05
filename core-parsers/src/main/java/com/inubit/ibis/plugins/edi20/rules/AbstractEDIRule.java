@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public abstract class AbstractEDIRule {
 
     private EDIRuleRoot ruleElement;
-    private IRuleToken currentRuleToken;
+    private RuleToken currentRuleToken;
 
     /**
      * @param ruleDocument
@@ -51,11 +51,11 @@ public abstract class AbstractEDIRule {
     }
 
 
-    protected void setCurrentRuleToken(final IRuleToken ruleToken) {
+    protected void setCurrentRuleToken(final RuleToken ruleToken) {
         currentRuleToken = ruleToken;
     }
 
-    protected IRuleToken getCurrentRuleToken() {
+    protected RuleToken getCurrentRuleToken() {
         return currentRuleToken;
     }
 
@@ -73,7 +73,7 @@ public abstract class AbstractEDIRule {
      */
     private boolean isSetCorrectStandardAndLayout(final Element rootElement) {
         if (rootElement != null) {
-            final IRuleToken ruleToken = getRuleToken(rootElement);
+            final RuleToken ruleToken = getRuleToken(rootElement);
             if (ruleToken instanceof EDIRuleRoot) {
                 final EDIRuleRoot root = (EDIRuleRoot) ruleToken;
                 return isSetCorrectStandard(root) && isSetCorrectLayout(root);
@@ -82,7 +82,7 @@ public abstract class AbstractEDIRule {
         return false;
     }
 
-    protected abstract IRuleToken getRuleToken(Element element);
+    protected abstract RuleToken getRuleToken(Element element);
 
     private boolean isSetCorrectLayout(final EDIRuleRoot root) {
         final String layout = root.getLayout();
@@ -199,8 +199,8 @@ public abstract class AbstractEDIRule {
      * given ID
      */
     public Optional<EDIRuleSegment> nextSegment(final String segmentID) {
-        final List<IRuleToken> children = getRootElement().getChildren();
-        for (final IRuleToken child : children) {
+        final List<RuleToken> children = getRootElement().getChildren();
+        for (final RuleToken child : children) {
             if (child instanceof EDIRuleSegmentGroup) {
                 final Optional<EDIRuleSegment> nextSegment = nextSegmentInSegmentGroup((EDIRuleSegmentGroup) child, segmentID);
                 if (nextSegment.isPresent()) {

@@ -19,7 +19,7 @@ public final class GenericParserFactory {
      *
      * @throws InubitException
      */
-    public static IGenericParser getInstance(final Document document) throws InubitException {
+    public static GenericParser getInstance(final Document document) throws InubitException {
         return new GenericXMLEDIParser(document);
     }
 
@@ -29,7 +29,7 @@ public final class GenericParserFactory {
      *
      * @throws InubitException
      */
-    public static IGenericParser getInstance(final String text) throws InubitException {
+    public static GenericParser getInstance(final String text) throws InubitException {
         return getInstance(new StringBuilder(text));
     }
 
@@ -39,7 +39,7 @@ public final class GenericParserFactory {
      *
      * @throws InubitException
      */
-    public static IGenericParser getInstance(final StringBuilder buffer) throws InubitException {
+    public static GenericParser getInstance(final StringBuilder buffer) throws InubitException {
         return new GenericEDIXMLParser(buffer);
     }
 
@@ -50,7 +50,7 @@ public final class GenericParserFactory {
      *
      * @throws InubitException
      */
-    public static IGenericParser getInstance(final StringBuilder inputText, final AbstractEDIRule rule) throws InubitException {
+    public static GenericParser getInstance(final StringBuilder inputText, final AbstractEDIRule rule) throws InubitException {
         return new GenericEDIXMLParser(inputText, rule);
     }
 }

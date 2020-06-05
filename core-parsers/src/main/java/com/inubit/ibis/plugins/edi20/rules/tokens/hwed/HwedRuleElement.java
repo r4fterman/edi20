@@ -1,11 +1,11 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens.hwed;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IVariableLengthRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.VariableLengthRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.RuleTokenFactory;
 import org.dom4j.Element;
 
-public class HwedRuleElement extends EDIRuleElement implements IVariableLengthRuleToken {
+public class HwedRuleElement extends EDIRuleElement implements VariableLengthRuleToken {
 
     private static final String ATTRIBUTE_NAME_MINLENGTH = "minLength";
     private static final String ATTRIBUTE_NAME_MAXLENGTH = "maxLength";

@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.utils.InubitException;
 import org.dom4j.Document;
@@ -32,7 +32,7 @@ public class VDARule extends AbstractHWFPERule {
         return false;
     }
 
-    private EDIRuleSegment getSegment(final IRuleToken currentRuleToken) {
+    private EDIRuleSegment getSegment(final RuleToken currentRuleToken) {
         if (currentRuleToken instanceof EDIRuleSegment) {
             return (EDIRuleSegment) currentRuleToken;
         }

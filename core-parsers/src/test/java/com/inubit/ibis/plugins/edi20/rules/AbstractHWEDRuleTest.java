@@ -1,12 +1,12 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -35,7 +35,7 @@ class AbstractHWEDRuleTest {
     void setUp() throws Exception {
         this.rule = new AbstractHWEDRule(getDocument("EDIFACT-IFCSUM-D-96A.xml")) {
             @Override
-            public void closeCurrentRuleToken(final IToken token) {
+            public void closeCurrentRuleToken(final Token token) {
                 // do nothing
             }
 
@@ -150,7 +150,7 @@ class AbstractHWEDRuleTest {
 
         assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
-        List<IElementRuleToken> elements = segment.getElements();
+        List<ElementRuleToken> elements = segment.getElements();
         assertThat(elements.size(), is(4));
 
         assertThat(elements.get(0), instanceOf(EDIRuleElement.class));
@@ -166,7 +166,7 @@ class AbstractHWEDRuleTest {
 
         assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
-        List<IElementRuleToken> elements = segment.getElements();
+        List<ElementRuleToken> elements = segment.getElements();
         assertThat(elements.size(), is(4));
 
         assertThat(elements.get(0), instanceOf(EDIRuleElement.class));
@@ -190,7 +190,7 @@ class AbstractHWEDRuleTest {
 
         assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
-        List<IElementRuleToken> elements = segment.getElements();
+        List<ElementRuleToken> elements = segment.getElements();
         assertThat(elements.size(), is(4));
 
         assertThat(elements.get(1), instanceOf(EDIRuleCompositeElement.class));
@@ -210,7 +210,7 @@ class AbstractHWEDRuleTest {
 
         assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
-        List<IElementRuleToken> elements = segment.getElements();
+        List<ElementRuleToken> elements = segment.getElements();
         assertThat(elements.size(), is(4));
 
         assertThat(elements.get(1), instanceOf(EDIRuleCompositeElement.class));

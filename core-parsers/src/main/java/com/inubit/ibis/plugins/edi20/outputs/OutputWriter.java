@@ -2,10 +2,7 @@ package com.inubit.ibis.plugins.edi20.outputs;
 
 import java.io.OutputStream;
 
-/**
- * @author r4fter
- */
-public interface IOutputWriter {
+public interface OutputWriter {
 
     /**
      * Method writes result to the given output stream.

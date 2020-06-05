@@ -3,16 +3,16 @@ package com.inubit.ibis.plugins.edi20.parsers;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.DATANORMDelimiters;
 import com.inubit.ibis.plugins.edi20.rules.AbstractMSWEDRule;
 import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.DATANORMElementDelimiterToken;
 import com.inubit.ibis.plugins.edi20.scanners.DATANORMSegmentDelimiterToken;
 import com.inubit.ibis.plugins.edi20.scanners.DATANORMUnknownDelimiterToken;
 import com.inubit.ibis.plugins.edi20.scanners.EDILexicalScanner;
-import com.inubit.ibis.plugins.edi20.scanners.IIdentifier;
-import com.inubit.ibis.plugins.edi20.scanners.IScanner;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.Identifier;
+import com.inubit.ibis.plugins.edi20.scanners.Scanner;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.InubitException;
 
 import java.util.List;
@@ -29,13 +29,13 @@ public class DATANORMParser extends MSWEDParser {
      *         EDI rule
      */
     public DATANORMParser(
-            final IScanner scanner,
+            final Scanner scanner,
             final AbstractMSWEDRule rule) {
         super(scanner, rule);
     }
 
     @Override
-    protected void parseToken(final IToken token) throws InubitException {
+    protected void parseToken(final Token token) throws InubitException {
         if (token instanceof DATANORMUnknownDelimiterToken) {
             parseToken((DATANORMUnknownDelimiterToken) token);
         }
@@ -52,12 +52,12 @@ public class DATANORMParser extends MSWEDParser {
 
     private EDIRuleSegment getRuleToken(final DATANORMUnknownDelimiterToken token) throws RuleViolationException {
         // get token identifier (e.g. segment identifier)
-        final IIdentifier identifier = token.getIdentifier();
+        final Identifier identifier = token.getIdentifier();
         // get corresponding rule node
         return getCorrespondingRuleToken(identifier);
     }
 
-    private EDIRuleSegment getCorrespondingRuleToken(final IIdentifier identifier) throws RuleViolationException {
+    private EDIRuleSegment getCorrespondingRuleToken(final Identifier identifier) throws RuleViolationException {
         // walk through rule finding segment by the given identifier
         // check that for rule violation
         final List<EDIRuleSegment> segments = getRule().getSegments();
@@ -73,8 +73,8 @@ public class DATANORMParser extends MSWEDParser {
             final DATANORMUnknownDelimiterToken messageToken,
             final EDIRuleSegment ruleToken) throws RuleViolationException {
         // match parts of token with rule token
-        final List<IElementRuleToken> elements = ruleToken.getElements();
-        for (final IElementRuleToken element : elements) {
+        final List<ElementRuleToken> elements = ruleToken.getElements();
+        for (final ElementRuleToken element : elements) {
             if (element instanceof HwedRuleElement) {
                 final HwedRuleElement ruleElement = (HwedRuleElement) element;
                 final String part = getMessagePart(messageToken, ruleElement);
@@ -98,12 +98,8 @@ public class DATANORMParser extends MSWEDParser {
     }
 
     @Override
-    protected void parseDelimiter(final IToken token) throws InubitException {
-        if (token instanceof DATANORMSegmentDelimiterToken) {
-            // this token is not part of the rule
-        } else if (token instanceof DATANORMElementDelimiterToken) {
-            // this token is not part of the rule
-        } else {
+    protected void parseDelimiter(final Token token) throws InubitException {
+        if (!(token instanceof DATANORMSegmentDelimiterToken || token instanceof DATANORMElementDelimiterToken)) {
             throw new UnknownDelimiterTokenException(token);
         }
     }

@@ -4,14 +4,14 @@ import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.plugins.edi20.rules.EDIFACTEnveloperRule;
 import com.inubit.ibis.plugins.edi20.rules.EDIFACTRule;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
@@ -70,7 +70,7 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     @Override
-    protected void parseDelimiter(final IToken token) throws InubitException {
+    protected void parseDelimiter(final Token token) throws InubitException {
         // System.out.println("EDIFACTParser.parseDelimiter(" + fState + "): " + token.getToken());
         getEDIFACTRule().closeCurrentRuleToken(token);
         if (EDIFACTDelimiters.DELIMITER_SEGMENT == token.getDelimiterType()) {
@@ -88,7 +88,7 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     @Override
-    protected void parseToken(final IToken token) throws InubitException {
+    protected void parseToken(final Token token) throws InubitException {
         // System.out.println("EDIFACTParser.parseToken(" + fState + "): " + token.getToken());
         switch (fState) {
             case SEGMENT_OR_SEGMENT_GROUP:
@@ -166,7 +166,7 @@ public class EDIFACTParser extends HWEDParser {
     private void parseElementOrComplexElement(
             final String element,
             final EDIFACTRule rule) throws InubitException {
-        final IRuleToken nextChild = rule.nextElement();
+        final RuleToken nextChild = rule.nextElement();
         if (nextChild != null) {
             // next children found
             if (nextChild instanceof EDIRuleCompositeElement) {

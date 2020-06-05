@@ -1,13 +1,13 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.XPathUtil;
 import org.dom4j.Document;
@@ -31,7 +31,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     }
 
     @Override
-    protected IRuleToken getRuleToken(final Element element) {
+    protected RuleToken getRuleToken(final Element element) {
         return new HwedRuleTokenFactory().createInstance(element);
     }
 
@@ -51,7 +51,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
      *         if segment is mandatory and does not match the given segment ID
      */
     private EDIRuleSegment parseUntilNextSegment(
-            final IRuleToken currentRuleToken,
+            final RuleToken currentRuleToken,
             final String segmentID) throws InubitException {
         System.out.println("AbstractHWEDRule.parseUntilNextSegment(" + currentRuleToken.getID() + "): search for segment [" + segmentID + "] ...");
         if (currentRuleToken instanceof EDIRuleSegmentGroup) {
@@ -70,7 +70,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
                 ruleSegmentGroup.setInProgress();
             }
 
-            final IRuleToken childToken = ruleSegmentGroup.nextChildren();
+            final RuleToken childToken = ruleSegmentGroup.nextChildren();
             if (childToken != null) {
                 return parseUntilNextSegment(childToken, segmentID);
             }
@@ -177,14 +177,14 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
         return newCurrentRuleToken;
     }
 
-    private EDIRuleBaseToken parseUntilNextElement(final IRuleToken currentRuleToken) throws InubitException {
+    private EDIRuleBaseToken parseUntilNextElement(final RuleToken currentRuleToken) throws InubitException {
         if (currentRuleToken instanceof EDIRuleElement) {
             return (EDIRuleElement) currentRuleToken;
         }
         if (currentRuleToken instanceof EDIRuleBaseToken) {
             final EDIRuleBaseToken ruleBaseToken = (EDIRuleBaseToken) currentRuleToken;
             System.out.println("AbstractHWEDRule.parseUntilNextElement: " + ruleBaseToken);
-            final IRuleToken nextChild = ruleBaseToken.nextChildren();
+            final RuleToken nextChild = ruleBaseToken.nextChildren();
             if (nextChild == null) {
                 throw new InubitException("Rule element [" + ruleBaseToken + "] has no child!");
             }
@@ -193,7 +193,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
         throw new InubitException("Unknown rule token [" + currentRuleToken + "]!");
     }
 
-    public abstract void closeCurrentRuleToken(IToken token);
+    public abstract void closeCurrentRuleToken(Token token);
 
     public abstract boolean isEndOfRule();
 }

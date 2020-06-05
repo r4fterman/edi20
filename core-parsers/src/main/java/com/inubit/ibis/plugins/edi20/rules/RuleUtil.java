@@ -1,7 +1,7 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRepeatableRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RepeatableRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 
 /**
@@ -14,19 +14,19 @@ public final class RuleUtil {
      *         rule token
      * @return following sibling or <code>null</code> if no such sibling was found
      */
-    public static IRuleToken getFollowingSibling(final IRuleToken ruleToken) {
+    public static RuleToken getFollowingSibling(final RuleToken ruleToken) {
         if (ruleToken == null) {
             throw new IllegalArgumentException("Rule token is NULL!");
         }
         if (ruleToken instanceof EDIRuleBaseToken) {
             EDIRuleBaseToken ruleBaseToken = ((EDIRuleBaseToken) ruleToken);
-            IRuleToken parentToken = ruleBaseToken.getParent();
+            RuleToken parentToken = ruleBaseToken.getParent();
             if (parentToken instanceof EDIRuleBaseToken) {
                 EDIRuleBaseToken parentBaseToken = ((EDIRuleBaseToken) parentToken);
                 int idx = parentBaseToken.getIndexOfChild(ruleBaseToken) + 1;
                 if (isLastChild(parentBaseToken, idx)) {
-                    if (parentToken instanceof IRepeatableRuleToken) {
-                        if (((IRepeatableRuleToken) parentToken).hasLoop()) {
+                    if (parentToken instanceof RepeatableRuleToken) {
+                        if (((RepeatableRuleToken) parentToken).hasLoop()) {
                             return parentToken;
                         }
                     }
@@ -47,7 +47,7 @@ public final class RuleUtil {
      *         rule token
      * @return child or following sibling or <code>null</code> if no such sibling was found
      */
-    public static IRuleToken getChildOrFollowingSibling(final IRuleToken ruleToken) {
+    public static RuleToken getChildOrFollowingSibling(final RuleToken ruleToken) {
         if (ruleToken == null) {
             throw new IllegalArgumentException("Rule token is NULL!");
         }
@@ -66,7 +66,7 @@ public final class RuleUtil {
      *         rule token
      * @return parent following sibling or <code>null</code> if no such sibling was found
      */
-    public static IRuleToken getParentFollowingSibling(final IRuleToken ruleToken) {
+    public static RuleToken getParentFollowingSibling(final RuleToken ruleToken) {
         if (ruleToken == null) {
             throw new IllegalArgumentException("Rule token is NULL!");
         }

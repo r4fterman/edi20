@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens.hwed;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.RuleTokenFactory;
 import org.dom4j.Element;
 
@@ -14,7 +14,7 @@ public final class HwedRuleTokenFactory implements RuleTokenFactory {
     private static final String NAME_MESSAGE = "Message";
     private static final String NAME_ENVELOPER = "Enveloper";
 
-    public IRuleToken createInstance(final Element ruleElement) throws IllegalArgumentException {
+    public RuleToken createInstance(final Element ruleElement) throws IllegalArgumentException {
         if (ruleElement == null) {
             throw new IllegalArgumentException("Element is null!");
         }
@@ -65,9 +65,9 @@ public final class HwedRuleTokenFactory implements RuleTokenFactory {
         return NAME_MESSAGE.equals(ruleElementName);
     }
 
-    private static IRuleToken addToCache(
+    private static RuleToken addToCache(
             final Element ruleElement,
-            final IRuleToken token) {
+            final RuleToken token) {
         return token;
     }
 

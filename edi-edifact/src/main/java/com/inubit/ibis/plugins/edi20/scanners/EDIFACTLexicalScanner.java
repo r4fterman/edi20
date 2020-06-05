@@ -27,7 +27,7 @@ public class EDIFACTLexicalScanner extends EDILexicalScanner {
     }
 
     @Override
-    protected IToken getNextToken(final int position) {
+    protected Token getNextToken(final int position) {
         int index = getIndexOfNextDelimiter(position);
         if (index == -1) {
             // no next token found
