@@ -10,10 +10,8 @@ import org.dom4j.io.XMLWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
-/**
- * @author r4fter
- */
 public final class XmlUtils {
 
     public static Document getDocument(final File xmlFile) {
@@ -32,6 +30,15 @@ public final class XmlUtils {
 
         final SAXReader reader = new SAXReader();
         return reader.read(xmlFile);
+    }
+
+    public static Document getDocumentThrowing(final InputStream xmlStream) throws DocumentException {
+        if (xmlStream == null) {
+            throw new NullPointerException("Xml stream is null!");
+        }
+
+        final SAXReader reader = new SAXReader();
+        return reader.read(xmlStream);
     }
 
     public static String serializePretty(final Node node) {

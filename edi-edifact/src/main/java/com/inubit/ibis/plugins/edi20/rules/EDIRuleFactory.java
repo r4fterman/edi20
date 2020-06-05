@@ -4,7 +4,6 @@ import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
-import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
 import com.inubit.ibis.utils.XmlFileFilter;
@@ -57,7 +56,7 @@ public final class EDIRuleFactory {
         }
 
         final String edifactRuleFileName = ruleFileName + XmlFileFilter.FILE_EXTENSION_XML;
-        final File edifactRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, edifactRuleFileName);
+        final File edifactRuleFile = new File("./", edifactRuleFileName);
         if (!edifactRuleFile.exists()) {
             throw new InubitException("EDI rule file not found [" + edifactRuleFile.getAbsolutePath() + "]!");
         }

@@ -12,13 +12,13 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
-import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 
-import java.io.File;
+import java.io.InputStream;
 
 public class EDIFACTParser extends HWEDParser {
 
@@ -41,23 +41,16 @@ public class EDIFACTParser extends HWEDParser {
 
     private void initializeEnveloperFile() throws InubitException {
         try {
-            final File enveloperRuleFile = ensureEnveloperFileExists();
-            final Document document = XmlUtils.getDocumentThrowing(enveloperRuleFile);
+            final Document document = loadEnveloperFile();
             enveloperRule = new EDIFACTEnveloperRule(document);
         } catch (final Exception e) {
             throw new InubitException("Error parsing enveloperRule rule file!", e);
         }
     }
 
-    private File ensureEnveloperFileExists() throws InubitException {
-        if (!EDIUtil.RULE_FILE_FOLDER.exists()) {
-            throw new InubitException("Rule file folder is missing (" + EDIUtil.RULE_FILE_FOLDER + ")!");
-        }
-        final File enveloperRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, ENVELOPER_RULE_FILE_NAME);
-        if (!enveloperRuleFile.exists()) {
-            throw new InubitException("Enveloper rule file is missing (" + enveloperRuleFile + ")!");
-        }
-        return enveloperRuleFile;
+    private Document loadEnveloperFile() throws DocumentException {
+        final InputStream stream = EDIFACTParser.class.getResourceAsStream("/" + ENVELOPER_RULE_FILE_NAME);
+        return XmlUtils.getDocumentThrowing(stream);
     }
 
     public EDIFACTEnveloperRule getEnveloper() {
@@ -110,13 +103,11 @@ public class EDIFACTParser extends HWEDParser {
     private void parseSegment(
             final String segmentID,
             final EDIFACTRule rule) throws InubitException {
-        final EDIRuleSegment segment = rule.nextSegment(segmentID)
-                .orElseThrow(() -> new InubitException("Segment [" + segmentID + "] not found in rule!"));
+        final EDIRuleSegment segment = rule.nextSegment(segmentID).orElseThrow(() -> new InubitException("Segment [" + segmentID + "] not found in rule!"));
         setCurrentRule(rule);
         validRuleToken(segmentID, segment);
 
-        System.out.println("EDIFACTParser.parseSegment(" + fState + "): [S:" + segmentID + " (" + segment.getLoop() + ", "
-                + segment.getCurrentLoopCount() + ")]");
+        System.out.println("EDIFACTParser.parseSegment(" + fState + "): [S:" + segmentID + " (" + segment.getLoop() + ", " + segment.getCurrentLoopCount() + ")]");
 
     }
 

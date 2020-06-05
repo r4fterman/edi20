@@ -2,12 +2,7 @@ package com.inubit.ibis.plugins.edi20.utils;
 
 import com.inubit.ibis.utils.StringUtil;
 
-import java.io.File;
-
 public final class EDIUtil {
-
-    private static final File USER_FOLDER = new File(System.getProperty("user.dir"));
-    public static final File RULE_FILE_FOLDER = new File(USER_FOLDER, "testfiles/rules");
 
     /**
      * Method checks whether the token delimiter is escaped in the given token.
@@ -48,7 +43,7 @@ public final class EDIUtil {
     }
 
     /**
-     * Method counts all conjuncted escape delimiters in the given text by
+     * Method counts all consecutive escape delimiters in the given text by
      * parsing the text backward.
      *
      * @param text
@@ -61,16 +56,16 @@ public final class EDIUtil {
             final String text,
             final String escapeDelimiter) {
         int escDelimCount = 0;
-        final int escDelimLength = escapeDelimiter.length();
+        final int escDelimiterLength = escapeDelimiter.length();
 
         // parse backward
         int end = text.length();
-        int start = end - escDelimLength;
+        int start = end - escDelimiterLength;
         String textEnd = text.substring(start, end);
         while (textEnd.equals(escapeDelimiter)) {
             escDelimCount++;
             end = start;
-            start = end - escDelimLength;
+            start = end - escDelimiterLength;
             if (start < 0) {
                 break;
             }

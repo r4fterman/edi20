@@ -1,0 +1,67 @@
+<Enveloper>
+    <Segment id="UNB" name="interchange header" required="C" loop="1" xmlTag="InterchangeHeader">
+        <CompositeElement id="S001" name="SYNTAX IDENTIFIER" required="M" loop="1" xmlTag="SyntaxIdentifierCE">
+            <Element id="0001" name="Syntax Identifier" required="M" loop="1" minLength="4" maxLength="4" type="AN" xmlTag="SyntaxIdentifier"/>
+            <Element id="0002" name="Syntax version number" required="M" loop="1" minLength="1" maxLength="1" type="AN" xmlTag="SyntaxVersionNumber"/>
+            <Element id="0080" name="Service code list directory version number" required="C" loop="1" minLength="1" maxLength="6" type="AN" xmlTag="ServiceCodeListDirectory"/>
+            <Element id="0133" name="Character encoding, coded" required="C" loop="1" minLength="1" maxLength="3" type="AN" xmlTag="CharacterEncoding"/>
+        </CompositeElement>
+        <CompositeElement id="S002" name="Interchange sender  ce" required="M" loop="1" xmlTag="InterchangeSenderCE">
+            <Element id="0004" name="Interchange sender identification" required="M" loop="1" minLength="0" maxLength="35" type="AN" xmlTag="InterchangeSenderIdentification"/>
+            <Element id="0007" name="Identification code qualifier" required="C" loop="1" minLength="0" maxLength="4" type="AN" xmlTag="IdentificationCodeQualifier"/>
+            <Element id="0008" name="Interchange sender internal identification" required="C" loop="1" minLength="0" maxLength="35" type="AN" xmlTag="InterchangeSenderInternalIdentification"/>
+            <Element id="0042" name="Interchange sender internal sub-identification" required="C" loop="1" minLength="0" maxLength="35" type="AN" xmlTag="InterchangeSenderInternalSubIdentification"/>
+        </CompositeElement>
+        <CompositeElement id="S003" name="Interchange recipient" required="M" loop="1" xmlTag="InterchangeRecipient">
+            <Element id="0010" name="Interchange recipient identification" required="M" loop="1" minLength="0" maxLength="35" type="AN" xmlTag="InterchangeRecipientIdentification"/>
+            <Element id="0007" name="Identification code qualifier" required="C" loop="1" minLength="0" maxLength="4" type="AN" xmlTag="IdentificationCodeQualifier"/>
+            <Element id="0014" name="Interchange recipient internal identification" required="C" loop="1" minLength="0" maxLength="35" type="AN" xmlTag="InterchangeRecipientInternalIdentification"/>
+            <Element id="0046" name="Interchange recipient internal sub-identification" required="C" loop="1" minLength="0" maxLength="35" type="AN" xmlTag="InterchangeRecipientInternalSubIdentification"/>
+        </CompositeElement>
+        <CompositeElement id="S004" name="DATE AND TIME OF PREPARATION" required="M" loop="1" xmlTag="DateAndTimeOfPreparation">
+            <Element id="0017" name="Date" required="M" loop="1" minLength="2" maxLength="8" type="N" xmlTag="Date"/>
+            <Element id="0019" name="Time" required="M" loop="1" minLength="2" maxLength="4" type="N" xmlTag="Time"/>
+        </CompositeElement>
+        <Element id="0020" name="INTERCHANGE CONTROL REFERENCE" required="M" loop="1" minLength="0" maxLength="14" type="AN" xmlTag="InterchangeControlReference"/>
+        <CompositeElement id="S005" name="RECIPIENT REFERENCE/PASSWORD DETAILS" required="C" loop="1" xmlTag="RecipientReferencePasswordDetails">
+            <Element id="0022" name="Recipient reference/password" required="M" loop="1" minLength="0" maxLength="14" type="AN" xmlTag="RecipientReferencePassword"/>
+            <Element id="0025" name="Recipient reference/password qualifier" required="C" loop="1" minLength="2" maxLength="2" type="AN" xmlTag="RecipientReferencePasswordQualifier"/>
+        </CompositeElement>
+        <Element id="0026" name="APPLICATION REFERENCE" required="C" loop="1" minLength="0" maxLength="14" type="AN" xmlTag="ApplicationReference"/>
+        <Element id="0029" name="PROCESSING PRIORITY CODE" required="C" loop="1" minLength="1" maxLength="1" type="AN" xmlTag="ProcessingPriorityCode"/>
+        <Element id="0031" name="ACKNOWLEDGEMENT REQUEST" required="C" loop="1" minLength="1" maxLength="1" type="N" xmlTag="AsknowledgementRequest"/>
+        <Element id="0032" name="INTERCHANGE AGREEMENT IDENTIFIER" required="C" loop="1" minLength="0" maxLength="35" type="AN" xmlTag="InterchangeAgreementIdentifier"/>
+        <Element id="0035" name="TEST INDICATOR" required="C" loop="1" minLength="1" maxLength="1" type="N" xmlTag="TestIndicator"/>
+    </Segment>
+    <Segment id="UNG" name="group header" required="C" loop="1" xmlTag="FunctionalGroupHeader">
+        <Element id="0038" name="MESSAGE GROUP IDENTIFICATION" required="C" loop="1" minLength="0" maxLength="6" type="AN" xmlTag="MessageGroupIdentification"/>
+        <CompositeElement id="S006" name="APPLICATION SENDER IDENTIFICATION CE" required="C" loop="1" xmlTag="ApplicationSenderIdentificationCE">
+            <Element id="0040" name="Application sender identification" required="M" loop="1" minLength="0" maxLength="35" type="AN" xmlTag="ApplicationSenderIdentification"/>
+            <Element id="0007" name="Identification code qualifier" required="C" loop="1" minLength="0" maxLength="4" type="AN" xmlTag="IdentificationCodeQualifier"/>
+        </CompositeElement>
+        <CompositeElement id="S007" name="APPLICATION RECIPIENT IDENTIFICATION CE" required="C" loop="1" xmlTag="ApplicationRecipientIdentificationCE">
+            <Element id="0044" name="Application Recipient identification" required="M" loop="1" minLength="0" maxLength="35" type="AN" xmlTag="ApplicationRecipientIdentification"/>
+            <Element id="0007" name="Identification code qualifier" required="C" loop="1" minLength="0" maxLength="4" type="AN" xmlTag="IdentificationCodeQualifier"/>
+        </CompositeElement>
+        <CompositeElement id="S004" name="DATE AND TIME OF PREPARATION" required="M" loop="1" xmlTag="DateAndTimeOfPreparation">
+            <Element id="0017" name="Date" required="M" loop="1" minLength="2" maxLength="8" type="N" xmlTag="Date"/>
+            <Element id="0019" name="Time" required="M" loop="1" minLength="2" maxLength="4" type="N" xmlTag="Time"/>
+        </CompositeElement>
+        <Element id="0048" name="GROUP REFERENCE NUMBER" required="M" loop="1" minLength="0" maxLength="14" type="AN" xmlTag="GroupReferenceNumber"/>
+        <Element id="0051" name="CONTROLLING AGENCY, CODED" required="C" loop="1" minLength="0" maxLength="3" type="AN" xmlTag="ControllingAgencyCoded"/>
+        <CompositeElement id="S008" name="MESSAGE VERSION" required="C" loop="1" xmlTag="MessageVersion">
+            <Element id="0052" name="Message version number" required="M" loop="1" minLength="0" maxLength="3" type="AN" xmlTag="MessageVersionNumber"/>
+            <Element id="0054" name="Message release number" required="M" loop="1" minLength="0" maxLength="3" type="AN" xmlTag="MessageReleaseNumber"/>
+            <Element id="0057" name="Association assigned code" required="C" loop="1" minLength="0" maxLength="6" type="AN" xmlTag="AssociationAssignedCode"/>
+        </CompositeElement>
+        <Element id="0058" name="APPLICATION PASSWORD" required="C" loop="1" minLength="0" maxLength="14" type="AN" xmlTag="ApplicationPassword"/>
+    </Segment>
+    <Segment id="UNE" name="group trailer" required="C" loop="1" xmlTag="FunctionalGroupTrailer">
+        <Element id="0060" name="GROUP CONTROL COUNT" required="M" loop="1" minLength="0" maxLength="6" type="N" xmlTag="GroupControlCount"/>
+        <Element id="0048" name="GROUP REFERENCE NUMBER" required="M" loop="1" minLength="0" maxLength="14" type="AN" xmlTag="GroupReferenceNumber"/>
+    </Segment>
+    <Segment id="UNZ" name="interchange trailer" required="C" loop="1" xmlTag="InterchangeTrailer">
+        <Element id="0036" name="INTERCHANGE CONTROL COUNT" required="M" loop="1" minLength="0" maxLength="6" type="N" xmlTag="InterchangeControlCount"/>
+        <Element id="0020" name="INTERCHANGE CONTROL REFERENCE" required="M" loop="1" minLength="0" maxLength="14" type="AN" xmlTag="InterchangeControlReference"/>
+    </Segment>
+</Enveloper>
