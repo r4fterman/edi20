@@ -33,8 +33,8 @@ public class EDIFACTLexicalScanner extends EDILexicalScanner {
             // no next token found
             index = getInputDocument().length();
         }
-        final String str = getInputDocument().substring(position, index).replaceAll("\\r\\n?", "\n");
-        return EDIFACTTokenFactory.getInstance(getEDIFACTDelimiter()).getToken(str, position);
+        final String tokenString = getInputDocument().substring(position, index).replaceAll("\\r\\n?", "\n");
+        return EDIFACTTokenFactory.getInstance(getEDIFACTDelimiter()).getToken(tokenString, position);
     }
 
     private int getIndexOfNextDelimiter(final int position) {

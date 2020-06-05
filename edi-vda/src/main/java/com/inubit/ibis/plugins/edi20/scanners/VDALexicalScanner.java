@@ -26,14 +26,14 @@ public class VDALexicalScanner extends EDILexicalScanner {
             // no next token found
             index = getInputDocument().length();
         }
-        final String str = getInputDocument().substring(position, index).replaceAll("\\r\\n?", "\n");
-        return createToken(position, str);
+        final String tokenString = getInputDocument().substring(position, index).replaceAll("\\r\\n?", "\n");
+        return createToken(position, tokenString);
     }
 
     private IToken createToken(
             final int position,
-            final String str) {
-        return VDATokenFactory.getInstance(getVDADelimiter()).getToken(str, position);
+            final String tokenString) {
+        return VDATokenFactory.getInstance(getVDADelimiter()).getToken(tokenString, position);
     }
 
     private int getIndexOfNextDelimiter(final int position) {

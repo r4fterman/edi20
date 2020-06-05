@@ -26,14 +26,14 @@ public class DATANORMLexicalScanner extends EDILexicalScanner {
             // no next token found
             index = getInputDocument().length();
         }
-        final String str = getInputDocument().substring(position, index).replaceAll("\\r\\n?", "\n");
-        return createToken(position, str);
+        final String tokenString = getInputDocument().substring(position, index).replaceAll("\\r\\n?", "\n");
+        return createToken(position, tokenString);
     }
 
     private IToken createToken(
             final int position,
-            final String str) {
-        return DATANORMTokenFactory.getInstance(getDATANORMDelimiter()).getToken(str, position);
+            final String tokenString) {
+        return DATANORMTokenFactory.getInstance(getDATANORMDelimiter()).getToken(tokenString, position);
     }
 
     private int getIndexOfNextDelimiter(final int position) {
