@@ -4,7 +4,6 @@ import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
 import org.dom4j.Document;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractEDIRule {
 
-    private EDIRuleRoot ruleElement;
+    private final EDIRuleRoot ruleElement;
     private RuleToken currentRuleToken;
 
     /**
@@ -30,7 +29,7 @@ public abstract class AbstractEDIRule {
             throw new InvalidRuleException();
         }
         ruleElement = createRootElement(ruleDocument);
-        setCurrentRuleToken(ruleElement.getChildren().get(0));
+        setCurrentRuleToken(ruleElement);
     }
 
     private EDIRuleRoot createRootElement(final Document ruleDocument) {
@@ -49,7 +48,6 @@ public abstract class AbstractEDIRule {
 
         return isSetCorrectStandardAndLayout(rootElement);
     }
-
 
     protected void setCurrentRuleToken(final RuleToken ruleToken) {
         currentRuleToken = ruleToken;
@@ -189,7 +187,6 @@ public abstract class AbstractEDIRule {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-
     /**
      * Method returns the next segment for the given ID.
      *
@@ -199,50 +196,75 @@ public abstract class AbstractEDIRule {
      * given ID
      */
     public Optional<EDIRuleSegment> nextSegment(final String segmentID) {
-        final List<RuleToken> children = getRootElement().getChildren();
-        for (final RuleToken child : children) {
-            if (child instanceof EDIRuleSegmentGroup) {
-                final Optional<EDIRuleSegment> nextSegment = nextSegmentInSegmentGroup((EDIRuleSegmentGroup) child, segmentID);
-                if (nextSegment.isPresent()) {
-                    setCurrentRuleToken(nextSegment.get());
-                    return nextSegment;
-                }
-            } else if (child instanceof EDIRuleSegment) {
-                final Optional<EDIRuleSegment> nextSegment = nextSegment((EDIRuleSegment) child, segmentID);
-                if (nextSegment.isPresent()) {
-                    setCurrentRuleToken(nextSegment.get());
-                    return nextSegment;
-                }
+        final EDIRuleBaseToken ruleTokenToStartFrom = (EDIRuleBaseToken) getCurrentRuleToken();
+        return traverseForward(ruleTokenToStartFrom, segmentID);
+    }
+
+    private Optional<EDIRuleSegment> traverseForward(
+            final EDIRuleBaseToken ruleToken,
+            final String segmentID) {
+        final Optional<EDIRuleSegment> child = traverseChildren(ruleToken, segmentID);
+        if (child.isPresent()) {
+            return child;
+        }
+
+        final Optional<EDIRuleSegment> sibling = traverseSiblings(ruleToken, segmentID);
+        if (sibling.isPresent()) {
+            return sibling;
+        }
+
+        return traverseParents(ruleToken, segmentID);
+    }
+
+    private Optional<EDIRuleSegment> traverseParents(
+            final EDIRuleBaseToken ruleToken,
+            final String segmentID) {
+        if (!ruleToken.hasParent()) {
+            return Optional.empty();
+        }
+
+        final EDIRuleBaseToken parent = (EDIRuleBaseToken) ruleToken.getParent();
+        final Optional<EDIRuleSegment> sibling = traverseSiblings(parent, segmentID);
+        if (sibling.isPresent()) {
+            return sibling;
+        }
+        return traverseParents(parent, segmentID);
+    }
+
+    private Optional<EDIRuleSegment> traverseSiblings(
+            final EDIRuleBaseToken ruleToken,
+            final String segmentID) {
+        if (!ruleToken.hasParent()) {
+            return Optional.empty();
+        }
+
+        final EDIRuleBaseToken parent = (EDIRuleBaseToken) ruleToken.getParent();
+        final int index = parent.getIndexOfChild(ruleToken);
+        if (index >= 0) {
+            final List<RuleToken> children = parent.getChildren();
+            for (int i = index+1; i < children.size(); i++) {
+                final EDIRuleBaseToken child = (EDIRuleBaseToken) children.get(i);
+                traverseChildren(child, segmentID);
             }
         }
+
         return Optional.empty();
     }
 
-    private Optional<EDIRuleSegment> nextSegment(
-            final EDIRuleSegment segment,
+    private Optional<EDIRuleSegment> traverseChildren(
+            final EDIRuleBaseToken ruleToken,
             final String segmentID) {
-        if (segment.getID().equals(segmentID)) {
-            return Optional.of(segment);
-        }
-        return Optional.empty();
-    }
-
-
-    private Optional<EDIRuleSegment> nextSegmentInSegmentGroup(
-            final EDIRuleSegmentGroup segmentGroup,
-            final String segmentID) {
-        final List<EDIRuleSegment> segments = segmentGroup.getSegments();
-        for (final EDIRuleSegment segment : segments) {
-            if (segment instanceof EDIRuleSegmentGroup) {
-                final Optional<EDIRuleSegment> ediRuleSegment = nextSegmentInSegmentGroup((EDIRuleSegmentGroup) segment, segmentID);
-                if (ediRuleSegment.isPresent()) {
-                    return ediRuleSegment;
+        final List<RuleToken> children = ruleToken.getChildren();
+        for (final RuleToken child : children) {
+            if (child instanceof EDIRuleSegment) {
+                final EDIRuleSegment segment = (EDIRuleSegment) child;
+                if (segment.getID().equals(segmentID)) {
+                    return Optional.of(segment);
                 }
-            } else {
-                final Optional<EDIRuleSegment> ediRuleSegment = nextSegment(segment, segmentID);
-                if (ediRuleSegment.isPresent()) {
-                    return ediRuleSegment;
-                }
+            }
+            final Optional<EDIRuleSegment> segment = traverseChildren((EDIRuleBaseToken) child, segmentID);
+            if (segment.isPresent()) {
+                return segment;
             }
         }
         return Optional.empty();

@@ -32,18 +32,6 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
         return "hwfpe";
     }
 
-    /**
-     * @return next segment in rule or <code>null</code> if no further segment
-     * was found in rule
-     */
-    public EDIRuleSegment nextSegment() {
-        //        IRuleToken currentRuleToken = getCurrentRuleToken();
-        //        EDIRuleSegment segment = findNextRuleSegment(currentRuleToken);
-        //        setCurrentRuleToken(segment);
-        //        return segment;
-        return null;
-    }
-
     private EDIRuleSegment findNextRuleSegment(final RuleToken ruleToken) throws InubitException {
         System.out.println("findNextRuleSegment(): ruleToken=" + ruleToken);
         if (ruleToken instanceof EDIRuleRoot) {
@@ -58,7 +46,7 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
         if (ruleToken instanceof EDIRuleElement) {
             return findNextRuleSegmentFromElement((EDIRuleElement) ruleToken);
         }
-        return null;
+        throw new InubitException("No next rule segment found!");
     }
 
     private EDIRuleSegment findNextRuleSegmentFromElement(final EDIRuleElement ruleElement) throws InubitException {

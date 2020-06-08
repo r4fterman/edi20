@@ -139,10 +139,14 @@ public abstract class EDIRuleBaseToken implements RuleToken {
      * @return parent rule token or <code>null</code> if no parent exists
      */
     public RuleToken getParent() {
-        if (getRuleElement().getParent() != null) {
+        if (hasParent()) {
             return getFactory().createInstance(getRuleElement().getParent());
         }
         return null;
+    }
+
+    public boolean hasParent() {
+        return getRuleElement().getParent() != null;
     }
 
     protected abstract RuleTokenFactory getFactory();

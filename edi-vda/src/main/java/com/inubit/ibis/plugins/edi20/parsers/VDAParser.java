@@ -137,7 +137,8 @@ public class VDAParser extends HWFPEParser {
 
         // walk through rule finding segment by the given identifier
         // check for rule violation
-        return getRule().nextSegment(identifier.getID()).orElseThrow(() -> new RuleViolationException(String.format("Rule contains no segment for [%s]!", identifier)));
+        return getRule().nextSegment(identifier.getID())
+                .orElseThrow(() -> new RuleViolationException(String.format("Rule contains no segment for [%s]!", identifier)));
     }
 
 }

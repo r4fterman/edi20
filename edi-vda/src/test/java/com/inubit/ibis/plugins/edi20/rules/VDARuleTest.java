@@ -1,7 +1,5 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleElement;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -92,15 +90,6 @@ class VDARuleTest {
         final VDARule rule = new VDARule(ruleDoc);
 
         assertThat(rule.getVersion(), is("1"));
-    }
-
-    @Test
-    void testHasMoreRuleTokens() throws Exception {
-        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
-        final VDARule rule = new VDARule(ruleDoc);
-
-        final EDIRuleSegment segment = rule.nextSegment();
-        segment.getElements().forEach(token -> assertThat(token, instanceOf(HwfpeRuleElement.class)));
     }
 
     @Test
