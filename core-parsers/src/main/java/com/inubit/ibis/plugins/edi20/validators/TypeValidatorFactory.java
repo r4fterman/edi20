@@ -1,13 +1,20 @@
 package com.inubit.ibis.plugins.edi20.validators;
 
+import com.inubit.ibis.plugins.edi20.rules.tokens.RuleElementType;
+
+import java.util.Map;
+
 public final class TypeValidatorFactory {
 
-    public static TypeValidator getInstance(final String type) throws InvalidTypeException {
-        if (type.equals("N")) {
-            return new NumericTypeValidator();
-        }
-        if (type.equals("AN")) {
-            return new AlphanumericTypeValidator();
+    private static final Map<RuleElementType, TypeValidator> VALIDATORS = Map.of(
+            RuleElementType.Numeric, new NumericTypeValidator(),
+            RuleElementType.Alphanumeric, new AlphanumericTypeValidator()
+    );
+
+    public static TypeValidator getInstance(final RuleElementType type) throws InvalidTypeException {
+        final TypeValidator typeValidator = VALIDATORS.get(type);
+        if (typeValidator != null) {
+            return typeValidator;
         }
 
         final String message = String.format("Found invalid type: [%s]", type);

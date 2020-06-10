@@ -5,6 +5,7 @@ import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
 import com.inubit.ibis.plugins.edi20.rules.VDARule;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
+import com.inubit.ibis.plugins.edi20.rules.tokens.RuleElementType;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.Identifier;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
@@ -12,20 +13,15 @@ import com.inubit.ibis.plugins.edi20.scanners.VDALexicalScanner;
 import com.inubit.ibis.plugins.edi20.scanners.VDASegmentDelimiterToken;
 import com.inubit.ibis.plugins.edi20.scanners.VDAUnknownDelimiterToken;
 import com.inubit.ibis.plugins.edi20.validators.InvalidTypeException;
+import com.inubit.ibis.plugins.edi20.validators.TypeValidator;
 import com.inubit.ibis.plugins.edi20.validators.TypeValidatorFactory;
 import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
-import java.util.Map;
 
 public class VDAParser extends HWFPEParser {
-
-    private final Map<String, String> types= Map.of(
-            "N", "numeric",
-            "AN", "alphanumeric"
-    );
 
     public VDAParser(
             final VDALexicalScanner scanner,
@@ -49,24 +45,24 @@ public class VDAParser extends HWFPEParser {
     }
 
     @Override
-    protected void parseToken(final Token token) throws EDIException {
-        if (token instanceof VDAUnknownDelimiterToken) {
-            parseToken((VDAUnknownDelimiterToken) token);
+    protected void parseToken(final Token messageToken) throws EDIException {
+        if (messageToken instanceof VDAUnknownDelimiterToken) {
+            parseToken((VDAUnknownDelimiterToken) messageToken);
         } else {
-            throw new UnknownDelimiterTokenException(token);
+            throw new UnknownDelimiterTokenException(messageToken);
         }
     }
 
     @Override
-    protected void parseDelimiter(final Token token) throws EDIException {
-        if (!(token instanceof VDASegmentDelimiterToken)) {
-            throw new UnknownDelimiterTokenException(token);
+    protected void parseDelimiter(final Token messageToken) throws EDIException {
+        if (!(messageToken instanceof VDASegmentDelimiterToken)) {
+            throw new UnknownDelimiterTokenException(messageToken);
         }
     }
 
-    private void parseToken(final VDAUnknownDelimiterToken token) throws RuleViolationException {
-        final EDIRuleSegment ruleToken = getRuleToken(token);
-        parseTokenAgainstRuleToken(token, ruleToken);
+    private void parseToken(final VDAUnknownDelimiterToken messageToken) throws RuleViolationException {
+        final EDIRuleSegment ruleToken = getRuleToken(messageToken);
+        parseTokenAgainstRuleToken(messageToken, ruleToken);
     }
 
     private void parseTokenAgainstRuleToken(
@@ -79,8 +75,9 @@ public class VDAParser extends HWFPEParser {
         for (final ElementRuleToken element : elements) {
             if (element instanceof HwfpeRuleElement) {
                 final HwfpeRuleElement ruleElement = (HwfpeRuleElement) element;
-                final String part = getMessagePart(messageToken, ruleElement);
+                final String part = getValueFromMessageToken(messageToken, ruleElement);
                 validateMessagePartAgainstRuleElement(part, ruleElement);
+                addMessagePartToModel(part, ruleElement);
             } else {
                 final String message = String.format("Unsupported rule token found: Expected %s but found: %s", HwfpeRuleElement.class.getCanonicalName(), element.getClass().getCanonicalName());
                 throw new RuleViolationException(message);
@@ -100,8 +97,8 @@ public class VDAParser extends HWFPEParser {
                 throw new RuleViolationException(message);
             }
 
-            final String type = ruleElement.getType();
-            if (StringUtil.isWhitespacesOnly(messagePart) && type.equals("N")) {
+            final RuleElementType type = RuleElementType.valueOf(ruleElement.getType());
+            if (StringUtil.isWhitespacesOnly(messagePart) && type.equals(RuleElementType.Numeric)) {
                 // TODO: how to handle this constellation?
                 // A mandatory number element but contains only whitespaces
                 final String message = String.format("Mandatory element [%s] contains only whitespaces and no numeric value in message!", ruleElement);
@@ -110,21 +107,22 @@ public class VDAParser extends HWFPEParser {
             }
 
             try {
-                isOfType(messagePart, type);
+                final TypeValidator typeValidator = TypeValidatorFactory.getInstance(type);
+                typeValidator.validate(messagePart);
             } catch (final InvalidTypeException e) {
-                final String message = String.format("Mandatory element [%s] has invalid content [%s] - type must be [%s]!", ruleElement, messagePart, types.getOrDefault(type, type));
+                final String message = String.format("Mandatory element [%s] has invalid content [%s] - type must be [%s]!", ruleElement, messagePart, type.getTypeDescription());
                 throw new RuleViolationException(message);
             }
         }
     }
 
-    private void isOfType(
+    private void addMessagePartToModel(
             final String messagePart,
-            final String type) throws InvalidTypeException {
-        TypeValidatorFactory.getInstance(type).validate(messagePart);
+            final HwfpeRuleElement ruleElement) {
+        // TODO: implement a suitable model
     }
 
-    private String getMessagePart(
+    private String getValueFromMessageToken(
             final VDAUnknownDelimiterToken messageToken,
             final HwfpeRuleElement ruleElement) throws RuleViolationException {
         // mandatory part of the token
@@ -134,6 +132,7 @@ public class VDAParser extends HWFPEParser {
         if (to <= token.length()) {
             return messageToken.getToken().substring(from, to);
         }
+
         final String message = String.format("Rule token [%s (from: %d, to: %d)] out of bound (token length: %d)!", ruleElement, from, to, token.length());
         throw new RuleViolationException(message);
     }
