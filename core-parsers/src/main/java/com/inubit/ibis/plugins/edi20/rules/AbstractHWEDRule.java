@@ -116,10 +116,6 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
         if (segment == null) {
             throw new InubitException("Segment [" + segmentID + "] not found!");
         }
-        if (segment.isLoopLimitReached()) {
-            throw new InubitException("Loop limit (" + segment.getLoop() + ") for segment [" + segment + "] reached ("
-                    + segment.getCurrentLoopCount() + ")!");
-        }
         segment.looped();
     }
 

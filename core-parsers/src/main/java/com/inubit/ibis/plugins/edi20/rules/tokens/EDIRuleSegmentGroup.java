@@ -23,32 +23,6 @@ public abstract class EDIRuleSegmentGroup extends EDIRuleSegment {
         return "(Group) " + super.toString();
     }
 
-    /**
-     * @return first segment or <code>null</code> if child segment exists in this group
-     */
-    public RuleToken getFirstSegment() {
-        final Element firstChild = getFirstChildElement();
-        if (firstChild != null) {
-            return createElementInstance(firstChild);
-        }
-        return null;
-    }
-
-    public Element getFirstChildElement() {
-        final List<Element> childElements = getRuleElement().elements();
-        if (childElements.size() > 0) {
-            return childElements.get(0);
-        }
-        return null;
-    }
-
-    public boolean hasSegments() {
-        if (hasChildren()) {
-            return getFirstSegment() != null;
-        }
-        return false;
-    }
-
     public List<EDIRuleSegment> getSegments() {
         return getChildren().stream()
                 .filter(child -> child instanceof EDIRuleSegment)

@@ -18,8 +18,14 @@ import com.inubit.ibis.utils.StringUtil;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 public class VDAParser extends HWFPEParser {
+
+    private final Map<String, String> types= Map.of(
+            "N", "numeric",
+            "AN", "alphanumeric"
+    );
 
     public VDAParser(
             final VDALexicalScanner scanner,
@@ -80,6 +86,7 @@ public class VDAParser extends HWFPEParser {
                 throw new RuleViolationException(message);
             }
         }
+        ruleToken.looped();
     }
 
     private void validateMessagePartAgainstRuleElement(
@@ -105,7 +112,7 @@ public class VDAParser extends HWFPEParser {
             try {
                 isOfType(messagePart, type);
             } catch (final InvalidTypeException e) {
-                final String message = String.format("Mandatory element [%s] has invalid content [%s] - type must be [%s]!", ruleElement, messagePart, type);
+                final String message = String.format("Mandatory element [%s] has invalid content [%s] - type must be [%s]!", ruleElement, messagePart, types.getOrDefault(type, type));
                 throw new RuleViolationException(message);
             }
         }

@@ -14,9 +14,9 @@ import java.util.Objects;
 public abstract class EDIRuleBaseToken implements RuleToken {
 
     private static final String ATTRIBUTE_NAME_ID = "id";
+    private static final String ATTRIBUTE_NAME_XML_TAG = "xmlTag";
     private static final String ATTRIBUTE_NAME_NAME = "name";
     private static final String ATTRIBUTE_NAME_REQUIRED = "required";
-    private static final String ATTRIBUTE_NAME_XML_TAG = "xmlTag";
 
     private static final String REQUIRED_MANDATORY = "M";
     private static final String REQUIRED_CONDITIONAL = "C";
@@ -26,11 +26,22 @@ public abstract class EDIRuleBaseToken implements RuleToken {
     private static final int STATUS_CHECKED = 3;
 
     private final Element ruleElement;
-    private Iterator<Element> childIterator;
+    private final Iterator<Element> childIterator;
+    private final String id;
+    private final String xmlTag;
+    private final String description;
+    private final String required;
+
     private int status = STATUS_NEW;
 
+    @SuppressWarnings("unchecked")
     public EDIRuleBaseToken(final Element ruleElement) {
         this.ruleElement = ruleElement;
+        this.childIterator = ruleElement.elementIterator();
+        this.id = ruleElement.attributeValue(ATTRIBUTE_NAME_ID, "");
+        this.xmlTag = ruleElement.attributeValue(ATTRIBUTE_NAME_XML_TAG, "");
+        this.description = ruleElement.attributeValue(ATTRIBUTE_NAME_NAME, "");
+        this.required = ruleElement.attributeValue(ATTRIBUTE_NAME_REQUIRED, "");
     }
 
     public Element getElement() {
@@ -39,21 +50,11 @@ public abstract class EDIRuleBaseToken implements RuleToken {
 
     @Override
     public String getID() {
-        return getRuleElement().attributeValue(ATTRIBUTE_NAME_ID, "");
+        return id;
     }
 
-    /**
-     * @return description
-     */
     public String getDescription() {
-        return getRuleElement().attributeValue(ATTRIBUTE_NAME_NAME, "");
-    }
-
-    /**
-     * @return required
-     */
-    private String getRequired() {
-        return getRuleElement().attributeValue(ATTRIBUTE_NAME_REQUIRED, "");
+        return description;
     }
 
     /**
@@ -61,7 +62,7 @@ public abstract class EDIRuleBaseToken implements RuleToken {
      * <code>false</code> otherwise
      */
     public boolean isMandatory() {
-        return getRequired().equals(REQUIRED_MANDATORY);
+        return required.equals(REQUIRED_MANDATORY);
     }
 
     /**
@@ -69,26 +70,24 @@ public abstract class EDIRuleBaseToken implements RuleToken {
      * <code>false</code> otherwise
      */
     public boolean isConditional() {
-        return getRequired().equals(REQUIRED_CONDITIONAL);
+        return required.equals(REQUIRED_CONDITIONAL);
     }
 
     public String getXmlTag() {
-        return getRuleElement().attributeValue(ATTRIBUTE_NAME_XML_TAG, "");
+        return xmlTag;
     }
 
     protected Element getRuleElement() {
         return ruleElement;
     }
 
-    /**
-     * @return if this rule token has child rule tokens
-     */
     public boolean hasChildren() {
-        return getRuleElement() != null && !getRuleElement().elements().isEmpty();
+        return ruleElement != null && !ruleElement.elements().isEmpty();
     }
 
+    @SuppressWarnings("unchecked")
     public List<RuleToken> getChildren() {
-        final List<Element> childElements = getRuleElement().elements();
+        final List<Element> childElements = ruleElement.elements();
         final List<RuleToken> children = new ArrayList<>(childElements.size());
         for (final Element childElement : childElements) {
             children.add(createElementInstance(childElement));
@@ -105,7 +104,6 @@ public abstract class EDIRuleBaseToken implements RuleToken {
      * exists
      */
     public RuleToken nextChildren() {
-        final Iterator<Element> childIterator = getChildIterator();
         if (childIterator.hasNext()) {
             return createElementInstance(childIterator.next());
         }
@@ -128,25 +126,18 @@ public abstract class EDIRuleBaseToken implements RuleToken {
         status = STATUS_IN_PROGRESS;
     }
 
-    private Iterator<Element> getChildIterator() {
-        if (childIterator == null) {
-            childIterator = getRuleElement().elementIterator();
-        }
-        return childIterator;
-    }
-
     /**
      * @return parent rule token or <code>null</code> if no parent exists
      */
     public RuleToken getParent() {
         if (hasParent()) {
-            return getFactory().createInstance(getRuleElement().getParent());
+            return getFactory().createInstance(ruleElement.getParent());
         }
         return null;
     }
 
     public boolean hasParent() {
-        return getRuleElement().getParent() != null;
+        return ruleElement.getParent() != null;
     }
 
     protected abstract RuleTokenFactory getFactory();
@@ -168,7 +159,7 @@ public abstract class EDIRuleBaseToken implements RuleToken {
 
     @Override
     public String toString() {
-        return getID() + ", req=" + getRequired() + ", tag=" + getXmlTag() + ", descr=" + getDescription();
+        return getID() + ", req=" + required + ", tag=" + getXmlTag() + ", descr=" + getDescription();
     }
 
     /**
@@ -203,11 +194,15 @@ public abstract class EDIRuleBaseToken implements RuleToken {
     }
 
     @Override
-    public boolean equals(final Object other) {
-        if (other instanceof EDIRuleBaseToken) {
-            final EDIRuleBaseToken that = (EDIRuleBaseToken) other;
+    public boolean equals(final Object o) {
+        if (o instanceof EDIRuleBaseToken) {
+            EDIRuleBaseToken that = (EDIRuleBaseToken) o;
             return status == that.status
                     && Objects.equals(ruleElement, that.ruleElement)
+                    && Objects.equals(required, that.required)
+                    && Objects.equals(id, that.id)
+                    && Objects.equals(description, that.description)
+                    && Objects.equals(xmlTag, that.xmlTag)
                     && Objects.equals(childIterator, that.childIterator);
         }
         return false;
@@ -215,6 +210,6 @@ public abstract class EDIRuleBaseToken implements RuleToken {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ruleElement, childIterator, status);
+        return Objects.hash(ruleElement, required, id, xmlTag, description, childIterator, status);
     }
 }

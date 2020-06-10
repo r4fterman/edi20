@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules.interfaces;
 
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.plugins.edi20.rules.tokens.Loop;
 
 /**
  * Interface indicates a token that is repeatable. <p/> The amount of
@@ -14,7 +14,7 @@ public interface RepeatableRuleToken {
     /**
      * @return loop count or {@link #NO_LOOP}
      */
-    int getLoop();
+    Loop getLoop();
 
     /**
      * @return <code>true</code> if loop count is greater than {@link #NO_LOOP},
@@ -31,9 +31,6 @@ public interface RepeatableRuleToken {
     /**
      * Increases the loop counter. Call method #canLoop() before loop to avoid
      * exception.
-     *
-     * @throws InubitException
-     *         if loop limit was exceeded
      */
-    void looped() throws InubitException;
+    void looped();
 }

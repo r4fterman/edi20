@@ -4,6 +4,7 @@ import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
+import com.inubit.ibis.plugins.edi20.rules.tokens.Loop;
 import com.inubit.ibis.utils.InubitException;
 import com.inubit.ibis.utils.StringUtil;
 import org.dom4j.Document;
@@ -196,8 +197,13 @@ public abstract class AbstractEDIRule {
      * given ID
      */
     public Optional<EDIRuleSegment> nextSegment(final String segmentID) {
-        final EDIRuleBaseToken ruleTokenToStartFrom = (EDIRuleBaseToken) getCurrentRuleToken();
-        return traverseForward(ruleTokenToStartFrom, segmentID);
+        final EDIRuleBaseToken ruleToken = (EDIRuleBaseToken) getCurrentRuleToken();
+        final Optional<EDIRuleSegment> segment = checkSegment(ruleToken, segmentID);
+        if (segment.isPresent()) {
+            return segment;
+        }
+
+        return traverseForward(ruleToken, segmentID);
     }
 
     private Optional<EDIRuleSegment> traverseForward(
@@ -242,7 +248,7 @@ public abstract class AbstractEDIRule {
         final int index = parent.getIndexOfChild(ruleToken);
         if (index >= 0) {
             final List<RuleToken> children = parent.getChildren();
-            for (int i = index+1; i < children.size(); i++) {
+            for (int i = index + 1; i < children.size(); i++) {
                 final EDIRuleBaseToken child = (EDIRuleBaseToken) children.get(i);
                 traverseChildren(child, segmentID);
             }
@@ -256,15 +262,32 @@ public abstract class AbstractEDIRule {
             final String segmentID) {
         final List<RuleToken> children = ruleToken.getChildren();
         for (final RuleToken child : children) {
-            if (child instanceof EDIRuleSegment) {
-                final EDIRuleSegment segment = (EDIRuleSegment) child;
-                if (segment.getID().equals(segmentID)) {
-                    return Optional.of(segment);
-                }
-            }
-            final Optional<EDIRuleSegment> segment = traverseChildren((EDIRuleBaseToken) child, segmentID);
+            final Optional<EDIRuleSegment> segment = checkSegment((EDIRuleBaseToken) child, segmentID);
             if (segment.isPresent()) {
                 return segment;
+            }
+
+            final Optional<EDIRuleSegment> childSegment = traverseChildren((EDIRuleBaseToken) child, segmentID);
+            if (childSegment.isPresent()) {
+                return childSegment;
+            }
+        }
+        return Optional.empty();
+    }
+
+    private Optional<EDIRuleSegment> checkSegment(
+            final EDIRuleBaseToken ruleTokenToStartFrom,
+            final String segmentID) {
+        if (ruleTokenToStartFrom instanceof EDIRuleSegment) {
+            final EDIRuleSegment segment = (EDIRuleSegment) ruleTokenToStartFrom;
+            if (ruleTokenToStartFrom.getID().equals(segmentID)) {
+                if (!segment.isLoopLimitReached()) {
+                    return Optional.of(segment);
+                } else {
+                    final Loop loop = segment.getLoop();
+                    final String message = String.format("WARNING: segment for ID %s found but elements loop limit exceeded (%d/%d).", segmentID, segment.getCurrentLoopCount(), loop.isInfinite() ? -1 : loop.getValueAsInteger());
+                    System.out.println(message);
+                }
             }
         }
         return Optional.empty();

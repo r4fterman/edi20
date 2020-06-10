@@ -4,8 +4,6 @@ import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 
 /**
  * Class contains all VDA delimiters.
- *
- * @author r4fter
  */
 public class VDADelimiters implements Delimiters {
 
