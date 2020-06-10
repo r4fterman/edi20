@@ -5,7 +5,7 @@ import com.inubit.ibis.plugins.edi20.outputs.OutputWriterFactory;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.plugins.edi20.scanners.Scanner;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 
 public abstract class AbstractEDIParser implements EDIParser {
@@ -42,7 +42,7 @@ public abstract class AbstractEDIParser implements EDIParser {
         return scanner;
     }
 
-    public OutputWriter getWriter() throws InubitException {
+    public OutputWriter getWriter() throws EDIException {
         if (writer == null) {
             writer = OutputWriterFactory.getInstance(getRule());
         }
@@ -50,13 +50,13 @@ public abstract class AbstractEDIParser implements EDIParser {
     }
 
     @Override
-    public void parse() throws InubitException {
+    public void parse() throws EDIException {
         if (getScanner().hasMoreTokens()) {
             parseTokens();
         }
     }
 
-    private void parseTokens() throws InubitException {
+    private void parseTokens() throws EDIException {
         while (getScanner().hasMoreTokens() && !isEndOfRule()) {
             final Token token = getScanner().nextToken();
             if (!StringUtil.isLineBreakOnly(token.getToken())) {
@@ -72,7 +72,7 @@ public abstract class AbstractEDIParser implements EDIParser {
             final String unparsedPart = getUnparsedPart();
             // ignore white spaces at the end of message
             if (!StringUtil.isWhitespacesOnly(unparsedPart)) {
-                throw new InubitException("Rule parsing complete but message still contains data [" + unparsedPart + "]!");
+                throw new EDIException("Rule parsing complete but message still contains data [" + unparsedPart + "]!");
             }
         }
     }
@@ -88,7 +88,7 @@ public abstract class AbstractEDIParser implements EDIParser {
 
     protected abstract boolean isEndOfRule();
 
-    protected abstract void parseToken(Token token) throws InubitException;
+    protected abstract void parseToken(Token token) throws EDIException;
 
-    protected abstract void parseDelimiter(Token token) throws InubitException;
+    protected abstract void parseDelimiter(Token token) throws EDIException;
 }

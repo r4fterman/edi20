@@ -1,7 +1,7 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,32 +38,32 @@ public final class EDIParserRegistry {
 
     /**
      * @return parsers instance
-     * @throws InubitException
+     * @throws EDIException
      *         if retrieving parsers instance failed
      */
-    public EDIParser getParser() throws InubitException {
+    public EDIParser getParser() throws EDIException {
         for (final EDIParser parser : REGISTERED_PARSER) {
             if (parser.canParse(fTextInputDocument)) {
                 return parser;
             }
         }
-        throw new InubitException("Unknown format of input document!");
+        throw new EDIException("Unknown format of input document!");
     }
 
     /**
      * @param rule
      *         EDI rule
      * @return parsers instance for the given rule
-     * @throws InubitException
+     * @throws EDIException
      *         if no parsers was found for the given rule
      */
-    public EDIParser getParser(final AbstractEDIRule rule) throws InubitException {
+    public EDIParser getParser(final AbstractEDIRule rule) throws EDIException {
         for (final EDIParser parser : REGISTERED_PARSER) {
             if (parser.canParse(rule)) {
                 return parser;
             }
         }
-        throw new InubitException("Unknown format of input document!");
+        throw new EDIException("Unknown format of input document!");
     }
 
 }

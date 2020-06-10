@@ -12,7 +12,7 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
@@ -34,17 +34,17 @@ public class EDIFACTParser extends HWEDParser {
 
     public EDIFACTParser(
             final EDIFACTLexicalScanner scanner,
-            final EDIFACTRule rule) throws InubitException {
+            final EDIFACTRule rule) throws EDIException {
         super(scanner, rule);
         initializeEnveloperFile();
     }
 
-    private void initializeEnveloperFile() throws InubitException {
+    private void initializeEnveloperFile() throws EDIException {
         try {
             final Document document = loadEnveloperFile();
             enveloperRule = new EDIFACTEnveloperRule(document);
         } catch (final Exception e) {
-            throw new InubitException("Error parsing enveloperRule rule file!", e);
+            throw new EDIException("Error parsing enveloperRule rule file!", e);
         }
     }
 
@@ -63,7 +63,7 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     @Override
-    protected void parseDelimiter(final Token token) throws InubitException {
+    protected void parseDelimiter(final Token token) throws EDIException {
         // System.out.println("EDIFACTParser.parseDelimiter(" + fState + "): " + token.getToken());
         getEDIFACTRule().closeCurrentRuleToken(token);
         if (EDIFACTDelimiters.DELIMITER_SEGMENT == token.getDelimiterType()) {
@@ -76,12 +76,12 @@ public class EDIFACTParser extends HWEDParser {
             // element finished
             fState = ELEMENT_OR_COMPLEX_ELEMENT;
         } else {
-            throw new InubitException("Unknown delimiter [" + token.getToken() + "] found!");
+            throw new EDIException("Unknown delimiter [" + token.getToken() + "] found!");
         }
     }
 
     @Override
-    protected void parseToken(final Token token) throws InubitException {
+    protected void parseToken(final Token token) throws EDIException {
         // System.out.println("EDIFACTParser.parseToken(" + fState + "): " + token.getToken());
         switch (fState) {
             case SEGMENT_OR_SEGMENT_GROUP:
@@ -92,18 +92,18 @@ public class EDIFACTParser extends HWEDParser {
                 parseElementOrComplexElement(token.getToken());
                 break;
             default:
-                throw new InubitException("unexpected state [" + fState + "]");
+                throw new EDIException("unexpected state [" + fState + "]");
         }
     }
 
-    private void parseSegment(final String segmentID) throws InubitException {
+    private void parseSegment(final String segmentID) throws EDIException {
         parseSegment(segmentID, getEDIFACTRule(segmentID));
     }
 
     private void parseSegment(
             final String segmentID,
-            final EDIFACTRule rule) throws InubitException {
-        final EDIRuleSegment segment = rule.nextSegment(segmentID).orElseThrow(() -> new InubitException("Segment [" + segmentID + "] not found in rule!"));
+            final EDIFACTRule rule) throws EDIException {
+        final EDIRuleSegment segment = rule.nextSegment(segmentID).orElseThrow(() -> new EDIException("Segment [" + segmentID + "] not found in rule!"));
         setCurrentRule(rule);
         validRuleToken(segmentID, segment);
 
@@ -117,9 +117,9 @@ public class EDIFACTParser extends HWEDParser {
 
     private void validRuleToken(
             final String token,
-            final EDIRuleBaseToken ruleToken) throws InubitException {
+            final EDIRuleBaseToken ruleToken) throws EDIException {
         if (!assertTokenIsSet(token, ruleToken.isMandatory())) {
-            throw new InubitException("Invalid token [" + token + "]! Expected mandatory rule token [" + ruleToken + "].");
+            throw new EDIException("Invalid token [" + token + "]! Expected mandatory rule token [" + ruleToken + "].");
         }
         if (ruleToken instanceof HwedRuleElement) {
             final HwedRuleElement elementToken = (HwedRuleElement) ruleToken;
@@ -149,14 +149,14 @@ public class EDIFACTParser extends HWEDParser {
         return !shouldBeSet || StringUtil.isSet(token);
     }
 
-    private void parseElementOrComplexElement(final String element) throws InubitException {
+    private void parseElementOrComplexElement(final String element) throws EDIException {
         final EDIFACTRule rule = getEDIFACTRule();
         parseElementOrComplexElement(element, rule);
     }
 
     private void parseElementOrComplexElement(
             final String element,
-            final EDIFACTRule rule) throws InubitException {
+            final EDIFACTRule rule) throws EDIException {
         final RuleToken nextChild = rule.nextElement();
         if (nextChild != null) {
             // next children found
@@ -171,9 +171,9 @@ public class EDIFACTParser extends HWEDParser {
                 System.out.println("EDIFACTParser.parseElementOrComplexElement(" + fState + "): [E:" + ruleElement.getID() + "]=[" + element + "]");
                 return;
             }
-            throw new InubitException("Unexpected rule token found [" + nextChild.getClass().getCanonicalName() + "]!");
+            throw new EDIException("Unexpected rule token found [" + nextChild.getClass().getCanonicalName() + "]!");
         }
-        throw new InubitException("No further rule tokens found!");
+        throw new EDIException("No further rule tokens found!");
     }
 
     private EDIFACTRule getEDIFACTRule() {

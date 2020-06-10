@@ -6,7 +6,7 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe.HwfpeRuleTokenFactory;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
@@ -15,10 +15,10 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
     /**
      * @param ruleDocument
      *         rule document
-     * @throws InubitException
+     * @throws EDIException
      *         if the given rule document is not a valid EDI rule document
      */
-    public AbstractHWFPERule(final Document ruleDocument) throws InubitException {
+    public AbstractHWFPERule(final Document ruleDocument) throws EDIException {
         super(ruleDocument);
     }
 
@@ -32,7 +32,7 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
         return "hwfpe";
     }
 
-    private EDIRuleSegment findNextRuleSegment(final RuleToken ruleToken) throws InubitException {
+    private EDIRuleSegment findNextRuleSegment(final RuleToken ruleToken) throws EDIException {
         System.out.println("findNextRuleSegment(): ruleToken=" + ruleToken);
         if (ruleToken instanceof EDIRuleRoot) {
             return findNextRuleSegmentFromRoot((EDIRuleRoot) ruleToken);
@@ -46,10 +46,10 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
         if (ruleToken instanceof EDIRuleElement) {
             return findNextRuleSegmentFromElement((EDIRuleElement) ruleToken);
         }
-        throw new InubitException("No next rule segment found!");
+        throw new EDIException("No next rule segment found!");
     }
 
-    private EDIRuleSegment findNextRuleSegmentFromElement(final EDIRuleElement ruleElement) throws InubitException {
+    private EDIRuleSegment findNextRuleSegmentFromElement(final EDIRuleElement ruleElement) throws EDIException {
         final RuleToken nextRuleToken = RuleUtil.getParentFollowingSibling(ruleElement);
         System.out.println("findNextRuleSegmentFromElement(): nextRuleToken=" + nextRuleToken);
         return findNextRuleSegment(nextRuleToken);
@@ -66,7 +66,7 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
         return ruleSegment;
     }
 
-    private EDIRuleSegment findNextRuleSegmentFromSegmentGroup(final EDIRuleSegmentGroup ruleSegmentGroup) throws InubitException {
+    private EDIRuleSegment findNextRuleSegmentFromSegmentGroup(final EDIRuleSegmentGroup ruleSegmentGroup) throws EDIException {
         if (ruleSegmentGroup.canLoop()) {
             final RuleToken nextRuleToken = RuleUtil.getChildOrFollowingSibling(ruleSegmentGroup);
             System.out.println("findNextRuleSegmentFromSegmentGroup(): nextRuleToken=" + nextRuleToken);
@@ -77,7 +77,7 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
         return findNextRuleSegment(nextRuleToken);
     }
 
-    private EDIRuleSegment findNextRuleSegmentFromRoot(final EDIRuleRoot ruleRoot) throws InubitException {
+    private EDIRuleSegment findNextRuleSegmentFromRoot(final EDIRuleRoot ruleRoot) throws EDIException {
         final RuleToken nextRuleToken = RuleUtil.getChildOrFollowingSibling(ruleRoot);
         System.out.println("findNextRuleSegmentFromRoot(): nextRuleToken=" + nextRuleToken);
         return findNextRuleSegment(nextRuleToken);

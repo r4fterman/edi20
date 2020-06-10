@@ -5,7 +5,7 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.Loop;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -22,10 +22,10 @@ public abstract class AbstractEDIRule {
     /**
      * @param ruleDocument
      *         rule document
-     * @throws InubitException
+     * @throws EDIException
      *         if the given rule document is not a valid EDI rule document
      */
-    public AbstractEDIRule(final Document ruleDocument) throws InubitException {
+    public AbstractEDIRule(final Document ruleDocument) throws EDIException {
         if (!isValidRuleDocument(ruleDocument)) {
             throw new InvalidRuleException();
         }

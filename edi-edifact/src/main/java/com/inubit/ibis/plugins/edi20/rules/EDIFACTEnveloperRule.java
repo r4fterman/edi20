@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
 public class EDIFACTEnveloperRule extends EDIFACTRule {
@@ -12,7 +12,7 @@ public class EDIFACTEnveloperRule extends EDIFACTRule {
         return "ENVELOPER";
     }
 
-    public EDIFACTEnveloperRule(final Document enveloperDocument) throws InubitException {
+    public EDIFACTEnveloperRule(final Document enveloperDocument) throws EDIException {
         super(enveloperDocument);
     }
 

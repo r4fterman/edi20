@@ -2,7 +2,7 @@ package com.inubit.ibis.plugins.edi20.parsers;
 
 import com.inubit.ibis.plugins.edi20.GenericParser;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
 /**
@@ -16,7 +16,7 @@ public class GenericXMLEDIParser implements GenericParser {
      * @param inputDocument
      *         input document
      */
-    public GenericXMLEDIParser(final Document inputDocument) throws InubitException {
+    public GenericXMLEDIParser(final Document inputDocument) throws EDIException {
         init(inputDocument);
     }
 
@@ -26,7 +26,7 @@ public class GenericXMLEDIParser implements GenericParser {
      */
     public GenericXMLEDIParser(
             final Document inputDocument,
-            final AbstractEDIRule rule) throws InubitException {
+            final AbstractEDIRule rule) throws EDIException {
         init(inputDocument, rule);
     }
 
@@ -41,7 +41,7 @@ public class GenericXMLEDIParser implements GenericParser {
     }
 
     @Override
-    public void parse() throws InubitException {
+    public void parse() throws EDIException {
         parser.parse();
     }
 

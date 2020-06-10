@@ -13,7 +13,7 @@ import com.inubit.ibis.plugins.edi20.scanners.VDASegmentDelimiterToken;
 import com.inubit.ibis.plugins.edi20.scanners.VDAUnknownDelimiterToken;
 import com.inubit.ibis.plugins.edi20.validators.InvalidTypeException;
 import com.inubit.ibis.plugins.edi20.validators.TypeValidatorFactory;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 import org.apache.commons.lang.StringUtils;
 
@@ -49,7 +49,7 @@ public class VDAParser extends HWFPEParser {
     }
 
     @Override
-    protected void parseToken(final Token token) throws InubitException {
+    protected void parseToken(final Token token) throws EDIException {
         if (token instanceof VDAUnknownDelimiterToken) {
             parseToken((VDAUnknownDelimiterToken) token);
         } else {
@@ -58,7 +58,7 @@ public class VDAParser extends HWFPEParser {
     }
 
     @Override
-    protected void parseDelimiter(final Token token) throws InubitException {
+    protected void parseDelimiter(final Token token) throws EDIException {
         if (!(token instanceof VDASegmentDelimiterToken)) {
             throw new UnknownDelimiterTokenException(token);
         }

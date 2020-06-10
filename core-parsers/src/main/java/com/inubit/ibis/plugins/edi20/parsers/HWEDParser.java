@@ -5,7 +5,7 @@ import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.Scanner;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 import org.apache.commons.lang.StringUtils;
 
@@ -21,13 +21,13 @@ public abstract class HWEDParser extends AbstractEDIParser {
     }
 
     @Override
-    public void parse() throws InubitException {
+    public void parse() throws EDIException {
         if (getScanner().hasMoreTokens()) {
             parseTokens();
         }
     }
 
-    private void parseTokens() throws InubitException {
+    private void parseTokens() throws EDIException {
         while (getScanner().hasMoreTokens() && !isEndOfRule()) {
             final Token token = getScanner().nextToken();
             if (!StringUtil.isLineBreakOnly(token.getToken())) {
@@ -49,7 +49,7 @@ public abstract class HWEDParser extends AbstractEDIParser {
             if (StringUtil.isWhitespacesOnly(unparsedPart)) {
                 System.out.println("WARNING: Rule parsing complete message still contains data (but only whitespaces which is ignored).");
             } else {
-                throw new InubitException("Rule parsing complete but message still contains data [" + unparsedPart + "]!");
+                throw new EDIException("Rule parsing complete but message still contains data [" + unparsedPart + "]!");
             }
         }
     }
@@ -92,9 +92,9 @@ public abstract class HWEDParser extends AbstractEDIParser {
     protected abstract boolean isEndOfRule();
 
     @Override
-    protected abstract void parseToken(Token token) throws InubitException;
+    protected abstract void parseToken(Token token) throws EDIException;
 
     @Override
-    protected abstract void parseDelimiter(Token delimiterToken) throws InubitException;
+    protected abstract void parseDelimiter(Token delimiterToken) throws EDIException;
 
 }

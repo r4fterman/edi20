@@ -13,7 +13,7 @@ import com.inubit.ibis.plugins.edi20.scanners.EDILexicalScanner;
 import com.inubit.ibis.plugins.edi20.scanners.Identifier;
 import com.inubit.ibis.plugins.edi20.scanners.Scanner;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 
 import java.util.List;
 
@@ -35,18 +35,18 @@ public class DATANORMParser extends MSWEDParser {
     }
 
     @Override
-    protected void parseToken(final Token token) throws InubitException {
+    protected void parseToken(final Token token) throws EDIException {
         if (token instanceof DATANORMUnknownDelimiterToken) {
             parseToken((DATANORMUnknownDelimiterToken) token);
         }
     }
 
-    private void parseToken(final DATANORMUnknownDelimiterToken token) throws InubitException {
+    private void parseToken(final DATANORMUnknownDelimiterToken token) throws EDIException {
         try {
             final EDIRuleSegment ruleToken = getRuleToken(token);
             parseTokenAgainstRuleToken(token, ruleToken);
         } catch (final RuleViolationException e) {
-            throw new InubitException("Parser failed at: " + token, e);
+            throw new EDIException("Parser failed at: " + token, e);
         }
     }
 
@@ -98,7 +98,7 @@ public class DATANORMParser extends MSWEDParser {
     }
 
     @Override
-    protected void parseDelimiter(final Token token) throws InubitException {
+    protected void parseDelimiter(final Token token) throws EDIException {
         if (!(token instanceof DATANORMSegmentDelimiterToken || token instanceof DATANORMElementDelimiterToken)) {
             throw new UnknownDelimiterTokenException(token);
         }

@@ -7,7 +7,7 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
 public class EDIFACTRule extends AbstractHWEDRule {
@@ -15,10 +15,10 @@ public class EDIFACTRule extends AbstractHWEDRule {
     /**
      * @param edifactRuleDocument
      *         EDIFACT rule document
-     * @throws InubitException
+     * @throws EDIException
      *         if the given rule document is not a valid EDIFACT rule document
      */
-    public EDIFACTRule(final Document edifactRuleDocument) throws InubitException {
+    public EDIFACTRule(final Document edifactRuleDocument) throws EDIException {
         super(edifactRuleDocument);
     }
 

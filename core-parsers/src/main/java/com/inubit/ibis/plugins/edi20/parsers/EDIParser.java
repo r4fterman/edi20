@@ -1,11 +1,11 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 
 public interface EDIParser {
 
-    void parse() throws InubitException;
+    void parse() throws EDIException;
 
     /**
      * @param rule
