@@ -68,7 +68,7 @@ public class VDAParser extends HWFPEParser {
     private void parseTokenAgainstRuleToken(
             final VDAUnknownDelimiterToken messageToken,
             final EDIRuleSegment ruleToken) throws RuleViolationException {
-        System.out.println("[" + messageToken + "]=[" + ruleToken + "]");
+//        logMessage("[" + messageToken + "]=[" + ruleToken + "]");
 
         // match parts of token with rule token
         final List<ElementRuleToken> elements = ruleToken.getElements();
@@ -89,7 +89,7 @@ public class VDAParser extends HWFPEParser {
     private void validateMessagePartAgainstRuleElement(
             final String messagePart,
             final HwfpeRuleElement ruleElement) throws RuleViolationException {
-        System.out.println("[" + messagePart + "]=[" + ruleElement + "]");
+//        logMessage("[" + messagePart + "]=[" + ruleElement + "]");
 
         if (ruleElement.isMandatory()) {
             if (StringUtils.isEmpty(messagePart)) {
@@ -98,11 +98,11 @@ public class VDAParser extends HWFPEParser {
             }
 
             final RuleElementType type = RuleElementType.valueOf(ruleElement.getType());
-            if (StringUtil.isWhitespacesOnly(messagePart) && type.equals(RuleElementType.Numeric)) {
+            if (StringUtil.isWhitespacesOnly(messagePart) && type.equals(RuleElementType.N)) {
                 // TODO: how to handle this constellation?
                 // A mandatory number element but contains only whitespaces
                 final String message = String.format("Mandatory element [%s] contains only whitespaces and no numeric value in message!", ruleElement);
-                System.out.println("WARNING: " + message);
+                logMessage("WARNING: " + message);
                 //                throw new RuleViolationException(message);
             }
 
@@ -110,7 +110,7 @@ public class VDAParser extends HWFPEParser {
                 final TypeValidator typeValidator = TypeValidatorFactory.getInstance(type);
                 typeValidator.validate(messagePart);
             } catch (final InvalidTypeException e) {
-                final String message = String.format("Mandatory element [%s] has invalid content [%s] - type must be [%s]!", ruleElement, messagePart, type.getTypeDescription());
+                final String message = String.format("Mandatory element [%s] has invalid content [%s] - type must be [%s]!", ruleElement, messagePart, type.getTypeValue());
                 throw new RuleViolationException(message);
             }
         }
@@ -145,6 +145,10 @@ public class VDAParser extends HWFPEParser {
         // check for rule violation
         return getRule().nextSegment(identifier.getID())
                 .orElseThrow(() -> new RuleViolationException(String.format("Rule contains no segment for [%s]!", identifier)));
+    }
+
+    private void logMessage(final String message) {
+        System.out.println(message);
     }
 
 }

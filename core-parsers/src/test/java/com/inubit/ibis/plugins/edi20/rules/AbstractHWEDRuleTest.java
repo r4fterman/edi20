@@ -5,6 +5,7 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
+import com.inubit.ibis.plugins.edi20.rules.tokens.Loop;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.XmlUtils;
@@ -24,9 +25,6 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-/**
- * @author r4fter
- */
 class AbstractHWEDRuleTest {
 
     private AbstractHWEDRule rule;
@@ -134,8 +132,8 @@ class AbstractHWEDRuleTest {
         assertThat(segment.getXPath(), is("/Message/Segment[@id='UNH']"));
         assertThat(segment.getRulePath(), is("/Root/UNH"));
         assertThat(segment.getXmlTag(), is("MessageHeader"));
-        assertThat(segment.getLoop(), is(1));
-        assertThat(segment.getCurrentLoopCount(), is(1));
+        assertThat(segment.getLoop(), is(Loop.valueOf(1)));
+        assertThat(segment.getCurrentLoopCount(), is(0));
         assertThat(segment.isLoopLimitReached(), is(false));
         assertThat(segment.isChecked(), is(false));
         assertThat(segment.isInProgress(), is(false));
@@ -238,8 +236,8 @@ class AbstractHWEDRuleTest {
         assertThat(segmentGroup.getID(), is("Group_1"));
         assertThat(segmentGroup.getDescription(), is("A group of segments containing references and constants which apply to the entire message."));
         assertThat(segmentGroup.getXmlTag(), is("SegmentGroup_1"));
-        assertThat(segmentGroup.getLoop(), is(9));
-        assertThat(segmentGroup.getCurrentLoopCount(), is(1));
+        assertThat(segmentGroup.getLoop(), is(Loop.valueOf(9)));
+        assertThat(segmentGroup.getCurrentLoopCount(), is(0));
         assertThat(segmentGroup.getRulePath(), is("/Root/Group_1"));
         assertThat(segmentGroup.getXPath(), is("/Message/SegmentGroup[@id='Group_1']"));
 

@@ -6,6 +6,7 @@ import com.inubit.ibis.plugins.edi20.scanners.DATANORMLexicalScanner;
 import com.inubit.ibis.utils.FileUtils;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -16,6 +17,7 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
+@Disabled
 class DATANORMParserTest {
 
     @Test

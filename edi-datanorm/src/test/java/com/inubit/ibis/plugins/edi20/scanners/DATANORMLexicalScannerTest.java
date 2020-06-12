@@ -2,6 +2,7 @@ package com.inubit.ibis.plugins.edi20.scanners;
 
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.DATANORMDelimiters;
 import com.inubit.ibis.utils.FileUtils;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -15,6 +16,7 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Disabled
 class DATANORMLexicalScannerTest {
 
     @Test

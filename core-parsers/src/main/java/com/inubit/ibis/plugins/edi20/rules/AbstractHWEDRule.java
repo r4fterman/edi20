@@ -53,10 +53,13 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     private EDIRuleSegment parseUntilNextSegment(
             final RuleToken currentRuleToken,
             final String segmentID) throws EDIException {
-        System.out.println("AbstractHWEDRule.parseUntilNextSegment(" + currentRuleToken.getID() + "): search for segment [" + segmentID + "] ...");
+//        logMessage("AbstractHWEDRule.parseUntilNextSegment(" + currentRuleToken.getID() + "): search for segment [" + segmentID + "] ...");
+
         if (currentRuleToken instanceof EDIRuleSegmentGroup) {
             final EDIRuleSegmentGroup ruleSegmentGroup = (EDIRuleSegmentGroup) currentRuleToken;
-            System.out.println("AbstractHWEDRule.parseUntilNextSegment(): checked=" + ruleSegmentGroup.isChecked());
+
+//            logMessage("AbstractHWEDRule.parseUntilNextSegment(): checked=" + ruleSegmentGroup.isChecked());
+
             if (ruleSegmentGroup.isChecked()) {
                 if (ruleSegmentGroup.isMandatory()) {
                     throw new EDIException("Found mandatory segment group [" + ruleSegmentGroup + "] while trying to find next segment ["
@@ -64,7 +67,9 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
                 }
             } else if (ruleSegmentGroup.isInProgress()) {
                 ruleSegmentGroup.setChecked();
-                System.out.println("AbstractHWEDRule.parseUntilNextSegment(): next segment group...");
+
+//                logMessage("AbstractHWEDRule.parseUntilNextSegment(): next segment group...");
+
                 return parseUntilNextSegment(RuleUtil.getParentFollowingSibling(ruleSegmentGroup), segmentID);
             } else {
                 ruleSegmentGroup.setInProgress();
@@ -79,17 +84,16 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
         if (currentRuleToken instanceof EDIRuleSegment) {
             final EDIRuleSegment ruleSegment = (EDIRuleSegment) currentRuleToken;
             if (ruleSegment.getID().equals(segmentID)) {
-                System.out.println("AbstractHWEDRule.parseUntilNextSegment(): rseg=" + ruleSegment);
+//                logMessage("AbstractHWEDRule.parseUntilNextSegment(): rseg=" + ruleSegment);
                 return ruleSegment;
             }
             // if (ruleSegment.isMandatory()) {
             // throw new InubitException("Found mandatory segment [" + ruleSegment + "] while trying to find next segment [" + segmentID + "]!");
             // }
             final EDIRuleSegment segment = parseUntilNextSegment(RuleUtil.getFollowingSibling(ruleSegment), segmentID);
-            if (segment == null) {
-                throw new EDIException("Segment [" + segmentID + "] not found!");
-            }
-            System.out.println("AbstractHWEDRule.parseUntilNextSegment(): seg=" + segment);
+
+//            logMessage("AbstractHWEDRule.parseUntilNextSegment(): seg=" + segment);
+
             return segment;
         }
         if (currentRuleToken instanceof EDIRuleCompositeElement) {
@@ -166,30 +170,36 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
         return "descendant-or-self::Segment[@id='" + segmentID + "']";
     }
 
-    public EDIRuleBaseToken nextElement() throws EDIException {
-        System.out.println("AbstractHWEDRule.nextElement(): current=" + getCurrentRuleToken());
+    public EDIRuleBaseToken nextElement() throws RuleViolationException {
+//        logMessage("AbstractHWEDRule.nextElement(): current=" + getCurrentRuleToken());
         final EDIRuleBaseToken newCurrentRuleToken = parseUntilNextElement(getCurrentRuleToken());
         setCurrentRuleToken(newCurrentRuleToken);
         return newCurrentRuleToken;
     }
 
-    private EDIRuleBaseToken parseUntilNextElement(final RuleToken currentRuleToken) throws EDIException {
+    private EDIRuleBaseToken parseUntilNextElement(final RuleToken currentRuleToken) throws RuleViolationException {
         if (currentRuleToken instanceof EDIRuleElement) {
             return (EDIRuleElement) currentRuleToken;
         }
         if (currentRuleToken instanceof EDIRuleBaseToken) {
             final EDIRuleBaseToken ruleBaseToken = (EDIRuleBaseToken) currentRuleToken;
-            System.out.println("AbstractHWEDRule.parseUntilNextElement: " + ruleBaseToken);
+//            logMessage("AbstractHWEDRule.parseUntilNextElement: " + ruleBaseToken);
             final RuleToken nextChild = ruleBaseToken.nextChildren();
             if (nextChild == null) {
-                throw new EDIException("Rule element [" + ruleBaseToken + "] has no child!");
+                final String message = String.format("Rule element [%s] has no child!", ruleBaseToken);
+                throw new RuleViolationException(message);
             }
             return parseUntilNextElement(nextChild);
         }
-        throw new EDIException("Unknown rule token [" + currentRuleToken + "]!");
+        final String message = String.format("Unknown rule token [%s]!", currentRuleToken);
+        throw new RuleViolationException(message);
     }
 
     public abstract void closeCurrentRuleToken(Token token);
 
     public abstract boolean isEndOfRule();
+
+    private void logMessage(final String message) {
+        System.out.println(message);
+    }
 }

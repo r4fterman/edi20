@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 public abstract class AbstractEDIRule {
 
     private final EDIRuleRoot ruleElement;
+    private final RuleTreeTraverser ruleTreeTraverser;
+
     private RuleToken currentRuleToken;
 
     /**
@@ -30,6 +32,7 @@ public abstract class AbstractEDIRule {
             throw new InvalidRuleException();
         }
         ruleElement = createRootElement(ruleDocument);
+        ruleTreeTraverser = new RuleTreeTraverser();
         setCurrentRuleToken(ruleElement);
     }
 
@@ -198,98 +201,7 @@ public abstract class AbstractEDIRule {
      */
     public Optional<EDIRuleSegment> nextSegment(final String segmentID) {
         final EDIRuleBaseToken ruleToken = (EDIRuleBaseToken) getCurrentRuleToken();
-        final Optional<EDIRuleSegment> segment = checkSegment(ruleToken, segmentID);
-        if (segment.isPresent()) {
-            return segment;
-        }
-
-        return traverseForward(ruleToken, segmentID);
+        return ruleTreeTraverser.findNextSegment(ruleToken, segmentID);
     }
 
-    private Optional<EDIRuleSegment> traverseForward(
-            final EDIRuleBaseToken ruleToken,
-            final String segmentID) {
-        final Optional<EDIRuleSegment> child = traverseChildren(ruleToken, segmentID);
-        if (child.isPresent()) {
-            return child;
-        }
-
-        final Optional<EDIRuleSegment> sibling = traverseSiblings(ruleToken, segmentID);
-        if (sibling.isPresent()) {
-            return sibling;
-        }
-
-        return traverseParents(ruleToken, segmentID);
-    }
-
-    private Optional<EDIRuleSegment> traverseParents(
-            final EDIRuleBaseToken ruleToken,
-            final String segmentID) {
-        if (!ruleToken.hasParent()) {
-            return Optional.empty();
-        }
-
-        final EDIRuleBaseToken parent = (EDIRuleBaseToken) ruleToken.getParent();
-        final Optional<EDIRuleSegment> sibling = traverseSiblings(parent, segmentID);
-        if (sibling.isPresent()) {
-            return sibling;
-        }
-        return traverseParents(parent, segmentID);
-    }
-
-    private Optional<EDIRuleSegment> traverseSiblings(
-            final EDIRuleBaseToken ruleToken,
-            final String segmentID) {
-        if (!ruleToken.hasParent()) {
-            return Optional.empty();
-        }
-
-        final EDIRuleBaseToken parent = (EDIRuleBaseToken) ruleToken.getParent();
-        final int index = parent.getIndexOfChild(ruleToken);
-        if (index >= 0) {
-            final List<RuleToken> children = parent.getChildren();
-            for (int i = index + 1; i < children.size(); i++) {
-                final EDIRuleBaseToken child = (EDIRuleBaseToken) children.get(i);
-                traverseChildren(child, segmentID);
-            }
-        }
-
-        return Optional.empty();
-    }
-
-    private Optional<EDIRuleSegment> traverseChildren(
-            final EDIRuleBaseToken ruleToken,
-            final String segmentID) {
-        final List<RuleToken> children = ruleToken.getChildren();
-        for (final RuleToken child : children) {
-            final Optional<EDIRuleSegment> segment = checkSegment((EDIRuleBaseToken) child, segmentID);
-            if (segment.isPresent()) {
-                return segment;
-            }
-
-            final Optional<EDIRuleSegment> childSegment = traverseChildren((EDIRuleBaseToken) child, segmentID);
-            if (childSegment.isPresent()) {
-                return childSegment;
-            }
-        }
-        return Optional.empty();
-    }
-
-    private Optional<EDIRuleSegment> checkSegment(
-            final EDIRuleBaseToken ruleTokenToStartFrom,
-            final String segmentID) {
-        if (ruleTokenToStartFrom instanceof EDIRuleSegment) {
-            final EDIRuleSegment segment = (EDIRuleSegment) ruleTokenToStartFrom;
-            if (ruleTokenToStartFrom.getID().equals(segmentID)) {
-                if (!segment.isLoopLimitReached()) {
-                    return Optional.of(segment);
-                } else {
-                    final Loop loop = segment.getLoop();
-                    final String message = String.format("WARNING: segment for ID %s found but elements loop limit exceeded (%d/%d).", segmentID, segment.getCurrentLoopCount(), loop.isInfinite() ? -1 : loop.getValueAsInteger());
-                    System.out.println(message);
-                }
-            }
-        }
-        return Optional.empty();
-    }
 }

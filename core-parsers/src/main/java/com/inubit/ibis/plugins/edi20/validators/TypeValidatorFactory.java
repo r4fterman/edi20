@@ -7,8 +7,8 @@ import java.util.Map;
 public final class TypeValidatorFactory {
 
     private static final Map<RuleElementType, TypeValidator> VALIDATORS = Map.of(
-            RuleElementType.Numeric, new NumericTypeValidator(),
-            RuleElementType.Alphanumeric, new AlphanumericTypeValidator()
+            RuleElementType.N, new NumericTypeValidator(),
+            RuleElementType.AN, new AlphanumericTypeValidator()
     );
 
     public static TypeValidator getInstance(final RuleElementType type) throws InvalidTypeException {

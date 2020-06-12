@@ -34,7 +34,7 @@ public class EDIFACTDelimiters implements Delimiters {
         final int length = SEGMENT_UNA.length();
         if (beginOfDocument.startsWith(SEGMENT_UNA) && beginOfDocument.length() >= length + 6) {
             // complex delimiter
-            setComplextElementDelimiter(beginOfDocument.substring(length, length + 1));
+            setComplexElementDelimiter(beginOfDocument.substring(length, length + 1));
             // element delimiter
             setElementDelimiter(beginOfDocument.substring(length + 1, length + 2));
             // decimal delimiter
@@ -158,7 +158,7 @@ public class EDIFACTDelimiters implements Delimiters {
         return getDelimiter(DELIMITER_SEGMENT);
     }
 
-    public void setComplextElementDelimiter(final String complexElementDelimiter) {
+    public void setComplexElementDelimiter(final String complexElementDelimiter) {
         setDelimiter(complexElementDelimiter, DELIMITER_COMPLEX_ELEMENT);
     }
 

@@ -2,24 +2,17 @@ package com.inubit.ibis.plugins.edi20.rules.tokens;
 
 public enum RuleElementType {
 
-    Numeric("N", "Numeric"),
-    Alphanumeric("AN", "Alphanumeric");
+    N("Numeric"),
+    AN("Alphanumeric");
 
-    private final String typeValue;
-    private final String typeDescription;
+    private final String value;
 
-    RuleElementType(
-            final String typeValue,
-            final String typeDescription) {
-        this.typeValue = typeValue;
-        this.typeDescription = typeDescription;
+    RuleElementType(final String value) {
+        this.value = value;
     }
 
     public String getTypeValue() {
-        return typeValue;
+        return value;
     }
 
-    public String getTypeDescription() {
-        return typeDescription;
-    }
 }

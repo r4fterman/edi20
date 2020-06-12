@@ -1,5 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens.hwed;
 
+import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.RuleTokenFactory;
 import org.dom4j.Element;
@@ -14,6 +15,7 @@ public final class HwedRuleTokenFactory implements RuleTokenFactory {
     private static final String NAME_MESSAGE = "Message";
     private static final String NAME_ENVELOPER = "Enveloper";
 
+    @Override
     public RuleToken createInstance(final Element ruleElement) throws IllegalArgumentException {
         if (ruleElement == null) {
             throw new IllegalArgumentException("Element is null!");
@@ -38,7 +40,9 @@ public final class HwedRuleTokenFactory implements RuleTokenFactory {
         if (isSegmentGroup(ruleElementName)) {
             return addToCache(ruleElement, new HwedRuleSegmentGroup(ruleElement));
         }
-        return null;
+
+        final String message = String.format("Unknown instance of rule element: %s", ruleElement.getClass().getCanonicalName());
+        throw new RuntimeException(message);
     }
 
     private static boolean isEveloperRootElement(final String ruleElementName) {
