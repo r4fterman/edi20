@@ -6,9 +6,6 @@ import org.dom4j.Element;
 
 import java.io.OutputStream;
 
-/**
- * @author r4fter
- */
 public class EDIFACTWriter implements OutputWriter {
 
     private static final String ELEMENT_NAME_INTERCHANGE = "Interchange";

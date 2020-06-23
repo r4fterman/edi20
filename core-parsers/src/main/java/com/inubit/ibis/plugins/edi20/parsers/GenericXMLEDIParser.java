@@ -5,9 +5,6 @@ import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
-/**
- * @author r4fter
- */
 public class GenericXMLEDIParser implements GenericParser {
 
     private EDIParser parser;

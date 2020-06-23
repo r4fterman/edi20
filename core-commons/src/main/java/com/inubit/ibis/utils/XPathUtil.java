@@ -4,9 +4,6 @@ import org.dom4j.Node;
 
 import java.util.List;
 
-/**
- * @author r4fter
- */
 public final class XPathUtil {
 
     @SuppressWarnings("unchecked")

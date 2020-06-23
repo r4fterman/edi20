@@ -6,9 +6,6 @@ import org.dom4j.Element;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author r4fter
- */
 public abstract class EDIRuleSegmentGroup extends EDIRuleSegment {
 
     public EDIRuleSegmentGroup(final Element ruleElement) {

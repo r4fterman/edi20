@@ -7,9 +7,6 @@ import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-/**
- * @author r4fter
- */
 class StringUtilTest {
 
     @Test

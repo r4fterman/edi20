@@ -8,9 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * @author r4fter
- */
 public abstract class EDIRuleBaseToken implements RuleToken {
 
     private static final String ATTRIBUTE_NAME_ID = "id";

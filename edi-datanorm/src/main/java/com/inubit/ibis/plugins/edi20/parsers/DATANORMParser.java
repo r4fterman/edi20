@@ -17,9 +17,6 @@ import com.inubit.ibis.utils.EDIException;
 
 import java.util.List;
 
-/**
- * @author r4fter
- */
 public class DATANORMParser extends MSWEDParser {
 
     /**

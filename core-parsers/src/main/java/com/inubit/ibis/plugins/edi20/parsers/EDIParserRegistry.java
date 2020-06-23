@@ -6,9 +6,6 @@ import com.inubit.ibis.utils.EDIException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author r4fter
- */
 public final class EDIParserRegistry {
 
     private static final List<EDIParser> REGISTERED_PARSER = new ArrayList<>();
@@ -30,10 +27,10 @@ public final class EDIParserRegistry {
         return new EDIParserRegistry(textInputDocument);
     }
 
-    private StringBuilder fTextInputDocument;
+    private final StringBuilder textInputDocument;
 
     private EDIParserRegistry(final StringBuilder textInputDocument) {
-        fTextInputDocument = textInputDocument;
+        this.textInputDocument = textInputDocument;
     }
 
     /**
@@ -43,7 +40,7 @@ public final class EDIParserRegistry {
      */
     public EDIParser getParser() throws EDIException {
         for (final EDIParser parser : REGISTERED_PARSER) {
-            if (parser.canParse(fTextInputDocument)) {
+            if (parser.canParse(textInputDocument)) {
                 return parser;
             }
         }

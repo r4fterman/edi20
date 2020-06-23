@@ -2,9 +2,6 @@ package com.inubit.ibis.plugins.edi20.scanners;
 
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 
-/**
- * @author r4fter
- */
 public class SegmentDelimiterToken extends EDIDocumentToken {
 
     /**

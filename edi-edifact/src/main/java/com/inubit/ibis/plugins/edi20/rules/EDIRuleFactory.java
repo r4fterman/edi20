@@ -13,9 +13,6 @@ import org.dom4j.DocumentException;
 
 import java.io.File;
 
-/**
- * @author r4fter
- */
 public final class EDIRuleFactory {
 
     private static final String DELIMITER_RULE_FILE_PART = "-";
@@ -31,14 +28,14 @@ public final class EDIRuleFactory {
         return fInstance;
     }
 
-    private StringBuilder fTextInputDocument;
-    private Delimiters fDelimiter;
+    private final StringBuilder textInputDocument;
+    private final Delimiters delimiter;
 
     private EDIRuleFactory(
             final StringBuilder textInputDocument,
             final Delimiters delimiter) {
-        fTextInputDocument = textInputDocument;
-        fDelimiter = delimiter;
+        this.textInputDocument = textInputDocument;
+        this.delimiter = delimiter;
     }
 
     private AbstractEDIRule getEDIFACTRule(
@@ -49,7 +46,7 @@ public final class EDIRuleFactory {
             throw new EDIException("Unable to auto detect rule file. No version information found in EDIFACT message!");
         }
         final StringBuilder autoDetectPart = new StringBuilder(textInputDocument.substring(idx));
-        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(autoDetectPart, (EDIFACTDelimiters) fDelimiter);
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(autoDetectPart, (EDIFACTDelimiters) delimiter);
         String ruleFileName = getEDIFACTRuleFileName(scanner, detectStandardRuleFileName);
         if (ruleFileName.endsWith(DELIMITER_RULE_FILE_PART)) {
             ruleFileName = ruleFileName.substring(0, ruleFileName.length() - 1);
@@ -144,7 +141,7 @@ public final class EDIRuleFactory {
     }
 
     private AbstractEDIRule getRule(final boolean detectStandardRuleFileName) throws EDIException {
-        if (StringUtil.isNotSet(fTextInputDocument)) {
+        if (StringUtil.isNotSet(textInputDocument)) {
             throw new EDIException("Unable to auto detect rule file an empty input document!");
         }
         throw new EDIException("Rule file auto detection is not supported for this message!");

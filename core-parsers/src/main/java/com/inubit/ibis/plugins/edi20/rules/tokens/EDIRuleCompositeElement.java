@@ -7,9 +7,6 @@ import org.dom4j.Element;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author r4fter
- */
 public abstract class EDIRuleCompositeElement extends EDIRuleBaseToken implements ElementRuleToken {
 
     public EDIRuleCompositeElement(final Element ruleElement) {

@@ -2,9 +2,6 @@ package com.inubit.ibis.plugins.edi20.scanners;
 
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.VDADelimiters;
 
-/**
- * @author r4fter
- */
 public class VDASegmentDelimiterToken extends EDIDocumentToken {
 
     /**

@@ -3,9 +3,6 @@ package com.inubit.ibis.plugins.edi20.outputs;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.EDIException;
 
-/**
- * @author r4fter
- */
 public final class OutputWriterFactory {
 
     public static OutputWriter getInstance(final AbstractEDIRule rule) throws EDIException {

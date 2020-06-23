@@ -13,9 +13,6 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-/**
- * @author r4fter
- */
 class X12RuleTest {
 
     private Document getRuleDocument(final String ruleDocumentName) throws Exception {

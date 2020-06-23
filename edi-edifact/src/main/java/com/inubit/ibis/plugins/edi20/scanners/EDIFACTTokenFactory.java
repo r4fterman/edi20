@@ -3,9 +3,6 @@ package com.inubit.ibis.plugins.edi20.scanners;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.utils.StringUtil;
 
-/**
- * @author r4fter
- */
 public final class EDIFACTTokenFactory {
 
     private static EDIFACTTokenFactory fFactoryInstance;
@@ -25,7 +22,7 @@ public final class EDIFACTTokenFactory {
         return fFactoryInstance;
     }
 
-    private EDIFACTDelimiters delimiters;
+    private final EDIFACTDelimiters delimiters;
 
     private EDIFACTTokenFactory(final EDIFACTDelimiters edifactDelimiters) {
         delimiters = edifactDelimiters;

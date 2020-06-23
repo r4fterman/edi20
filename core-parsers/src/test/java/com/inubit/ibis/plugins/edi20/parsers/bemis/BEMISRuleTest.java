@@ -15,9 +15,6 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-/**
- * @author r4fter
- */
 class BEMISRuleTest {
 
     private Document getRuleDocument(final String ruleDocumentName) throws URISyntaxException, DocumentException {

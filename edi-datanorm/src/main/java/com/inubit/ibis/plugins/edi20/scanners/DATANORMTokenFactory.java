@@ -3,9 +3,6 @@ package com.inubit.ibis.plugins.edi20.scanners;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.DATANORMDelimiters;
 import org.apache.commons.lang.StringUtils;
 
-/**
- * @author r4fter
- */
 public class DATANORMTokenFactory {
 
     private static DATANORMTokenFactory factoryInstance;
