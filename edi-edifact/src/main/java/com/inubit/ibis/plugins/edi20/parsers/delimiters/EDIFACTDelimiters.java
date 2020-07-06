@@ -1,12 +1,9 @@
 package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 import com.inubit.ibis.utils.StringUtil;
 
-/**
- * @author r4fter
- */
-public class EDIFACTDelimiters implements IDelimiters {
+public class EDIFACTDelimiters implements Delimiters {
 
     public static final int DELIMITER_ELEMENT = 0;
     public static final int DELIMITER_SEGMENT = 1;
@@ -22,9 +19,6 @@ public class EDIFACTDelimiters implements IDelimiters {
     private String segmentDelimiter = "'";
     private String escapeDelimiter = "?";
 
-    /**
-     * Constructor.
-     */
     public EDIFACTDelimiters() {
         // do nothing
     }
@@ -40,7 +34,7 @@ public class EDIFACTDelimiters implements IDelimiters {
         final int length = SEGMENT_UNA.length();
         if (beginOfDocument.startsWith(SEGMENT_UNA) && beginOfDocument.length() >= length + 6) {
             // complex delimiter
-            setComplextElementDelimiter(beginOfDocument.substring(length, length + 1));
+            setComplexElementDelimiter(beginOfDocument.substring(length, length + 1));
             // element delimiter
             setElementDelimiter(beginOfDocument.substring(length + 1, length + 2));
             // decimal delimiter
@@ -125,7 +119,7 @@ public class EDIFACTDelimiters implements IDelimiters {
         if (isSegmentDelimiter(delimiter)) {
             return DELIMITER_SEGMENT;
         }
-        return IDelimiters.DELIMITER_UNKNOWN;
+        return Delimiters.DELIMITER_UNKNOWN;
     }
 
     @Override
@@ -141,7 +135,7 @@ public class EDIFACTDelimiters implements IDelimiters {
                 return decimalDelimiter;
             case DELIMITER_ESCAPE:
                 return escapeDelimiter;
-            case IDelimiters.DELIMITER_UNKNOWN:
+            case Delimiters.DELIMITER_UNKNOWN:
             default:
                 return "";
         }
@@ -164,7 +158,7 @@ public class EDIFACTDelimiters implements IDelimiters {
         return getDelimiter(DELIMITER_SEGMENT);
     }
 
-    public void setComplextElementDelimiter(final String complexElementDelimiter) {
+    public void setComplexElementDelimiter(final String complexElementDelimiter) {
         setDelimiter(complexElementDelimiter, DELIMITER_COMPLEX_ELEMENT);
     }
 

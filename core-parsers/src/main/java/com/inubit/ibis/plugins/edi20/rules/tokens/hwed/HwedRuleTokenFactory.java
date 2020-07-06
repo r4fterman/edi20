@@ -1,18 +1,11 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens.hwed;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
+import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
+import com.inubit.ibis.plugins.edi20.rules.tokens.RuleTokenFactory;
 import org.dom4j.Element;
 
-import java.util.Hashtable;
-
-/**
- * @author r4fter
- */
-public final class HwedRuleTokenFactory {
+public final class HwedRuleTokenFactory implements RuleTokenFactory {
 
     private static final String NAME_RULE_SEGMENT = "Segment";
     private static final String NAME_RULE_ELEMENT = "Element";
@@ -22,36 +15,34 @@ public final class HwedRuleTokenFactory {
     private static final String NAME_MESSAGE = "Message";
     private static final String NAME_ENVELOPER = "Enveloper";
 
-    private static final Hashtable<Element, IRuleToken> INSTANCE_CACHE = new Hashtable<>(100);
-
-    public static IRuleToken getInstance(final Element ruleElement) throws IllegalArgumentException {
+    @Override
+    public RuleToken createInstance(final Element ruleElement) throws IllegalArgumentException {
         if (ruleElement == null) {
             throw new IllegalArgumentException("Element is null!");
-        }
-        if (INSTANCE_CACHE.containsKey(ruleElement)) {
-            return INSTANCE_CACHE.get(ruleElement);
         }
 
         final String ruleElementName = ruleElement.getName();
         if (isRootElement(ruleElementName)) {
-            return addToCache(ruleElement, new EDIRuleRoot(ruleElement));
+            return addToCache(ruleElement, new HwedRuleRoot(ruleElement));
         }
         if (isEveloperRootElement(ruleElementName)) {
             return addToCache(ruleElement, new EDIEnveloperRuleRoot(ruleElement));
         }
         if (isSegment(ruleElementName)) {
-            return addToCache(ruleElement, new EDIRuleSegment(ruleElement));
+            return addToCache(ruleElement, new HwedRuleSegment(ruleElement));
         }
         if (isElement(ruleElementName)) {
             return addToCache(ruleElement, new HwedRuleElement(ruleElement));
         }
         if (isCompositeElement(ruleElementName)) {
-            return addToCache(ruleElement, new EDIRuleCompositeElement(ruleElement));
+            return addToCache(ruleElement, new HwedRuleCompositeElement(ruleElement));
         }
         if (isSegmentGroup(ruleElementName)) {
-            return addToCache(ruleElement, new EDIRuleSegmentGroup(ruleElement));
+            return addToCache(ruleElement, new HwedRuleSegmentGroup(ruleElement));
         }
-        return null;
+
+        final String message = String.format("Unknown instance of rule element: %s", ruleElement.getClass().getCanonicalName());
+        throw new RuntimeException(message);
     }
 
     private static boolean isEveloperRootElement(final String ruleElementName) {
@@ -78,12 +69,9 @@ public final class HwedRuleTokenFactory {
         return NAME_MESSAGE.equals(ruleElementName);
     }
 
-    private static IRuleToken addToCache(
+    private static RuleToken addToCache(
             final Element ruleElement,
-            final IRuleToken token) {
-        if (ruleElement != null && token != null) {
-            INSTANCE_CACHE.put(ruleElement, token);
-        }
+            final RuleToken token) {
         return token;
     }
 

@@ -1,22 +1,19 @@
 package com.inubit.ibis.plugins.edi20.parsers.bemis;
 
 import com.inubit.ibis.plugins.edi20.rules.AbstractHWEDRule;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
-/**
- * @author r4fter
- */
 public class BEMISRule extends AbstractHWEDRule {
 
     /**
      * @param bemisRuleDocument
      *         BEMIS rule document
-     * @throws InubitException
+     * @throws EDIException
      *         if the given rule document is not a valid BEMIS rule document
      */
-    public BEMISRule(final Document bemisRuleDocument) throws InubitException {
+    public BEMISRule(final Document bemisRuleDocument) throws EDIException {
         super(bemisRuleDocument);
     }
 
@@ -31,7 +28,7 @@ public class BEMISRule extends AbstractHWEDRule {
     }
 
     @Override
-    public void closeCurrentRuleToken(final IToken token) {
+    public void closeCurrentRuleToken(final Token token) {
         //todo: implement
     }
 }

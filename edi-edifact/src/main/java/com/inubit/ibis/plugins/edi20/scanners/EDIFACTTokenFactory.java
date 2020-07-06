@@ -11,7 +11,8 @@ public final class EDIFACTTokenFactory {
     private static EDIFACTTokenFactory fFactoryInstance;
 
     /**
-     * @param edifactDelimiters EDIFACT delimiters
+     * @param edifactDelimiters
+     *         EDIFACT delimiters
      * @return initialized factory instance
      */
     public static EDIFACTTokenFactory getInstance(final EDIFACTDelimiters edifactDelimiters) {
@@ -31,12 +32,14 @@ public final class EDIFACTTokenFactory {
     }
 
     /**
-     * @param tokenString token string
-     * @param tokenPosition token position in document
+     * @param tokenString
+     *         token string
+     * @param tokenPosition
+     *         token position in document
      * @return token instance initialized with the given information or an
      * {@link UnknownDelimiterToken} if the given #tokenString is unknown
      */
-    public IToken getToken(
+    public Token getToken(
             final String tokenString,
             final int tokenPosition) {
         if (StringUtil.isNotSet(tokenString)) {

@@ -1,14 +1,11 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
-/**
- * @author r4fter
- */
 public class EDIGASRule extends EDIFACTRule {
 
-    public EDIGASRule(final Document edigasRuleDocument) throws InubitException {
+    public EDIGASRule(final Document edigasRuleDocument) throws EDIException {
         super(edigasRuleDocument);
     }
 

@@ -1,13 +1,13 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
 import com.inubit.ibis.utils.StringUtil;
 import org.dom4j.Element;
 
 /**
  * @author r4fter
  */
-public abstract class EDIRuleElement extends EDIRuleBaseToken implements IElementRuleToken {
+public abstract class EDIRuleElement extends EDIRuleBaseToken implements ElementRuleToken {
 
     private static final int INTEGER_NOT_SET = -1;
     private static final String ATTRIBUTE_NAME_TYPE = "type";

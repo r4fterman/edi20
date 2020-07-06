@@ -1,11 +1,11 @@
 package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 
 /**
  * @author r4fter
  */
-public class DATANORMDelimiters implements IDelimiters {
+public class DATANORMDelimiters implements Delimiters {
 
     public static final int SEGMENT_DELIMITER = 1;
     public static final int ELEMENT_DELIMITER = 2;

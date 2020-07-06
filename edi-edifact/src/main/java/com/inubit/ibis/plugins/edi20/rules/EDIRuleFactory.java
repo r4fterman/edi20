@@ -1,11 +1,10 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
-import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
+import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 import com.inubit.ibis.utils.XmlFileFilter;
 import com.inubit.ibis.utils.XmlUtils;
@@ -25,7 +24,7 @@ public final class EDIRuleFactory {
 
     public static EDIRuleFactory getInstance(
             final StringBuilder textInputDocument,
-            final IDelimiters delimiter) {
+            final Delimiters delimiter) {
         if (fInstance == null) {
             fInstance = new EDIRuleFactory(textInputDocument, delimiter);
         }
@@ -33,21 +32,21 @@ public final class EDIRuleFactory {
     }
 
     private StringBuilder fTextInputDocument;
-    private IDelimiters fDelimiter;
+    private Delimiters fDelimiter;
 
     private EDIRuleFactory(
             final StringBuilder textInputDocument,
-            final IDelimiters delimiter) {
+            final Delimiters delimiter) {
         fTextInputDocument = textInputDocument;
         fDelimiter = delimiter;
     }
 
     private AbstractEDIRule getEDIFACTRule(
             final StringBuilder textInputDocument,
-            final boolean detectStandardRuleFileName) throws InubitException {
+            final boolean detectStandardRuleFileName) throws EDIException {
         final int idx = textInputDocument.indexOf("UNH");
         if (idx == -1) {
-            throw new InubitException("Unable to auto detect rule file. No version information found in EDIFACT message!");
+            throw new EDIException("Unable to auto detect rule file. No version information found in EDIFACT message!");
         }
         final StringBuilder autoDetectPart = new StringBuilder(textInputDocument.substring(idx));
         final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(autoDetectPart, (EDIFACTDelimiters) fDelimiter);
@@ -57,16 +56,16 @@ public final class EDIRuleFactory {
         }
 
         final String edifactRuleFileName = ruleFileName + XmlFileFilter.FILE_EXTENSION_XML;
-        final File edifactRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, edifactRuleFileName);
+        final File edifactRuleFile = new File("./", edifactRuleFileName);
         if (!edifactRuleFile.exists()) {
-            throw new InubitException("EDI rule file not found [" + edifactRuleFile.getAbsolutePath() + "]!");
+            throw new EDIException("EDI rule file not found [" + edifactRuleFile.getAbsolutePath() + "]!");
         }
         try {
             final Document edifactRuleDocument = XmlUtils.getDocumentThrowing(edifactRuleFile);
             return new EDIFACTRule(edifactRuleDocument);
         } catch (final DocumentException e) {
             e.printStackTrace();
-            throw new InubitException("Unable to load rule file: " + edifactRuleFileName, e);
+            throw new EDIException("Unable to load rule file: " + edifactRuleFileName, e);
         }
     }
 
@@ -116,7 +115,7 @@ public final class EDIRuleFactory {
                 scanner.nextToken();
             }
             return builder.toString();
-        } catch (final InubitException e) {
+        } catch (final EDIException e) {
             return "";
         }
     }
@@ -124,30 +123,30 @@ public final class EDIRuleFactory {
     private void appendNextTokenToBuilder(
             final EDIFACTLexicalScanner scanner,
             final StringBuilder builder,
-            final boolean mandatory) throws InubitException {
-        final IToken messageTypeToken = scanner.nextToken();
+            final boolean mandatory) throws EDIException {
+        final Token messageTypeToken = scanner.nextToken();
         if (StringUtil.isSet(messageTypeToken.getToken())) {
             builder.append(messageTypeToken.getToken());
             builder.append(DELIMITER_RULE_FILE_PART);
         } else {
             if (mandatory) {
-                throw new InubitException("Mandatory rule file part not found!");
+                throw new EDIException("Mandatory rule file part not found!");
             }
         }
     }
 
-    public AbstractEDIRule getRule() throws InubitException {
+    public AbstractEDIRule getRule() throws EDIException {
         return getRule(true);
     }
 
-    public AbstractEDIRule getExtendedRule() throws InubitException {
+    public AbstractEDIRule getExtendedRule() throws EDIException {
         return getRule(false);
     }
 
-    private AbstractEDIRule getRule(final boolean detectStandardRuleFileName) throws InubitException {
+    private AbstractEDIRule getRule(final boolean detectStandardRuleFileName) throws EDIException {
         if (StringUtil.isNotSet(fTextInputDocument)) {
-            throw new InubitException("Unable to auto detect rule file an empty input document!");
+            throw new EDIException("Unable to auto detect rule file an empty input document!");
         }
-        throw new InubitException("Rule file auto detection is not supported for this message!");
+        throw new EDIException("Rule file auto detection is not supported for this message!");
     }
 }

@@ -7,6 +7,7 @@ import com.inubit.ibis.utils.FileUtils;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -16,12 +17,10 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-/**
- * @author r4fter
- */
+@Disabled
 class DATANORMParserTest {
 
-    @Disabled
+    @Test
     void testGenericParserString() throws Exception {
         final String testFile = "datanorm4.001.txt";
         final String ruleFile = "DATANORM-All-4.0--.xml";
@@ -31,7 +30,7 @@ class DATANORMParserTest {
         parser.parse();
     }
 
-    @Disabled
+    @Test
     void testParseString() throws Exception {
         final String testString = "C;N;BAU;F;MKF;ABK;0700E.341280000;;030101;;;;1S;;;E;1000;60;33;1980;;ST;;;;FZ-DEUT.;700-3412~;;";
         final String ruleFile = "DATANORM-All-4.0--.xml";

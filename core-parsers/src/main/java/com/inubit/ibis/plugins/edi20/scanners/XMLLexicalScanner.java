@@ -1,6 +1,6 @@
 package com.inubit.ibis.plugins.edi20.scanners;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 import org.dom4j.Document;
 
 /**
@@ -9,7 +9,7 @@ import org.dom4j.Document;
  *
  * @author rafter
  */
-public abstract class XMLLexicalScanner implements IScanner {
+public abstract class XMLLexicalScanner implements Scanner {
 
     /**
      * @param inputDocument
@@ -19,7 +19,7 @@ public abstract class XMLLexicalScanner implements IScanner {
         //todo: implement
     }
 
-    public abstract IDelimiters getDelimiters();
+    public abstract Delimiters getDelimiters();
 
     @Override
     public boolean hasMoreTokens() {
@@ -27,12 +27,12 @@ public abstract class XMLLexicalScanner implements IScanner {
     }
 
     @Override
-    public IToken nextToken() {
+    public Token nextToken() {
         return null;
     }
 
     @Override
-    public boolean isDelimiter(final IToken token) {
+    public boolean isDelimiter(final Token token) {
         return getDelimiters().containsDelimiter(token.getToken());
     }
 }

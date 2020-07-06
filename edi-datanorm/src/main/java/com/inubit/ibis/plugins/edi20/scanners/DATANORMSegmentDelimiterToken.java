@@ -5,7 +5,7 @@ import com.inubit.ibis.plugins.edi20.parsers.delimiters.DATANORMDelimiters;
 /**
  * @author r4fter
  */
-public class DATANORMSegmentDelimiterToken implements IToken {
+public class DATANORMSegmentDelimiterToken implements Token {
 
     private final String token;
     private final int position;

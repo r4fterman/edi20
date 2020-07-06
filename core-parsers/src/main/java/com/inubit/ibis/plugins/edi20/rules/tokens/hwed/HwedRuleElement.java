@@ -1,20 +1,22 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens.hwed;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IVariableLengthRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.VariableLengthRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
+import com.inubit.ibis.plugins.edi20.rules.tokens.RuleTokenFactory;
 import org.dom4j.Element;
 
-/**
- * Created with IntelliJ IDEA. User: r4fter Date: 24.03.13 Time: 16:39 To change
- * this template use File | Settings | File Templates.
- */
-public class HwedRuleElement extends EDIRuleElement implements IVariableLengthRuleToken {
+public class HwedRuleElement extends EDIRuleElement implements VariableLengthRuleToken {
 
     private static final String ATTRIBUTE_NAME_MINLENGTH = "minLength";
     private static final String ATTRIBUTE_NAME_MAXLENGTH = "maxLength";
 
     public HwedRuleElement(final Element ruleElement) {
         super(ruleElement);
+    }
+
+    @Override
+    protected RuleTokenFactory getFactory() {
+        return new HwedRuleTokenFactory();
     }
 
     // <Element id="1153" maxLength="3" minLength="1" name="Reference qualifier" required="M" type="AN" xmlTag="ReferenceQualifier"/>

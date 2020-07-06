@@ -27,7 +27,7 @@ public class DATANORMTokenFactory {
         delimiters = datanormDelimiters;
     }
 
-    public IToken getToken(
+    public Token getToken(
             final String tokenString,
             final int tokenPosition) {
         if (StringUtils.isEmpty(tokenString)) {

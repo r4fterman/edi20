@@ -18,7 +18,7 @@ public class DATANORMUnknownDelimiterToken extends UnknownDelimiterToken {
     }
 
     @Override
-    public IIdentifier getIdentifier() {
+    public Identifier getIdentifier() {
         final String token = getToken();
         int idx = 1;
         if (token.contains(";")) {

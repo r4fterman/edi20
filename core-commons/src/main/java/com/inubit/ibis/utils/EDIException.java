@@ -3,23 +3,23 @@ package com.inubit.ibis.utils;
 /**
  * @author rafter
  */
-public class InubitException extends Exception {
+public class EDIException extends Exception {
 
     private static final long serialVersionUID = -8003127922873714076L;
 
-    public InubitException() {
+    public EDIException() {
         // do nothing
     }
 
-    public InubitException(final String message) {
+    public EDIException(final String message) {
         super(message);
     }
 
-    public InubitException(final Throwable throwable) {
+    public EDIException(final Throwable throwable) {
         super(throwable);
     }
 
-    public InubitException(
+    public EDIException(
             final String message,
             final Throwable throwable) {
         super(message, throwable);

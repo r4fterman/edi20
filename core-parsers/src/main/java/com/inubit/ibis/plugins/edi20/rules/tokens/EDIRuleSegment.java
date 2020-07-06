@@ -1,41 +1,38 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRepeatableRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RepeatableRuleToken;
 import org.dom4j.Element;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-/**
- * @author r4fter
- */
-public class EDIRuleSegment extends EDIRuleBaseToken implements IRepeatableRuleToken {
+public abstract class EDIRuleSegment extends EDIRuleBaseToken implements RepeatableRuleToken {
 
     private static final String ATTRIBUTE_NAME_LOOP = "loop";
     private static final int NO_LOOP = 1;
 
-    private int currentLoopCount = 0;
+    private final Loop maxLoop;
+
+    private int loopCount = 0;
 
     public EDIRuleSegment(final Element ruleElement) {
+        // <Segment id="RFF" loop="1" name="Reference" required="M" xmlTag="Reference">
         super(ruleElement);
+        maxLoop = new Loop(getRuleElement().attributeValue(ATTRIBUTE_NAME_LOOP, String.valueOf(NO_LOOP)));
     }
 
     @Override
-    public int getLoop() {
-        // <Segment id="RFF" loop="1" name="Reference" required="M" xmlTag="Reference">
-        try {
-            return Integer.parseInt(getRuleElement().attributeValue(ATTRIBUTE_NAME_LOOP, String.valueOf(NO_LOOP)));
-        } catch (final NumberFormatException e) {
-            return NO_LOOP;
-        }
+    public Loop getLoop() {
+        return maxLoop;
     }
 
     @Override
     public boolean hasLoop() {
-        return getLoop() > NO_LOOP;
+        if (maxLoop.isInfinite()) {
+            return true;
+        }
+        return maxLoop.getValueAsInteger() > NO_LOOP;
     }
 
     @Override
@@ -44,37 +41,34 @@ public class EDIRuleSegment extends EDIRuleBaseToken implements IRepeatableRuleT
     }
 
     @Override
-    public void looped() throws InubitException {
-        if (isLoopLimitReached()) {
-            throw new InubitException("Segment [" + getID() + "] can only occurs [" + getLoop() + "] times!");
-        }
-        addLoopCount(1);
+    public void looped() {
+        increaseLoopCount();
     }
 
     @Override
     public boolean canLoop() {
-        return hasLoop() && !isLoopLimitReached();
+        return !isLoopLimitReached();
     }
 
     public boolean isLoopLimitReached() {
-        return currentLoopCount >= getLoop();
+        if (maxLoop.isInfinite()) {
+            return false;
+        }
+        return loopCount >= maxLoop.getValueAsInteger();
     }
 
     public int getCurrentLoopCount() {
-        return currentLoopCount + 1;
+        return loopCount;
     }
 
-    public void addLoopCount(final int loopCount) {
-        currentLoopCount += loopCount;
+    private void increaseLoopCount() {
+        this.loopCount += 1;
     }
 
-    public List<IElementRuleToken> getElements() {
-        final List<IElementRuleToken> elements = new ArrayList<>();
-        for (final IRuleToken child : getChildren()) {
-            if (child instanceof IElementRuleToken) {
-                elements.add((IElementRuleToken) child);
-            }
-        }
-        return elements;
+    public List<ElementRuleToken> getElements() {
+        return getChildren().stream()
+                .filter(child -> child instanceof  ElementRuleToken)
+                .map(child -> (ElementRuleToken) child)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

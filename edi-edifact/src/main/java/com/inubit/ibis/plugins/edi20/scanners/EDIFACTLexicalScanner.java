@@ -27,14 +27,14 @@ public class EDIFACTLexicalScanner extends EDILexicalScanner {
     }
 
     @Override
-    protected IToken getNextToken(final int position) {
+    protected Token getNextToken(final int position) {
         int index = getIndexOfNextDelimiter(position);
         if (index == -1) {
             // no next token found
             index = getInputDocument().length();
         }
-        final String str = getInputDocument().substring(position, index);
-        return EDIFACTTokenFactory.getInstance(getEDIFACTDelimiter()).getToken(str, position);
+        final String tokenString = getInputDocument().substring(position, index).replaceAll("\\r\\n?", "\n");
+        return EDIFACTTokenFactory.getInstance(getEDIFACTDelimiter()).getToken(tokenString, position);
     }
 
     private int getIndexOfNextDelimiter(final int position) {

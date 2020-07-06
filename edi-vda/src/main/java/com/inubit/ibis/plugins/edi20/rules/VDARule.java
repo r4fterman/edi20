@@ -1,45 +1,23 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
-/**
- * @author r4fter
- */
 public class VDARule extends AbstractHWFPERule {
-
-    private static final String LAST_SEGMENTID = "519";
 
     /**
      * @param vdaRuleDocument
      *         VDA rule document
-     * @throws InubitException
+     * @throws EDIException
      *         if the given rule document is not a valid VDA rule document
      */
-    public VDARule(final Document vdaRuleDocument) throws InubitException {
+    public VDARule(final Document vdaRuleDocument) throws EDIException {
         super(vdaRuleDocument);
     }
 
     @Override
     public String getStandard() {
         return "VDA";
-    }
-
-    public boolean isEndOfRule() {
-//        EDIRuleBaseToken segment = getSegment(getCurrentRuleToken());
-//        if (segment != null) {
-//            return segment.getID().equals(LAST_SEGMENTID);
-//        }
-        return false;
-    }
-
-    private EDIRuleSegment getSegment(final IRuleToken currentRuleToken) {
-        if (currentRuleToken instanceof EDIRuleSegment) {
-            return (EDIRuleSegment) currentRuleToken;
-        }
-        return null;
     }
 
 }

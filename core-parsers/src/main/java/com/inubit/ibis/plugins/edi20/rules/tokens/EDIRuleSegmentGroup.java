@@ -1,15 +1,15 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import org.dom4j.Element;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author r4fter
  */
-public class EDIRuleSegmentGroup extends EDIRuleSegment {
+public abstract class EDIRuleSegmentGroup extends EDIRuleSegment {
 
     public EDIRuleSegmentGroup(final Element ruleElement) {
         // <SegmentGroup id="Group_1" loop="9"
@@ -23,40 +23,10 @@ public class EDIRuleSegmentGroup extends EDIRuleSegment {
         return "(Group) " + super.toString();
     }
 
-    /**
-     * @return first segment or <code>null</code> if child segment exists in this group
-     */
-    public IRuleToken getFirstSegment() {
-        Element firstChild = getFirstChildElement();
-        if (firstChild != null) {
-            return createElementInstance(firstChild);
-        }
-        return null;
-    }
-
-    @SuppressWarnings("unchecked")
-    public Element getFirstChildElement() {
-        List<Element> childElements = getRuleElement().elements();
-        if (childElements.size() > 0) {
-            return childElements.get(0);
-        }
-        return null;
-    }
-
-    public boolean hasSegments() {
-        if (hasChildren()) {
-            return getFirstSegment() != null;
-        }
-        return false;
-    }
-
     public List<EDIRuleSegment> getSegments() {
-        List<EDIRuleSegment> segments = new ArrayList<EDIRuleSegment>();
-        for (IRuleToken child : getChildren()) {
-            if (child instanceof EDIRuleSegment) {
-                segments.add((EDIRuleSegment) child);
-            }
-        }
-        return segments;
+        return getChildren().stream()
+                .filter(child -> child instanceof EDIRuleSegment)
+                .map(child -> (EDIRuleSegment) child)
+                .collect(Collectors.toUnmodifiableList());
     }
 }

@@ -1,22 +1,19 @@
 package com.inubit.ibis.plugins.edi20.parsers.x12;
 
 import com.inubit.ibis.plugins.edi20.rules.AbstractHWEDRule;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
-/**
- * @author r4fter
- */
 public class X12Rule extends AbstractHWEDRule {
 
     /**
      * @param x12RuleDocument
      *         X12 rule document
-     * @throws InubitException
+     * @throws EDIException
      *         if the given rule document is not a valid X12 rule document
      */
-    public X12Rule(final Document x12RuleDocument) throws InubitException {
+    public X12Rule(final Document x12RuleDocument) throws EDIException {
         super(x12RuleDocument);
     }
 
@@ -31,7 +28,7 @@ public class X12Rule extends AbstractHWEDRule {
     }
 
     @Override
-    public void closeCurrentRuleToken(final IToken token) {
+    public void closeCurrentRuleToken(final Token token) {
         //todo: implement
     }
 }

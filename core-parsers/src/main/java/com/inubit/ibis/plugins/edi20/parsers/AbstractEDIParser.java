@@ -1,32 +1,31 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
-import com.inubit.ibis.plugins.edi20.outputs.IOutputWriter;
+import com.inubit.ibis.plugins.edi20.outputs.OutputWriter;
 import com.inubit.ibis.plugins.edi20.outputs.OutputWriterFactory;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
-import com.inubit.ibis.plugins.edi20.scanners.IScanner;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.plugins.edi20.scanners.Scanner;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
+import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 
-/**
- * @author r4fter
- */
-public abstract class AbstractEDIParser implements IEDIParser {
+public abstract class AbstractEDIParser implements EDIParser {
 
     private final AbstractEDIRule ediRule;
-    private final IScanner scanner;
-    private IOutputWriter writer;
+    private final Scanner scanner;
+    private OutputWriter writer;
 
     /**
      * @param scanner
      *         lexical scanner
-     * @param rule
+     * @param ediRule
      *         EDI rule
      */
-    public AbstractEDIParser(final IScanner scanner, final AbstractEDIRule rule) {
+    public AbstractEDIParser(
+            final Scanner scanner,
+            final AbstractEDIRule ediRule) {
         super();
         this.scanner = scanner;
-        this.ediRule = rule;
+        this.ediRule = ediRule;
     }
 
     /**
@@ -39,46 +38,48 @@ public abstract class AbstractEDIParser implements IEDIParser {
     /**
      * @return lexical scanner
      */
-    public IScanner getScanner() {
+    public Scanner getScanner() {
         return scanner;
     }
 
-    public IOutputWriter getWriter() throws InubitException {
+    public OutputWriter getWriter() throws EDIException {
         if (writer == null) {
-            this.writer = OutputWriterFactory.getInstance(getRule());
+            writer = OutputWriterFactory.getInstance(getRule());
         }
         return writer;
     }
 
     @Override
-    public void parse() throws InubitException {
+    public void parse() throws EDIException {
         if (getScanner().hasMoreTokens()) {
             parseTokens();
         }
     }
 
-    private void parseTokens() throws InubitException {
+    private void parseTokens() throws EDIException {
         while (getScanner().hasMoreTokens() && !isEndOfRule()) {
-            IToken token = getScanner().nextToken();
-            if (token.isDelimiter()) {
-                parseDelimiter(token);
-            } else {
-                parseToken(token);
+            final Token token = getScanner().nextToken();
+            if (!StringUtil.isLineBreakOnly(token.getToken())) {
+                if (token.isDelimiter()) {
+                    parseDelimiter(token);
+                } else {
+                    parseToken(token);
+                }
             }
         }
 
         if (getScanner().hasMoreTokens()) {
-            String unparsedPart = getUnparsedPart();
+            final String unparsedPart = getUnparsedPart();
             // ignore white spaces at the end of message
             if (!StringUtil.isWhitespacesOnly(unparsedPart)) {
-                throw new InubitException("Rule parsing complete but message still contains data [" + unparsedPart + "]!");
+                throw new EDIException("Rule parsing complete but message still contains data [" + unparsedPart + "]!");
             }
         }
     }
 
     private String getUnparsedPart() {
         // empty the scanner
-        StringBuilder unparsedBuilder = new StringBuilder("");
+        final StringBuilder unparsedBuilder = new StringBuilder();
         while (getScanner().hasMoreTokens()) {
             unparsedBuilder.append(getScanner().nextToken().getToken());
         }
@@ -87,7 +88,7 @@ public abstract class AbstractEDIParser implements IEDIParser {
 
     protected abstract boolean isEndOfRule();
 
-    protected abstract void parseToken(IToken token) throws InubitException;
+    protected abstract void parseToken(Token token) throws EDIException;
 
-    protected abstract void parseDelimiter(IToken token) throws InubitException;
+    protected abstract void parseDelimiter(Token token) throws EDIException;
 }

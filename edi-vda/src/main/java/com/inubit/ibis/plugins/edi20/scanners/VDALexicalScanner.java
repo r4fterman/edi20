@@ -20,20 +20,20 @@ public class VDALexicalScanner extends EDILexicalScanner {
     }
 
     @Override
-    protected IToken getNextToken(final int position) {
+    protected Token getNextToken(final int position) {
         int index = getIndexOfNextDelimiter(position);
         if (index == -1) {
             // no next token found
             index = getInputDocument().length();
         }
-        final String str = getInputDocument().substring(position, index);
-        return createToken(position, str);
+        final String tokenString = getInputDocument().substring(position, index).replaceAll("\\r\\n?", "\n");
+        return createToken(position, tokenString);
     }
 
-    private IToken createToken(
+    private Token createToken(
             final int position,
-            final String str) {
-        return VDATokenFactory.getInstance(getVDADelimiter()).getToken(str, position);
+            final String tokenString) {
+        return VDATokenFactory.getInstance(getVDADelimiter()).getToken(tokenString, position);
     }
 
     private int getIndexOfNextDelimiter(final int position) {

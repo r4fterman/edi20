@@ -1,18 +1,10 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens.hwfpe;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
+import com.inubit.ibis.plugins.edi20.rules.tokens.RuleTokenFactory;
 import org.dom4j.Element;
 
-import java.util.Hashtable;
-
-/**
- * @author r4fter
- */
-public final class HwfpeRuleTokenFactory {
+public final class HwfpeRuleTokenFactory implements RuleTokenFactory {
 
     private static final String NAME_RULESEGMENT = "Segment";
     private static final String NAME_RULEELEMENT = "Element";
@@ -21,45 +13,34 @@ public final class HwfpeRuleTokenFactory {
 
     private static final String NAME_MESSAGE = "Message";
 
-    private static final Hashtable<Element, IRuleToken> INSTANCE_CACHE = new Hashtable<>(100);
 
-    public static IRuleToken getInstance(final Element ruleElement) throws IllegalArgumentException {
+    public RuleToken createInstance(final Element ruleElement) throws IllegalArgumentException {
         if (ruleElement == null) {
             throw new IllegalArgumentException("Element is null!");
-        }
-        if (INSTANCE_CACHE.containsKey(ruleElement)) {
-            final IRuleToken token = INSTANCE_CACHE.get(ruleElement);
-            // if (token instanceof EDIRuleBaseToken) {
-            //     ((EDIRuleBaseToken) token).resetChildIterator();
-            // }
-            return token;
         }
 
         final String ruleElementName = ruleElement.getName();
         if (NAME_MESSAGE.equals(ruleElementName)) {
-            return addToCache(ruleElement, new EDIRuleRoot(ruleElement));
+            return addToCache(ruleElement, new HwfpeRuleRoot(ruleElement));
         }
         if (NAME_RULESEGMENT.equals(ruleElementName)) {
-            return addToCache(ruleElement, new EDIRuleSegment(ruleElement));
+            return addToCache(ruleElement, new HwfpeRuleSegment(ruleElement));
         }
         if (NAME_RULEELEMENT.equals(ruleElementName)) {
             return addToCache(ruleElement, new HwfpeRuleElement(ruleElement));
         }
         if (NAME_RULECOMPOSITEELEMENT.equals(ruleElementName)) {
-            return addToCache(ruleElement, new EDIRuleCompositeElement(ruleElement));
+            return addToCache(ruleElement, new HwfpeRuleCompositeElement(ruleElement));
         }
         if (NAME_RULESEGMENTGROUP.equals(ruleElementName)) {
-            return addToCache(ruleElement, new EDIRuleSegmentGroup(ruleElement));
+            return addToCache(ruleElement, new HwfpeRuleSegmentGroup(ruleElement));
         }
         return null;
     }
 
-    private static IRuleToken addToCache(
+    private static RuleToken addToCache(
             final Element ruleElement,
-            final IRuleToken token) {
-        if (ruleElement != null && token != null) {
-            INSTANCE_CACHE.put(ruleElement, token);
-        }
+            final RuleToken token) {
         return token;
     }
 

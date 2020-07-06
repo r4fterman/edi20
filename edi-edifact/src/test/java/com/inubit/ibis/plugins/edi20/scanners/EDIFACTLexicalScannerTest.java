@@ -15,241 +15,158 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * @author rafter
- */
 class EDIFACTLexicalScannerTest {
 
     @Test
-    void testEDILexicalScanner() throws Exception {
-        String testFile = "EDIFACT-ifcsum-1.txt";
-        File edifactFile = getFile(testFile);
-        StringBuilder content = FileUtils.getContents(edifactFile);
+    void scanner_with_message_should_has_more_tokens() throws Exception {
+        final String testFile = "EDIFACT-ifcsum-1.txt";
+        final File edifactFile = getFile(testFile);
+        final StringBuilder content = FileUtils.getContents(edifactFile);
 
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(content, new EDIFACTDelimiters());
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(content, new EDIFACTDelimiters());
         assertThat(scanner.hasMoreTokens(), is(true));
     }
 
     @Test
-    void testEDILexicalScannerReadLength() throws Exception {
-        String testFile = "EDIFACT-ifcsum-1.txt";
-        File edifactFile = getFile(testFile);
-        StringBuilder content = FileUtils.getContents(edifactFile);
+    void scanner_should_report_each_token() throws Exception {
+        final String testFile = "EDIFACT-ifcsum-1.txt";
+        final File edifactFile = getFile(testFile);
+        final StringBuilder content = FileUtils.getContents(edifactFile);
+        final int contentLength = content.length();
 
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(content, new EDIFACTDelimiters());
-        assertThat(scanner.hasMoreTokens(), is(true));
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(content, new EDIFACTDelimiters());
 
-        StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
         while (scanner.hasMoreTokens()) {
             builder.append(scanner.nextToken().getToken());
         }
 
-        int scannerLength = builder.toString().length();
-        int contentLength = content.length();
+        final int scannerLength = builder.toString().length();
+
         assertThat("Content differs!" + contentLength + "!=" + scannerLength, scannerLength, is(contentLength));
     }
 
     @Test
-    void testEDILexicalScannerNoEscape() {
-        String ediStr = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
+    void scanner_should_read_content_with_no_escape_sign() {
+        final String content = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
 
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
-        assertThat(scanner.hasMoreTokens(), is(true));
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(content), new EDIFACTDelimiters());
+
         assertThat(scanner.nextToken().getToken(), is("UNB"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("+"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("UNOB"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is(":"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("3"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("+"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("RUDOLF0"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("+"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("ELIX000"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("+"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("011015"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is(":"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("1628"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("+"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("1"));
-        assertThat(scanner.hasMoreTokens(), is(true));
         assertThat(scanner.nextToken().getToken(), is("'"));
         assertThat(scanner.hasMoreTokens(), is(false));
     }
 
     @Test
-    void testEDILexicalScannerEmptyDocEmptyDelim() {
+    void scanner_should_throw_exception_when_reading_empty_content() {
         assertThrows(IllegalArgumentException.class, () -> new EDIFACTLexicalScanner(new StringBuilder(), new EDIFACTDelimiters()));
     }
 
     @Test
-    void testEDILexicalScannerNullDocEmptyDelim() {
+    void scanner_should_throw_exception_when_reading_null_content() {
         assertThrows(IllegalArgumentException.class, () -> new EDIFACTLexicalScanner(null, new EDIFACTDelimiters()));
     }
 
     @Test
-    void testEDILexicalScannerNullDocNullDelim() {
-        assertThrows(IllegalArgumentException.class, () -> new EDIFACTLexicalScanner(null, null));
-    }
-
-    private File getFile(final String testFile) throws URISyntaxException {
-        URL url = EDIFACTLexicalScannerTest.class.getResource(testFile);
-        assertThat("File not found: " + testFile, url, not(nullValue()));
-        return new File(url.toURI());
+    void scanner_should_throw_exception_when_using_null_delimiter() {
+        final String content = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
+        assertThrows(IllegalArgumentException.class, () -> new EDIFACTLexicalScanner(new StringBuilder(content), null));
     }
 
     @Test
-    void testGetNextIndexOfDelimiterEDIFACTElementStartsWithEscape() {
-        String ediStr = "?+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
+    void scanner_should_read_content_with_escape_sign_at_begin_of_message() {
+        final String content = "?+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(content), new EDIFACTDelimiters());
         assertThat(scanner.getIndexOfDelimiter(0, "+"), is(8));
     }
 
     @Test
-    void testGetNextIndexOfDelimiterEDIFACTSegment() {
-        String ediStr = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
+    void scanner_should_find_index_of_delimiter_at_end_of_message() {
+        final String content = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(content), new EDIFACTDelimiters());
         assertThat(scanner.getIndexOfDelimiter(0, "'"), is(40));
     }
 
     @Test
-    void testGetNextIndexOfDelimiterEDIFACTElement() {
-        String ediStr = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
+    void scanner_should_find_index_of_delimiter_at_begin_of_message() {
+        final String content = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(content), new EDIFACTDelimiters());
         assertThat(scanner.getIndexOfDelimiter(0, "+"), is(3));
     }
 
     @Test
-    void testGetNextIndexOfDelimiterEDIFACTElement4Escapes() {
-        String ediStr = "UNB?+UNOB:3?+RUDOLF0?+ELIX000?+011015:1628+1'";
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
+    void scanner_should_read_content_with_escape_sign_at_end_of_message() {
+        final String content = "UNB?+UNOB:3?+RUDOLF0?+ELIX000?+011015:1628+1'";
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(content), new EDIFACTDelimiters());
         assertThat(scanner.getIndexOfDelimiter(0, "+"), is(42));
     }
 
     @Test
-    void testGetNextIndexOfDelimiterEDIFACTElement1Escapes() {
-        String ediStr = "UNB?+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
+    void scanner_should_read_content_with_escape_sign_at_start_of_message() {
+        final String ediStr = "UNB?+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
         assertThat(scanner.getIndexOfDelimiter(0, "+"), is(11));
     }
 
     @Test
-    void testGetNextIndexOfDelimiterEDIFACTComplexElement() {
-        String ediStr = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
+    void scanner_should_find_index_of_delimiter_in_content_with_no_escape_sign() {
+        final String ediStr = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
         assertThat(scanner.getIndexOfDelimiter(0, ":"), is(8));
     }
 
     @Test
-    void testScannerTokens() {
-        String ediStr = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
-        EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
+    void scanner_should_always_provide_token_value_and_position() {
+        final String ediStr = "UNB+UNOB:3+RUDOLF0+ELIX000+011015:1628+1'";
+        final EDIFACTLexicalScanner scanner = new EDIFACTLexicalScanner(new StringBuilder(ediStr), new EDIFACTDelimiters());
 
-        IToken token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(UnknownDelimiterToken.class));
-        assertThat(token.getPosition(), is(0));
-        assertThat(token.getToken(), is("UNB"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(ElementDelimiterToken.class));
-        assertThat(token.getPosition(), is(3));
-        assertThat(token.getToken(), is("+"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(UnknownDelimiterToken.class));
-        assertThat(token.getPosition(), is(4));
-        assertThat(token.getToken(), is("UNOB"));
-
-        token = scanner.nextToken();
-        assertThat(token, instanceOf(ComplexElementDelimiterToken.class));
-        assertThat(token.getPosition(), is(8));
-        assertThat(token.getToken(), is(":"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(UnknownDelimiterToken.class));
-        assertThat(token.getPosition(), is(9));
-        assertThat(token.getToken(), is("3"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(ElementDelimiterToken.class));
-        assertThat(token.getPosition(), is(10));
-        assertThat(token.getToken(), is("+"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(UnknownDelimiterToken.class));
-        assertThat(token.getPosition(), is(11));
-        assertThat(token.getToken(), is("RUDOLF0"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(ElementDelimiterToken.class));
-        assertThat(token.getPosition(), is(18));
-        assertThat(token.getToken(), is("+"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(UnknownDelimiterToken.class));
-        assertThat(token.getPosition(), is(19));
-        assertThat(token.getToken(), is("ELIX000"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(ElementDelimiterToken.class));
-        assertThat(token.getPosition(), is(26));
-        assertThat(token.getToken(), is("+"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(UnknownDelimiterToken.class));
-        assertThat(token.getPosition(), is(27));
-        assertThat(token.getToken(), is("011015"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(ComplexElementDelimiterToken.class));
-        assertThat(token.getPosition(), is(33));
-        assertThat(token.getToken(), is(":"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(UnknownDelimiterToken.class));
-        assertThat(token.getPosition(), is(34));
-        assertThat(token.getToken(), is("1628"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(ElementDelimiterToken.class));
-        assertThat(token.getPosition(), is(38));
-        assertThat(token.getToken(), is("+"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(UnknownDelimiterToken.class));
-        assertThat(token.getPosition(), is(39));
-        assertThat(token.getToken(), is("1"));
-
-        token = scanner.nextToken();
-        assertThat("Token is null!", token, not(nullValue()));
-        assertThat(token, instanceOf(SegmentDelimiterToken.class));
-        assertThat(token.getPosition(), is(40));
-        assertThat(token.getToken(), is("'"));
+        assertToken(scanner.nextToken(), UnknownDelimiterToken.class, 0, "UNB");
+        assertToken(scanner.nextToken(), ElementDelimiterToken.class, 3, "+");
+        assertToken(scanner.nextToken(), UnknownDelimiterToken.class, 4, "UNOB");
+        assertToken(scanner.nextToken(), ComplexElementDelimiterToken.class, 8, ":");
+        assertToken(scanner.nextToken(), UnknownDelimiterToken.class, 9, "3");
+        assertToken(scanner.nextToken(), ElementDelimiterToken.class, 10, "+");
+        assertToken(scanner.nextToken(), UnknownDelimiterToken.class, 11, "RUDOLF0");
+        assertToken(scanner.nextToken(), ElementDelimiterToken.class, 18, "+");
+        assertToken(scanner.nextToken(), UnknownDelimiterToken.class, 19, "ELIX000");
+        assertToken(scanner.nextToken(), ElementDelimiterToken.class, 26, "+");
+        assertToken(scanner.nextToken(), UnknownDelimiterToken.class, 27, "011015");
+        assertToken(scanner.nextToken(), ComplexElementDelimiterToken.class, 33, ":");
+        assertToken(scanner.nextToken(), UnknownDelimiterToken.class, 34, "1628");
+        assertToken(scanner.nextToken(), ElementDelimiterToken.class, 38, "+");
+        assertToken(scanner.nextToken(), UnknownDelimiterToken.class, 39, "1");
+        assertToken(scanner.nextToken(), SegmentDelimiterToken.class, 40, "'");
     }
+
+    private void assertToken(
+            final Token token,
+            final Class<? extends Token> tokenClass,
+            final int position,
+            final String tokenValue) {
+        assertThat("Token is null!", token, not(nullValue()));
+        assertThat(token, instanceOf(tokenClass));
+        assertThat(token.getPosition(), is(position));
+        assertThat(token.getToken(), is(tokenValue));
+    }
+
+    private File getFile(final String testFile) throws URISyntaxException {
+        final URL url = EDIFACTLexicalScannerTest.class.getResource(testFile);
+        assertThat("File not found: " + testFile, url, not(nullValue()));
+        return new File(url.toURI());
+    }
+
 }

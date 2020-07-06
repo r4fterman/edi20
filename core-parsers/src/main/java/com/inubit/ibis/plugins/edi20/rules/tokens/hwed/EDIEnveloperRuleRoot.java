@@ -1,12 +1,8 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens.hwed;
 
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import org.dom4j.Element;
 
-/**
- * @r4fter
- */
-public class EDIEnveloperRuleRoot extends EDIRuleRoot {
+public class EDIEnveloperRuleRoot extends HwedRuleRoot {
 
     public EDIEnveloperRuleRoot(final Element ruleElement) {
         super(ruleElement);

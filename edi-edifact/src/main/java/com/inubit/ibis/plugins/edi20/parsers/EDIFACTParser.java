@@ -4,25 +4,26 @@ import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.plugins.edi20.rules.EDIFACTEnveloperRule;
 import com.inubit.ibis.plugins.edi20.rules.EDIFACTRule;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.EDIFACTLexicalScanner;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
-import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.plugins.edi20.scanners.EDIFACTUnknownDelimiterToken;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
+import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
+import org.dom4j.DocumentException;
 
-import java.io.File;
+import javax.print.Doc;
+import java.io.InputStream;
+import java.util.List;
 
-/**
- * @author r4fter
- */
 public class EDIFACTParser extends HWEDParser {
 
     private static final String ENVELOPER_RULE_FILE_NAME = "EDIFACT-ENVELOPER.xml";
@@ -30,41 +31,36 @@ public class EDIFACTParser extends HWEDParser {
     private static final int SEGMENT_OR_SEGMENT_GROUP = 1;
     private static final int ELEMENT_OR_COMPLEX_ELEMENT = 2;
 
-    private int fState = SEGMENT_OR_SEGMENT_GROUP;
+    private int state = SEGMENT_OR_SEGMENT_GROUP;
 
     private EDIFACTEnveloperRule enveloperRule;
-    private EDIFACTRule currentRule;
+    private EDIFACTRule edifactRule;
 
     public EDIFACTParser(
             final EDIFACTLexicalScanner scanner,
-            final EDIFACTRule rule) throws InubitException {
+            final EDIFACTRule rule) throws EDIException {
         super(scanner, rule);
         initializeEnveloperFile();
     }
 
-    private void initializeEnveloperFile() throws InubitException {
+    private void initializeEnveloperFile() throws EDIException {
         try {
-            final File enveloperRuleFile = ensureEnveloperFileExists();
-            final Document document = XmlUtils.getDocumentThrowing(enveloperRuleFile);
-            enveloperRule = new EDIFACTEnveloperRule(document);
-        } catch (final Exception e) {
-            throw new InubitException("Error parsing enveloperRule rule file!", e);
+            final Document document = loadEnveloperFile();
+            this.enveloperRule = new EDIFACTEnveloperRule(document);
+        } catch (final DocumentException e) {
+            throw new EDIException("Error parsing enveloperRule rule file!", e);
         }
     }
 
-    private File ensureEnveloperFileExists() throws InubitException {
-        if (!EDIUtil.RULE_FILE_FOLDER.exists()) {
-            throw new InubitException("Rule file folder is missing (" + EDIUtil.RULE_FILE_FOLDER + ")!");
-        }
-        final File enveloperRuleFile = new File(EDIUtil.RULE_FILE_FOLDER, ENVELOPER_RULE_FILE_NAME);
-        if (!enveloperRuleFile.exists()) {
-            throw new InubitException("Enveloper rule file is missing (" + enveloperRuleFile + ")!");
-        }
-        return enveloperRuleFile;
+    @Override
+    public boolean canParse(final AbstractEDIRule rule) {
+        return rule instanceof EDIFACTRule;
     }
 
-    public EDIFACTEnveloperRule getEnveloper() {
-        return enveloperRule;
+    @Override
+    public boolean canParse(final StringBuilder inputDocument) {
+        final String detectorToken = inputDocument.substring(0, 3);
+        return List.of("UNA", "UNB").contains(detectorToken);
     }
 
     @Override
@@ -73,68 +69,116 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     @Override
-    protected void parseDelimiter(final IToken token) throws InubitException {
-        // System.out.println("EDIFACTParser.parseDelimiter(" + fState + "): " + token.getToken());
-        getEDIFACTRule().closeCurrentRuleToken(token);
-        if (EDIFACTDelimiters.DELIMITER_SEGMENT == token.getDelimiterType()) {
-            // segment finished
-            fState = SEGMENT_OR_SEGMENT_GROUP;
-        } else if (EDIFACTDelimiters.DELIMITER_COMPLEX_ELEMENT == token.getDelimiterType()) {
-            // complex element finished
-            fState = ELEMENT_OR_COMPLEX_ELEMENT;
-        } else if (EDIFACTDelimiters.DELIMITER_ELEMENT == token.getDelimiterType()) {
-            // element finished
-            fState = ELEMENT_OR_COMPLEX_ELEMENT;
+    protected void parseToken(final Token messageToken) throws EDIException {
+        if (messageToken instanceof EDIFACTUnknownDelimiterToken) {
+            parseToken((EDIFACTUnknownDelimiterToken) messageToken);
         } else {
-            throw new InubitException("Unknown delimiter [" + token.getToken() + "] found!");
+            throw new UnknownDelimiterTokenException(messageToken);
         }
     }
 
     @Override
-    protected void parseToken(final IToken token) throws InubitException {
-        // System.out.println("EDIFACTParser.parseToken(" + fState + "): " + token.getToken());
-        switch (fState) {
-            case SEGMENT_OR_SEGMENT_GROUP:
-                parseSegment(token.getToken());
-                fState = ELEMENT_OR_COMPLEX_ELEMENT;
-                break;
-            case ELEMENT_OR_COMPLEX_ELEMENT:
-                parseElementOrComplexElement(token.getToken());
-                break;
-            default:
-                throw new InubitException("unexpected state [" + fState + "]");
+    protected void parseDelimiter(final Token token) throws EDIException {
+//        logMessage(String.format("EDIFACTParser.parseDelimiter(%d): %s", state, token.getToken()));
+
+        getEDIFACTRule().closeCurrentRuleToken(token);
+        if (EDIFACTDelimiters.DELIMITER_SEGMENT == token.getDelimiterType()) {
+            // segment finished
+            this.state = SEGMENT_OR_SEGMENT_GROUP;
+        } else if (EDIFACTDelimiters.DELIMITER_COMPLEX_ELEMENT == token.getDelimiterType()) {
+            // complex element finished
+            this.state = ELEMENT_OR_COMPLEX_ELEMENT;
+        } else if (EDIFACTDelimiters.DELIMITER_ELEMENT == token.getDelimiterType()) {
+            // element finished
+            this.state = ELEMENT_OR_COMPLEX_ELEMENT;
+        } else {
+            final String message = String.format("Unknown delimiter [%s] found!", token.getToken());
+            throw new RuleViolationException(message);
         }
     }
 
-    private void parseSegment(final String segmentID) throws InubitException {
+    private void parseToken(final EDIFACTUnknownDelimiterToken messageToken) throws RuleViolationException {
+//        logMessage(String.format("EDIFACTParser.parseToken(%d): %s", state, messageToken.getToken()));
+
+        switch (state) {
+            case SEGMENT_OR_SEGMENT_GROUP:
+                parseSegment(messageToken.getToken());
+                state = ELEMENT_OR_COMPLEX_ELEMENT;
+                break;
+            case ELEMENT_OR_COMPLEX_ELEMENT:
+                parseElementOrComplexElement(messageToken.getToken());
+                break;
+            default:
+                final String message = String.format("Unexpected state [%s]!", state);
+                throw new RuleViolationException(message);
+        }
+    }
+
+    private void parseSegment(final String segmentID) throws RuleViolationException {
         parseSegment(segmentID, getEDIFACTRule(segmentID));
     }
 
     private void parseSegment(
             final String segmentID,
-            final EDIFACTRule rule) throws InubitException {
-        final EDIRuleSegment segment = rule.nextSegment(segmentID);
-        if (segment != null) {
-            validRuleToken(segmentID, segment);
-            System.out.println("EDIFACTParser.parseSegment(" + fState + "): [S:" + segmentID + " (" + segment.getLoop() + ", "
-                    + segment.getCurrentLoopCount() + ")]");
-            return;
+            final EDIFACTRule rule) throws RuleViolationException {
+        final EDIRuleSegment segment = rule.nextSegment(segmentID)
+                .orElseThrow(() -> new RuleViolationException(String.format("Segment [%s] not found in rule!", segmentID)));
+
+        setCurrentRule(rule);
+        validRuleToken(segmentID, segment);
+
+//        logMessage(String.format("EDIFACTParser.parseSegment(%d): [S: %s (%s)]", state, segmentID, segment));
+    }
+
+    private void parseElementOrComplexElement(final String element) throws RuleViolationException {
+        parseElementOrComplexElement(element, getEDIFACTRule());
+    }
+
+    private void parseElementOrComplexElement(
+            final String element,
+            final EDIFACTRule rule) throws RuleViolationException {
+        final RuleToken nextChild = rule.nextElement();
+        if (nextChild != null) {
+            // next children found
+            if (nextChild instanceof EDIRuleCompositeElement) {
+//                logMessage(String.format("EDIFACTParser.parseElementOrComplexElement(%d): [CE: %s]", state, nextChild.getID()));
+
+                parseElementOrComplexElement(element, rule);
+                return;
+            }
+
+            if (nextChild instanceof EDIRuleElement) {
+                final EDIRuleElement ruleElement = (EDIRuleElement) nextChild;
+                validRuleToken(element, ruleElement);
+
+//                logMessage(String.format("EDIFACTParser.parseElementOrComplexElement(%d): [E: %s]=[%s]", state, ruleElement.getID(), element));
+
+                return;
+            }
+
+            final String message = String.format("Unexpected rule token found [%s]!", nextChild.getClass().getCanonicalName());
+            throw new RuleViolationException(message);
         }
-        throw new InubitException("Segment [" + segmentID + "] not found in rule!");
+        throw new RuleViolationException("No further rule tokens found!");
     }
 
     private void validRuleToken(
             final String token,
-            final EDIRuleBaseToken ruleToken) throws InubitException {
+            final EDIRuleBaseToken ruleToken) throws RuleViolationException {
         if (!assertTokenIsSet(token, ruleToken.isMandatory())) {
-            throw new InubitException("Invalid token [" + token + "]! Expected mandatory rule token [" + ruleToken + "].");
+            final String message = String.format("Invalid token [%s]! Expected mandatory rule token [%s].", token, ruleToken);
+            throw new RuleViolationException(message);
         }
+
         if (ruleToken instanceof HwedRuleElement) {
             final HwedRuleElement elementToken = (HwedRuleElement) ruleToken;
             final int min = elementToken.getMinLength();
             final int max = elementToken.getMaxLength();
+
             if (!assertTokenHasValidLength(token, min, max)) {
-                throw new InubitException("Invalid token [" + token + "]! Does not match rule token size [" + ruleToken + "].");
+                final String message = String.format("Invalid token [%s] with size %d! Does not match rule token size [%s].", token, token.length(), ruleToken);
+                logMessage("WARNING: " + message);
+                //throw new RuleViolationException(message);
             }
         }
     }
@@ -150,73 +194,51 @@ public class EDIFACTParser extends HWEDParser {
         return min <= length && max >= length;
     }
 
+    private EDIFACTRule getEDIFACTRule() {
+        if (edifactRule == null) {
+            edifactRule = (EDIFACTRule) getRule();
+        }
+        return edifactRule;
+    }
+
+    private EDIFACTRule getEDIFACTRule(final String segmentID) {
+        if (isEnveloperSegment(segmentID)) {
+//            logMessage("Use enveloper rule for segment " + segmentID);
+            return getEnveloperRule();
+        }
+//        logMessage("Use rule for segment " + segmentID);
+        return (EDIFACTRule) getRule();
+    }
+
     private boolean assertTokenIsSet(
             final String token,
             final boolean shouldBeSet) {
         return !shouldBeSet || StringUtil.isSet(token);
     }
 
-    private void parseElementOrComplexElement(final String element) throws InubitException {
-        final EDIFACTRule rule = getEDIFACTRule();
-        parseElementOrComplexElement(element, rule);
+    private boolean isEnveloperSegment(final String segmentID) {
+        return getEnveloper().containsSegment(segmentID);
     }
 
-    private void parseElementOrComplexElement(
-            final String element,
-            final EDIFACTRule rule) throws InubitException {
-        final IRuleToken nextChild = rule.nextElement();
-        if (nextChild != null) {
-            // next children found
-            if (nextChild instanceof EDIRuleCompositeElement) {
-                System.out.println("EDIFACTParser.parseElementOrComplexElement(" + fState + "): [CE:" + nextChild.getID() + "]");
-                parseElementOrComplexElement(element, rule);
-                return;
-            }
-            if (nextChild instanceof EDIRuleElement) {
-                final EDIRuleElement ruleElement = (EDIRuleElement) nextChild;
-                validRuleToken(element, ruleElement);
-                System.out.println("EDIFACTParser.parseElementOrComplexElement(" + fState + "): [E:" + ruleElement.getID() + "]=[" + element + "]");
-                return;
-            }
-            throw new InubitException("Unexpected rule token found [" + nextChild.getClass().getCanonicalName() + "]!");
-        }
-        throw new InubitException("No further rule tokens found!");
-    }
-
-    private EDIFACTRule getEDIFACTRule() {
-        if (currentRule == null) {
-            currentRule = (EDIFACTRule) getRule();
-        }
-        return currentRule;
-    }
-
-    private EDIFACTRule getEDIFACTRule(final String segmentID) {
-        if (isEnveloperSegment(segmentID)) {
-            return getEnveloperRule();
-        }
-        return (EDIFACTRule) getRule();
+    private void setCurrentRule(final EDIFACTRule edifactRule) {
+        this.edifactRule = edifactRule;
     }
 
     private EDIFACTRule getEnveloperRule() {
         return enveloperRule;
     }
 
-    private boolean isEnveloperSegment(final String segmentID) {
-        return getEnveloper().containsSegment(segmentID);
+    public EDIFACTEnveloperRule getEnveloper() {
+        return enveloperRule;
     }
 
-    @Override
-    public boolean canParse(final AbstractEDIRule rule) {
-        return rule instanceof EDIFACTRule;
+    private Document loadEnveloperFile() throws DocumentException {
+        final InputStream stream = EDIFACTParser.class.getResourceAsStream("/" + ENVELOPER_RULE_FILE_NAME);
+        return XmlUtils.getDocumentThrowing(stream);
     }
 
-    @Override
-    public boolean canParse(final StringBuilder inputDocument) {
-        final String detectorToken = inputDocument.substring(0, 3);
-        if (detectorToken.equals("UNA")) {
-            return true;
-        }
-        return detectorToken.equals("UNB");
+    private void logMessage(final String message) {
+        System.out.println(message);
     }
 
 }

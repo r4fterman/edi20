@@ -16,7 +16,7 @@ public class EDIFACTUnknownDelimiterToken extends UnknownDelimiterToken {
     }
 
     @Override
-    public IIdentifier getIdentifier() {
+    public Identifier getIdentifier() {
         return new EDIFACTSegmentIdentifier(getToken().substring(0, 3));
     }
 }

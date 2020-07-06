@@ -5,7 +5,7 @@ import org.dom4j.Element;
 /**
  * @author r4fter
  */
-public class EDIRuleRoot extends EDIRuleBaseToken {
+public abstract class EDIRuleRoot extends EDIRuleBaseToken {
 
     private static final String ATTRIBUTE_NAME_AGENCY = "agency";
     private static final String ATTRIBUTE_NAME_RELEASE = "release";

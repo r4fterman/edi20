@@ -1,12 +1,13 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IElementRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegmentGroup;
+import com.inubit.ibis.plugins.edi20.rules.tokens.Loop;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -24,9 +25,6 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-/**
- * @author r4fter
- */
 class AbstractHWEDRuleTest {
 
     private AbstractHWEDRule rule;
@@ -35,7 +33,7 @@ class AbstractHWEDRuleTest {
     void setUp() throws Exception {
         this.rule = new AbstractHWEDRule(getDocument("EDIFACT-IFCSUM-D-96A.xml")) {
             @Override
-            public void closeCurrentRuleToken(final IToken token) {
+            public void closeCurrentRuleToken(final Token token) {
                 // do nothing
             }
 
@@ -134,8 +132,8 @@ class AbstractHWEDRuleTest {
         assertThat(segment.getXPath(), is("/Message/Segment[@id='UNH']"));
         assertThat(segment.getRulePath(), is("/Root/UNH"));
         assertThat(segment.getXmlTag(), is("MessageHeader"));
-        assertThat(segment.getLoop(), is(1));
-        assertThat(segment.getCurrentLoopCount(), is(1));
+        assertThat(segment.getLoop(), is(Loop.valueOf(1)));
+        assertThat(segment.getCurrentLoopCount(), is(0));
         assertThat(segment.isLoopLimitReached(), is(false));
         assertThat(segment.isChecked(), is(false));
         assertThat(segment.isInProgress(), is(false));
@@ -150,7 +148,7 @@ class AbstractHWEDRuleTest {
 
         assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
-        List<IElementRuleToken> elements = segment.getElements();
+        List<ElementRuleToken> elements = segment.getElements();
         assertThat(elements.size(), is(4));
 
         assertThat(elements.get(0), instanceOf(EDIRuleElement.class));
@@ -166,7 +164,7 @@ class AbstractHWEDRuleTest {
 
         assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
-        List<IElementRuleToken> elements = segment.getElements();
+        List<ElementRuleToken> elements = segment.getElements();
         assertThat(elements.size(), is(4));
 
         assertThat(elements.get(0), instanceOf(EDIRuleElement.class));
@@ -190,7 +188,7 @@ class AbstractHWEDRuleTest {
 
         assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
-        List<IElementRuleToken> elements = segment.getElements();
+        List<ElementRuleToken> elements = segment.getElements();
         assertThat(elements.size(), is(4));
 
         assertThat(elements.get(1), instanceOf(EDIRuleCompositeElement.class));
@@ -210,7 +208,7 @@ class AbstractHWEDRuleTest {
 
         assertThat(segments.get(0), instanceOf(EDIRuleSegment.class));
         EDIRuleSegment segment = segments.get(0);
-        List<IElementRuleToken> elements = segment.getElements();
+        List<ElementRuleToken> elements = segment.getElements();
         assertThat(elements.size(), is(4));
 
         assertThat(elements.get(1), instanceOf(EDIRuleCompositeElement.class));
@@ -238,8 +236,8 @@ class AbstractHWEDRuleTest {
         assertThat(segmentGroup.getID(), is("Group_1"));
         assertThat(segmentGroup.getDescription(), is("A group of segments containing references and constants which apply to the entire message."));
         assertThat(segmentGroup.getXmlTag(), is("SegmentGroup_1"));
-        assertThat(segmentGroup.getLoop(), is(9));
-        assertThat(segmentGroup.getCurrentLoopCount(), is(1));
+        assertThat(segmentGroup.getLoop(), is(Loop.valueOf(9)));
+        assertThat(segmentGroup.getCurrentLoopCount(), is(0));
         assertThat(segmentGroup.getRulePath(), is("/Root/Group_1"));
         assertThat(segmentGroup.getXPath(), is("/Message/SegmentGroup[@id='Group_1']"));
 

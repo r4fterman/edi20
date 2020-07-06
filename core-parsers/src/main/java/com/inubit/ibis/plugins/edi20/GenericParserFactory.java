@@ -3,7 +3,7 @@ package com.inubit.ibis.plugins.edi20;
 import com.inubit.ibis.plugins.edi20.parsers.GenericEDIXMLParser;
 import com.inubit.ibis.plugins.edi20.parsers.GenericXMLEDIParser;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
 /**
@@ -17,9 +17,9 @@ public final class GenericParserFactory {
      * @param document
      * @return
      *
-     * @throws InubitException
+     * @throws EDIException
      */
-    public static IGenericParser getInstance(final Document document) throws InubitException {
+    public static GenericParser getInstance(final Document document) throws EDIException {
         return new GenericXMLEDIParser(document);
     }
 
@@ -27,9 +27,9 @@ public final class GenericParserFactory {
      * @param text
      * @return
      *
-     * @throws InubitException
+     * @throws EDIException
      */
-    public static IGenericParser getInstance(final String text) throws InubitException {
+    public static GenericParser getInstance(final String text) throws EDIException {
         return getInstance(new StringBuilder(text));
     }
 
@@ -37,9 +37,9 @@ public final class GenericParserFactory {
      * @param buffer
      * @return
      *
-     * @throws InubitException
+     * @throws EDIException
      */
-    public static IGenericParser getInstance(final StringBuilder buffer) throws InubitException {
+    public static GenericParser getInstance(final StringBuilder buffer) throws EDIException {
         return new GenericEDIXMLParser(buffer);
     }
 
@@ -48,9 +48,9 @@ public final class GenericParserFactory {
      * @param rule
      * @return
      *
-     * @throws InubitException
+     * @throws EDIException
      */
-    public static IGenericParser getInstance(final StringBuilder inputText, final AbstractEDIRule rule) throws InubitException {
+    public static GenericParser getInstance(final StringBuilder inputText, final AbstractEDIRule rule) throws EDIException {
         return new GenericEDIXMLParser(inputText, rule);
     }
 }

@@ -1,29 +1,24 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.IRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleElement;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.scanners.IToken;
-import com.inubit.ibis.utils.InubitException;
+import com.inubit.ibis.plugins.edi20.scanners.Token;
+import com.inubit.ibis.utils.EDIException;
 import org.dom4j.Document;
 
-/**
- * @author r4fter
- */
 public class EDIFACTRule extends AbstractHWEDRule {
-
-    private static final String LAST_SEGMENTID = "UNZ";
 
     /**
      * @param edifactRuleDocument
      *         EDIFACT rule document
-     * @throws InubitException
+     * @throws EDIException
      *         if the given rule document is not a valid EDIFACT rule document
      */
-    public EDIFACTRule(final Document edifactRuleDocument) throws InubitException {
+    public EDIFACTRule(final Document edifactRuleDocument) throws EDIException {
         super(edifactRuleDocument);
     }
 
@@ -34,14 +29,10 @@ public class EDIFACTRule extends AbstractHWEDRule {
 
     @Override
     public boolean isEndOfRule() {
-//        EDIRuleBaseToken segment = getSegment(getCurrentRuleToken());
-//        if (segment != null) {
-//            return segment.getID().equals(LAST_SEGMENTID);
-//        }
         return false;
     }
 
-    private EDIRuleSegment getSegment(final IRuleToken currentRuleToken) {
+    protected EDIRuleSegment getSegment(final RuleToken currentRuleToken) {
         if (currentRuleToken instanceof EDIRuleSegment) {
             return (EDIRuleSegment) currentRuleToken;
         }
@@ -52,7 +43,7 @@ public class EDIFACTRule extends AbstractHWEDRule {
     }
 
     @Override
-    public void closeCurrentRuleToken(final IToken token) {
+    public void closeCurrentRuleToken(final Token token) {
 //        EDIRuleBaseToken currentRuleToken = (EDIRuleBaseToken) getCurrentRuleToken();
 //        if (isTokenClosingParentRuleToken(token, currentRuleToken)) {
 //            if (!isRepeatOnToken(currentRuleToken)) {
@@ -93,7 +84,7 @@ public class EDIFACTRule extends AbstractHWEDRule {
         return false;
     }
 
-    private boolean isTokenClosingParentRuleToken(final IToken token, final EDIRuleBaseToken currentRuleToken) {
+    private boolean isTokenClosingParentRuleToken(final Token token, final EDIRuleBaseToken currentRuleToken) {
         if (currentRuleToken != null) {
             EDIRuleBaseToken parent = (EDIRuleBaseToken) currentRuleToken.getParent();
             return isTokenClosingRuleToken(token, parent);
@@ -101,7 +92,7 @@ public class EDIFACTRule extends AbstractHWEDRule {
         return false;
     }
 
-    private boolean isTokenClosingRuleToken(final IToken token, final EDIRuleBaseToken currentRuleToken) {
+    private boolean isTokenClosingRuleToken(final Token token, final EDIRuleBaseToken currentRuleToken) {
         if (currentRuleToken instanceof EDIRuleSegment && isSegmentDelimiter(token)) {
             return true;
         }
@@ -114,14 +105,14 @@ public class EDIFACTRule extends AbstractHWEDRule {
         return false;
     }
 
-    private boolean isElementDelimiter(final IToken token) {
+    private boolean isElementDelimiter(final Token token) {
         if (token != null) {
             return token.getDelimiterType() == EDIFACTDelimiters.DELIMITER_ELEMENT;
         }
         return false;
     }
 
-    private boolean isSegmentDelimiter(final IToken token) {
+    private boolean isSegmentDelimiter(final Token token) {
         if (token != null) {
             return token.getDelimiterType() == EDIFACTDelimiters.DELIMITER_SEGMENT;
         }

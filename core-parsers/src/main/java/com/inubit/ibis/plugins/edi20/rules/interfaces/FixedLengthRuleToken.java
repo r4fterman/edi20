@@ -1,9 +1,6 @@
 package com.inubit.ibis.plugins.edi20.rules.interfaces;
 
-/**
- * @author r4fter
- */
-public interface IFixedLengthRuleToken {
+public interface FixedLengthRuleToken {
 
     /**
      * @return start position or -1 if not set

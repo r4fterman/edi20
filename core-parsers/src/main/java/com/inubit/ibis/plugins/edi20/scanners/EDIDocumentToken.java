@@ -1,25 +1,17 @@
 package com.inubit.ibis.plugins.edi20.scanners;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 
-/**
- * @author r4fter
- */
-public class EDIDocumentToken implements IToken {
+public class EDIDocumentToken implements Token {
 
-    private String token;
-    private int position;
-    private int delimiterType = IDelimiters.DELIMITER_UNKNOWN;
+    private final String token;
+    private final int position;
+    private final int delimiterType;
 
-    /**
-     * @param tokenString
-     *         token string
-     * @param position
-     *         position in document
-     * @param delimiterIdentifier
-     *         delimiter identifier
-     */
-    public EDIDocumentToken(final String tokenString, final int position, final int delimiterIdentifier) {
+    public EDIDocumentToken(
+            final String tokenString,
+            final int position,
+            final int delimiterIdentifier) {
         this.token = tokenString;
         this.position = position;
         this.delimiterType = delimiterIdentifier;
@@ -32,7 +24,7 @@ public class EDIDocumentToken implements IToken {
 
     @Override
     public boolean isDelimiter() {
-        return getDelimiterType() != IDelimiters.DELIMITER_UNKNOWN;
+        return getDelimiterType() != Delimiters.DELIMITER_UNKNOWN;
     }
 
     @Override

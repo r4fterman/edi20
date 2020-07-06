@@ -1,15 +1,15 @@
 package com.inubit.ibis.plugins.edi20.scanners;
 
-import com.inubit.ibis.plugins.edi20.delimiters.IDelimiters;
+import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
 
 /**
  * @author r4fter
  */
-public abstract class EDILexicalScanner implements IScanner {
+public abstract class EDILexicalScanner implements Scanner {
 
     private StringBuilder inputDocument;
-    private IDelimiters delimiters;
+    private Delimiters delimiters;
 
     private int currentPosition = -1;
 
@@ -21,14 +21,14 @@ public abstract class EDILexicalScanner implements IScanner {
      */
     public EDILexicalScanner(
             final StringBuilder inputDocument,
-            final IDelimiters delimiters) {
+            final Delimiters delimiters) {
         super();
         init(inputDocument, delimiters);
     }
 
     private void init(
             final StringBuilder inputDocument,
-            final IDelimiters delimiters) {
+            final Delimiters delimiters) {
         if (inputDocument == null || inputDocument.length() == 0) {
             throw new IllegalArgumentException("Input document not set!");
         }
@@ -63,9 +63,9 @@ public abstract class EDILexicalScanner implements IScanner {
     }
 
     @Override
-    public IToken nextToken() {
+    public Token nextToken() {
         if (!isEndOfDocument(currentPosition)) {
-            final IToken token = getNextToken(currentPosition);
+            final Token token = getNextToken(currentPosition);
             currentPosition += token.getToken().length();
             return token;
         }
@@ -77,12 +77,12 @@ public abstract class EDILexicalScanner implements IScanner {
      *         document position
      * @return next token at the given position in document
      */
-    protected abstract IToken getNextToken(int position);
+    protected abstract Token getNextToken(int position);
 
     /**
      * @return delimiters or <code>null</code> if not set
      */
-    public IDelimiters getDelimiters() {
+    public Delimiters getDelimiters() {
         return delimiters;
     }
 
@@ -124,7 +124,7 @@ public abstract class EDILexicalScanner implements IScanner {
     }
 
     @Override
-    public boolean isDelimiter(final IToken token) {
+    public boolean isDelimiter(final Token token) {
         return getDelimiters().containsDelimiter(token.getToken());
     }
 

@@ -1,189 +1,109 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import com.inubit.ibis.utils.XmlUtils;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.junit.Ignore;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-import com.inubit.ibis.utils.InubitException;
-import com.inubit.ibis.utils.XmlUtils;
+class VDARuleTest {
 
-/**
- * @author r4fter
- */
-public class VDARuleTest {
+    private static final String VDA_4905_1_XML = "VDA-4905-1--.xml";
+    private static final String VDA_4913_4_XML = "VDA-4913-4--.xml";
 
-    private Document getRuleDocument(final String ruleDocumentName) {
-        try {
-            URL url = VDARuleTest.class.getResource(ruleDocumentName);
-            assertNotNull("File not found: " + ruleDocumentName, url);
-            File xmlFile = new File(url.toURI());
-            return XmlUtils.getDocumentThrowing(xmlFile);
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        } catch (DocumentException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
-        return null;
+    @Test
+    void testEDIFACTRule_VDA_4905_1() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
+        final VDARule rule = new VDARule(ruleDoc);
+
+        assertThat(rule, not(nullValue()));
     }
 
-    @Ignore
-    public void testEDIFACTRule_VDA_4905_1() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    @Test
+    void testEDIFACTRule_VDA_4913_4() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4913_4_XML);
+        final AbstractEDIRule rule = new VDARule(ruleDoc);
+
+        assertThat(rule, not(nullValue()));
     }
 
-    @Ignore
-    public void testEDIFACTRule_VDA_4913_4() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4913-4--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    @Test
+    void testGetAgency() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
+        final VDARule rule = new VDARule(ruleDoc);
+
+        assertThat(rule.getAgency(), is("VDA"));
     }
 
-    @Ignore
-    public void testGetAgency() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("VDA", rule.getAgency());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    @Test
+    void testGetDescription() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
+        final AbstractEDIRule rule = new VDARule(ruleDoc);
+
+        assertThat(rule.getDescription(), is("Delivery instruction VDA 4905/1"));
     }
 
-    @Ignore
-    public void testGetDescription() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("Delivery instruction VDA 4905/1", rule.getDescription());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    @Test
+    void testGetLayout() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
+        final VDARule rule = new VDARule(ruleDoc);
+
+        assertThat(rule.getLayout(), is("hwfpe"));
     }
 
-    @Ignore
-    public void testGetLayout() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("hwfpe", rule.getLayout());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    @Test
+    void testGetRelease() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
+        final VDARule rule = new VDARule(ruleDoc);
+
+        assertThat(rule.getRelease(), is("-"));
     }
 
-    @Ignore
-    public void testGetRelease() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("-", rule.getRelease());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    @Test
+    void testGetStandard() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
+        final VDARule rule = new VDARule(ruleDoc);
+
+        assertThat(rule.getStandard(), is("VDA"));
     }
 
-    @Ignore
-    public void testGetStandard() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("VDA", rule.getStandard());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    @Test
+    void testGetType() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
+        final VDARule rule = new VDARule(ruleDoc);
+
+        assertThat(rule.getType(), is("4905"));
     }
 
-    @Ignore
-    public void testGetType() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("4905", rule.getType());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    @Test
+    void testGetVersion() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
+        final VDARule rule = new VDARule(ruleDoc);
+
+        assertThat(rule.getVersion(), is("1"));
     }
 
-    @Ignore
-    public void testGetVersion() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("1", rule.getVersion());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+    @Test
+    void testToString() throws Exception {
+        final Document ruleDoc = getRuleDocument(VDA_4905_1_XML);
+        final VDARule rule = new VDARule(ruleDoc);
+
+        assertThat(rule.toString(), is("VDA-4905-1---VDA"));
     }
 
-    @Ignore
-    public void testHasMoreRuleTokens() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
-    }
+    private Document getRuleDocument(final String ruleDocumentName) throws URISyntaxException, DocumentException {
+        final URL url = VDARuleTest.class.getResource(ruleDocumentName);
+        assertThat("File not found: " + ruleDocumentName, url, not(nullValue()));
 
-    @Ignore
-    public void testToString() {
-        try {
-            Document ruleDoc = getRuleDocument("VDA-4905-1--.xml");
-            assertNotNull(ruleDoc);
-            AbstractEDIRule rule = new VDARule(ruleDoc);
-            assertNotNull(rule);
-            assertEquals("VDA-4905-1---VDA", rule.toString());
-        } catch (InubitException e) {
-            e.printStackTrace();
-            fail(e.getMessage());
-        }
+        return XmlUtils.getDocumentThrowing(new File(url.toURI()));
     }
 }

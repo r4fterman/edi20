@@ -3,7 +3,7 @@ package com.inubit.ibis.plugins.edi20.scanners;
 /**
  * @author r4fter
  */
-public class DATANORMSegmentIdentifier implements IIdentifier {
+public class DATANORMSegmentIdentifier implements Identifier {
 
     private final String identifier;
 

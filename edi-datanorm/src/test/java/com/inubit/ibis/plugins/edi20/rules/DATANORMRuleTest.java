@@ -12,9 +12,6 @@ import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.junit.MatcherAssert.assertThat;
 
-/**
- * @author r4fter
- */
 class DATANORMRuleTest {
 
     @Test

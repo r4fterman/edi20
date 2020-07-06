@@ -1,16 +1,7 @@
 package com.inubit.ibis.plugins.edi20.scanners;
 
-/**
- * @author r4fter
- */
 public class VDAUnknownDelimiterToken extends UnknownDelimiterToken {
 
-    /**
-     * @param tokenString
-     *         token string
-     * @param tokenPosition
-     *         token position in document
-     */
     public VDAUnknownDelimiterToken(
             final String tokenString,
             final int tokenPosition) {
@@ -18,7 +9,12 @@ public class VDAUnknownDelimiterToken extends UnknownDelimiterToken {
     }
 
     @Override
-    public IIdentifier getIdentifier() {
-        return new VDASegmentIdentifier(getToken().substring(0, 3));
+    public Identifier getIdentifier() {
+        // identifier can be anywhere inside the token
+        final int beginIndex = 0;
+        final int endIndex = 3;
+
+        final String identifierPart = getToken().substring(beginIndex, endIndex);
+        return new VDASegmentIdentifier(identifierPart);
     }
 }
