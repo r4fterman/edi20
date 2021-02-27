@@ -23,7 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.version>3.5.4</maven.version>
         <java.version>13</java.version>
-        <junit.jupiter.version>5.7.0</junit.jupiter.version>
+        <junit.jupiter.version>5.7.1</junit.jupiter.version>
         <checkstyle.plugin.version>3.1.1</checkstyle.plugin.version>
         <pitest.plugin.version>1.5.1</pitest.plugin.version>
         <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
