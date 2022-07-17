@@ -1,32 +1,25 @@
 package com.inubit.ibis.plugins.edi20.parsers.bemis;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.io.InputStream;
+
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.utils.XmlUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-import java.net.URISyntaxException;
-import java.net.URL;
-
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.junit.MatcherAssert.assertThat;
-
 class BEMISRuleTest {
 
-    private Document getRuleDocument(final String ruleDocumentName) throws URISyntaxException, DocumentException {
-        final URL url = BEMISRuleTest.class.getResource(ruleDocumentName);
-        assertThat("File not found: " + ruleDocumentName, url, not(nullValue()));
-        final File xmlFile = new File(url.toURI());
-        return XmlUtils.getDocumentThrowing(xmlFile);
-    }
+    private static final String BEMIS_7135_IN_1_0_A_XML = "BEMIS-7135-IN-1.0-A.xml";
 
     @Test
     void testEDIFACTRule_BEMIS_7135_IN_1_0_A() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
@@ -90,7 +83,7 @@ class BEMISRuleTest {
 
     @Test
     void testGetAgency() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
@@ -99,7 +92,7 @@ class BEMISRuleTest {
 
     @Test
     void testGetDescription() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
@@ -108,7 +101,7 @@ class BEMISRuleTest {
 
     @Test
     void testGetLayout() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
@@ -117,7 +110,7 @@ class BEMISRuleTest {
 
     @Test
     void testGetRelease() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
@@ -126,7 +119,7 @@ class BEMISRuleTest {
 
     @Test
     void testGetStandard() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
@@ -135,7 +128,7 @@ class BEMISRuleTest {
 
     @Test
     void testGetType() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
@@ -144,7 +137,7 @@ class BEMISRuleTest {
 
     @Test
     void testGetVersion() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
@@ -153,7 +146,7 @@ class BEMISRuleTest {
 
     @Test
     void testHasMoreRuleTokens() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
@@ -161,11 +154,15 @@ class BEMISRuleTest {
 
     @Test
     void testToString() throws Exception {
-        final Document ruleDoc = getRuleDocument("BEMIS-7135-IN-1.0-A.xml");
+        final Document ruleDoc = getRuleDocument(BEMIS_7135_IN_1_0_A_XML);
         assertThat(ruleDoc, not(nullValue()));
         final AbstractEDIRule rule = new BEMISRule(ruleDoc);
         assertThat(rule, not(nullValue()));
         assertThat(rule.toString(), is("BEMIS-7135-IN-1.0-A-BAAN Electronic Message Interchange System"));
     }
 
+    private Document getRuleDocument(final String ruleDocumentName) throws DocumentException {
+        final InputStream stream = BEMISRuleTest.class.getResourceAsStream(ruleDocumentName);
+        return XmlUtils.getDocumentThrowing(stream);
+    }
 }

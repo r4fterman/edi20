@@ -11,23 +11,15 @@ public final class StringUtil {
     }
 
     public static boolean isNotSet(final String text) {
-        return (text == null || text.isEmpty());
+        return text == null || text.isEmpty();
     }
 
     public static boolean isSet(final String text) {
         return !isNotSet(text);
     }
 
-    public static boolean isSet(final StringBuffer textBuffer) {
-        return !isNotSet(textBuffer);
-    }
-
     public static boolean isNotSet(final StringBuilder textBuilder) {
         return (textBuilder == null || textBuilder.length() == 0);
-    }
-
-    public static boolean isNotSet(final StringBuffer textBuffer) {
-        return (textBuffer == null || textBuffer.length() == 0);
     }
 
     public static boolean isOneOf(
