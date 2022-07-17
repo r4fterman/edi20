@@ -61,7 +61,6 @@ public final class EDIRuleFactory {
             final Document edifactRuleDocument = XmlUtils.getDocumentThrowing(edifactRuleFile);
             return new EDIFACTRule(edifactRuleDocument);
         } catch (final DocumentException e) {
-            e.printStackTrace();
             throw new EDIException("Unable to load rule file: " + edifactRuleFileName, e);
         }
     }
