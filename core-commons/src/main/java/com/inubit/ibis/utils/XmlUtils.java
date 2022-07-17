@@ -72,7 +72,7 @@ public final class XmlUtils {
         }
     }
 
-    private static void closeQuietly(XMLWriter writer) {
+    private static void closeQuietly(final XMLWriter writer) {
         if (writer == null) {
             return;
         }
@@ -82,6 +82,10 @@ public final class XmlUtils {
         } catch (final IOException e) {
             // do nothing
         }
+    }
+
+    private XmlUtils() {
+        // avoid class instantiation
     }
 
 }
