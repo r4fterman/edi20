@@ -1,5 +1,11 @@
 package com.inubit.ibis.plugins.edi20.parsers;
 
+import java.io.InputStream;
+import java.util.List;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.EDIFACTDelimiters;
 import com.inubit.ibis.plugins.edi20.rules.AbstractEDIRule;
 import com.inubit.ibis.plugins.edi20.rules.EDIFACTEnveloperRule;
@@ -17,12 +23,6 @@ import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
 import com.inubit.ibis.utils.XmlUtils;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-
-import javax.print.Doc;
-import java.io.InputStream;
-import java.util.List;
 
 public class EDIFACTParser extends HWEDParser {
 

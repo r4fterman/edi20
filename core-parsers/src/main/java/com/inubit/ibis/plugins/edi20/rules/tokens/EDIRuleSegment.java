@@ -1,11 +1,12 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
-import com.inubit.ibis.plugins.edi20.rules.interfaces.RepeatableRuleToken;
-import org.dom4j.Element;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.dom4j.Element;
+
+import com.inubit.ibis.plugins.edi20.rules.interfaces.ElementRuleToken;
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RepeatableRuleToken;
 
 public abstract class EDIRuleSegment extends EDIRuleBaseToken implements RepeatableRuleToken {
 

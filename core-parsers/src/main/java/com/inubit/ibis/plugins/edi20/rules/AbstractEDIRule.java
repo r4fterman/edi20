@@ -1,18 +1,18 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+
 import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleRoot;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.rules.tokens.Loop;
 import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
-import org.dom4j.Document;
-import org.dom4j.Element;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public abstract class AbstractEDIRule {
 

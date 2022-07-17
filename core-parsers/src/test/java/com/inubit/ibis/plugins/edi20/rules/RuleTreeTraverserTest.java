@@ -1,21 +1,22 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
-import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
-import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
-import com.inubit.ibis.utils.XmlUtils;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
+import java.io.InputStream;
+import java.util.List;
+import java.util.Optional;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.InputStream;
-import java.util.List;
-import java.util.Optional;
-
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
+import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
+import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
+import com.inubit.ibis.utils.XmlUtils;
 
 class RuleTreeTraverserTest {
 
@@ -115,7 +116,7 @@ class RuleTreeTraverserTest {
         final EDIRuleBaseToken ruleToken = (EDIRuleBaseToken) new HwedRuleTokenFactory().createInstance(rootElement);
 
         Optional<EDIRuleSegment> segment = Optional.empty();
-        for (final String expectedSegmentID : EXPECTED_SEGMENT_IDS) {
+        for (final String expectedSegmentID: EXPECTED_SEGMENT_IDS) {
 
             EDIRuleBaseToken tokenToStartFrom = ruleToken;
             if (segment.isPresent()) {
@@ -124,7 +125,9 @@ class RuleTreeTraverserTest {
 
             segment = traverser.findNextSegment(tokenToStartFrom, expectedSegmentID);
 
-            assertThat("Segment: " + expectedSegmentID + " - token: " + tokenToStartFrom.getID(), segment.isPresent(), is(true));
+            assertThat("Segment: " + expectedSegmentID + " - token: " + tokenToStartFrom.getID(),
+                    segment.isPresent(),
+                    is(true));
             assertThat(expectedSegmentID, segment.get().getID(), is(expectedSegmentID));
         }
     }
