@@ -10,7 +10,7 @@ public abstract class UnknownDelimiterToken extends EDIDocumentToken {
      * @param tokenPosition
      *         token position in document
      */
-    public UnknownDelimiterToken(final String tokenString, final int tokenPosition) {
+    protected UnknownDelimiterToken(final String tokenString, final int tokenPosition) {
         super(tokenString, tokenPosition, Delimiters.DELIMITER_UNKNOWN);
     }
 

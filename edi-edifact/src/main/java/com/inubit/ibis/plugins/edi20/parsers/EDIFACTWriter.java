@@ -12,16 +12,16 @@ public class EDIFACTWriter implements OutputWriter {
 
     private static final String ATTRIBUTE_NAME_FORMAT = "format";
 
-    private Element fRootElement;
+    private final Element rootElement;
 
     public EDIFACTWriter() {
-        fRootElement = DocumentHelper.createElement(ELEMENT_NAME_INTERCHANGE);
-        fRootElement.addAttribute(ATTRIBUTE_NAME_FORMAT, "EDIFACT");
+        rootElement = DocumentHelper.createElement(ELEMENT_NAME_INTERCHANGE);
+        rootElement.addAttribute(ATTRIBUTE_NAME_FORMAT, "EDIFACT");
     }
 
     @Override
     public void write(final OutputStream stream) {
-        //todo: implement
+        //todo implement
     }
 
 }

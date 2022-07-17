@@ -27,7 +27,7 @@ public abstract class AbstractEDIRule {
      * @throws EDIException
      *         if the given rule document is not a valid EDI rule document
      */
-    public AbstractEDIRule(final Document ruleDocument) throws EDIException {
+    protected AbstractEDIRule(final Document ruleDocument) throws EDIException {
         if (!isValidRuleDocument(ruleDocument)) {
             throw new InvalidRuleException();
         }
@@ -186,8 +186,8 @@ public abstract class AbstractEDIRule {
 
     private List<EDIRuleSegment> getSegments(final EDIRuleBaseToken token) {
         return token.getChildren().stream()
-                .filter(child -> child instanceof EDIRuleSegment)
-                .map(child -> (EDIRuleSegment) child)
+                .filter(EDIRuleSegment.class::isInstance)
+                .map(EDIRuleSegment.class::cast)
                 .collect(Collectors.toUnmodifiableList());
     }
 

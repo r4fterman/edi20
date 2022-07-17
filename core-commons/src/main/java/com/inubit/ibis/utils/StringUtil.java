@@ -6,10 +6,6 @@ import java.util.regex.Pattern;
 
 public final class StringUtil {
 
-    private StringUtil() {
-        // do nothing
-    }
-
     public static boolean isNotSet(final String text) {
         return text == null || text.isEmpty();
     }
@@ -67,5 +63,9 @@ public final class StringUtil {
             return m.matches();
         }
         return false;
+    }
+
+    private StringUtil() {
+        // do nothing
     }
 }

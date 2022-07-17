@@ -1,5 +1,11 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
+import java.util.List;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.Node;
+
 import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleCompositeElement;
@@ -10,23 +16,16 @@ import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleTokenFactory;
 import com.inubit.ibis.plugins.edi20.scanners.Token;
 import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.XPathUtil;
-import org.dom4j.Document;
-import org.dom4j.Element;
-import org.dom4j.Node;
-
-import java.util.List;
 
 public abstract class AbstractHWEDRule extends AbstractEDIRule {
 
     /**
      * Constructor creates HWED rule from the given rule document.
      *
-     * @param ediRuleDocument
-     *         EDI rule document
-     * @throws EDIException
-     *         if the given rule document is not a valid EDI rule document
+     * @param ediRuleDocument EDI rule document
+     * @throws EDIException if the given rule document is not a valid EDI rule document
      */
-    public AbstractHWEDRule(final Document ediRuleDocument) throws EDIException {
+    protected AbstractHWEDRule(final Document ediRuleDocument) throws EDIException {
         super(ediRuleDocument);
     }
 
@@ -41,34 +40,34 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     }
 
     /**
-     * @param currentRuleToken
-     *         current rule token
-     * @param segmentID
-     *         segment ID
-     * @return segment or <code>null</code> if segment is conditional and does
-     * not match the given segment ID
-     * @throws EDIException
-     *         if segment is mandatory and does not match the given segment ID
+     * @param currentRuleToken current rule token
+     * @param segmentID        segment ID
+     * @return segment or <code>null</code> if segment is conditional and does not match the given segment ID
+     * @throws EDIException if segment is mandatory and does not match the given segment ID
      */
     private EDIRuleSegment parseUntilNextSegment(
             final RuleToken currentRuleToken,
             final String segmentID) throws EDIException {
-//        logMessage("AbstractHWEDRule.parseUntilNextSegment(" + currentRuleToken.getID() + "): search for segment [" + segmentID + "] ...");
+        logMessage("AbstractHWEDRule.parseUntilNextSegment(" + currentRuleToken.getID() + "): search for segment ["
+                + segmentID + "] ...");
 
         if (currentRuleToken instanceof EDIRuleSegmentGroup) {
             final EDIRuleSegmentGroup ruleSegmentGroup = (EDIRuleSegmentGroup) currentRuleToken;
 
-//            logMessage("AbstractHWEDRule.parseUntilNextSegment(): checked=" + ruleSegmentGroup.isChecked());
+            logMessage("AbstractHWEDRule.parseUntilNextSegment(): checked=" + ruleSegmentGroup.isChecked());
 
             if (ruleSegmentGroup.isChecked()) {
                 if (ruleSegmentGroup.isMandatory()) {
-                    throw new EDIException("Found mandatory segment group [" + ruleSegmentGroup + "] while trying to find next segment ["
-                            + segmentID + "]!");
+                    final String message = String.format(
+                            "Found mandatory segment group [%s] while trying to find next segment [%s]!",
+                            ruleSegmentGroup,
+                            segmentID);
+                    throw new EDIException(message);
                 }
             } else if (ruleSegmentGroup.isInProgress()) {
                 ruleSegmentGroup.setChecked();
 
-//                logMessage("AbstractHWEDRule.parseUntilNextSegment(): next segment group...");
+                logMessage("AbstractHWEDRule.parseUntilNextSegment(): next segment group...");
 
                 return parseUntilNextSegment(RuleUtil.getParentFollowingSibling(ruleSegmentGroup), segmentID);
             } else {
@@ -79,12 +78,13 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
             if (childToken != null) {
                 return parseUntilNextSegment(childToken, segmentID);
             }
-            throw new EDIException("Segment [" + segmentID + "] not found!");
+            final String message = String.format("Segment [%s] not found!", segmentID);
+            throw new EDIException(message);
         }
         if (currentRuleToken instanceof EDIRuleSegment) {
             final EDIRuleSegment ruleSegment = (EDIRuleSegment) currentRuleToken;
             if (ruleSegment.getID().equals(segmentID)) {
-//                logMessage("AbstractHWEDRule.parseUntilNextSegment(): rseg=" + ruleSegment);
+                logMessage("AbstractHWEDRule.parseUntilNextSegment(): rseg=" + ruleSegment);
                 return ruleSegment;
             }
             // if (ruleSegment.isMandatory()) {
@@ -92,40 +92,49 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
             // }
             final EDIRuleSegment segment = parseUntilNextSegment(RuleUtil.getFollowingSibling(ruleSegment), segmentID);
 
-//            logMessage("AbstractHWEDRule.parseUntilNextSegment(): seg=" + segment);
+            logMessage("AbstractHWEDRule.parseUntilNextSegment(): seg=" + segment);
 
             return segment;
         }
         if (currentRuleToken instanceof EDIRuleCompositeElement) {
             final EDIRuleCompositeElement ruleCompositeElement = (EDIRuleCompositeElement) currentRuleToken;
             if (ruleCompositeElement.isMandatory()) {
-                throw new EDIException("Found mandatory composite element [" + ruleCompositeElement + "] while trying to find next segment ["
-                        + segmentID + "]!");
+                final String message = String.format(
+                        "Found mandatory composite element [%s] while trying to find next segment [%s]!",
+                        ruleCompositeElement,
+                        segmentID);
+                throw new EDIException(message);
             }
             return parseUntilNextSegment(RuleUtil.getFollowingSibling(ruleCompositeElement), segmentID);
         }
         if (currentRuleToken instanceof EDIRuleElement) {
             final EDIRuleElement ruleElement = (EDIRuleElement) currentRuleToken;
             if (ruleElement.isMandatory()) {
-                throw new EDIException("Found mandatory element [" + ruleElement + "] while trying to find next segment [" + segmentID + "]!");
+                final String message =
+                        String.format("Found mandatory element [%s] while trying to find next segment [%s]!",
+                                ruleElement,
+                                segmentID);
+                throw new EDIException(
+                        message);
             }
             return parseUntilNextSegment(RuleUtil.getFollowingSibling(ruleElement), segmentID);
         }
-        throw new EDIException("Unknown rule token [" + currentRuleToken + "]!");
+        final String message = String.format("Unknown rule token [%s]!", currentRuleToken);
+        throw new EDIException(message);
     }
 
     private void markLoopOnSegment(
             final EDIRuleSegment segment,
             final String segmentID) throws EDIException {
         if (segment == null) {
-            throw new EDIException("Segment [" + segmentID + "] not found!");
+            final String message = String.format("Segment [%s] not found!", segmentID);
+            throw new EDIException(message);
         }
         segment.looped();
     }
 
     /**
-     * @param segmentID
-     *         segment ID to check
+     * @param segmentID segment ID to check
      * @return <code>true</code> if this rule contains at least one further
      * segment with the given ID,
      * <code>false</code> otherwise
@@ -135,10 +144,8 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     }
 
     /**
-     * @param segmentID
-     *         segment ID to check
-     * @param startFromToken
-     *         rule token to start search from
+     * @param segmentID      segment ID to check
+     * @param startFromToken rule token to start search from
      * @return <code>true</code> if this rule contains at least one further
      * segment with the given ID,
      * <code>false</code> otherwise
@@ -153,7 +160,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
 
         final String xPath = getChildSegmentsXPath(segmentID);
         final List<Node> segments = XPathUtil.evaluateXPathAsNodeList(xPath, startElement);
-        if (segments.size() > 0) {
+        if (!segments.isEmpty()) {
             return true;
         }
 
@@ -167,11 +174,11 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     }
 
     private String getChildSegmentsXPath(final String segmentID) {
-        return "descendant-or-self::Segment[@id='" + segmentID + "']";
+        return String.format("descendant-or-self::Segment[@id='%s']", segmentID);
     }
 
     public EDIRuleBaseToken nextElement() throws RuleViolationException {
-//        logMessage("AbstractHWEDRule.nextElement(): current=" + getCurrentRuleToken());
+        logMessage("AbstractHWEDRule.nextElement(): current=" + getCurrentRuleToken());
         final EDIRuleBaseToken newCurrentRuleToken = parseUntilNextElement(getCurrentRuleToken());
         setCurrentRuleToken(newCurrentRuleToken);
         return newCurrentRuleToken;
@@ -183,7 +190,7 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
         }
         if (currentRuleToken instanceof EDIRuleBaseToken) {
             final EDIRuleBaseToken ruleBaseToken = (EDIRuleBaseToken) currentRuleToken;
-//            logMessage("AbstractHWEDRule.parseUntilNextElement: " + ruleBaseToken);
+            logMessage("AbstractHWEDRule.parseUntilNextElement: " + ruleBaseToken);
             final RuleToken nextChild = ruleBaseToken.nextChildren();
             if (nextChild == null) {
                 final String message = String.format("Rule element [%s] has no child!", ruleBaseToken);

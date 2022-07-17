@@ -7,7 +7,7 @@ import org.dom4j.Element;
 
 public abstract class EDIRuleSegmentGroup extends EDIRuleSegment {
 
-    public EDIRuleSegmentGroup(final Element ruleElement) {
+    protected EDIRuleSegmentGroup(final Element ruleElement) {
         // <SegmentGroup id="Group_1" loop="9"
         // name="A group of segments containing references and constants which apply to the entire message."
         // required="C" xmlTag="SegmentGroup_1">
@@ -21,8 +21,8 @@ public abstract class EDIRuleSegmentGroup extends EDIRuleSegment {
 
     public List<EDIRuleSegment> getSegments() {
         return getChildren().stream()
-                .filter(child -> child instanceof EDIRuleSegment)
-                .map(child -> (EDIRuleSegment) child)
+                .filter(EDIRuleSegment.class::isInstance)
+                .map(EDIRuleSegment.class::cast)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

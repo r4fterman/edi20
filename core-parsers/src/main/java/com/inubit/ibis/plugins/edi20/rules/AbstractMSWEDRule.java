@@ -11,7 +11,7 @@ public abstract class AbstractMSWEDRule extends AbstractHWEDRule {
      * @throws EDIException
      *         if the given rule document is not a valid EDI rule document
      */
-    public AbstractMSWEDRule(final Document ruleDocument) throws EDIException {
+    protected AbstractMSWEDRule(final Document ruleDocument) throws EDIException {
         super(ruleDocument);
     }
 

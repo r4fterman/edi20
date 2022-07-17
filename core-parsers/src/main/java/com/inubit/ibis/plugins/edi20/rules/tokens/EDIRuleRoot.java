@@ -11,7 +11,7 @@ public abstract class EDIRuleRoot extends EDIRuleBaseToken {
     private static final String ATTRIBUTE_NAME_VERSION = "version";
     private static final String ATTRIBUTE_NAME_LAYOUT = "layout";
 
-    public EDIRuleRoot(final Element ruleElement) {
+    protected EDIRuleRoot(final Element ruleElement) {
         super(ruleElement);
     }
 

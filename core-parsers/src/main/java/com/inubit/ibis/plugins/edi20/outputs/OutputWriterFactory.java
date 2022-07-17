@@ -12,4 +12,7 @@ public final class OutputWriterFactory {
         throw new EDIException("Unknown rule [" + rule.getClass().getCanonicalName() + "]!");
     }
 
+    private OutputWriterFactory() {
+        // do nothing
+    }
 }

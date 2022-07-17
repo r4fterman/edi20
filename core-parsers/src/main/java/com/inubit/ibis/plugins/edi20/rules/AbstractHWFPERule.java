@@ -18,7 +18,7 @@ public abstract class AbstractHWFPERule extends AbstractEDIRule {
      * @throws EDIException
      *         if the given rule document is not a valid EDI rule document
      */
-    public AbstractHWFPERule(final Document ruleDocument) throws EDIException {
+    protected AbstractHWFPERule(final Document ruleDocument) throws EDIException {
         super(ruleDocument);
     }
 

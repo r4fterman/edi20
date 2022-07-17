@@ -1,12 +1,13 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
-import org.dom4j.Element;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import org.dom4j.Element;
+
+import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 
 public abstract class EDIRuleBaseToken implements RuleToken {
 
@@ -31,7 +32,6 @@ public abstract class EDIRuleBaseToken implements RuleToken {
 
     private int status = STATUS_NEW;
 
-    @SuppressWarnings("unchecked")
     public EDIRuleBaseToken(final Element ruleElement) {
         this.ruleElement = ruleElement;
         this.childIterator = ruleElement.elementIterator();
@@ -82,14 +82,11 @@ public abstract class EDIRuleBaseToken implements RuleToken {
         return ruleElement != null && !ruleElement.elements().isEmpty();
     }
 
-    @SuppressWarnings("unchecked")
     public List<RuleToken> getChildren() {
         final List<Element> childElements = ruleElement.elements();
-        final List<RuleToken> children = new ArrayList<>(childElements.size());
-        for (final Element childElement : childElements) {
-            children.add(createElementInstance(childElement));
-        }
-        return children;
+        return childElements.stream()
+                .map(this::createElementInstance)
+                .collect(Collectors.toUnmodifiableList());
     }
 
     protected RuleToken createElementInstance(final Element element) {
@@ -193,7 +190,7 @@ public abstract class EDIRuleBaseToken implements RuleToken {
     @Override
     public boolean equals(final Object o) {
         if (o instanceof EDIRuleBaseToken) {
-            EDIRuleBaseToken that = (EDIRuleBaseToken) o;
+            final EDIRuleBaseToken that = (EDIRuleBaseToken) o;
             return status == that.status
                     && Objects.equals(ruleElement, that.ruleElement)
                     && Objects.equals(required, that.required)

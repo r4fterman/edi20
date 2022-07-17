@@ -29,6 +29,6 @@ public class X12Rule extends AbstractHWEDRule {
 
     @Override
     public void closeCurrentRuleToken(final Token token) {
-        //todo: implement
+        //todo implement
     }
 }

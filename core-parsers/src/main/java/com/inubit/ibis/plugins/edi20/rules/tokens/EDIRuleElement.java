@@ -9,7 +9,7 @@ public abstract class EDIRuleElement extends EDIRuleBaseToken implements Element
     private static final int INTEGER_NOT_SET = -1;
     private static final String ATTRIBUTE_NAME_TYPE = "type";
 
-    public EDIRuleElement(final Element ruleElement) {
+    protected EDIRuleElement(final Element ruleElement) {
         super(ruleElement);
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public abstract class EDIRuleCompositeElement extends EDIRuleBaseToken implements ElementRuleToken {
 
-    public EDIRuleCompositeElement(final Element ruleElement) {
+    protected EDIRuleCompositeElement(final Element ruleElement) {
         super(ruleElement);
     }
 

@@ -15,12 +15,10 @@ public abstract class AbstractEDIParser implements EDIParser {
     private OutputWriter writer;
 
     /**
-     * @param scanner
-     *         lexical scanner
-     * @param ediRule
-     *         EDI rule
+     * @param scanner lexical scanner
+     * @param ediRule EDI rule
      */
-    public AbstractEDIParser(
+    protected AbstractEDIParser(
             final Scanner scanner,
             final AbstractEDIRule ediRule) {
         super();
@@ -59,21 +57,28 @@ public abstract class AbstractEDIParser implements EDIParser {
     private void parseTokens() throws EDIException {
         while (getScanner().hasMoreTokens() && !isEndOfRule()) {
             final Token token = getScanner().nextToken();
-            if (!StringUtil.isLineBreakOnly(token.getToken())) {
-                if (token.isDelimiter()) {
-                    parseDelimiter(token);
-                } else {
-                    parseToken(token);
-                }
-            }
+            parseNextToken(token);
         }
 
         if (getScanner().hasMoreTokens()) {
             final String unparsedPart = getUnparsedPart();
             // ignore white spaces at the end of message
             if (!StringUtil.isWhitespacesOnly(unparsedPart)) {
-                throw new EDIException("Rule parsing complete but message still contains data [" + unparsedPart + "]!");
+                final String message = String.format("Rule parsing complete but message still contains data [%s]!",
+                        unparsedPart);
+                throw new EDIException(message);
             }
+        }
+    }
+
+    private void parseNextToken(final Token token) throws EDIException {
+        if (StringUtil.isLineBreakOnly(token.getToken())) {
+            return;
+        }
+        if (token.isDelimiter()) {
+            parseDelimiter(token);
+        } else {
+            parseToken(token);
         }
     }
 

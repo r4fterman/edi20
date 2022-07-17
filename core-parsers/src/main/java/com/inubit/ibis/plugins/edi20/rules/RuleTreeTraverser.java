@@ -62,19 +62,19 @@ class RuleTreeTraverser {
             return Optional.empty();
         }
 
-//        logMessage(String.format("traverseSiblings from: %s", ruleToken.getID()));
+        logMessage(String.format("traverseSiblings from: %s", ruleToken.getID()));
 
         final EDIRuleBaseToken parent = (EDIRuleBaseToken) ruleToken.getParent();
         final int index = parent.getIndexOfChild(ruleToken);
 
-//        logMessage(String.format("Child %s has index: %d", ruleToken.getID(), index));
+        logMessage(String.format("Child %s has index: %d", ruleToken.getID(), index));
 
         if (index >= 0) {
             final List<RuleToken> children = parent.getChildren();
             for (int i = index + 1; i < children.size(); i++) {
                 final EDIRuleBaseToken child = (EDIRuleBaseToken) children.get(i);
 
-//                logMessage(String.format("Next child to traverse: %s", child.getID()));
+                logMessage(String.format("Next child to traverse: %s", child.getID()));
 
                 final Optional<EDIRuleSegment> segment = traverseChildrenOrSelf(child, segmentID);
                 if (segment.isPresent()) {
@@ -96,7 +96,7 @@ class RuleTreeTraverser {
 
         final List<RuleToken> children = ruleToken.getChildren();
         for (final RuleToken child: children) {
-//            logMessage(String.format("AbstractEDIRule.traverseChildren(%s): %s", ruleToken.getID(), child.getID()));
+            logMessage(String.format("AbstractEDIRule.traverseChildren(%s): %s", ruleToken.getID(), child.getID()));
 
             final Optional<EDIRuleSegment> segment = checkSegment((EDIRuleBaseToken) child, segmentID);
             if (segment.isPresent()) {

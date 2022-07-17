@@ -6,6 +6,6 @@ import com.inubit.ibis.utils.EDIException;
 public class UnknownDelimiterTokenException extends EDIException {
 
     public UnknownDelimiterTokenException(final Token token) {
-        super("Unknown delimiter token found: " + token.toString());
+        super(String.format("Unknown delimiter token found: %s", token.toString()));
     }
 }

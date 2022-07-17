@@ -79,7 +79,7 @@ public class EDIFACTParser extends HWEDParser {
 
     @Override
     protected void parseDelimiter(final Token token) throws EDIException {
-//        logMessage(String.format("EDIFACTParser.parseDelimiter(%d): %s", state, token.getToken()));
+        logMessage(String.format("EDIFACTParser.parseDelimiter(%d): %s", state, token.getToken()));
 
         getEDIFACTRule().closeCurrentRuleToken(token);
         if (EDIFACTDelimiters.DELIMITER_SEGMENT == token.getDelimiterType()) {
@@ -98,7 +98,7 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     private void parseToken(final EDIFACTUnknownDelimiterToken messageToken) throws RuleViolationException {
-//        logMessage(String.format("EDIFACTParser.parseToken(%d): %s", state, messageToken.getToken()));
+        logMessage(String.format("EDIFACTParser.parseToken(%d): %s", state, messageToken.getToken()));
 
         switch (state) {
             case SEGMENT_OR_SEGMENT_GROUP:
@@ -127,7 +127,7 @@ public class EDIFACTParser extends HWEDParser {
         setCurrentRule(rule);
         validRuleToken(segmentID, segment);
 
-//        logMessage(String.format("EDIFACTParser.parseSegment(%d): [S: %s (%s)]", state, segmentID, segment));
+        logMessage(String.format("EDIFACTParser.parseSegment(%d): [S: %s (%s)]", state, segmentID, segment));
     }
 
     private void parseElementOrComplexElement(final String element) throws RuleViolationException {
@@ -141,7 +141,7 @@ public class EDIFACTParser extends HWEDParser {
         if (nextChild != null) {
             // next children found
             if (nextChild instanceof EDIRuleCompositeElement) {
-//                logMessage(String.format("EDIFACTParser.parseElementOrComplexElement(%d): [CE: %s]", state, nextChild.getID()));
+                logMessage(String.format("EDIFACTParser.parseElementOrComplexElement(%d): [CE: %s]", state, nextChild.getID()));
 
                 parseElementOrComplexElement(element, rule);
                 return;
@@ -151,7 +151,7 @@ public class EDIFACTParser extends HWEDParser {
                 final EDIRuleElement ruleElement = (EDIRuleElement) nextChild;
                 validRuleToken(element, ruleElement);
 
-//                logMessage(String.format("EDIFACTParser.parseElementOrComplexElement(%d): [E: %s]=[%s]", state, ruleElement.getID(), element));
+                logMessage(String.format("EDIFACTParser.parseElementOrComplexElement(%d): [E: %s]=[%s]", state, ruleElement.getID(), element));
 
                 return;
             }
@@ -203,10 +203,10 @@ public class EDIFACTParser extends HWEDParser {
 
     private EDIFACTRule getEDIFACTRule(final String segmentID) {
         if (isEnveloperSegment(segmentID)) {
-//            logMessage("Use enveloper rule for segment " + segmentID);
+            logMessage("Use enveloper rule for segment " + segmentID);
             return getEnveloperRule();
         }
-//        logMessage("Use rule for segment " + segmentID);
+        logMessage("Use rule for segment " + segmentID);
         return (EDIFACTRule) getRule();
     }
 
@@ -238,7 +238,7 @@ public class EDIFACTParser extends HWEDParser {
     }
 
     private void logMessage(final String message) {
-        System.out.println(message);
+//        System.out.println(message);
     }
 
 }

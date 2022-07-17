@@ -20,4 +20,8 @@ public final class TypeValidatorFactory {
         final String message = String.format("Found invalid type: [%s]", type);
         throw new InvalidTypeException(message);
     }
+
+    private TypeValidatorFactory () {
+        // do nothing
+    }
 }

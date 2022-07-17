@@ -16,7 +16,7 @@ public abstract class EDILexicalScanner implements Scanner {
      * @param delimiters
      *         EDI delimiters
      */
-    public EDILexicalScanner(
+    protected EDILexicalScanner(
             final StringBuilder inputDocument,
             final Delimiters delimiters) {
         super();

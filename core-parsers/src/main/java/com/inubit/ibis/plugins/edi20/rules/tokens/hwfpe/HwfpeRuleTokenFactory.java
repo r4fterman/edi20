@@ -35,7 +35,9 @@ public final class HwfpeRuleTokenFactory implements RuleTokenFactory {
         if (NAME_RULESEGMENTGROUP.equals(ruleElementName)) {
             return addToCache(ruleElement, new HwfpeRuleSegmentGroup(ruleElement));
         }
-        return null;
+
+        final String message = String.format("Unknown instance of rule element: %s", ruleElement.getClass().getCanonicalName());
+        throw new RuntimeException(message);
     }
 
     private static RuleToken addToCache(

@@ -15,8 +15,8 @@ public abstract class XMLLexicalScanner implements Scanner {
      * @param inputDocument
      *         input document
      */
-    public XMLLexicalScanner(final Document inputDocument) {
-        //todo: implement
+    protected XMLLexicalScanner(final Document inputDocument) {
+        //todo implement
     }
 
     public abstract Delimiters getDelimiters();

@@ -17,7 +17,7 @@ public abstract class EDIRuleSegment extends EDIRuleBaseToken implements Repeata
 
     private int loopCount = 0;
 
-    public EDIRuleSegment(final Element ruleElement) {
+    protected EDIRuleSegment(final Element ruleElement) {
         // <Segment id="RFF" loop="1" name="Reference" required="M" xmlTag="Reference">
         super(ruleElement);
         maxLoop = new Loop(getRuleElement().attributeValue(ATTRIBUTE_NAME_LOOP, String.valueOf(NO_LOOP)));
@@ -68,8 +68,8 @@ public abstract class EDIRuleSegment extends EDIRuleBaseToken implements Repeata
 
     public List<ElementRuleToken> getElements() {
         return getChildren().stream()
-                .filter(child -> child instanceof  ElementRuleToken)
-                .map(child -> (ElementRuleToken) child)
+                .filter(ElementRuleToken.class::isInstance)
+                .map(ElementRuleToken.class::cast)
                 .collect(Collectors.toUnmodifiableList());
     }
 }

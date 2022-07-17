@@ -12,7 +12,7 @@ public abstract class MSWEDParser extends HWEDParser {
      * @param rule
      *         EDI rule
      */
-    public MSWEDParser(
+    protected MSWEDParser(
             final Scanner scanner,
             final AbstractMSWEDRule rule) {
         super(scanner, rule);

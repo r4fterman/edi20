@@ -29,6 +29,6 @@ public class BEMISRule extends AbstractHWEDRule {
 
     @Override
     public void closeCurrentRuleToken(final Token token) {
-        //todo: implement
+        //todo implement
     }
 }

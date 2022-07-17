@@ -8,7 +8,7 @@ import com.inubit.ibis.plugins.edi20.scanners.Scanner;
  */
 public abstract class HWFPEParser extends AbstractEDIParser {
 
-    public HWFPEParser(
+    protected HWFPEParser(
             final Scanner scanner,
             final AbstractEDIRule rule) {
         super(scanner, rule);

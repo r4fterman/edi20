@@ -10,7 +10,7 @@ import com.inubit.ibis.plugins.edi20.scanners.Scanner;
  */
 public abstract class HWEDParser extends AbstractEDIParser {
 
-    public HWEDParser(
+    protected HWEDParser(
             final Scanner scanner,
             final AbstractHWEDRule rule) {
         super(scanner, rule);
@@ -53,12 +53,12 @@ public abstract class HWEDParser extends AbstractEDIParser {
     protected void validateMessagePartAgainstRuleElement(
             final String messagePart,
             final HwedRuleElement ruleElement) throws RuleViolationException {
-        System.out.println(String.format("[%s]=[%s]", messagePart, ruleElement.getID()));
+        System.out.printf("[%s]=[%s]%n", messagePart, ruleElement.getID());
 
-        if (ruleElement.isMandatory()) {
-            if (messagePart.isEmpty()) {
-                throw new RuleViolationException("Mandatory element [" + ruleElement + "] has not content in message!");
-            }
+        if (ruleElement.isMandatory()
+                && messagePart.isEmpty()) {
+            final String message = String.format("Mandatory element [%s] has not content in message!", ruleElement);
+            throw new RuleViolationException(message);
         }
 
         if (!messagePart.isBlank()) {
@@ -73,7 +73,12 @@ public abstract class HWEDParser extends AbstractEDIParser {
             final int length) throws RuleViolationException {
         final int max = ruleElement.getMaxLength();
         if (length > max) {
-            throw new RuleViolationException("Element [" + ruleElement + "] is longer than declared (length:" + length + ",max:" + max + "!");
+            final String message =
+                    String.format("Element [%s] is longer than declared (length: %d, max: %d)!",
+                            ruleElement,
+                            length,
+                            max);
+            throw new RuleViolationException(message);
         }
     }
 
@@ -82,7 +87,8 @@ public abstract class HWEDParser extends AbstractEDIParser {
             final int length) throws RuleViolationException {
         final int min = ruleElement.getMinLength();
         if (length < min) {
-            throw new RuleViolationException("Element [" + ruleElement + "] is shorter than declared (length:" + length + ",min:" + min + "!");
+            throw new RuleViolationException(
+                    "Element [" + ruleElement + "] is shorter than declared (length:" + length + ",min:" + min + "!");
         }
     }
 

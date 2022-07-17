@@ -74,4 +74,7 @@ public final class EDIUtil {
         return escDelimCount;
     }
 
+    private EDIUtil() {
+        // do nothing
+    }
 }

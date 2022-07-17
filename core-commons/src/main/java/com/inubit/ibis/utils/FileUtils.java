@@ -14,13 +14,9 @@ import java.nio.charset.StandardCharsets;
  */
 public final class FileUtils {
 
-    private FileUtils() {
-        // do nothing
-    }
-
     /**
-     * Fetch the entire contents of a text file, and return it in a String. This
-     * style of implementation does not throw Exceptions to the caller.
+     * Fetch the entire contents of a text file, and return it in a String. This style of implementation does not throw
+     * Exceptions to the caller.
      *
      * @param fileToRead is a file which already exists and can be read.
      */
@@ -57,8 +53,7 @@ public final class FileUtils {
     }
 
     /**
-     * Change the contents of text file in its entirety, overwriting any
-     * existing text.
+     * Change the contents of text file in its entirety, overwriting any existing text.
      * <p>
      * This style of implementation throws all exceptions to the caller.
      *
@@ -71,10 +66,9 @@ public final class FileUtils {
             throw new IllegalArgumentException("File must not be null.");
         }
 
-        if (!fileToWrite.exists()) {
-            if (!fileToWrite.createNewFile()) {
-                throw new IOException("File already exists: " + fileToWrite.getAbsolutePath());
-            }
+        if (!fileToWrite.exists()
+                && !fileToWrite.createNewFile()) {
+            throw new IOException("File already exists: " + fileToWrite.getAbsolutePath());
         }
 
         if (!fileToWrite.canWrite()) {
@@ -84,6 +78,10 @@ public final class FileUtils {
         try (Writer output = new BufferedWriter(new FileWriter(fileToWrite, StandardCharsets.UTF_8))) {
             output.write(content);
         }
+    }
+
+    private FileUtils() {
+        // do nothing
     }
 
 }
