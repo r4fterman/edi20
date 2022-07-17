@@ -27,6 +27,8 @@
         <checkstyle.plugin.version>3.1.1</checkstyle.plugin.version>
         <pitest.plugin.version>1.5.1</pitest.plugin.version>
         <findbugs.plugin.version>3.0.5</findbugs.plugin.version>
+        <sonar.organization>r4fterman</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencyManagement>
