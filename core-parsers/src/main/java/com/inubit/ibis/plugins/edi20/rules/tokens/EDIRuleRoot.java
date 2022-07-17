@@ -2,9 +2,6 @@ package com.inubit.ibis.plugins.edi20.rules.tokens;
 
 import org.dom4j.Element;
 
-/**
- * @author r4fter
- */
 public abstract class EDIRuleRoot extends EDIRuleBaseToken {
 
     private static final String ATTRIBUTE_NAME_AGENCY = "agency";

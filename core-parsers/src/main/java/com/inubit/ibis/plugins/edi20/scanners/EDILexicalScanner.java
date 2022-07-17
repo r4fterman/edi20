@@ -3,9 +3,6 @@ package com.inubit.ibis.plugins.edi20.scanners;
 import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 import com.inubit.ibis.plugins.edi20.utils.EDIUtil;
 
-/**
- * @author r4fter
- */
 public abstract class EDILexicalScanner implements Scanner {
 
     private StringBuilder inputDocument;

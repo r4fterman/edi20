@@ -1,9 +1,9 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens.hwed;
 
-import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
+import org.dom4j.Element;
+
 import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.RuleTokenFactory;
-import org.dom4j.Element;
 
 public final class HwedRuleTokenFactory implements RuleTokenFactory {
 

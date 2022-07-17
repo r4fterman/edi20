@@ -12,11 +12,8 @@ import java.net.URL;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.junit.MatcherAssert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * @author r4fter
- */
 class EDIFACTRuleTest {
 
     private Document getRuleDocument(final String ruleDocumentName) throws URISyntaxException, DocumentException {

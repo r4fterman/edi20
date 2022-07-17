@@ -2,9 +2,6 @@ package com.inubit.ibis.plugins.edi20.scanners;
 
 import com.inubit.ibis.plugins.edi20.delimiters.Delimiters;
 
-/**
- * @author r4fter
- */
 public abstract class UnknownDelimiterToken extends EDIDocumentToken {
 
     /**

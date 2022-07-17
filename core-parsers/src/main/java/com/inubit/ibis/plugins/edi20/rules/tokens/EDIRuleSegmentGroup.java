@@ -1,14 +1,10 @@
 package com.inubit.ibis.plugins.edi20.rules.tokens;
 
-import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
-import org.dom4j.Element;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author r4fter
- */
+import org.dom4j.Element;
+
 public abstract class EDIRuleSegmentGroup extends EDIRuleSegment {
 
     public EDIRuleSegmentGroup(final Element ruleElement) {

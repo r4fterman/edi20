@@ -4,9 +4,6 @@ import com.inubit.ibis.plugins.edi20.rules.interfaces.RepeatableRuleToken;
 import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 
-/**
- * @author r4fter
- */
 public final class RuleUtil {
 
     /**

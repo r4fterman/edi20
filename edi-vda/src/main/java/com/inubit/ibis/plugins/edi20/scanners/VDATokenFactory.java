@@ -3,9 +3,6 @@ package com.inubit.ibis.plugins.edi20.scanners;
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.VDADelimiters;
 import com.inubit.ibis.utils.StringUtil;
 
-/**
- * @author r4fter
- */
 public final class VDATokenFactory {
 
     private static VDATokenFactory factoryInstance;
@@ -27,10 +24,10 @@ public final class VDATokenFactory {
         return factoryInstance;
     }
 
-    private VDADelimiters delimiters;
+    private final VDADelimiters vdaDelimiters;
 
     private VDATokenFactory(final VDADelimiters vdaDelimiters) {
-        delimiters = vdaDelimiters;
+        this.vdaDelimiters = vdaDelimiters;
     }
 
     /**
@@ -47,7 +44,7 @@ public final class VDATokenFactory {
         if (StringUtil.isNotSet(tokenString)) {
             throw new IllegalArgumentException("Token not set!");
         }
-        if (delimiters.getDelimiterIdentifier(tokenString) == VDADelimiters.DELIMITER_SEGMENT) {
+        if (vdaDelimiters.getDelimiterIdentifier(tokenString) == VDADelimiters.DELIMITER_SEGMENT) {
             return new VDASegmentDelimiterToken(tokenString, tokenPosition);
         }
         return new VDAUnknownDelimiterToken(tokenString, tokenPosition);

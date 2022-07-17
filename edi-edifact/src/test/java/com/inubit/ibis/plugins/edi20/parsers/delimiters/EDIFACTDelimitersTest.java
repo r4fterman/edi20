@@ -3,11 +3,8 @@ package com.inubit.ibis.plugins.edi20.parsers.delimiters;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.junit.MatcherAssert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * @author r4fter
- */
 class EDIFACTDelimitersTest {
 
     @Test

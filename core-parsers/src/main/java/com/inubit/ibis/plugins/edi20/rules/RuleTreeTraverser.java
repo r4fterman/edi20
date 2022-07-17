@@ -1,12 +1,12 @@
 package com.inubit.ibis.plugins.edi20.rules;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.inubit.ibis.plugins.edi20.rules.interfaces.RuleToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleBaseToken;
 import com.inubit.ibis.plugins.edi20.rules.tokens.EDIRuleSegment;
 import com.inubit.ibis.plugins.edi20.rules.tokens.Loop;
-
-import java.util.List;
-import java.util.Optional;
 
 class RuleTreeTraverser {
 
@@ -76,7 +76,7 @@ class RuleTreeTraverser {
 
 //                logMessage(String.format("Next child to traverse: %s", child.getID()));
 
-                Optional<EDIRuleSegment> segment = traverseChildrenOrSelf(child, segmentID);
+                final Optional<EDIRuleSegment> segment = traverseChildrenOrSelf(child, segmentID);
                 if (segment.isPresent()) {
                     return segment;
                 }
@@ -95,7 +95,7 @@ class RuleTreeTraverser {
         }
 
         final List<RuleToken> children = ruleToken.getChildren();
-        for (final RuleToken child : children) {
+        for (final RuleToken child: children) {
 //            logMessage(String.format("AbstractEDIRule.traverseChildren(%s): %s", ruleToken.getID(), child.getID()));
 
             final Optional<EDIRuleSegment> segment = checkSegment((EDIRuleBaseToken) child, segmentID);
@@ -122,7 +122,17 @@ class RuleTreeTraverser {
                 } else {
                     final Loop loop = segment.getLoop();
 
-                    final String message = String.format("WARNING: segment for ID %s found but elements loop limit exceeded (%d/%d).", segmentID, segment.getCurrentLoopCount(), loop.isInfinite() ? -1 : loop.getValueAsInteger());
+                    final int loopSize;
+                    if (loop.isInfinite()) {
+                        loopSize = -1;
+                    } else {
+                        loopSize = loop.getValueAsInteger();
+                    }
+                    final String message = String.format(
+                            "WARNING: segment for ID %s found but elements loop limit exceeded (%d/%d).",
+                            segmentID,
+                            segment.getCurrentLoopCount(),
+                            loopSize);
                     logMessage(message);
                 }
             }

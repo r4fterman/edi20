@@ -1,11 +1,7 @@
 package com.inubit.ibis.plugins.edi20.scanners;
 
 import com.inubit.ibis.plugins.edi20.parsers.delimiters.DATANORMDelimiters;
-import org.apache.commons.lang.StringUtils;
 
-/**
- * @author r4fter
- */
 public class DATANORMTokenFactory {
 
     private static DATANORMTokenFactory factoryInstance;
@@ -30,7 +26,7 @@ public class DATANORMTokenFactory {
     public Token getToken(
             final String tokenString,
             final int tokenPosition) {
-        if (StringUtils.isEmpty(tokenString)) {
+        if (tokenString.isEmpty()) {
             throw new IllegalArgumentException("Token not set!");
         }
         switch (delimiters.getDelimiterIdentifier(tokenString)) {

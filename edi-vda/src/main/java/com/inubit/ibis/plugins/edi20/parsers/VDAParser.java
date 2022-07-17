@@ -17,7 +17,6 @@ import com.inubit.ibis.plugins.edi20.validators.TypeValidator;
 import com.inubit.ibis.plugins.edi20.validators.TypeValidatorFactory;
 import com.inubit.ibis.utils.EDIException;
 import com.inubit.ibis.utils.StringUtil;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
 
@@ -92,7 +91,7 @@ public class VDAParser extends HWFPEParser {
 //        logMessage("[" + messagePart + "]=[" + ruleElement + "]");
 
         if (ruleElement.isMandatory()) {
-            if (StringUtils.isEmpty(messagePart)) {
+            if (messagePart.isEmpty()) {
                 final String message = String.format("Mandatory element [%s] has not content in message!", ruleElement);
                 throw new RuleViolationException(message);
             }

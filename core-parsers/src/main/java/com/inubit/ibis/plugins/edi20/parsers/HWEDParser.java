@@ -4,7 +4,6 @@ import com.inubit.ibis.plugins.edi20.rules.AbstractHWEDRule;
 import com.inubit.ibis.plugins.edi20.rules.RuleViolationException;
 import com.inubit.ibis.plugins.edi20.rules.tokens.hwed.HwedRuleElement;
 import com.inubit.ibis.plugins.edi20.scanners.Scanner;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Hierarchical with element delimiter (HWED).
@@ -57,12 +56,12 @@ public abstract class HWEDParser extends AbstractEDIParser {
         System.out.println(String.format("[%s]=[%s]", messagePart, ruleElement.getID()));
 
         if (ruleElement.isMandatory()) {
-            if (StringUtils.isEmpty(messagePart)) {
+            if (messagePart.isEmpty()) {
                 throw new RuleViolationException("Mandatory element [" + ruleElement + "] has not content in message!");
             }
         }
 
-        if (StringUtils.isNotBlank(messagePart)) {
+        if (!messagePart.isBlank()) {
             final int length = messagePart.length();
             validateMinLength(ruleElement, length);
             validateMaxLength(ruleElement, length);
