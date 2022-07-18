@@ -9,4 +9,5 @@ This project provides a free EDI converter. It can convert any EDI message into 
 
 # License
 GNU General Public License (GPL)
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fr4fterman%2Fedi20.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fr4fterman%2Fedi20?ref=badge_large)
