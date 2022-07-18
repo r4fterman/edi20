@@ -1,8 +1,8 @@
 package com.inubit.ibis.plugins.edi20.validators;
 
-import com.inubit.ibis.plugins.edi20.rules.tokens.RuleElementType;
-
 import java.util.Map;
+
+import com.inubit.ibis.plugins.edi20.rules.tokens.RuleElementType;
 
 public final class TypeValidatorFactory {
 
@@ -21,7 +21,7 @@ public final class TypeValidatorFactory {
         throw new InvalidTypeException(message);
     }
 
-    private TypeValidatorFactory () {
+    private TypeValidatorFactory() {
         // do nothing
     }
 }
