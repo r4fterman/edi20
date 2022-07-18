@@ -207,6 +207,6 @@ public abstract class AbstractHWEDRule extends AbstractEDIRule {
     public abstract boolean isEndOfRule();
 
     private void logMessage(final String message) {
-        System.out.println(message);
+//        System.out.println(message);
     }
 }

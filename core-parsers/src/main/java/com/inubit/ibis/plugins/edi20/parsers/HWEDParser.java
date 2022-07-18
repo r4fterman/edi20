@@ -53,11 +53,13 @@ public abstract class HWEDParser extends AbstractEDIParser {
     protected void validateMessagePartAgainstRuleElement(
             final String messagePart,
             final HwedRuleElement ruleElement) throws RuleViolationException {
-        System.out.printf("[%s]=[%s]%n", messagePart, ruleElement.getID());
+
+        String message = String.format("[%s]=[%s]%n", messagePart, ruleElement.getID());
+        logMessage(message);
 
         if (ruleElement.isMandatory()
                 && messagePart.isEmpty()) {
-            final String message = String.format("Mandatory element [%s] has not content in message!", ruleElement);
+            message = String.format("Mandatory element [%s] has not content in message!", ruleElement);
             throw new RuleViolationException(message);
         }
 
@@ -90,6 +92,10 @@ public abstract class HWEDParser extends AbstractEDIParser {
             throw new RuleViolationException(
                     "Element [" + ruleElement + "] is shorter than declared (length:" + length + ",min:" + min + "!");
         }
+    }
+
+    private void logMessage(final String message) {
+//        System.out.println(message);
     }
 
 }

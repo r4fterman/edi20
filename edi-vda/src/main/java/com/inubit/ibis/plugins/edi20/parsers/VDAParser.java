@@ -147,7 +147,7 @@ public class VDAParser extends HWFPEParser {
     }
 
     private void logMessage(final String message) {
-        System.out.println(message);
+//        System.out.println(message);
     }
 
 }
