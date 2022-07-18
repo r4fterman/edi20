@@ -25,6 +25,8 @@
         <maven.version>3.5.4</maven.version>
         <java.version>13</java.version>
 
+        <library.folder>lib</library.folder>
+
         <junit.jupiter.version>5.8.2</junit.jupiter.version>
         <checkstyle.plugin.version>3.1.1</checkstyle.plugin.version>
         <pitest.plugin.version>1.5.1</pitest.plugin.version>
@@ -291,6 +293,13 @@
                                 <phase>test</phase>
                                 <goals>
                                     <goal>report</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>aggregate-report</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>report-aggregate</goal>
                                 </goals>
                             </execution>
                         </executions>
